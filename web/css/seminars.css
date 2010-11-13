@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+#title h2 {font-size:14pt}
+#title #tab {margin-top:16px; background:#787878; width:495px; height:31px; color:#FFF; text-align:center;}
+#title #tab div{width:165px;height:28px; display:inline; float:left; padding-top:4px;}
+#title #tab a:link,#content #title #tab a:visited {color:#FFF; font-weight: bold; text-decoration: none;}
+#title #tab .tab_active { width:165px; height:27px; background:#4fa0de;font-weight: bold; font-size:13px;}
+
+#seminar_content {border:1px solid #e3e3e2; background:#efefee; padding: 10px;}
+#base {min-height:280px;}
+#base_info {float:left; width:438px; padding: 10px; border-right:1px solid #e3e3e2}
+#base_info span {font-weight: bold;}
+#base_detail {float:right;width:418px; padding: 10px 10px 10px 20px;}
+
+.line_width {height:1px; width:892px;border-bottom:1px solid #e3e3e2; padding : 10px;}
+.alignLeft {text-align:left;}
+.fLeft {float:left;}
+.fRight {float:right;}
+#schedules { width:892px; margin-top:20px;}
+#schedules table { margin:0 auto; border-collapse: collapse; text-align:center; background:#FFF;}
+#schedules table td{ padding:3px;}
+#schedules table th {background:#9bc0dc; font-weight:bold; height:25px;}
+
+#location {padding:20px 10px 10px 20px; min-height:400px;}
+#location #map {float:right; }
+#location span {font-weight: bold;}
+
+#button {padding-top:20px;width:163px;}
+#button .boxButton {background:#0166ff; width:80px; height:25px; color:#FFF; font-weight:bold; text-align:center; padding-top:5px;}

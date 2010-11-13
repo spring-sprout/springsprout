@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+  <head>
+    <title>Example: Full - jWYSIWYG</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../jwysiwyg/jquery.wysiwyg.css" type="text/css" />
+    <link rel="stylesheet" href="examples.css" type="text/css" />
+  </head>
+  <body>
+    <h1>jWYSIWYG</h1>
+    <h2>Example: Full</h2>
+    <noscript>Enable JavaScript to use WYSIWYG features.</noscript>
+    <div>
+      <textarea name="wysiwyg" id="wysiwyg" rows="5" cols="103"></textarea>
+    </div>
+    <script type="text/javascript" src="../jquery/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="../jwysiwyg/jquery.wysiwyg.js"></script>
+    <script type="text/javascript">
+(function($)
+{
+  $('#wysiwyg').wysiwyg({
+    controls: {
+      strikeThrough : { visible : true },
+      underline     : { visible : true },
+      
+      separator00 : { visible : true },
+      
+      justifyLeft   : { visible : true },
+      justifyCenter : { visible : true },
+      justifyRight  : { visible : true },
+      justifyFull   : { visible : true },
+      
+      separator01 : { visible : true },
+      
+      indent  : { visible : true },
+      outdent : { visible : true },
+      
+      separator02 : { visible : true },
+      
+      subscript   : { visible : true },
+      superscript : { visible : true },
+      
+      separator03 : { visible : true },
+      
+      undo : { visible : true },
+      redo : { visible : true },
+      
+      separator04 : { visible : true },
+      
+      insertOrderedList    : { visible : true },
+      insertUnorderedList  : { visible : true },
+      insertHorizontalRule : { visible : true },
+      
+      h4mozilla : { visible : true && $.browser.mozilla, className : 'h4', command : 'heading', arguments : ['h4'], tags : ['h4'], tooltip : "Header 4" },
+      h5mozilla : { visible : true && $.browser.mozilla, className : 'h5', command : 'heading', arguments : ['h5'], tags : ['h5'], tooltip : "Header 5" },
+      h6mozilla : { visible : true && $.browser.mozilla, className : 'h6', command : 'heading', arguments : ['h6'], tags : ['h6'], tooltip : "Header 6" },
+      
+      h4 : { visible : true && !( $.browser.mozilla ), className : 'h4', command : 'formatBlock', arguments : ['<H4>'], tags : ['h4'], tooltip : "Header 4" },
+      h5 : { visible : true && !( $.browser.mozilla ), className : 'h5', command : 'formatBlock', arguments : ['<H5>'], tags : ['h5'], tooltip : "Header 5" },
+      h6 : { visible : true && !( $.browser.mozilla ), className : 'h6', command : 'formatBlock', arguments : ['<H6>'], tags : ['h6'], tooltip : "Header 6" },
+      
+      separator07 : { visible : true },
+      
+      cut   : { visible : true },
+      copy  : { visible : true },
+      paste : { visible : true }
+    }
+  });
+})(jQuery);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<div class="cbox c1 cboxOn">
+    <ul>
+        <li class="bullet">봄싹은 순수하고, 열정적이며, 행복한 개발자가 되기 위해 노력하는 개발자 커뮤니티입니다.</li>
+        <li class="bullet">개인이 학습한 것을 자율적으로 공유하는 스터디입니다.</li>
+        <li class="bullet">보통 격주마다 오프라인 모임을 가지며, 발표 자료 및 학습 자료는 모두 공유합니다.</li>
+    </ul>
+</div>
+<div class="cbox c2 cboxOff">
+    <ul>
+        <li class="bullet">별다른 절차는 없습니다.</li>
+        <li class="bullet">스터디가 있을 때 온라인에서 스터디 공지를 합니다.</li>
+        <li class="bullet">봄싹에 가입하신 뒤 스터디에 참석하시는 분들께 이메일로 통지를 해드립니다.</li>
+        <li class="bullet">참석하실 분은 해당 공지에 미리 참여 의사를 밝히시면 좋으며, 그러지 않고 그냥 참석하셔도 괜찮습니다.</li>
+    </ul>
+</div>
+<div class="cbox c3 cboxOff">
+   <ul>
+       <li class="bullet">봄싹의 목적은 스터디에 참여하시는 분들의 자기계발 입니다.</li>
+       <li class="bullet">다양한 경험과 학습을 통해 보다 멋지고 행복한 개발자가 되시기 바랍니다.</li>
+       <li class="bullet">쾌적하고 유익한 스터디가 되도록 노력하겠습니다.</li>
+   </ul>
+</div>

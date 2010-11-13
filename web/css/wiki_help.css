@@ -1,0 +1,163 @@
+@CHARSET "UTF-8";
+
+/*
+		Basic layout courtesy of InkNoise's very nifty Layout-o-matic:
+		http://www.inknoise.com/experimental/layoutomatic.php
+*/
+#sidebar h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+#sidebar h2 {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: -.5em;
+}
+
+#sidebar h3 {
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: .25em;
+	margin-top: 1.5em;
+}
+
+#sidebar code {
+	font-family: Monaco, ProFont, "Andale Mono", "Lucida Console", Courier,
+		monospace;
+	font-size: 10px;
+}
+
+#sidebar pre {
+	line-height: 12px;
+	margin-top: 0;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	padding: 4px;
+}
+
+#sidebar p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+body {
+	/*background-color: #eee;
+	font-family: "Lucida Grande", Verdana, sans-serif;*/
+	/*
+	font-size: 11px;
+	line-height: 1.6em;*/
+}
+
+.renderbox {
+	background: white;
+	font-family: Georgia, serif;
+	font-size: 13px;
+	border: 1px #888 solid;
+	padding: 0 5px;
+	width: 97%;
+}
+
+.label {
+	margin-bottom: 4px;
+}
+
+#container {
+	border: 0px solid gray;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	min-width: 750px;
+	/* Serve up some shit for Win/IE: */
+	width: expression("800px");
+	margin-left: expression("0");
+}
+
+#banner {
+	padding: 0;
+	margin-bottom: 5px;
+	background-color: transparent;
+}
+
+#app {
+	padding: 0 10px 0 10px;
+	margin-right: 270px;
+	background-color: transparent;
+	border-right: 0px solid #bbb;
+}
+
+#sidebar {
+	float: right;
+	width: 250px;
+	margin: 0;
+	margin-right: 10px;
+	padding: 0;
+	background-color: transparent;
+}
+
+.footer {
+	margin-top: 100px;
+}
+
+#buttonrow {
+	margin-top: 10px;
+	margin-bottom: 60px;
+}
+
+.actionbutton {
+	width: 7em;
+	margin-left: 20px;
+}
+
+textarea[name="markdown"],textarea[name="xhtml"] {
+	/* WinIE is fucking retarded. Thanks to Sam Ruby for the workaround:
+		http://www.intertwingly.net/blog/1432.html */
+	width: 98%;
+}
+
+#ProjectSubmenu {
+	list-style: none outside;
+	padding: 0;
+	margin: 2em 0 1em 0;
+	height: 4em; /* Setting a height makes it act like a block */
+	border: 0px dotted gray;
+}
+
+#ProjectSubmenu li {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+#ProjectSubmenu li a,#ProjectSubmenu li a:link,#ProjectSubmenu li a:visited
+	{
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	display: block;
+	min-width: 35px;
+	padding: 1px 3px 2px 3px;
+	margin: 0;
+	margin-right: -1px;
+	background: transparent;
+	color: black;
+	border-color: #999;
+	border-width: 1px;
+	border-style: solid;
+}
+
+#ProjectSubmenu li a.selected,#ProjectSubmenu li a.selected:hover {
+	background: #999;
+	color: white;
+}
+
+#ProjectSubmenu li a:hover {
+	background-color: #ccc;
+}
+
+#ProjectSubmenu li a:active {
+	color: #eee;
+	background: #bbb;
+}

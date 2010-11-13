@@ -1,0 +1,504 @@
+@CHARSET "UTF-8";
+
+.txtal {text-align:left;}
+.mgt10 {margin-top:10px;}
+.mgtr10 {margin-right:10px;}
+.mgl30 {margin-left:30px;}
+.mgl65 {margin-left:65px;}
+.mgl70 {margin-left:70px;}
+.padl65 {padding-left:65px;}
+.disOn {display:block;}
+.disOff {display:none;}
+
+.ch01 {color:#00f; background:#FFF;width:1.3em;height:1.3em;clear:left;vertical-align:middle;}
+	
+.previous {text-align:right;}
+
+/* add */
+.standard_form form label,.standard_form form .label,label.standard{font-size:12.34px;font-weight:bold;}
+.standard_form form span {font-size:12px;color:red;vertical-align:top;width:100px;}
+.devTerm {text-align:left; margin:0 auto; padding-left:150px; width:750px; clear:both;}
+.devTerm form label { display:inline; margin-right:10px; vertical-align:top;}
+.devTerm .noti {text-align:left; padding-left:10px;}
+.korTerm {background:#f0f0f1; width:580px; padding:10px;}
+div.standard_form form input.text, .standard_form form textarea {font-size:12px;color:#666666;width:440px;}
+.standard_form form textarea {overflow-y:auto; }
+.termDown {text-align:center;font-weight:bold; margin: 20px 0 20px 0; padding-right:150px;}
+.termDown img {vertical-align:middle;}
+.termDown a, .termDown a:visited, .termDown a:hover {text-decoration:none;}
+.termUp {text-align:center;font-weight:bold; margin: 20px 0 20px 0; padding-right:150px;}
+.termUp img {vertical-align:middle;}
+.termUp a, .termUp a:visited, .termUp a:hover {text-decoration:none;}
+.saveBtn {text-align:right; padding:10px 150px 0 0;}
+
+/* popup */
+.pop_input {padding:10px;text-align:left; width:530px; margin:0 auto;}
+.pop_input .title {font-size:15px; font-weight:bold; color:#4183C4; border-bottom:1px solid #000;padding-bottom:3px;}
+.pop_input .content {padding:10px; background:#d9e1e7;}
+.pop_input .content p {margin:0.5em 0; text-align:right;}
+.pop_input .content label {display:inline; margin-right:10px; vertical-align:top; font-weight:bold;}
+.pop_input .content input, .pop_input .content textarea {font-size:12px;color:#666666;width:440px;border:1px solid #888888; padding:5px;}
+.pop_input .content textarea {overflow-y:auto; }
+.pop_input .content .btn {text-align:center;padding-top:10px;}
+.small_close {position:absolute;top:0px;right:0px;}
+
+.search input {font-size:12px;color:#666666;width:200px;border:1px solid #888888; padding:2px;}
+.search .button {
+	color:#808080;
+	font-weight:bold;
+	padding:2px 3px;
+	text-decoration:none;
+	background:#f7f7f7;
+	width: 70px;
+	margin-left:7px;
+	font-size:12px;
+	border:1px solid #dedede;
+	cursor: pointer;
+}
+
+#termList, .tagList{
+	margin:0 auto;
+	overflow:hidden;
+	position:relative;
+	width:100%;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+#korTermList {
+	margin:0 auto;
+    position:relative;
+	width:100%;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+#termList .termItem {
+    /* background:#E0F8F7 none repeat scroll 0 0; */
+    border-top:2px solid #4183C4;
+	display:inline;
+	float:left;
+	margin:8px 5px 0 5px;
+	padding:7px;
+	position:relative;
+	width:60%;
+}
+
+#termList .termItem:hover, #termList .korTermItem:hover, #korTermList .korTermItem:hover{
+    background-color: rgb(190, 225, 246);
+}
+
+.tagList li.termTag {
+    border-right:1px solid #4183C4;
+    border-bottom:1px solid #4183C4;
+	display:inline;
+	float:left;
+    margin-right: 5px;
+    padding: 0px 5px;
+    background-color: rgb(190, 225, 246);
+    color: rgb(67, 120, 182);
+    font-weight: 900;
+}
+
+.tagList li.termTag a{
+    text-decoration:none;
+}
+
+.tagList li.termTag:hover {
+    background-color: rgb(67, 120, 182);
+}
+
+.tagList li.termTag:hover a {
+    color: white;
+}
+
+#termList li.termItem .countBox{
+	float: left;
+    width: 60px;
+}
+
+#termList li.termItem .viewCount{
+    width: 60px;
+    background:#91af3d;
+    margin-right:5px;
+    padding:2px 1px;
+    
+}
+
+#termList li.termItem .korCount{
+    width: 60px;
+    background:#337cb4;
+    margin-right:5px;
+    padding:2px 1px;
+}
+
+#termList li.termItem .countNum{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 200%;
+
+}
+
+#termList li.termItem .countText{
+    /* color: rgb(64, 164, 113); */
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+#termList li.termItem .termPhrase{
+    font-size: 1.5em;
+    float: left;
+    font-weight: bold;
+    margin-left: 5px;
+    width: 75%;
+}
+
+#termList li.termItem .termPhrase:hover{
+    /*background: rgb(190, 225, 246);*/
+    color: rgb(67, 120, 182);
+}
+
+#termList li.termItem .termFav{
+    float: right;
+}
+
+#termList li.termItem .termCreated{
+    float:left;
+    width:65px;
+    margin-top: 5px;
+}
+
+#termList div.termDetails {
+	float: left;
+	margin: 5px 0px 0px 5px;
+	padding: 5px 10px;
+	width: 84%;
+	height: 35px;
+	background: transparent none repeat scroll 0 0;
+	border:1px solid #4183C4;
+}
+
+.tagList{
+    float:left;
+	padding: 5px 0px;
+	width: 80%;
+}
+
+#termList .korTermItem{
+	overflow:hidden;
+	position:relative;
+	width:25%;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+    background:#FFFFFF none repeat scroll 0 0;
+	display:inline;
+	float:left;
+	margin:8px 5px 0 5px;
+	padding:6px;
+	position:relative;
+}
+
+
+
+
+.row1{
+	border:2px solid #4183C4;
+}
+.row2{
+	border:2px solid rgb(117, 192, 221);
+}
+.row3{
+	border:2px solid rgb(190, 225, 246);
+}
+
+#termList .korTermItem img {
+    float: right;
+    margin-left: 10px;
+}
+
+#termList .korTermItem .kor_vote_count {
+    color:#9A0058;
+    font-weight: bold;
+    float: left;
+    margin-right: 2px;
+    padding-top: 2px;
+}
+
+#termList .korTermItem .kor_vote_text {
+    color:#40A471;
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+    padding-top: 6px;
+    font-size: 80%;
+}
+
+#termList .korTermItem .kor_phrase {
+    float: left;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size:110%;
+}
+
+#termList .korTermItem .kor_created {
+    float: right;
+    font-size: 70%;
+    padding-top:8px;
+}
+
+.titlebar {
+	width:100%;
+}
+
+td.title {
+	font-size: x-large;
+	font-weight:bold;
+}
+
+.logo {
+	background:#FFFFFF none repeat scroll 0 0;
+	border:2px solid #D6D6D6;
+    margin:0px 20px 15px 0px;
+	padding:0px;
+	position:relative;
+    display:inline;
+    float:left;
+    height: 70px;
+    width: 70px;
+}
+
+ul.c {
+	float: left;
+	margin: 0px;
+	overflow:hidden;
+	position:relative;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+ul.term_main{
+	width:17%;
+}
+
+.mainDescr{
+    float: left;
+    width: 40%;
+    padding: 5px 10px;
+    border: 3px solid #B2CE67;
+}
+
+li span.title{
+	color:#333333;
+	font-weight:bold;
+	margin-right: 10px;
+}
+
+#term_daum_diction_api{
+    float: right;
+    width: 25%;
+    padding: 5px 10px;
+    border: 5px solid #4E64F6;
+    margin-bottom: 10px;
+}
+
+.buttons .button {
+	color:#FFFFFF;
+	/*font-weight:bold;*/
+	padding:5px 8px;
+	text-decoration:none;
+	background:#6699cc;
+	display:block;
+	float:right;
+	margin-left:7px;
+	font-size:13px;
+}
+.buttons .button:hover {
+    /* border: 2px solid #4CC552; */
+    background:#369;
+}
+.clear {
+	clear:both;
+	font-family:Arial;
+	font-size:1px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1px;
+}
+
+#korTermTitlebar{
+    border-bottom:1px solid #669966;
+    margin:0;
+    margin-top:20px;
+    color:#008939;
+    font-size:16px;
+    padding-bottom:5px;
+}
+
+#korTermList .voteCreated {
+    width: 60px;
+    float: left;
+}
+
+#korTermList .upDownMember {
+    width: 50px;
+    float: left;
+
+}
+#korTermList .korTermItem{
+    border-bottom:1px solid #AAAAAA;
+    padding-bottom:20px;
+    padding-top:10px;
+}
+
+#korTermList .korTermItem .korTerm_vote{
+    color:rgb(255, 246, 199);
+    background-color:rgb(119, 182, 10);
+    font-size:200%;
+    font-weight:bold;
+    float: left;
+    padding: 0px 5px 5px 5px;
+    margin-right: 15px;
+}
+
+#korTermList .korTerm_vote_buttons{
+    float: left;
+    margin-bottom: 10px;
+    width: 58px;
+}
+
+#korTermList .korTerm_phrase{
+    float: left;
+    font-size:x-large;
+    font-weight:bold;
+    color:#4183C4;
+    width: 28%;
+    margin-left: 10px;
+}
+
+#korTermList .korTerm_created{
+    float: left;
+    margin-top: 20px;
+}
+
+#korTermList .upDownMember img{
+    background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid #D6D6D6;
+    margin: 0px;
+	padding:0px;
+	position:relative;
+    display:inline;
+    /*  float:right; */
+    height: 30px;
+    width: 30px;
+}
+
+#korTermList .korTerm_details{
+    float: right;
+    width: 30%;
+    padding: 5px 10px;
+    border: 3px solid #B2CE67;
+}
+
+.kor_daum_diction_api{
+    float: right;
+    margin-left: 20px;
+    width: 20%;
+    padding: 5px 10px;
+    border: 5px solid #4E64F6;
+}
+
+.commentList {
+    width: 60%;
+    float: right;
+    margin:0 auto;
+	overflow:hidden;
+	position:relative;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+    border-top:1px dotted #DDDDDD;
+}
+.commentList li{
+    float: right;
+    border-bottom:1px dotted #DDDDDD;
+    padding-bottom:5px;
+    padding-top:5px;
+    width: 100%;
+}
+.commentList li:hover{
+    background-color:#F7F7F7;
+}
+.commentList .commentContents{
+    float: left;
+    width: 100%;
+    font-size: 95%;
+}
+.commentList .commentWriter, .commentList .commentCreated{
+    float: right;
+    margin-left: 5px;
+    font-size: 85%;
+}
+
+#korTermList .commentList{
+    margin-top: 10px;
+    width: 50%;
+}
+
+#korTermList .daumSearchLabel , .daumSearchLabel{
+    text-align: center;
+    margin-bottom:3px;
+    font-weight:bold;
+}
+
+#korTermList .daumSearchLabel img, .daumSearchLabel img {
+	border:none;
+	vertical-align:middle;
+	width:40px;
+	height:20px;
+}
+
+.goldFavImg {
+    background-image: url(http://springsprout.org/resources/images/term/star-gold24.png);
+    width: 24px;
+    height: 24px;
+}
+.whiteFavImg {
+    background-image: url(http://springsprout.org/resources/images/term/star-white24.png);
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.korTerm_vote_up:hover, .korTerm_vote_down:hover {
+    background-color: #F7F7F7;
+}
+
+.korTerm_vote_up span, .korTerm_vote_down span {
+    display: block;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 2px;
+}
+
+.korTerm_vote_up span.voteup, .korTerm_vote_down span.votedown {
+    background-image: url(/images/term/cross-icon.png);
+}
+
+.korTerm_vote_up span.vote, .korTerm_vote_up span.votedown{
+    background-image: url(/images/term/arrow-up-icon.png);
+}
+
+.korTerm_vote_down span.vote, .korTerm_vote_down span.voteup{
+    background-image: url(/images/term/arrow-down-icon.png);
+}
+
+

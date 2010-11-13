@@ -1,0 +1,251 @@
+@CHARSET "UTF-8";
+h1 {
+    color: black;
+}
+h2 {
+    color: #003366;
+}
+h3 {
+    color: #4682b4;
+}
+
+.nowrap { white-space: normal; }
+#countdown {
+    margin-top: 10px;
+    text-align: center;
+}
+#index_header {
+    border-bottom: 1px solid #dcdcdc;
+    width: 100%;
+    padding-bottom: 20px;
+}
+#index_header h1 {
+    text-align: center;
+}
+#index_body #left {
+    float:left;
+    height:100%;
+    position:relative;
+    width: 290px;
+    border-right: 1px solid #dcdcdc;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+#index_body #center {
+    float:left;
+    height:100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    position:relative;
+    width: 290px;
+}
+#index_body #right {
+    float:left;
+    height:100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    position:relative;
+    width: 290px;
+    border-left: 1px solid #dcdcdc;
+}
+#index_footer {
+    clear: both;
+    border-top: 1px solid #dcdcdc;
+}
+
+#notices, #guides, #links, #studies, #meetings, #graffitis, #thanks {
+    border-top: 3px solid #6699CC;
+    clear: both;
+}
+
+#notices h2, #studies h2{
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#guides h2, #links h2, #meetings h2, #graffitis h2, #thanks h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn_more {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.feeds {
+    float: left;
+    margin-top: 10px;
+}
+
+#notices #noticeList, #guides ul, #links ul, #studies ul, #meetings ul, #graffitis ul, #thanks ul {
+    clear: both;
+    list-style: none outside none;
+    padding-bottom: 20px;
+    padding-top: 15px;
+    white-space: nowrap;
+    width: 100%;
+    border-top: 1px solid #dcdcdc;
+}
+
+#notices #noticeList li {
+    background: url('/resources/images/star.png') no-repeat left center transparent;
+    padding-left: 1.5em;
+}
+
+#guides ul li, #links ul li, #thanks ul li {
+    background: url('/resources/images/bullet.gif') no-repeat left center transparent;
+    padding-left: 1.5em;
+}
+
+#studies ul li, #meetings ul li {
+    float: left;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+#studies ul {
+    margin: auto;
+	}
+	
+#studies ul li div {
+    width: 120px;
+    height: 140px;
+    padding-bottom: 10px;
+}
+
+#studies ul li div:hover {
+    cursor: pointer;
+    background: #E0F8F7;
+}
+
+#meetings ul li:hover {
+    border: 1px #6495ED solid;
+    padding: 1px;
+}
+
+#studies ul li div h3 {
+    text-align: center;
+}
+
+#meetings ul li .descr {
+    width: 220px;
+    float: left;
+    padding-left: 5px;
+}
+
+/*Graffiti*/
+.graffitiWriter {
+    padding     : 2px 0px 2px 0px;
+    border-width: 1px 0 0 0;
+    text-align: center;
+}
+
+.graffitiWindow {
+    overflow    : hidden;
+    height      : 482px;
+    padding     : 0 2px 0 3px;
+    border-width: 1px 0 0 0;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+}
+
+table.graffitiList {
+    border:          0;
+    border-spacing: 0;
+    width:270px;
+    table-layout: fixed;
+    word-wrap:break-word;
+    cursor: move;
+}
+
+table.graffitiList td {
+    border-bottom: 0.5px solid #83A6C8;
+    padding-left: 3px;
+    padding-bottom: 2px;
+}
+
+.gt_content {
+    width: 167px;
+}
+
+.gt_avatar {
+    padding-top: 2px;
+    width: 30px;
+    height: 30px;
+    vertical-align:top;
+}
+
+.g_avatar{
+	width: 30px;
+	height: 30px;
+}
+
+.gt_writedate{
+    color:#999999;
+    font-size:8pt;
+}
+
+/*Meetings */
+.openDate {
+    float: left;
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+.month {
+    color:white;
+    display:block;
+    font-family:arial,sans-serif;
+    font-size:1.1em;
+    line-height:1em;
+    padding:0 0 0.25em;
+}
+.date {
+    -moz-border-radius:0 0 8px 0;
+    background:none repeat scroll 0 0 green;
+    display:block;
+    margin:0 auto;
+    padding:0.25em 3px 3px;
+}
+.day {
+    -moz-border-radius:0 0 3px 0;
+    background:none repeat scroll 0 0 #FFFFFF;
+    color:#333333;
+    display:block;
+    font-family:arial,sans-serif;
+    font-size:2.46em;
+    line-height:1em;
+    padding:0.15em 0;
+}
+.dayOfWeek {
+    display:block;
+    font-size:0.9em;
+    margin-top:0.25em;
+}
+.dueTime {
+    font-weight: bold;
+}
+.gt_avatar {
+    padding-top: 2px;
+	width: 30px;
+	height: 30px;
+    vertical-align:top;
+}
+.g_avatar{
+	width: 30px;
+	height: 30px;
+}
+
+#addOn {
+	float:left; position: absolute; display: none; margin-left: 3px;
+}
+
+.addOnList {
+	border: 1px solid gray; width: 91px;
+}
+
+.addOnItem {
+	font-size: 9px;	
+}

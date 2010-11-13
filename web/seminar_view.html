@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="google-site-verification" content="HGciToZn6WSxpil5XQ2LhUQK7Gl2YkxS2BjoljTKQYM"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+    <title>SpringSprout</title>
+        <link href="./css/base.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/jquery-ui-1.7.2.custom.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/nyroModal.full.css" media="screen" rel="stylesheet" type="text/css" />
+ 		<link href="./css/seminars.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="./resources/css/ui.timepickr.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="./resources/css/tablesorter.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="spacehr">
+    <div id="buttonmenu">
+        <a href="/admin/index.do">
+            <img src="./images/adminbutton.png" width="65" height="18" alt="admin" />
+        </a>
+        <a href="/mypage/index.do">
+            <img src="./images/mypagebutton.png" width="65" height="18" alt="mypage" />
+        </a>
+        <a href="/j_spring_security_logout">
+            <img src="./images/logoutbutton.png" width="65" height="18" alt="logout" />
+        </a>
+    </div>
+</div>
+<div id="topheader">
+	<div id="mainlogo" class="left">
+          <a href="/"><img src="./images/logo_beta.png" alt="springsprout" /></a>
+    </div>
+	<div id="menu_bar">
+		<ul>
+			<li><a class="menu_alinker " href="/">홈</a></li>
+			<li><a class="menu_alinker " href="/study/index.do">스터디</a></li>
+			<li><a class="menu_alinker  menuselected" href="/seminar/index.do">세미나</a></li>
+			<li><a class="menu_alinker " href="/wiki/dashboard.do">위키</a></li>
+			<li><a class="menu_alinker " href="/term/index.do">용어집</a></li>
+			<li><a class="menu_alinker " href="/statistics/index.do">통계</a></li>
+			<li class="sliceli"></li>
+		</ul>
+	</div>
+
+</div>
+<div id="sessionflashmsg" style="display:none;"></div>
+
+<div id="flashmsg" style="display:none;"></div>
+ <div id="main">
+	<div id="top_banner">
+		<img src="./images/main-banner.png" alt="springsprout" />
+	</div>
+    <div id="content">
+        <div id="title">
+            <h2>제 1회 봄싹 세미나</h2>
+            <div id="tab">
+                <div class="tab_active">개요</div>
+                <div><a href="#">참석자목록</a></div>
+                <div><a href="#">댓글</a></div>
+            </div>
+        </div>
+        <div id="seminar_content">
+            <div id="base">
+                <div id="base_info">
+                    <p>
+                        <span>행사기간</span><br />
+                        2010년 7월 18일 9:30 ~ 2010년 7월 18일 16:00
+                    </p>
+                   <br />
+                   <p>
+                       <span>신청기간</span><br />
+                        2010년 6월 18일 9:30 ~ 2010년 6월 16일 16:00
+                   </p>
+                   <br />
+                   <p>
+                       <span>신청기간</span><br />
+                        2010년 6월 18일 9:30 ~ 2010년 6월 16일 16:00
+                   </p>
+                    <br />
+                   <p>
+                       <span>참가비</span><br />
+                        5천원
+                   </p>
+                    <br />
+                   <p>
+                       <span>문의</span><br />
+                        백회장님<br />
+                        whiteship2000@gmail.com
+                   </p>
+               </div>
+                <div id="base_detail">
+                    테스트 데이터 <p />
+                    테스트 데이터
+                </div>
+            </div>
+            <div class="line_width"></div>
+            <div id="schedules">
+                <table width="800px">
+                    <tr class="title">
+                        <th width="92px">발표자</th>
+                        <th width="103px">발표시간</th>
+                        <th width="505px">발표주제</th>
+                        <th width="100px">발표자료</th>
+                    </tr>
+                    <tr>
+                        <td>백기선</td>
+                        <td>09:30 ~ 09:50</td>
+                        <td class="alignLeft">봄싹소개</td>
+                        <td>Download</td>
+                    </tr>
+                    <tr>
+                        <td>김성윤</td>
+                        <td>10:00 ~ 11:10</td>
+                        <td class="alignLeft">스프링 적용사례</td>
+                        <td>Download</td>
+                    </tr>
+                    <tr>
+                        <td>채수원</td>
+                        <td>11:05 ~ 11:55</td>
+                        <td class="alignLeft">현실적인 시각에서 바라본 TDD와 Agile</td>
+                        <td>Download</td>
+                    </tr>
+                    <tr>
+                        <td>점심</td>
+                        <td>12:00 ~ 12:55</td>
+                        <td class="alignLeft">점심시간</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>김재진</td>
+                        <td>13:00 ~ 13:30</td>
+                        <td class="alignLeft">자바 웹 개발 퀴즈타임</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>김정우</td>
+                        <td>13:35 ~ 14:45</td>
+                        <td class="alignLeft">제이쿼리 or 자바스크립트</td>
+                        <td>Download</td>
+                    </tr>
+                    <tr>
+                        <td>박성철</td>
+                        <td>14:50 ~ 15:50</td>
+                        <td class="alignLeft">스프링 3.0과 자바표준</td>
+                        <td>Download</td>
+                    </tr>
+                    <tr>
+                        <td>백기선</td>
+                        <td>15:55 ~ 16:55</td>
+                        <td class="alignLeft">스프링 시큐리티와 스프링 웹 플로우 적용 사례</td>
+                        <td>Download</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="line_width"></div>
+            <div id="location">
+                <div class="fLeft"><span>장소</span><br />
+                    한빛미디어 8층 <br />
+                    지하철 어디서 나와서 어디러 가면 나오는 머가 나오는 건물.
+                </div>
+                <div id="map" style="width:500px;height:400px;background:#6e6e6e;">지도</div>
+            </div>
+        </div>
+        <div id="button">
+            <div class="boxButton fLeft">등록</div>
+            <div class="boxButton fRight">취소</div>
+        </div>
+    </div>
+ </div>
+<div id="footer">
+	<div class="footer">
+			봄싹 is Rock!! 2009-2010 | Introduction | <a href="/developers.do">Developers</a> |
+	    <a href="http://s2c.pe.kr" target="_blank">Blog</a> |
+	    <a href="http://groups.google.co.kr/group/springsprout" target="_blank">Group</a> |
+	    <a href="http://dev.springsprout.org/code/browse/SpringSprout" target="_blank">Code Viewer</a> |
+	    <a href="http://dev.springsprout.org/jira/browse/SSD" target="_blank">Issue Tracker</a>
+	</div>
+</div> 
+</body>
+</html>

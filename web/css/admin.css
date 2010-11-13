@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+/*보안*/
+#SecurityPanel td.x-table-layout-cell{
+	padding:2px;
+}
+
+/*공통 아이콘*/
+.icon-add{
+	background-image:url("../ext/resources/icon/add.png") !important;
+}
+.icon-del{
+	background-image:url("../ext/resources/icon/delete.png") !important;
+}

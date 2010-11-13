@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- ============================================================= -->
+    <!--  @Controller를 등록한 빈만 컴포넌트 스캔.                         -->
+    <!-- ============================================================= -->
+    <context:component-scan base-package="springsprout" use-default-filters="false">
+        <context:include-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- ============================================================= -->
+    <!--  애노테이션 핸들러 매핑                                          -->
+    <!-- ============================================================= -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" p:order="0">
+		<property name="interceptors">
+			<list>
+				<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor" >
+					<constructor-arg ref="conversionService"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+    <!-- ============================================================= -->
+    <!--  파일 업로드                                                   -->
+    <!-- ============================================================= -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- ============================================================= -->
+	<!--  애노테이션 핸들러 어댑터                                        -->
+	<!-- ============================================================= -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" p:cacheSeconds="0">
+        <property name="webBindingInitializer">
+	        <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+                <property name="validator">
+                    <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+                </property>
+                <property name="propertyEditorRegistrar">
+                    <bean class="springsprout.common.binding.SpringSproutBindingInitializer"/>
+                </property>
+       		</bean>
+		</property>
+        <property name="customModelAndViewResolver">
+            <bean class="springsprout.common.web.support.ModelAndJsonViewResolver">
+                <property name="defaultJsonViewName" value="mappingJacksonJsonView"/>
+                <property name="ajaxHeaderName" value="AJAX"/>
+                <property name="clearKey" value="__CLEAR__"/>
+            </bean>
+        </property>
+        <property name="messageConverters">
+        	<list>
+        		<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+        	</list>
+        </property>
+	</bean>
+
+    <!-- ============================================================= -->
+	<!--  스프링 3.0 컨텐츠 네고                                         -->
+	<!-- ============================================================= -->
+    <bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="atom" value="application/atom+xml" />
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
+					<property name="prefix" value="/WEB-INF/view/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+                <ref bean="mappingJacksonJsonView"/>
+				<ref bean="validationJsonView"/>
+			</list>
+		</property>
+	</bean>
+    
+    <!-- ============================================================= -->
+    <!--  Exception 리졸버                                                      -->
+    <!-- ============================================================= -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+		       <props>
+		               <prop key="org.springframework.validation.BindException">
+							validationJsonView
+		               </prop>
+		       </props>
+		</property>
+	</bean>
+
+    <!-- ============================================================= -->
+    <!--  JSON 뷰                                                      -->
+    <!-- ============================================================= -->
+    <bean id="mappingJacksonJsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+	<!-- Valid Exception Json View -->
+	<bean id="validationJsonView" class="springsprout.common.web.view.ValidationJsonView" />
+
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="springsprout.common.conversion.converter.TimeToWebStringConverter" />
+			</list>
+		</property>
+	</bean>
+</beans>

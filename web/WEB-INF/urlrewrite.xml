@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite default-match-type="wildcard">
+    <!-- 리소스 -->
+	<rule>
+		<from>/resources/**</from>
+		<to last="true">/resources/$1</to>
+	</rule>    
+    <rule>
+		<from>/images/**</from>
+		<to last="true">/resources/images/$1</to>
+	</rule>
+	<rule>
+		<from>/js/**</from>
+		<to last="true">/resources/js/$1</to>
+	</rule>
+    <rule>
+		<from>/module/**</from>
+		<to last="true">/resources/module/$1</to>
+	</rule>
+	<rule>
+		<from>/css/**</from>
+		<to last="true">/resources/css/$1</to>
+	</rule>
+	<rule>
+		<from>/ext/**</from>
+		<to last="true">/resources/ext/$1</to>
+	</rule>
+    <!--
+    <outbound-rule>
+        <from>/resources/**</from>
+        <to>/$1</to>
+    </outbound-rule>
+    -->
+    <!-- 서블릿 -->
+    <rule>
+		<from>/</from>
+		<to last="true">/app/index</to>
+	</rule>
+    <rule>
+        <from>/app/loginFailProcess</from>
+        <to last="true">/app/loginFailProcess</to>
+    </rule>
+    <rule>
+        <from>/app/loginSuccessProcess</from>
+        <to last="true">/app/loginSuccessProcess</to>
+    </rule>
+	<rule>
+		<from>/**</from>
+		<to>/app/$1</to>
+	</rule>
+    <outbound-rule>
+        <from>/app/**</from>
+        <to>/$1</to>
+    </outbound-rule>
+</urlrewrite>

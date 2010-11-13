@@ -1,0 +1,71 @@
+p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ol, ul{
+    margin-left: 20px;
+    padding-left: 5px;
+}
+
+div.wikipath{
+    text-align:right;
+}
+div.wikipath ul.wikipath {
+	display: inline;
+    margin: 0 5px;
+    padding:0;
+}
+
+ul.wikipath li {
+	display: inline;
+    padding-right:5px;
+}
+
+div.wikimodifier ul.wikimodifier {
+	float: right;
+}
+
+ul.wikimodifier li {
+	display: inline;
+}
+
+.wikiview {
+	clear: both;
+    border: 2px solid #4183C4;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+div.wikichilds {
+	padding-top : 5px;
+}
+
+.wikieditor .info {
+	visibility: hidden;
+}
+
+.wikieditor .title input[type="text"] {
+	width: 500px;
+}
+
+.wikieditor .command {
+	text-align: center;
+}
+
+.site div.root-menu {
+	float: left;
+}
+.site div.recent-list {
+	float: right;
+}
+
+span.document_updater {
+	font-weight : normal;
+	font-size: small;
+	font-style: italic;
+    background: #E0F8F7;
+}
+
+#wiki-history-tree li{
+
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<secured attributes="ROLE_ADMIN" />
+	
+	<input name="studyId" required="true" type="java.lang.Integer" />
+	<on-start>
+		<evaluate expression="meetingServiceImpl.createMeeting(studyId)" result="flowScope.meeting" />
+	</on-start>
+	
+	<view-state id="addMeetingForm" model="meeting" view="form.jsp">
+		<binder>
+			<binding property="openDate" converter="shortDate" required="true" />
+			<binding property="closeDate" converter="shortDate" required="true" />
+			<binding property="openTime" converter="shortTime" required="true" />
+			<binding property="closeTime" converter="shortTime" required="true" />
+			<binding property="title" required="true" />
+			<binding property="maximum" required="true" />
+			<binding property="location.longitude" required="true" />
+			<binding property="location.latitude" required="true" />
+			<binding property="location.name" required="true" />
+			<binding property="contents" required="true" />
+		</binder>
+		<on-render>
+			<set name="viewScope.action" value="'추가'" />
+			<set name="viewScope.studyName" value="flowScope.meeting.study.studyName" />
+		</on-render>
+		<transition on="proceed" to="addPresentationForm" />
+		<transition on="submit" to="confrimMeetingDetail" />
+		<transition on="cancel" to="cancel" bind="false" validate="false" />
+	</view-state>
+	
+	<view-state id="addPresentationForm" model="presentation" view="presentation/form.jsp">
+		<binder>
+			<binding property="title" required="true"/>
+			<binding property="topic" required="true"/>
+			<binding property="summary" required="true"/>
+			<binding property="presenter" required="true" converter="member"/>
+		</binder>
+		<on-entry>
+			<set name="viewScope.backUrl" value="getFlowExecutionUrl()" />
+		</on-entry>
+		<on-render>
+			<set name="viewScope.meetingTitle" value="meeting.title" />
+			<set name="viewScope.action" value="'추가'" />
+			<evaluate expression="presentationService.createPresentation(meeting)" result="viewScope.presentation"/>
+		</on-render>
+		<transition on="proceed" to="presentationList" history="discard" bind="true" validate="true" >
+			<evaluate expression="presentationService.addPresentation(meeting, presentation)"/>
+		</transition>
+		<transition on="cancel" to="cancel" bind="false" validate="false" />
+	</view-state>
+
+	<view-state id="presentationList" view="presentation/list.jsp">
+		<transition on="delete" to="presentationList">
+			<set name="requestScope.presentationKey" value="requestParameters.presentationKey" type="java.lang.Integer" />
+			<evaluate expression="presentationService.deletePresentation(meeting, presentationKey)" />
+		</transition>
+		<transition on="new" to="addPresentationForm" />
+		<transition on="submit" to="confrimMeetingDetail" />
+		<transition on="cancel" to="cancel" bind="false" validate="false" />
+	</view-state>
+
+	<view-state id="confrimMeetingDetail" view="confirmMeeting.jsp">
+		<transition on="submit" to="submit" />
+		<transition on="cancel" to="cancel" bind="false" validate="false" />
+	</view-state>
+	
+	<end-state id="meetingEnd" view="externalRedirect:contextRelative:/study/view/${studyId}" />
+	
+	<end-state id="submit" commit="true" parent="#meetingEnd">
+		<on-entry>
+			<evaluate expression="meetingServiceImpl.addMeeting(studyId, meeting)"/>		
+		</on-entry>
+	</end-state>
+
+	<end-state id="cancel" parent="#meetingEnd" />
+
+</flow>

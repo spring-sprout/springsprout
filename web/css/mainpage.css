@@ -1,0 +1,203 @@
+@CHARSET "UTF-8";
+/* main content start */
+.mainContent {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width:720px;
+	float: left;
+}
+.mainSidebar {
+	float:right;
+	width: 213px;
+}
+.cbox{
+	padding:9px 2px 0 9px;
+	border-width :1px 0 0 0 ;
+}
+.cbox li.star{
+    list-style: disc outside url(../images/star.png);
+    margin-left:10px;
+	padding-left:2px;
+}
+.tabtitlebox{
+	height:21px;
+}
+.tabtitlebox li{
+	float:left;
+	margin:0;
+	padding-left:0;
+	text-align:center;
+	padding-top: 1px;
+	height: 20px;
+	color:#3C414B;
+	display:block;
+	width:120px;
+	border-bottom-width:1px;
+}
+.tabtitlebox li.a1{
+	margin-left:-1px;
+	border-right-width:1px;
+}
+.tabtitlebox li.a2{
+	margin-left:-1px;
+	border-right-width:1px;
+}
+.tabtitlebox li.selected{
+	border-bottom-width:0px;
+	font-weight:bold;
+}
+.tabtitlebox li.noneselected{
+	border-bottom-width:1px;
+	font-weight:normal;
+}
+.titlebox li{
+	display:block;
+	color:#3C414B;
+}
+
+.coverFlow,.sponsor,.seminar,.wiki,.studyInfo,.graffiti,.graffitiWriter,.graffitiWindow,.notice,.aboutss2,.cbox, li{
+	border-style:solid;
+	border-color:#E0E0E0;
+	border-width:0;
+}
+.aboutss2 .cbox{
+	padding:9px 0 0 9px;
+	border-width :0;
+}
+
+.mbtitle{
+	display:block;
+	font-weight:bold;
+	line-height:140%;
+	padding:0 0 0 9px;
+	height:21px;
+	background-color:#FBFCFD;
+}
+.mbtitle li{
+	text-align:center;
+	font-weight:bold;
+	height:19px;
+	padding-top: 2px;
+}
+.mbtitle li img {
+    vertical-align: bottom;
+}
+
+/* about 봄싹  notice*/
+.aboutss2,.wiki{
+	margin-right: 9px;
+}
+.aboutss2,.notice{
+	margin-bottom:8px;
+	width:360px;
+	height:160px;
+	border-width :1px;
+}
+.notice{
+	width:340px;
+}
+.ss2title{
+	display:block;
+	font-weight:bold;
+	line-height:140%;
+	padding:0;
+	background-color:#FBFCFD;
+	height:21px;
+	margin:0;
+}
+
+div .cboxOn{
+	display:block !important;
+}
+div .cboxOff{
+	display:none !important;
+}
+
+/* graffiti */
+.graffiti, .sponsor {
+	margin-bottom:8px;
+	border-width :1px;
+	width:210px;
+	height:533px;
+	padding-right:2px;
+}
+
+/*.graffiti {*/
+    /*overflow: scroll;*/
+/*}*/
+/* studyInfo */
+.studyInfo, .coverFlow {
+	margin-bottom:8px;
+	width:711px;
+	height:180px;
+	border-width :1px;
+}
+/* sponsor / coverFlow*/
+.sponsor,.coverFlow {
+	height:210px;
+}
+
+.iconlist{
+	width:212px;
+	height:25px;
+	margin-bottom:2px;
+
+}
+.iconlist img{
+    padding-left:2px;
+}
+/* wiki */
+.wiki,.seminar {
+	margin-bottom:8px;
+	width:350px;
+	height:200px;
+	border-width :1px;
+}
+
+.graffitiWriter {
+	padding     : 2px 0px 2px 0px;
+	border-width: 1px 0 0 0;	
+	text-align: center;
+}
+
+.graffitiWindow {
+	overflow    : hidden;
+	height      : 482px;
+	padding     : 0 2px 0 3px;
+	border-width: 1px 0 0 0;	
+}
+
+table.graffitiList {
+	border:          0;
+	border-spacing: 0;
+    width:270px;
+    table-layout: fixed;
+    word-wrap:break-word;
+    cursor: move;
+}
+
+table.graffitiList td {
+    border-bottom: 0.5px solid #83A6C8;
+	padding-left: 3px;
+	padding-bottom: 2px;
+}
+
+.gt_content {
+	width: 167px;
+}
+
+.gt_avatar {
+    padding-top: 2px;
+	width: 30px;
+	height: 30px;
+    vertical-align:top;
+}
+.g_avatar{
+	width: 30px;
+	height: 30px;
+}
+.gt_writedate{
+    color:#999999;
+    font-size:8pt;
+}
