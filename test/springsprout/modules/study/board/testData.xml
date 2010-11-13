@@ -1,0 +1,10 @@
+<dataset>
+	<member id="1" email="dosajun@email.com" />
+
+	<post id="1" writer_id="1" title="스프링은 무엇인가염?" content="토스3책 보삼" post_type="TEXT"/>
+	<post id="2" writer_id="1" title="하이버네이트는 무엇일까요?" content="하이버완벽가이드 보삼" post_type="TEXT"/>
+	<post id="3" writer_id="1" title="배고파" content="뭘 먹을까.." post_type="TEXT"/>
+	<post id="4" writer_id="1" title="나 토스3 샀어" content="인증샷" post_type="IMAGE" />
+	<post id="5" writer_id="1" title="나 iMAC 샀어" content="인증샷" post_type="IMAGE" />
+
+</dataset>

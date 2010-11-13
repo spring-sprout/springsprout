@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<sec:global-method-security secured-annotations="enabled" access-decision-manager-ref="businessAccessDecisionManager">
+		<sec:after-invocation-provider ref="afterAclCollectionRead"/>
+		<sec:after-invocation-provider ref="afterAclRead"/>
+	</sec:global-method-security>
+	
+	<sec:http use-expressions="true" >
+		<sec:intercept-url pattern="/acl/write" access="isAuthenticated()" method="GET" />
+		<sec:form-login default-target-url="/login/loginAfter" authentication-failure-url="/login/login?login_error=1"
+			login-page="/login/login"/>
+		<sec:custom-filter ref="exceptionTranslationFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+	</sec:http>
+
+	<sec:authentication-manager alias="defaultAuthManager" >
+		<sec:authentication-provider>
+			<sec:password-encoder hash="md5" />
+			<sec:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT username,  password,  enabled   FROM USERS where username = ?"
+				authorities-by-username-query="SELECT username, authority from authorities where username = ?"
+				group-authorities-by-username-query="SELECT g.id, g.group_name, ga.authority FROM groups g, group_members gm, group_authorities ga WHERE gm.username = ?" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<bean id="exceptionTranslationFilter"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="authenticationProcessingFilterEntryPoint" />
+		
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/app/error/accessDenied" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="authenticationProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<property name="loginFormUrl" value="/login/login?login_error=2" />
+		<property name="forceHttps" value="false" />
+	</bean>
+	
+	<bean id="businessAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+		<property name="allowIfAllAbstainDecisions" value="true" />
+		<property name="decisionVoters">
+			<util:list>
+				<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
+				<ref local="aclObjectReadVoter" />
+				<ref local="aclObjectWriteVoter" />
+				<ref local="aclObjectDeleteVoter" />
+				<ref local="aclObjectRockVoter" />
+			</util:list>
+		</property>
+	</bean>
+
+
+  	<bean id="administrationPermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="org.springframework.security.acls.domain.BasePermission.ADMINISTRATION"/>
+    </bean>
+
+    <bean id="readPermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+         <property name="staticField" value="org.springframework.security.acls.domain.BasePermission.READ"/>
+    </bean>
+
+    <bean id="writePermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="org.springframework.security.acls.domain.BasePermission.WRITE"/>
+    </bean>
+
+    <bean id="deletePermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="org.springframework.security.acls.domain.BasePermission.DELETE"/>
+    </bean>
+    
+    <bean id="readWritePermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="springsprout.service.acl.permission.CustomPermission.ReadWrite"/>
+    </bean>
+    
+    <bean id="CustomAdminPermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="springsprout.service.acl.permission.CustomPermission.CustomAdmin"/>
+    </bean>
+    
+    <bean id="rockPermission" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" 
+	    p:staticField="springsprout.service.acl.permission.ExtendedPermission.ROCK"/>
+    
+    <bean id="objectIdentityRetrievalStrategy" class="springsprout.service.acl.CustomRetrievalStrategy" />
+    <bean id="sidRetrievalStrategy" class="springsprout.service.acl.SidRetrievalStaragetyImpl" />
+    <bean id="processDomainObjectClass" class="java.lang.String">
+    	<constructor-arg value="java.lang.Object"/>
+    </bean>
+    
+    <bean id="aclObjectReadVoter" class="org.springframework.security.acls.AclEntryVoter"
+    	p:objectIdentityRetrievalStrategy-ref="objectIdentityRetrievalStrategy"
+    	p:sidRetrievalStrategy-ref="sidRetrievalStrategy"
+    	p:processDomainObjectClass-ref="processDomainObjectClass">
+        <constructor-arg ref="aclService"/>
+        <constructor-arg value="ACL_OBJECT_READ"/>
+        <constructor-arg>
+            <list>
+                <ref local="CustomAdminPermission"/>
+                <ref local="readPermission"/>
+                <ref local="readWritePermission"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="aclObjectWriteVoter" class="org.springframework.security.acls.AclEntryVoter"
+    	p:processDomainObjectClass-ref="processDomainObjectClass">
+        <constructor-arg ref="aclService"/>
+        <constructor-arg value="ACL_OBJECT_WRITE"/>
+        <constructor-arg>
+            <list>
+                <ref local="writePermission"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="aclObjectDeleteVoter" class="org.springframework.security.acls.AclEntryVoter"
+    	p:objectIdentityRetrievalStrategy-ref="objectIdentityRetrievalStrategy"
+    	p:sidRetrievalStrategy-ref="sidRetrievalStrategy"
+    	p:processDomainObjectClass-ref="processDomainObjectClass">
+        <constructor-arg ref="aclService"/>
+        <constructor-arg value="ACL_OBJECT_DELETE"/>
+        <constructor-arg>
+            <list>
+            	<ref local="administrationPermission"/>
+                <ref local="deletePermission"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="aclObjectRockVoter" class="org.springframework.security.acls.AclEntryVoter"
+    	p:objectIdentityRetrievalStrategy-ref="objectIdentityRetrievalStrategy"
+    	p:sidRetrievalStrategy-ref="sidRetrievalStrategy"
+    	p:processDomainObjectClass-ref="processDomainObjectClass">
+		<constructor-arg ref="aclService" />
+		<constructor-arg value="ACL_OBJECT_ROCK" />
+		<constructor-arg>
+			<list>
+				<ref local="administrationPermission"/>
+				<ref local="rockPermission"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="customPermissionFactory" class="org.springframework.security.acls.domain.DefaultPermissionFactory">
+    	<constructor-arg value="springsprout.service.acl.permission.ExtendedPermission" />
+    </bean>
+
+	<!-- HSQLDB 에서는 Call Identity() 이고 -->
+	<!-- PostgreSQL 에서는 select currval(pg_get_serial_sequence('acl_class', 'id')) -->
+	<!-- select currval(pg_get_serial_sequence('acl_sid', 'id')) 이거 -->
+	<bean id="aclService" class="org.springframework.security.acls.jdbc.JdbcMutableAclService"
+	 	p:classIdentityQuery="Call Identity()"
+	 	p:sidIdentityQuery="Call Identity()">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="lookupStrategy"/>
+        <constructor-arg ref="aclCache"/>
+    </bean>
+    
+    <bean id="lookupStrategy" class="org.springframework.security.acls.jdbc.BasicLookupStrategy">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="aclCache"/>
+        <constructor-arg ref="aclAuthorizationStrategy"/>
+        <constructor-arg>
+            <bean class="org.springframework.security.acls.domain.ConsoleAuditLogger"/>
+        </constructor-arg>
+        <property name="permissionFactory" ref="customPermissionFactory"/>
+    </bean>
+    
+    <bean id="aclCache" class="org.springframework.security.acls.domain.EhCacheBasedAclCache">
+        <constructor-arg>
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+                <property name="cacheManager">
+                    <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+                    	p:configLocation="classpath:ehcache.xml"/>
+                </property>
+                <property name="cacheName" value="aclCache"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="aclAuthorizationStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="aclSecurityUtil" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <qualifier value="aclSecurity"/>
+        <property name="proxyInterfaces" value="springsprout.service.acl.utils.AclSecurityUtil"/>
+        <property name="interceptorNames">
+            <list>
+            	<idref local="transactionInterceptor"/>
+                <idref local="aclSecurityUtilTarget"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="aclSecurityUtilTarget" class="springsprout.service.acl.utils.AclSecurityUtilImpl" 
+    	p:mutableAclService-ref="aclService"/>
+    	
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor"
+          p:transactionManager-ref="transactionManager">
+        <property name="transactionAttributeSource">
+            <value>
+                springsprout.service.acl.utils.AclSecurityUtil.deletePermission=PROPAGATION_REQUIRED
+                springsprout.service.acl.utils.AclSecurityUtil.addPermission=PROPAGATION_REQUIRED
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="afterInvocationManager" class="org.springframework.security.access.intercept.AfterInvocationProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="afterAclRead"/>
+                <ref local="afterAclCollectionRead"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="afterAclCollectionRead" class="org.springframework.security.acls.afterinvocation.AclEntryAfterInvocationCollectionFilteringProvider">
+        <constructor-arg ref="aclService"/>
+        <constructor-arg>
+            <list>
+                <ref local="administrationPermission"/>
+                <ref local="readPermission"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="afterAclRead" class="org.springframework.security.acls.afterinvocation.AclEntryAfterInvocationProvider">
+        <constructor-arg ref="aclService"/>
+        <constructor-arg>
+            <list>
+                <ref local="administrationPermission"/>
+                <ref local="readPermission"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+</beans>

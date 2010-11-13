@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+		
+	<!-- ============================================================= -->
+	<!--  Resources                                                    -->
+	<!-- ============================================================= -->
+	<context:property-placeholder location="classpath:*.properties" />
+
+	<!-- ============================================================= -->
+	<!--  Component Scan                                               -->
+	<!-- ============================================================= -->
+	<context:component-scan base-package="springsprout" />
+	
+	<bean class="org.springframework.web.context.support.GenericWebApplicationContext" />
+	<!-- ============================================================= -->
+	<!--  AOP                                                          -->
+	<!-- ============================================================= -->
+	<aop:aspectj-autoproxy />
+	
+	<!-- ============================================================= -->
+	<!--  DataAccess                                                   -->
+	<!-- ============================================================= -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		p:driverClass="${db.driver}" p:jdbcUrl="${db.url}" p:user="${db.username}"
+		p:password="${db.password}" />
+
+	<!-- ============================================================= -->
+	<!--  Transaction                                                  -->
+	<!-- ============================================================= -->
+	<tx:annotation-driven />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<!-- ============================================================= -->
+	<!--  Hibernate                                                    -->
+	<!-- ============================================================= -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="springsprout.domain" />
+		<property name="annotatedClasses">
+			<list>
+				<value>springsprout.common.dao.SampleDomain</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- ============================================================= -->
+	<!--  Security                                                     -->
+	<!-- ============================================================= -->
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <constructor-arg value="256" />
+    </bean>
+    
+   	<!-- ============================================================= -->
+	<!--  Email                                                        -->
+	<!-- ============================================================= -->
+    <bean id="sendMailService" class="springsprout.service.notification.mail.SendMailService">
+         <constructor-arg ref="mainMailSender"/>
+     </bean>
+
+    <bean id="mainMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="username" value="${gmail.username}" />
+		<property name="password" value="${gmail.password}" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- ============================================================= -->
+	<!--  Messanger                                                    -->
+	<!-- ============================================================= -->
+	<bean id="jabberService" class="springsprout.service.notification.jabber.JabberService">
+		<constructor-arg name="username" value="${gmail.username}"/>
+		<constructor-arg name="password" value="${gmail.password}"/>
+		<constructor-arg name="runOnStart" value="${jabber.runOnStart}"/>
+	</bean>
+
+	<bean id="gTalkConfiguration" class="org.jivesoftware.smack.ConnectionConfiguration">
+		<constructor-arg name="host" value="talk.google.com" />
+		<constructor-arg name="port" value="5222" />
+		<constructor-arg name="serviceName" value="gmail.com" />
+	</bean>
+
+	<bean class="org.jivesoftware.smack.XMPPConnection">
+		<constructor-arg ref="gTalkConfiguration"/>
+	</bean>
+
+	<bean class="springsprout.service.notification.jabber.PacketListenerRepository">
+		<constructor-arg>
+			<list>
+				<bean class="springsprout.service.notification.jabber.StudyListener"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+    <!-- ============================================================= -->
+    <!--  Twitter                                                      -->
+    <!-- ============================================================= -->
+    <bean id="mainTwitter" class="twitter4j.Twitter">
+        <constructor-arg name="screenName" value="${twitter.username}" />
+        <constructor-arg name="password" value="{twitter.password}" />
+    </bean>
+
+    <bean id="devTermTwitter" class="twitter4j.Twitter">
+        <constructor-arg name="screenName" value="{devterm.twitter.username}" />
+        <constructor-arg name="password" value="{devterm.twitter.password}" />
+    </bean>
+
+    <bean id="twitterService" class="springsprout.service.notification.twitter.TwitterService">
+        <constructor-arg ref="mainTwitter" />
+    </bean>
+
+    <bean id="devTermTwitterService" class="springsprout.service.notification.twitter.TwitterService">
+        <constructor-arg ref="devTermTwitter"/>
+    </bean>
+
+    <!-- ============================================================= -->
+    <!--  Notification                                                 -->
+    <!-- ============================================================= -->
+    <bean id="unifiedNotificationService" class="springsprout.service.notification.UnifiedNotificationService"
+            p:jabberService-ref="jabberService"
+            p:sendMailService-ref="sendMailService"
+            p:twitterService-ref="twitterService" />
+            
+     <!-- 리소스 번들 -->
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	      <list>
+	          <value>springsprout.common.messages.messages_study</value>              
+	      </list>
+	    </property>
+	</bean>
+	
+	<!-- 리소스 번들 엑세서 -->
+    <bean id="messageSourceAccessor"
+    	class="org.springframework.context.support.MessageSourceAccessor">
+    	<constructor-arg ref="messageSource"/>
+    </bean>
+
+    <!-- ============================================================= -->
+    <!--  Google Calendar Service                                      -->
+    <!-- ============================================================= -->
+    <bean id="googleCalendarService" class="springsprout.modules.calendar.GoogleCalendarServiceImpl">
+        <property name="title" value="${calendar.title}"/>
+        <property name="username" value="${calendar.username}"/>
+        <property name="password" value="${calendar.password}"/>
+    </bean>
+
+</beans>

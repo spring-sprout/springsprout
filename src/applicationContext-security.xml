@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	
+
+	<http disable-url-rewriting="true">
+        <intercept-url pattern="/temp/role/*" access="ROLE_ADMIN,ROLE_DEVELOPER" />
+        <intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/seminar/create" access="ROLE_ADMIN" />
+		<intercept-url pattern="/seminar/*/update" access="ROLE_ADMIN" />
+		<intercept-url pattern="/mypage/index" access="ROLE_MEMBER,ROLE_ADMIN" />
+		<intercept-url pattern="/wiki/*/delete" access="ROLE_ADMIN" />
+
+		<intercept-url pattern="/study/meeting" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/index" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/study/index/past" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/study/view/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/study/delete/*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/end/*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/start/*" access="ROLE_ADMIN" />
+        <intercept-url pattern="/study/view/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<intercept-url pattern="/term/my" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/mykor" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/favorite" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/fav" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/add" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/addsubmit" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/comment/add" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/comment/addsubmit" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/add" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/addsubmit" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/*/vote/up" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/*/vote/down" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/*/comment/add" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/*/comment/addsubmit" access="ROLE_MEMBER" />
+		<intercept-url pattern="/term/*/kor/*/delete" access="ROLE_MEMBER, ROLE_ADMIN" />
+		<intercept-url pattern="/term/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+        <intercept-url pattern="/study/**/meeting/**" access="ROLE_MEMBER" />
+		<intercept-url pattern="/study/**" access="ROLE_MEMBER" />
+		<intercept-url pattern="/file/list" access="ROLE_ADMIN" />
+		<intercept-url pattern="/file/**" access="ROLE_MEMBER" />
+
+		<intercept-url pattern="/notice/create" access="ROLE_MEMBER,ROLE_ADMIN"/>
+		<intercept-url pattern="/notice/update" access="ROLE_MEMBER,ROLE_ADMIN"/>
+		<intercept-url pattern="/notice/delete" access="ROLE_MEMBER,ROLE_ADMIN"/>
+		<intercept-url pattern="/notice/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<form-login login-page="/login"
+            authentication-success-handler-ref="popupLoginSucessHandler"
+            authentication-failure-handler-ref="simpleUrlAuthenticationFailureHandler"/>
+		<logout logout-success-url="/index" />
+		<remember-me />
+		<custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="ajaxSessionTimeoutFilter"/>
+	</http>
+
+    <!-- custom filter -->
+    <beans:bean id="ajaxSessionTimeoutFilter" class="springsprout.common.web.filter.AjaxSessionTimeoutFilter" />
+
+    <!-- AJAX Login Setting
+	<beans:bean id="authenticationSuccessSuppotAJAXHandler" class="springsprout.service.security.AuthenticationSuccessSupportAJAXHandler">
+		<beans:property name="ajaxHeaderName" value="AJAX"/>
+		<beans:property name="defaultTargetUrl" value="/app/loginSuccessProcess"/>
+	</beans:bean>
+    -->
+
+	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<beans:property name="useForward" value="true"/>
+		<beans:property name="defaultFailureUrl" value="/app/loginFailProcess"/>
+	</beans:bean>
+
+    <beans:bean id="popupLoginSucessHandler" class="springsprout.service.security.PopupLoginSucessHandler"/>
+	
+	<!-- Authentication Provider Setting -->
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <beans:constructor-arg value="256" />
+    </beans:bean>
+
+    <beans:bean id="springSproutUserDetailsService" class="springsprout.service.security.SpringSproutUserDetailsService"/>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="springSproutUserDetailsService">
+		  <password-encoder ref="passwordEncoder"/>
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<global-method-security secured-annotations="enabled"
+		jsr250-annotations="enabled" pre-post-annotations="enabled" />
+
+</beans:beans>

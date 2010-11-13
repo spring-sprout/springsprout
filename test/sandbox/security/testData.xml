@@ -1,0 +1,5 @@
+<dataset>
+	<member id="1" status="20" email="whiteship@email.com" name="keesun" password="passwd" />
+    <role id="1" name="member"/>
+    <member_role member_id="1" roles_id="1"/>
+</dataset>

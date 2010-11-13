@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:flow="http://www.springframework.org/schema/webflow-config"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <!-- ============================================================= -->
+    <!--  Handler Mappings                                             -->
+    <!-- ============================================================= -->
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="order" value="1" />
+		<property name="flowRegistry" ref="flowRegistry" />
+	</bean>
+
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor"/>
+	</bean>
+
+	<!-- ============================================================= -->
+	<!--  Flow Registry                                                -->
+	<!-- ============================================================= -->
+   	<!-- The registry of executable flow definitions -->       
+	<flow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/view">
+		<flow:flow-location-pattern value="/**/*-flow.xml" />
+	</flow:flow-registry>
+	
+	<!-- Plugs in a custom creator for Web Flow views -->
+	<flow:flow-builder-services id="flowBuilderServices" conversion-service="applicationConversionService" development="true" />
+	
+	<!-- ============================================================= -->
+	<!--  Flow Executor                                             -->
+	<!-- ============================================================= -->
+	<!-- Executes flows: the entry point into the Spring Web Flow system -->
+	<flow:flow-executor id="flowExecutor">
+		<flow:flow-execution-listeners>
+			<flow:listener ref="hibernateFlowExecutionListener" />
+			<flow:listener ref="securityFlowExecutionListener" />
+		</flow:flow-execution-listeners>
+	</flow:flow-executor>
+	
+	
+	<!-- Installs a listener that manages Hibernate persistence contexts for flows that require them -->
+	<bean id="hibernateFlowExecutionListener" class="org.springframework.webflow.persistence.HibernateFlowExecutionListener">
+		<constructor-arg ref="sessionFactory" />
+		<constructor-arg ref="transactionManager" />
+	</bean>
+	
+	<!-- Installs a listener to apply Spring Security authorities -->
+	<bean id="securityFlowExecutionListener" class="springsprout.common.webflow.SecurityFlowExecutionListener" />
+	
+</beans>

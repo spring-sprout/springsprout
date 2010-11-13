@@ -1,0 +1,12 @@
+<dataset>
+	<member id="1" />
+	<member id="2" />
+	<member id="3" />
+	
+	<wiki_document id="1" creator_id="1" updater_id="1" />
+	<wiki_document id="2" creator_id="2" updater_id="1" />
+	<wiki_document id="3" creator_id="1" updater_id="1" />
+	<wiki_document id="4" creator_id="1" updater_id="3" />
+	<wiki_document id="5" creator_id="3" updater_id="3" />
+	<wiki_document id="6" creator_id="2" updater_id="3" />
+</dataset>

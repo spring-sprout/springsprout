@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	
+	<context:annotation-config/>
+	<mvc:annotation-driven/>	
+	<!-- ============================================================= -->
+	<!--  Resources                                                    -->
+	<!-- ============================================================= -->
+	<context:property-placeholder location="classpath:test.database.properties" />
+
+	<!-- ============================================================= -->
+	<!--  Component Scan                                               -->
+	<!-- ============================================================= -->
+	<context:component-scan base-package="springsprout.modules.acl" />
+	
+	<!-- ============================================================= -->
+	<!--  AOP                                                          -->
+	<!-- ============================================================= -->
+	<aop:aspectj-autoproxy />
+	<bean class="springsprout.service.acl.SecurityServiceImpl" />
+	
+	<!-- ============================================================= -->
+	<!--  DataAccess                                                   -->
+	<!-- ============================================================= -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		p:driverClass="${db.driver}" p:jdbcUrl="${db.url}" p:user="${db.username}"
+		p:password="${db.password}" />
+
+	<!-- ============================================================= -->
+	<!--  Transaction                                                  -->
+	<!-- ============================================================= -->
+	<tx:annotation-driven />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<!-- ============================================================= -->
+	<!--  Hibernate                                                    -->
+	<!-- ============================================================= -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="springsprout.domain" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- ============================================================= -->
+	<!--  Security                                                     -->
+	<!-- ============================================================= -->
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <constructor-arg value="256" />
+    </bean>
+    
+     <!-- 리소스 번들 -->
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	      <list>
+	          <value>springsprout.common.messages.messages_study</value>              
+	      </list>
+	    </property>
+	</bean>
+	
+	<!-- 리소스 번들 엑세서 -->
+    <bean id="messageSourceAccessor"
+    	class="org.springframework.context.support.MessageSourceAccessor">
+    	<constructor-arg ref="messageSource"/>
+    </bean>
+
+	<!--  HSQL 테이블 만들어 씁시다. -->
+	<jdbc:initialize-database data-source="dataSource" enabled="${acl.data.source.init}" ignore-failures="DROPS">
+		<jdbc:script location="${acl.drop.script}"/>
+		<jdbc:script location="${acl.schema.script}"/>
+		<!-->jdbc:script location="${acl.business.schema.script}"/-->
+	</jdbc:initialize-database>
+</beans>

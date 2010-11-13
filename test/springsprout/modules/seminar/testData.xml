@@ -1,0 +1,9 @@
+<dataset>
+	<seminar id="1" maximum="1" entryFee="0" totalActiveComer="0" status="20" created="2010-04-22" />
+	<seminar id="2" maximum="1" entryFee="0" totalActiveComer="0" status="50" created="2010-04-26" />
+	<seminar id="3" maximum="1" entryFee="0" totalActiveComer="0" status="50" created="2010-04-20" />
+
+
+	<seminarcomer id="1" seminar_id="1" />
+	<seminarcomer id="2" seminar_id="1" />
+</dataset>

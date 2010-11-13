@@ -1,0 +1,25 @@
+<dataset>
+	<member id="1" email="keesun@email.com" />
+	<member id="2" email="helols@email.com" />
+	
+	<study id="1" meetingCount="1" manager_id="1" />
+	<study id="2" meetingCount="1" />
+
+	<meeting id="1" study_id="1" cnt="1" maximum="20" />
+	<meeting id="2" study_id="1" cnt="2" maximum="20" />
+	<meeting id="3" study_id="2" cnt="1" maximum="20" />
+	<meeting id="4" study_id="2" cnt="2" maximum="20" />
+	<meeting id="5" study_id="2" cnt="3" maximum="20" />
+	<meeting id="6" study_id="2" cnt="4" maximum="20" />
+	
+	<attendance id="1" isAttended="FALSE" member_id="1" meeting_id="1" />
+	<attendance id="2" isAttended="TRUE" member_id="1" meeting_id="2" />
+	<attendance id="3" isAttended="TRUE" member_id="1" meeting_id="3" />
+	<attendance id="4" isAttended="TRUE" member_id="2" meeting_id="4" />
+	<attendance id="5" isAttended="FALSE" member_id="1" meeting_id="5" />
+	<attendance id="6" isAttended="FALSE" member_id="2" meeting_id="6" />
+
+    <study_member studies_id="1" members_id="1" />
+    <study_member studies_id="1" members_id="2" />
+    <study_member studies_id="2" members_id="1" />
+</dataset>

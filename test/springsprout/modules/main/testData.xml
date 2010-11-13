@@ -1,0 +1,9 @@
+<dataset>
+
+	<member id="1" name="tester" avatar="avatar::tester" />
+
+	<graffiti member_id="1" contents="테스트 로그 1" writeDate="2009-10-12 16:00:01" />
+	<graffiti member_id="1" contents="테스트 로그 2" writeDate="2009-10-12 17:01:03" />
+	<graffiti member_id="1" contents="테스트 로그 3" writeDate="2009-10-12 17:30:04" />
+
+</dataset>

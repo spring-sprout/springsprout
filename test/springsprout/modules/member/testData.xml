@@ -1,0 +1,5 @@
+<dataset>
+	<member id="1" status="10" email="whiteship@keesun.com" name="b" />
+	<member id="2" status="20" name="a" />
+	<member id="3" status="20" name="c" />
+</dataset>
