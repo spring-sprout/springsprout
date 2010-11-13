@@ -1,0 +1,12 @@
+로케일은
+
+/usr/local/springsprout/osqa/trunk/locale/ko/LC_MESSAGES/django.po을 수정하면 됩니다.
+
+po을 mo파일로 구워야 하는데.
+
+./manage.py compilemessages 하고 서버 리스타트 하시면 됩니당.
+
+소스가 다 root계정인데. 굳이 root계정으로 돌릴 필요가 있는지 궁금하긴 하네요. (port 80으로 돌려야 한다면
+모를까..)  web 계정 하나 만들어서 올리는게 좋을 듯 한데.
+
+http://meta.osqa.net/ 참조
