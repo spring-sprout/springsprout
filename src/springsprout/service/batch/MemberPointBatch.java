@@ -21,7 +21,7 @@ public class MemberPointBatch {
 	@Autowired MemberRepository memberRepository;
     @Autowired AttendanceRepository attendanceRepository;
 
-	@Scheduled(fixedDelay=1000*60*60*24)
+	@Scheduled(cron="0 0 4 * * *")
 	public void calcAllMember(){
 		for(Member m : memberRepository.getJoinedMemberList()){
 			calcRatesOf(m);
