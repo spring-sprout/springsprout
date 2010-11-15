@@ -97,6 +97,12 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
+    @RequestMapping("/{id}")
+    public String newView(@PathVariable int id, Model model) {
+        model.addAttribute("study", service.getStudyById(id));
+        return "/study/newView";
+    }
+
 	@RequestMapping("view/{id}")
 	public String view(@PathVariable int id, Model model) {
 		Study study = service.getStudyById(id);
