@@ -49,7 +49,6 @@ public class ImagePostController {
 		model.addAttribute("posts", posts);
 		model.addAttribute("page", page);
 		model.addAttribute("comment", new Comment());
-		//model.addAttribute("pagingInfo", service.initPaing( page));
 		return "study/board/imagePost/list";
 	}
 	
@@ -69,9 +68,10 @@ public class ImagePostController {
 	}
 	
 	@RequestMapping("remove/{id}")
-	public void remove(@PathVariable int id, ImagePost post) {
+	public String remove(@PathVariable int id, ImagePost post) {
 		post.setId(id);
 		service.removePost(post);
+		return "study/board/imagePost/list";
 	}
 	
 	@RequestMapping("view/{id}/page/{page}")
@@ -94,9 +94,10 @@ public class ImagePostController {
 	
 	
 	@RequestMapping(value="{id}/comment/write", method = RequestMethod.POST)
-	public String writeComment(@PathVariable int id, Comment comment) {
+	public String writeComment(Model model, @PathVariable int id, Comment comment) {
 		ImagePost post = service.getPost(id);
 		service.addComment(post, comment);
+		model.addAttribute("postId", id);
 		return "study/board/_commentSpot";
 	}
 	

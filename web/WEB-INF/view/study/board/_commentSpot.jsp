@@ -21,7 +21,7 @@
 			<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 			<c:if test="${currentUserName == comment.writer.email}">
 			    <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-			         href="/study/view/${study.id}/board/imagePost/${post.id}/comment/${comment.id}/remove"/>
+			         href="/study/view/${study.id}/board/imagePost/${postId}/comment/${comment.id}/remove"/>
 			</c:if>
 		</sec:authorize>
 	</div>

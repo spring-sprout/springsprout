@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link href="<c:url value="/css/study/post.css"/>" media="screen" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
 .post-reply-count, .post-comment-count, .post-view-count {
@@ -50,6 +51,7 @@
 .post-button { margin: 2px 2px; }
 .post-button-text { display: block; padding: 0.2em 0.5em; color: #008080; }
 </style>
+<script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
 <script type="text/javascript">
 $(function(){ 
 	$('#textPost').click( function( event){

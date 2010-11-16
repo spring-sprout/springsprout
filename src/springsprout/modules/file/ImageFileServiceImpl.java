@@ -47,11 +47,30 @@ public class ImageFileServiceImpl implements FileService {
 		return repository.list();
 	}
 
+	/**
+	 * @todo path도 없어서 안된다.
+	 */
 	public void delete(int id) {
-		UploadFile uploadFile = repository.getById(id);
-		File file = new File(uploadFile.getSavedFileName());
-		file.delete();
+		String webPath = null;
+		try {
+			webPath = WebUtils.getRealPath(context.getServletContext(), "/");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		ImageFile uploadFile = (ImageFile) repository.getById(id);
+		deleteSaveFileFromStorage(webPath, uploadFile);
+		removeThumbnailFromStorage(webPath, uploadFile);
 		repository.delete(uploadFile);
+	}
+
+	private void removeThumbnailFromStorage( String webPath, ImageFile uploadFile) {
+		File file = new File(webPath + "/images/userimage/" + uploadFile.getUploader().getEmail() + File.pathSeparator + uploadFile.getThumbNailName());
+		file.delete();
+	}
+
+	private void deleteSaveFileFromStorage( String webPath, ImageFile uploadFile) {
+		File file = new File(webPath + "/images/userimage/" + uploadFile.getUploader().getEmail() + File.pathSeparator + uploadFile.getSavedFileName());
+		file.delete();
 	}
 
 	public ImageFile upload(MultipartFile multipartFile) {

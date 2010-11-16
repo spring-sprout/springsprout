@@ -12,10 +12,10 @@
 img:HOVER {
 	cursor: pointer;
 }
-.post-image-detailImage img {
+.post-image-detail-image {
 	max-width: 90%;
 	margin: 10px;
-	border: solid 1px purple;
+	border: solid 1px gray;
 }
 .post-image-thumbnail img {
 	margin: 5px;
@@ -24,19 +24,16 @@ img:HOVER {
 .post-image-thumbnail-default {
 	opacity : 0.67;
 	opacity : 1;
-	border: solid 1px green;
+	border: solid 1px OliveDrab;
 }
 
 .post-image-thumbnail-selected {
 	opacity : 1;
 	border: solid 2px green;
+	width: 50%;
 }
 .post-image-container .images {
 	overflow: hidden;
-}
-
-.detail, .list, .contents {
-	border: solid 1px gray;
 }
 
 .detail {
@@ -122,7 +119,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 			<div class="detail">
 				<c:forEach items="${posts}" var="post" varStatus="status">
 				<div class="post-image post-image-detailImage" align="center" id="post-${post.id}">
-					<img src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
+					<img class="post-image-detail-image" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
 					<div class="simple_overlay" id="${post.id}">
 						<!-- large image -->
 						<div style="width: 80%;">
@@ -220,20 +217,16 @@ var $registDiv = $( '#registDiv'), $postForm = $('#postForm'), $commentForm = $(
 	$listDiv = $('#listDiv'),
 	selectedPostId;
 $(function(){ 
-	
 	initDialog();
 	initEvent();
 	initAjaxForm();
 	initCommentForm();
+	initFileupload();
 	$('img[rel]').overlay();
 	$('.post-comment-actions .rt').live( 'click', function() {
 		$('textarea.comment').val("@" + $(this).attr('writer') + ' ').focus();
 	});
-	$('#file').MultiFile({
-		list: '#fileArea',
-		max: 5,
-		accept: 'gif|jpg|png'
-	});
+	
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
 		.children().addClass('post-button-text').removeClass('ui-button-text');
 	$('#movePrev').focusin().addClass('ui-stage-hover');
@@ -257,7 +250,7 @@ function initDialog() {
 			 $('textarea#postContent').wysiwyg();
 		},
 		close: function() {
-			$listDiv.load('${study.id}/board/imagePost/list/0');
+			refreshListDiv();
 		}
 	});
 }
@@ -294,6 +287,7 @@ function initEvent() {
         if( confirm( '삭제 하시겠습니까?')) {
 			$.post( $this.attr('href'), null, function(data) {
 				$this.parent().parent().hide( 'blind', null, 1000).remove();
+				$.growlUI('Notification', '댓글을 삭제 하였습니다.');
 			}, 'json');
         }
         return false;
@@ -302,7 +296,7 @@ function initEvent() {
 		var $this = $(this);
         if( confirm( '삭제 하시겠습니까?')) {
         	$.post( '${study.id}/board/imagePost/remove/' + $this.attr('id'), null, function() {
-        		$listDiv.load('${study.id}/board/imagePost/list/0');
+        		refreshListDiv();
 			});
         }
         return false;
@@ -323,13 +317,36 @@ function initAjaxForm() {
 function initCommentForm() {
 	var commentOptions = {
         success: function(comment, statusText, xhr, $form) {
-			$('.comment-area:visible:first').before(comment);
+        	var length = $form.parent().parent().find('.comment-area').length;
+			if ( length >= 1) $('.comment-area:visible:first').before(comment);
+			else $form.parent().parent().append(comment);
+			$.growlUI('Notification', '댓글을 추가 하였습니다.');
 		},  
         clearForm: true
 	};
 	$commentForm.submit(function() { 
 		$(this).ajaxSubmit(commentOptions); 
 		return false;
+	});
+}
+
+function initFileupload() {
+	$('#file').MultiFile({
+		list: '#fileArea',
+		max: 5,
+		accept: 'gif|jpg|png'
+	});
+}
+
+function refreshListDiv() {
+	$.ajax({
+		url : '${study.id}/board/imagePost/list/0',
+		beforeSend : function(){
+			s_waitblock();
+		},success : function(html){
+			$listDiv.html(html);
+			$.unblockUI();
+		}
 	});
 }
 </script>
