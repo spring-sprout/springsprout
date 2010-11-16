@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags/page"%>
@@ -34,7 +35,7 @@
                 </div>
                 <div id="guides">
                     <h2>봄싹 이용 가이드</h2>
-                    <ul>
+                    <ul id="guideList">
                         <li><a href="http://wiki.springsprout.org/pages/viewpage.action?pageId=4456450" target="_blank">봄싹은?</a></li>
                         <li><a href="http://wiki.springsprout.org/pages/viewpage.action?pageId=4456450" target="_blank">봄싹의 목적은?</a></li>
                         <li><a href="http://wiki.springsprout.org/pages/viewpage.action?pageId=4456450" target="_blank">봄싹 스터디에 참여하려면?</a></li>
@@ -42,7 +43,7 @@
                 </div>
                 <div id="links">
                     <h2>봄싹 관련 사이트</h2>
-                    <ul>
+                    <ul id="linkList">
                         <li><a href="http://twitter.com/springsprout" target="_blank">봄싹 트위터</a></li>
                         <li><a href="http://groups.google.com/group/springsprout" target="_blank">봄싹 구글 그룹스</a></li>
                         <li><a href="http://wiki.springsprout.org" target="_blank">봄싹 위키</a></li>
@@ -53,7 +54,7 @@
                 </div>
                 <div id="thanks">
                     <h2>봄싹에 도움주는 곳</h2>
-                    <ul>
+                    <ul id="thanksList">
                         <li><a href="http://www.hanbitedu.co.kr/index.do" target="_blank">한빛교육센터</a></li>
                         <li><a href="http://www.developerfarm.com/" target="_blank">위키북스</a></li>
                     </ul>
@@ -67,14 +68,15 @@
                             <span>더보기</span>
                         </a>
                     </h3>
-                    <ul>
+                    <ul id="studyList"></ul>
+                    <ul id="realStudyList">
                     <c:choose>
                         <c:when test="${studyList != null}">
                             <c:forEach items="${studyList}" var="study">
                                 <li study="${study.id}">
-                                    <div>
-                                    <img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}"/>" alt="스터디 로고" width="120" height="120"/>
-                                    <h3 class="studyName" title="${study.studyName}">${study.studyName}</h3>
+                                    <div class="study_box">
+                                        <img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}"/>" alt="스터디 로고" width="120" height="120"/>
+                                        <h3 class="studyName" title="${study.studyName}">${study.studyName}</h3>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -87,7 +89,7 @@
                 </div>
                 <div id="meetings">
                     <h2>최근 모임</h2>
-                    <ul>
+                    <ul id="meetingList">
                     <c:choose>
                         <c:when test="${meetingList != null}">
                             <c:forEach items="${meetingList}" var="meeting">
@@ -104,9 +106,9 @@
                                     </div>
                                     <div class="descr">
                                         <h3>${meeting.title}</h3>
-                                       	<span class="nowrap">장소: ${meeting.location}</span><br/>
-										시간: <span class="dueTime">${meeting.openTime}</span> ~ <span class="dueTime">${meeting.closeTime}</span>
-
+                                       	<div class="nowrap">${meeting.location}</div>
+										<span class="dueTime"><fmt:formatDate value="${meeting.openTime}" pattern="a h시 mm분"/></span> ~
+                                        <span class="dueTime"><fmt:formatDate value="${meeting.closeTime}" pattern="a h시 mm분"/></span>
                                     </div>
                                 </li>
                             </c:forEach>

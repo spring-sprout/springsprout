@@ -45,7 +45,6 @@ public class Meeting implements Serializable {
 	@DomainInfo(value = "모임장", descr = "기본으로 현재 사용자. 자동 생성.")
 	private Member owner;
 
-
 	@NotNull( message = "모임 시작일을 입력하세요.")
 	@Temporal(TemporalType.DATE)
 	@DomainInfo("모임 시작일")

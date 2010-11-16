@@ -2,6 +2,7 @@ package springsprout.modules.main;
 
 import static springsprout.common.SpringSprout2System.JSON_VIEW;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +38,7 @@ public class MainController {
 
     @RequestMapping("/index")
     public void index(Model model){
-        model.addAttribute("studyList", studyService.findActiveStudies(8));
+        model.addAttribute("studyList", studyService.findActiveStudies(4));
         model.addAttribute("meetingList", meetingService.findActiveMeetings(2));
         model.addAttribute("currentUser", securityService.getCurrentMember());
     }
@@ -85,4 +88,5 @@ public class MainController {
         model.addAttribute("notice",noticeService.get(id));
         return "/main/noticeView";
     }
+
 }

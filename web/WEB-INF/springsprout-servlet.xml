@@ -25,9 +25,20 @@
     <!-- ============================================================= -->
     <!--  애노테이션 기반 MVC 사용                                        -->
     <!-- ============================================================= -->
-    <mvc:annotation-driven/>
-
+    <mvc:annotation-driven conversion-service="conversionService" />
     <mvc:default-servlet-handler/>
+
+    <!-- ============================================================= -->
+    <!--  애노테이션 기반 MVC 사용                                        -->
+    <!-- ============================================================= -->
+    <bean id="conversionService"
+             class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+			<set>
+				<bean class="springsprout.common.conversion.converter.TimeToWebStringConverter" />
+			</set>
+		</property>
+    </bean>
 
     <!-- ============================================================= -->
     <!--  애노테이션 핸들러 매핑                                          -->
@@ -126,11 +137,11 @@
 	<!-- Valid Exception Json View -->
 	<bean id="validationJsonView" class="springsprout.common.web.view.ValidationJsonView" />
 
-	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<property name="converters">
-			<list>
-				<bean class="springsprout.common.conversion.converter.TimeToWebStringConverter" />
-			</list>
-		</property>
-	</bean>
+	<!--<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">-->
+		<!--<property name="converters">-->
+			<!--<list>-->
+				<!--<bean class="springsprout.common.conversion.converter.TimeToWebStringConverter" />-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 </beans>

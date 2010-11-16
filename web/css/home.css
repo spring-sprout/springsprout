@@ -80,7 +80,7 @@ h3 {
     margin-top: 10px;
 }
 
-#notices #noticeList, #guides ul, #links ul, #studies ul, #meetings ul, #graffitis ul, #thanks ul {
+#noticeList, #guideList, #linkList, #thanksList, #studyList, #meetingList{
     clear: both;
     list-style: none outside none;
     padding-bottom: 20px;
@@ -90,46 +90,70 @@ h3 {
     border-top: 1px solid #dcdcdc;
 }
 
-#notices #noticeList li {
+#studyList {
+    padding-bottom: 0px;
+}
+
+#noticeList li {
     background: url('/resources/images/star.png') no-repeat left center transparent;
     padding-left: 1.5em;
 }
 
-#guides ul li, #links ul li, #thanks ul li {
+#guideList li, #linkList li, #thanksList li {
     background: url('/resources/images/bullet.gif') no-repeat left center transparent;
     padding-left: 1.5em;
 }
 
-#studies ul li, #meetings ul li {
+#realStudyList li, #meetingList li {
     float: left;
     margin-bottom: 5px;
     cursor: pointer;
 }
-#studies ul {
-    margin: auto;
-	}
-	
-#studies ul li div {
-    width: 120px;
-    height: 140px;
-    padding-bottom: 10px;
+#realStudyList {
+    list-style: none outside none;
+    margin-left: 20px;
 }
 
-#studies ul li div:hover {
+.study_box:hover {
     cursor: pointer;
-    background: #E0F8F7;
+    background: #dcdcdc;
 }
 
-#meetings ul li:hover {
-    border: 1px #6495ED solid;
-    padding: 1px;
+.study_box {
+    position: relative;
+    height: 120px;
+    width: 120px;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
-#studies ul li div h3 {
-    text-align: center;
+.study_box img {
+    position: absolute;
 }
 
-#meetings ul li .descr {
+.study_box h3 {
+    position:absolute;
+    background:none repeat scroll 0 0 #797979;
+    color:#FFFFFF;
+    font-size:8pt;
+    height:16px;
+    bottom: -1px;
+    letter-spacing:0.1em;
+    line-height:19px;
+    opacity:0.8;
+    overflow:hidden;
+    padding:1px;
+    text-align:center;
+    text-indent:0;
+    width:118px;
+}
+
+#meetingList li:hover {
+    cursor: pointer;
+    background: #dcdcdc;
+}
+
+#meetingList li .descr {
     width: 220px;
     float: left;
     padding-left: 5px;
@@ -249,3 +273,4 @@ table.graffitiList td {
 .addOnItem {
 	font-size: 9px;	
 }
+
