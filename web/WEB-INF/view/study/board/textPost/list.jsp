@@ -64,7 +64,7 @@
 	border-right: none;
 	background: none repeat scroll 0 0 #FFFFFF;
 }
-.post-text-list-actions { float: right; }
+.post-list-actions { float: right; }
 .active { border-bottom: 1px solid white; }
 .tip {
     color: #fff;
@@ -137,7 +137,7 @@ $(function(){
 });
 </script>
 <div id="mainBar">
-	<div class="post-text-list-actions">
+	<div class="post-list-actions">
 		<sec:authorize ifAnyGranted="ROLE_MEMBER">
 			<button id="writeBtn">글쓰기</button>
 		</sec:authorize>
