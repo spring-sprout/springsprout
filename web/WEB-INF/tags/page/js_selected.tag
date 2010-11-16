@@ -55,6 +55,7 @@
 		<script type="text/javascript" src="<c:url value="/resources/js/plugin/jqgrid/js/i18n/grid.locale-en.js"/>"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/plugin/jqgrid/js/jquery.jqGrid.min.js"/>"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/plugin/jhtmlarea/scripts/jHtmlArea-0.7.0.js"/>"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/plugin/multipleFileUpload/jquery.MultiFile.pack.js"/>"></script>
 	</c:when>
     <c:when test="${selected_menu == 'statistics'}" >
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
