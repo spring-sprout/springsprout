@@ -96,6 +96,9 @@ img:HOVER {
 	color:#aba;
 	font-size:15px;
 }
+.detail-writer {
+	text-align: right;
+}
 
 .comment-form { 
 	overflow: hidden;
@@ -145,7 +148,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 						<div id="commentFormDiv" class="comment-form">
 							<form:form id="commentForm" action="/study/view/${study.id}/board/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
 								<form:textarea path="comment" cssClass="comment" />
-								<input type="submit" class="comment-submit" value="보내기" />
+								<input type="submit" class="comment-submit" value="보내기"/>
 							</form:form>
 						</div>
 						<c:forEach items="${post.comments}" var="comment">
@@ -316,11 +319,19 @@ function initAjaxForm() {
 }
 function initCommentForm() {
 	var commentOptions = {
-        success: function(comment, statusText, xhr, $form) {
+		beforeSubmit: function(arr, $form, options) { 
+			if ($form.find('textarea').val().trim().length <= 0) {
+				alert('내용을 입력하세요.');
+				$form.find('textarea').focus();
+				return false;
+			}
+			$form.find('input.comment-submit').attr('disabled', 'disabled');
+		}, success: function(comment, statusText, xhr, $form) {
         	var length = $form.parent().parent().find('.comment-area').length;
 			if ( length >= 1) $('.comment-area:visible:first').before(comment);
 			else $form.parent().parent().append(comment);
 			$.growlUI('Notification', '댓글을 추가 하였습니다.');
+			$form.find('input.comment-submit').attr('disabled', '');
 		},  
         clearForm: true
 	};
