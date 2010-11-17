@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.task.AsyncTaskExecutor;
+import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,44 +32,62 @@ public class StudyServiceImpl implements StudyService {
     @Autowired MemberRepository memberRepository;
     @Autowired @Qualifier("unifiedNotificationService") NotificationService notiService;
     @Autowired GoogleCalendarService calendarService;
+    @Autowired ThreadPoolTaskExecutor myExecutor;
     
-	public void addStudy(Study study) {
+	public void addStudy(final Study study) {
 		Member currentMember = securityService.getPersistentMember();
 		currentMember.addManagedStudy(study);
 		repository.add(study);
-//        notiService.sendMessage(new StudyMailMessage(study, StudyStatus.OPEN, memberRepository.getMemberList()));
-//        calendarService.createNewStudyCalendar(study);
+
+        myExecutor.execute(new Runnable(){
+            public void run() {
+                notiService.sendMessage(new StudyMailMessage(study, StudyStatus.OPEN, memberRepository.getMemberList()));
+                calendarService.createNewStudyCalendar(study);
+            }
+        });
+
 	}
-	
+
 	@PreAuthorize("(#study.manager.email == principal.Username) or hasRole('ROLE_ADMIN')")
-	public void updateStudy(Study study, Boolean isGoingToBeNotified) {
-		Member currentMember = securityService.getCurrentMember();
-		
+	public void updateStudy(final Study study, final Boolean isGoingToBeNotified) {
+		final Member currentMember = securityService.getCurrentMember();
 		repository.update(study);
 
-		calendarService.synchronizeForLegacy(study);
-		calendarService.synchronizeForLegacy(study.getMeetings());
-		
-		repository.update(study);
-		
-		calendarService.updateStudyCalendar(study);
-		calendarService.addToAccessControlList(study, currentMember);
-		
-        if(isGoingToBeNotified && (study.getStatus() != StudyStatus.ENDED)){
-            notiService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, memberRepository.getMemberList()));
-        }
+        myExecutor.execute(new Runnable(){
+            public void run() {
+                calendarService.synchronizeForLegacy(study);
+                calendarService.synchronizeForLegacy(study.getMeetings());
+
+                calendarService.updateStudyCalendar(study);
+                calendarService.addToAccessControlList(study, currentMember);
+
+                if (isGoingToBeNotified && (study.getStatus() != StudyStatus.ENDED)) {
+                    notiService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, memberRepository.getMemberList()));
+                }
+            }
+        });
 	}
 
-	public void addCurrentMember(Study study) {
-		Member currentMember = securityService.getPersistentMember();
-		calendarService.addToAccessControlList(study, currentMember);
+	public void addCurrentMember(final Study study) {
+		final Member currentMember = securityService.getPersistentMember();
 		study.addMember(currentMember);
+
+        myExecutor.execute(new Runnable(){
+            public void run() {
+                calendarService.addToAccessControlList(study, currentMember);
+            }
+        });
 	}
 
-	public void removeCurrentMember(Study study) {
-		Member currentMember = securityService.getPersistentMember();
-		calendarService.removeToAccessControlList(study, currentMember);
+	public void removeCurrentMember(final Study study) {
+		final Member currentMember = securityService.getPersistentMember();
         study.removeMember(currentMember);
+
+        myExecutor.execute(new Runnable(){
+            public void run() {
+                calendarService.removeToAccessControlList(study, currentMember);
+            }
+        });
 	}
 
 	public Study getStudyById(int id) {
@@ -74,8 +95,13 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@PreAuthorize("(#study.manager.email == principal.Username) or hasRole('ROLE_ADMIN')")
-	public void deleteStudy(Study study) {
-		calendarService.deleteStudyCalendar(study);
+	public void deleteStudy(final Study study) {
+        myExecutor.execute(new Runnable(){
+            public void run() {
+                calendarService.deleteStudyCalendar(study);
+            }
+        });
+		
 		study.setStatus(StudyStatus.DELETED);
 	}
 
