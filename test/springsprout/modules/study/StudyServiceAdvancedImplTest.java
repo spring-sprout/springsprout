@@ -24,11 +24,11 @@ import static org.junit.Assert.assertThat;
 @ContextConfiguration("/testContext.xml")
 public class StudyServiceAdvancedImplTest {
 
-    @Resource StudyService studyServiceAdvancedImpl;
+    @Resource StudyService advancedStudyService;
 
     @Test
     public void di(){
-        assertThat(studyServiceAdvancedImpl, is(notNullValue()));
+        assertThat(advancedStudyService, is(notNullValue()));
     }
 
 }

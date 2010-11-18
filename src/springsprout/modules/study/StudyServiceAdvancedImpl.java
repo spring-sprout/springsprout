@@ -26,7 +26,7 @@ import java.util.List;
  * Date: 2010. 11. 18
  * Time: 오후 11:03:28
  */
-@Service("studyServiceAdvancedImpl")
+@Service("advancedStudyService")
 public class StudyServiceAdvancedImpl implements StudyService {
 
     @Resource StudyService studyService;

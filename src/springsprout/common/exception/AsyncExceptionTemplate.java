@@ -29,7 +29,7 @@ public class AsyncExceptionTemplate {
                     logger.info(e.getMessage());
                 }
             }
-        });
+        }, AsyncTaskExecutor.TIMEOUT_IMMEDIATE);
 
     }
 }
