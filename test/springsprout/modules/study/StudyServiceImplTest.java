@@ -36,9 +36,8 @@ public class StudyServiceImplTest {
 		service = new StudyServiceImpl();
 		service.securityService = securityService;
 		service.repository = repository;
-        service.notiService = notiService;
+        service.unifiedNotificationService = notiService;
         service.memberRepository = memberRepository;
-        service.calendarService = googleCalendarService;
 	}
 
 	@Test

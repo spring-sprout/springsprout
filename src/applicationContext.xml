@@ -23,14 +23,10 @@
 	<!-- ============================================================= -->
     <context:property-placeholder location="classpath:*.properties" />
 
-    <!--<util:properties id="dbPr" location="classpath:/database.properties" />-->
-    <!--<util:properties id="systemPr" location="classpath:/system.properties" />-->
-    <!--<util:properties id="calendarPr" location="classpath:/calendar.properties" />-->
-
 	<!-- ============================================================= -->
 	<!--  AOP                                                          -->
 	<!-- ============================================================= -->                      
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 	<!-- ============================================================= -->
 	<!--  Component Scan                                               -->
@@ -179,6 +175,13 @@
         <property name="title" value="${calendar.title}"/>
         <property name="username" value="${calendar.username}"/>
         <property name="password" value="${calendar.password}"/>
+    </bean>
+
+    <!-- ============================================================= -->
+    <!--  Exception Template Service                                   -->
+    <!-- ============================================================= -->
+    <bean id="exceptionTemplate" class="springsprout.common.exception.AsyncExceptionTemplate">
+        <property name="asyncTaskExecutor" ref="myExecutor"/>
     </bean>
 
 </beans>

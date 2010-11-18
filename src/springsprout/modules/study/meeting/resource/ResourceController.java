@@ -33,7 +33,7 @@ public class ResourceController {
 
 	Logger log = LoggerFactory.getLogger(ResourceController.class);
 
-	@Autowired StudyService service;
+	@Autowired StudyService studyService;
 	@Autowired @Qualifier("fileService") FileService fileService;
     @Autowired MeetingService meetingService;
     @Autowired PresentationService presentationService;
