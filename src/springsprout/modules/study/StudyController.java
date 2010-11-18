@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import springsprout.domain.Study;
 import springsprout.modules.study.exception.StudyMaximumOverException;
 import springsprout.modules.study.meeting.support.CountInfoDTO;
-import springsprout.modules.study.support.StudyAttrList;
 import springsprout.service.security.SecurityService;
 
 
@@ -56,8 +55,8 @@ public class StudyController {
 	
 	@RequestMapping("index2")
 	public String index2(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute(StudyAttrList.LIST.key(), this.advancedStudyService.findActiveStudies());
-        model.addAttribute(StudyAttrList.MINITAB_ACTIVE.key(), "active");
+		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
+        model.addAttribute("minitab_active", "active");
         model.addAttribute(advancedStudyService.getStudyById(5));
 		return "study/index2";
     }
@@ -74,23 +73,23 @@ public class StudyController {
 
 	@RequestMapping("index/past")
 	public String index(Model model) {
-        model.addAttribute(StudyAttrList.LIST.key(), this.advancedStudyService.findPastStudies());
-		model.addAttribute(StudyAttrList.MINITAB_PAST.key(), "active");
+        model.addAttribute("list", this.advancedStudyService.findPastStudies());
+		model.addAttribute("minitab_past", "active");
 		return STUDY_INDEX;
 	}
     
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String addForm(Model model) {
         model.addAttribute(new Study());
-        model.addAttribute(StudyAttrList.TITLE_ADD.key(), StudyAttrList.TITLE_ADD.value());
-        model.addAttribute(StudyAttrList.BACKURL.key(), URL_STUDY_INDEX);
-        model.addAttribute(StudyAttrList.ISUPDATE.key(), false);
+        model.addAttribute("title", "스터디 추가");
+        model.addAttribute("backUrl", URL_STUDY_INDEX);
+        model.addAttribute("isUpdate", false);
         return STUDY_FORM;
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addForm( @Valid Study study, BindingResult result, Model model, HttpSession session, SessionStatus status) {
-		model.addAttribute(StudyAttrList.TITLE_ADD.key(), StudyAttrList.TITLE_ADD.value());
+		model.addAttribute("title", "스더티 추가");
 		if (result.hasErrors()) return STUDY_FORM;
 		advancedStudyService.addStudy(study);
         status.setComplete();
@@ -102,9 +101,9 @@ public class StudyController {
 	public String view(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
         model.addAttribute(study);
-        model.addAttribute(StudyAttrList.MEMBER_COUNT.key(), study.getMemberCount());
-        model.addAttribute(StudyAttrList.IS_ALREADY_JOIN_MEMBER.key(), advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-        model.addAttribute(StudyAttrList.IS_MANAGER_OR_ADMIN.key(), advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
+        model.addAttribute("memberCount", study.getMemberCount());
+        model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
+        model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
 		return STUDY_VIEW;
 	}
 
@@ -126,9 +125,9 @@ public class StudyController {
 	public String updateForm(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
 		model.addAttribute(study);
-		model.addAttribute(StudyAttrList.TITLE_UPDATE.key(), StudyAttrList.TITLE_UPDATE.value());
-        model.addAttribute(StudyAttrList.BACKURL.key(), URL_STUDY_VIEW + study.getId());
-        model.addAttribute(StudyAttrList.ISUPDATE.key(), true);
+		model.addAttribute("title", "스터디 수정");
+        model.addAttribute("backUrl", URL_STUDY_VIEW + study.getId());
+        model.addAttribute("isUpdate", true);
         return STUDY_FORM;
 	}
 
@@ -183,16 +182,16 @@ public class StudyController {
 	@RequestMapping("view/{id}/meetings")
     public String viewMeeting( @PathVariable int id, Model model) {
 		model.addAttribute(advancedStudyService.getStudyById(id));
-		model.addAttribute(StudyAttrList.IS_ALREADY_JOIN_MEMBER.key(), advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-		model.addAttribute(StudyAttrList.IS_MANAGER_OR_ADMIN.key(), advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
+		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
+		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
     	return "/study/_meetings";
     }
 	    
     @RequestMapping("view/{id}/meetingMembers")
     public String viewMeetingMembers( @PathVariable int id, Model model) {
     	model.addAttribute(advancedStudyService.getStudyById(id));
-		model.addAttribute(StudyAttrList.IS_ALREADY_JOIN_MEMBER.key(), advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-		model.addAttribute(StudyAttrList.IS_MANAGER_OR_ADMIN.key(), advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
+		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
+		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
     	return "/study/_members";
     }
     
@@ -210,7 +209,7 @@ public class StudyController {
     }
 
 	private void setSession(HttpSession session, String studyName, String msg) {
-		session.setAttribute(StudyAttrList.SESSION_FLASH_MSG.key(), studyName + msg);
+		session.setAttribute("SESSION_FLASH_MSG", studyName + msg);
 	}
 
 }
