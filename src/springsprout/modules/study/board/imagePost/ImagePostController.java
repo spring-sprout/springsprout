@@ -1,5 +1,7 @@
 package springsprout.modules.study.board.imagePost;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,7 @@ import springsprout.domain.Resource;
 import springsprout.domain.Study;
 import springsprout.domain.UploadFile;
 import springsprout.domain.study.board.ImagePost;
+import springsprout.domain.study.board.Post;
 import springsprout.domain.study.board.TextPost;
 import springsprout.modules.file.FileService;
 import springsprout.modules.study.board.PostService;
@@ -41,11 +44,11 @@ public class ImagePostController {
 	
 	@RequestMapping("list/{page}")
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page, SessionStatus status) {
+		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE);
 		model.addAttribute(new ImagePost(study));
-		model.addAttribute(service.getList( page, Paging.SIZE_5));
+		model.addAttribute("posts", posts);
 		model.addAttribute("page", page);
 		model.addAttribute("comment", new Comment());
-		//model.addAttribute("pagingInfo", service.initPaing( page));
 		return "study/board/imagePost/list";
 	}
 	
@@ -64,9 +67,11 @@ public class ImagePostController {
 		return post;
 	}
 	
-	@RequestMapping("remove")
-	public void remove(ImagePost post) {
+	@RequestMapping("remove/{id}")
+	public String remove(@PathVariable int id, ImagePost post) {
+		post.setId(id);
 		service.removePost(post);
+		return "study/board/imagePost/list";
 	}
 	
 	@RequestMapping("view/{id}/page/{page}")
@@ -89,11 +94,11 @@ public class ImagePostController {
 	
 	
 	@RequestMapping(value="{id}/comment/write", method = RequestMethod.POST)
-	@ResponseBody
-	public Comment writeComment(@PathVariable int id, Comment comment) {
+	public String writeComment(Model model, @PathVariable int id, Comment comment) {
 		ImagePost post = service.getPost(id);
 		service.addComment(post, comment);
-		return comment;
+		model.addAttribute("postId", id);
+		return "study/board/_commentSpot";
 	}
 	
 	@RequestMapping(value="{postId}/comment/{commentId}/remove", method = RequestMethod.POST)

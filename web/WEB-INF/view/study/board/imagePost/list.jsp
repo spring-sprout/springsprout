@@ -12,10 +12,10 @@
 img:HOVER {
 	cursor: pointer;
 }
-.post-image-detailImage img {
+.post-image-detail-image {
 	max-width: 90%;
 	margin: 10px;
-	border: solid 1px purple;
+	border: solid 1px gray;
 }
 .post-image-thumbnail img {
 	margin: 5px;
@@ -24,20 +24,16 @@ img:HOVER {
 .post-image-thumbnail-default {
 	opacity : 0.67;
 	opacity : 1;
-	border: solid 1px green;
+	border: solid 1px OliveDrab;
 }
 
 .post-image-thumbnail-selected {
 	opacity : 1;
 	border: solid 2px green;
+	width: 50%;
 }
-
 .post-image-container .images {
 	overflow: hidden;
-}
-
-.detail, .list, .contents {
-	border: solid 1px gray;
 }
 
 .detail {
@@ -100,6 +96,9 @@ img:HOVER {
 	color:#aba;
 	font-size:15px;
 }
+.detail-writer {
+	text-align: right;
+}
 
 .comment-form { 
 	overflow: hidden;
@@ -107,10 +106,13 @@ img:HOVER {
 }
 textarea.comment  { width: 85%; float: left;}
 input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em;}
-
+#fileArea { background-color: white; }
+#movePrev:HOVER, #moveNext:HOVER {
+	cursor: pointer;
+}
 </style>
 <div id="mainBar">
-	<div class="post-text-list-actions">
+	<div class="post-list-actions">
 		<sec:authorize ifAnyGranted="ROLE_MEMBER">
 			<button id="writeBtn">글쓰기</button>
 		</sec:authorize>
@@ -118,9 +120,9 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 	<div class="post-image-container">
 		<div class="images">
 			<div class="detail">
-				<c:forEach items="${imagePostList}" var="post" varStatus="status">
+				<c:forEach items="${posts}" var="post" varStatus="status">
 				<div class="post-image post-image-detailImage" align="center" id="post-${post.id}">
-					<img src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
+					<img class="post-image-detail-image" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
 					<div class="simple_overlay" id="${post.id}">
 						<!-- large image -->
 						<div style="width: 80%;">
@@ -128,31 +130,60 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 						</div>
 						<!-- image details -->
 						<div class="details">
-							<h3 class="detail-title">${post.title }</h3>
-							<h4 class="detail-writer">Barcelona, Spain</h4>
+							<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+							<c:if test="${currentUserName == post.writer.email}">
+								<button class="updateBtn" id="${post.id}">수정</button>
+								<button class="deleteBtn" id="${post.id}">삭제</button>
+							</c:if>
+							<h3 class="detail-title">${post.title}</h3>
+							<h4 class="detail-writer">${post.writer.name}</h4>
 							<p class="detail-content">${post.content}</p>
 						</div>
 					</div>
-				</div>
-				</c:forEach>
-				<div class="contents">
+				<div class="contents" id="content-${post.id}" align="left">
 					<div class="content">
-						이미지 컨텐츠
+						${post.content}
 					</div>
 					<div class="comment-list">
 						<div id="commentFormDiv" class="comment-form">
-							<form:form id="commentForm" cssClass="commentForm" commandName="comment" method="post">
+							<form:form id="commentForm" action="/study/view/${study.id}/board/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
 								<form:textarea path="comment" cssClass="comment" />
-								<input type="submit" class="comment-submit" value="보내기" />
+								<input type="submit" class="comment-submit" value="보내기"/>
 							</form:form>
 						</div>
+						<c:forEach items="${post.comments}" var="comment">
+						<div class="comment-area">
+						<div class="post-comment-writer-info">
+							<div class="thumb">
+								<img class="photo fn logoSmall" height="24" width="24" src="${comment.writer.avatar}" alt="${comment.writer.name}"/>
+							</div>
+							<div class="post-comment-writer">
+								<span class="post-comment-writer-name">${comment.writer.name}</span><br/>
+								<span class="post-comment-writer-createdText">${comment.createdText}</span>
+							</div>
+						</div>
+						<div class="post-comment-data">${comment.comment}</div>
+						<div class="post-comment-actions">
+							<img class="rt" src="<c:url value="/images/icon_reply.gif"/>" alt="RT ${comment.writer.name}" writer="${comment.writer.name}" class="action" title="댓글" />
+							<sec:authorize ifAnyGranted="ROLE_MEMBER">
+	                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+	                              <c:if test="${currentUserName == comment.writer.email}">
+	                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
+	                                       href="/study/view/${study.id}/board/imagePost/${post.id}/comment/${comment.id}/remove"/>
+	                              </c:if>
+							</sec:authorize>
+						</div>
+						</div>
+						</c:forEach>
 					</div>
 				</div>
+				</div>
+				</c:forEach>
 			</div>
 			<div class="list" align="center">
 				<span id="movePrev" class="ui-icon ui-icon-triangle-1-n">${page - 1}</span>
 				<div class="post-image post-image-thumbnail-list">
-					<c:forEach items="${imagePostList}" var="post" varStatus="status">
+					<c:forEach items="${posts}" var="post" varStatus="status">
 					<div class="post-image post-image-thumbnail" rel="${post.id}" lang="asdfd">
 						<img class="post-image-thumbnail-default" src="/images/userimage/${post.writer.email}/${post.imageFile.thumbNailName}" alt="${post.title}" title="${post.title}" />
 					</div>
@@ -173,6 +204,8 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 		<p>
 			<form:label path="file">파일 : </form:label>
 			<input id="file" name="file" type="file" />
+			<div id="fileArea">
+			</div>
 		</p>
 		<p>
 			<form:label path="content">내용</form:label><br/>
@@ -181,16 +214,25 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 		
 	</form:form>
 </div>
-<script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
+
 <script type="text/javascript">
-var $registDiv = $( '#registDiv'), $postForm = $('#postForm'), $commentForm = $('#commentForm'), selectedPostId;
+var $registDiv = $( '#registDiv'), $postForm = $('#postForm'), $commentForm = $('.commentForm'),
+	$listDiv = $('#listDiv'),
+	selectedPostId;
 $(function(){ 
-	
 	initDialog();
 	initEvent();
 	initAjaxForm();
 	initCommentForm();
+	initFileupload();
 	$('img[rel]').overlay();
+	$('.post-comment-actions .rt').live( 'click', function() {
+		$('textarea.comment').val("@" + $(this).attr('writer') + ' ').focus();
+	});
+	
+	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
+		.children().addClass('post-button-text').removeClass('ui-button-text');
+	$('#movePrev').focusin().addClass('ui-stage-hover');
 });
 
 function initDialog() {
@@ -211,7 +253,7 @@ function initDialog() {
 			 $('textarea#postContent').wysiwyg();
 		},
 		close: function() {
-			$('#listDiv').load('${study.id}/board/imagePost/list/0');
+			refreshListDiv();
 		}
 	});
 }
@@ -234,7 +276,33 @@ function initEvent() {
 		});
 	}); 
 	$('#movePrev, #moveNext').click( function(){
-		$('#listDiv').load('${study.id}/board/imagePost/list/' + $(this).text());
+		$.ajax({
+			url : '${study.id}/board/imagePost/list/' + $(this).text(),
+			beforeSend : function(){
+				$('#mainBar').hide('blind', 1000);
+			},success : function(html){
+				$listDiv.html(html);
+			}
+		});
+	});
+	$('.action.comment_delete').live( 'click', function() {
+        var $this = $(this);
+        if( confirm( '삭제 하시겠습니까?')) {
+			$.post( $this.attr('href'), null, function(data) {
+				$this.parent().parent().hide( 'blind', null, 1000).remove();
+				$.growlUI('Notification', '댓글을 삭제 하였습니다.');
+			}, 'json');
+        }
+        return false;
+    });
+	$('.deleteBtn').live( 'click', function(){
+		var $this = $(this);
+        if( confirm( '삭제 하시겠습니까?')) {
+        	$.post( '${study.id}/board/imagePost/remove/' + $this.attr('id'), null, function() {
+        		refreshListDiv();
+			});
+        }
+        return false;
 	});
 }
 function initAjaxForm() {
@@ -251,16 +319,45 @@ function initAjaxForm() {
 }
 function initCommentForm() {
 	var commentOptions = {
-		url: '/study/view/${study.id}/board/imagePost/' + selectedPostId + '/comment/write',
-        success: function(comment, statusText, xhr, $form) {
-			
+		beforeSubmit: function(arr, $form, options) { 
+			if ($form.find('textarea').val().trim().length <= 0) {
+				alert('내용을 입력하세요.');
+				$form.find('textarea').focus();
+				return false;
+			}
+			$form.find('input.comment-submit').attr('disabled', 'disabled');
+		}, success: function(comment, statusText, xhr, $form) {
+        	var length = $form.parent().parent().find('.comment-area').length;
+			if ( length >= 1) $('.comment-area:visible:first').before(comment);
+			else $form.parent().parent().append(comment);
+			$.growlUI('Notification', '댓글을 추가 하였습니다.');
+			$form.find('input.comment-submit').attr('disabled', '');
 		},  
-        dataType:  'json',
         clearForm: true
 	};
 	$commentForm.submit(function() { 
 		$(this).ajaxSubmit(commentOptions); 
 		return false;
+	});
+}
+
+function initFileupload() {
+	$('#file').MultiFile({
+		list: '#fileArea',
+		max: 5,
+		accept: 'gif|jpg|png'
+	});
+}
+
+function refreshListDiv() {
+	$.ajax({
+		url : '${study.id}/board/imagePost/list/0',
+		beforeSend : function(){
+			s_waitblock();
+		},success : function(html){
+			$listDiv.html(html);
+			$.unblockUI();
+		}
 	});
 }
 </script>

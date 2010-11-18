@@ -8,7 +8,7 @@
 
     <properties>
         <java.version>1.5</java.version>
-        <spring.version>3.0.4.RELEASE</spring.version>
+        <spring.version>3.0.5.RELEASE</spring.version>
         <spring.security.version>3.0.3.RELEASE</spring.security.version>
         <swf.version>2.0.8.RELEASE</swf.version>
         <aspectj.version>1.6.3.RELEASE</aspectj.version>
@@ -185,12 +185,6 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
-        <!--  URL Rewrite -->
-        <dependency>
-            <groupId>org.tuckey</groupId>
-            <artifactId>urlrewritefilter</artifactId>
-            <version>3.1.0</version>
-        </dependency>
         <!-- logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -217,11 +211,6 @@
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>8.2-507.jdbc3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mysql.jdbc</groupId>
-            <artifactId>com.springsource.com.mysql.jdbc</artifactId>
-            <version>5.1.6</version>
         </dependency>
         <!-- Mail -->
         <dependency>
@@ -261,9 +250,9 @@
             <version>${spring.security.version}</version>
         </dependency>
         <dependency>
-        	<groupId>org.springframework.security</groupId>
-        	<artifactId>spring-security-acl</artifactId>
-        	<version>${spring.security.version}</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>org.springframework.security.acls</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
         <!-- Test -->
         <dependency>
@@ -427,6 +416,12 @@
             <groupId>oauth.signpost</groupId>
             <artifactId>oauth-signpost</artifactId>
             <version>1.2.1.2</version>
+        </dependency>
+        <!-- Joda Time -->
+        <dependency>
+            <groupId>org.joda</groupId>
+            <artifactId>com.springsource.org.joda.time</artifactId>
+            <version>1.6.0</version>
         </dependency>
     </dependencies>
 

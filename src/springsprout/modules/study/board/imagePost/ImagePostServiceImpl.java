@@ -47,8 +47,9 @@ public class ImagePostServiceImpl implements PostService<ImagePost> {
 	}
 
 	public void removePost( ImagePost post) {
-		fileService.delete(post.getImageFile().getId());
-		repository.deleteById(post.getId());
+		ImagePost ImagePost = repository.getById(post.getId());
+		fileService.delete(ImagePost.getImageFile().getId());
+		repository.deleteById(ImagePost.getId());
 	}
 
 	public void updatePost( ImagePost post) {
