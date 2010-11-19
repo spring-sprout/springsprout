@@ -126,5 +126,11 @@ public class StudyRepositoryImpl extends HibernateGenericDao<Study> implements S
 		return c.list();
     }
 
+    public Member getManagerByStudyId(Integer studyId) {
+        return (Member) getCurrentSession().createQuery("select s.manager from Study s where s.id = :studyId")
+                .setInteger("studyId", studyId)
+                .uniqueResult();
+    }
+
 
 }

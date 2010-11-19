@@ -44,7 +44,7 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
 		assertTrue(study.getMembers().contains(member));
 	}
 
-	@Ignore
+	@Test
 	public void getAll() throws Exception {
 		insertXmlData("testData.xml");
 		assertThat(sr.getStudyList().size(), is(2));
@@ -88,11 +88,21 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
         sl = sr.getStudyList(sc);
         assertThat(sl.size(), is(2));
     }
+
     @Test
-    public void 스터디갯수세기() throws Exception {
+    public void getTotalRowsCount() throws Exception {
         insertXmlData("testData.xml");
         StudyCriteria sc = new StudyCriteria();
         int count = sr.getTotalRowsCount(sc);
         assertThat(count, is(2));
     }
+
+    @Test
+    public void getManagerByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        Member manager = sr.getManagerByStudyId(1);
+        assertThat(manager.getId(), is(1));
+    }
+
+    
 }

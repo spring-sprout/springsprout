@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import springsprout.common.exception.AsyncExceptionTemplate;
 import springsprout.common.exception.ExceptionTemplate;
 import springsprout.common.exception.ExceptionalWork;
+import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
 import springsprout.modules.calendar.GoogleCalendarService;
@@ -139,5 +140,9 @@ public class StudyServiceAdvancedImpl implements StudyService {
 
     public StudyIndexInfo makeStudyIndexInfo() {
         return studyService.makeStudyIndexInfo();
+    }
+
+    public Member getManagerOf(Study study) {
+        return studyService.getManagerOf(study);
     }
 }

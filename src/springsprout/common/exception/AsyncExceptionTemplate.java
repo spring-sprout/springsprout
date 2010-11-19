@@ -26,6 +26,7 @@ public class AsyncExceptionTemplate {
                 try {
                     work.run();
                 } catch (Exception e) {
+                    e.printStackTrace();
                     logger.info(e.getMessage());
                 }
             }

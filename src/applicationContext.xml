@@ -26,7 +26,7 @@
 	<!-- ============================================================= -->
 	<!--  AOP                                                          -->
 	<!-- ============================================================= -->                      
-	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<aop:aspectj-autoproxy />
 
 	<!-- ============================================================= -->
 	<!--  Component Scan                                               -->
@@ -46,7 +46,7 @@
 	<!-- ============================================================= -->
 	<!--  Transaction                                                  -->
 	<!-- ============================================================= -->
-	<tx:annotation-driven proxy-target-class="true"/>
+	<tx:annotation-driven />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"

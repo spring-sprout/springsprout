@@ -114,4 +114,8 @@ public class StudyServiceImpl implements StudyService {
     	return new StudyIndexInfo( findActiveStudies(), repository.findPastStudies());
     }
 
+    public Member getManagerOf(Study study) {
+        return repository.getManagerByStudyId(study.getId());
+    }
+
 }

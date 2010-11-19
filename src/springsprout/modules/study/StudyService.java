@@ -1,6 +1,7 @@
 package springsprout.modules.study;
 
 import springsprout.domain.Comment;
+import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContainer;
 import springsprout.modules.study.support.StudyCriteria;
@@ -50,6 +51,8 @@ public interface StudyService {
      * 스터디 인덱스 화면에서 보여줄 정보를 구성한다.
      * @return
      */
-    StudyIndexInfo makeStudyIndexInfo(); 
-    
+    StudyIndexInfo makeStudyIndexInfo();
+
+    Member getManagerOf(Study study);
+
 }
