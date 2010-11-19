@@ -6,6 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
+.post-list-actions { float: none !important;}
 .post-image-detailImage, .post-image-thumbnail {
 	
 }
@@ -13,7 +14,7 @@ img:HOVER {
 	cursor: pointer;
 }
 .post-image-detail-image {
-	max-width: 90%;
+	max-width: 70%;
 	margin: 10px;
 	border: solid 1px gray;
 }
@@ -38,7 +39,7 @@ img:HOVER {
 
 .detail {
 	float: left;
-	width: 75%;
+	width: 76%;
 }
 .list {
 	float: left;
@@ -104,15 +105,22 @@ img:HOVER {
 	overflow: hidden;
 	padding: 4px;
 }
+.comment-list { 
+	border-top: solid gray 2px;
+}
 textarea.comment  { width: 85%; float: left;}
 input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em;}
-#fileArea { background-color: white; }
+.fileArea { background-color: white; }
 #movePrev:HOVER, #moveNext:HOVER {
 	cursor: pointer;
 }
+.icon-arrow { width: 70px; }
+.icon-arrow:HOVER { width: 75px; }
+.icon-left { float:left; }
+.icon-right { float:right; }
 </style>
 <div id="mainBar">
-	<div class="post-list-actions">
+	<div class="post-list-actions" align="right">
 		<sec:authorize ifAnyGranted="ROLE_MEMBER">
 			<button id="writeBtn">글쓰기</button>
 		</sec:authorize>
@@ -122,7 +130,9 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 			<div class="detail">
 				<c:forEach items="${posts}" var="post" varStatus="status">
 				<div class="post-image post-image-detailImage" align="center" id="post-${post.id}">
+					<img src="/images/study/monotone_arrow_left.png" class="icon-arrow icon-left" />
 					<img class="post-image-detail-image" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
+					<img src="/images/study/monotone_arrow_right.png" class="icon-arrow icon-right"/>
 					<div class="simple_overlay" id="${post.id}">
 						<!-- large image -->
 						<div style="width: 80%;">
@@ -145,6 +155,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 						${post.content}
 					</div>
 					<div class="comment-list">
+						<h3>Your Comment↓</h3>
 						<div id="commentFormDiv" class="comment-form">
 							<form:form id="commentForm" action="/study/view/${study.id}/board/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
 								<form:textarea path="comment" cssClass="comment" />
@@ -169,7 +180,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 	                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 	                              <c:if test="${currentUserName == comment.writer.email}">
 	                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-	                                       href="/study/view/${study.id}/board/imagePost/${post.id}/comment/${comment.id}/remove"/>
+	                                       href="/study/view/${study.id}/board/imagePost/${post.id}/comment/${comment.id}"/>
 	                              </c:if>
 							</sec:authorize>
 						</div>
@@ -184,7 +195,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 				<span id="movePrev" class="ui-icon ui-icon-triangle-1-n">${page - 1}</span>
 				<div class="post-image post-image-thumbnail-list">
 					<c:forEach items="${posts}" var="post" varStatus="status">
-					<div class="post-image post-image-thumbnail" rel="${post.id}" lang="asdfd">
+					<div class="post-image post-image-thumbnail" rel="${post.id}">
 						<img class="post-image-thumbnail-default" src="/images/userimage/${post.writer.email}/${post.imageFile.thumbNailName}" alt="${post.title}" title="${post.title}" />
 					</div>
 					</c:forEach>
@@ -194,37 +205,12 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 		</div>
 	</div>
 </div>
-<div id="registDiv" title="일반 게시물 생성">
-	<form:form id="postForm" commandName="imagePost" method="post" action="/study/view/${study.id}/board/imagePost/write" enctype="multipart/form-data">
-		<form:hidden path="rootStudy.id"/>
-		<p>
-			<form:label path="title">제목 : </form:label>
-			<form:input path="title" cssStyle="width: 90%;" />
-		</p>
-		<p>
-			<form:label path="file">파일 : </form:label>
-			<input id="file" name="file" type="file" />
-			<div id="fileArea">
-			</div>
-		</p>
-		<p>
-			<form:label path="content">내용</form:label><br/>
-			<form:textarea path="content" id="postContent" rows="8" cols="100" />
-		</p>
-		
-	</form:form>
-</div>
-
 <script type="text/javascript">
-var $registDiv = $( '#registDiv'), $postForm = $('#postForm'), $commentForm = $('.commentForm'),
-	$listDiv = $('#listDiv'),
-	selectedPostId;
+var $postForm = $('#postForm'), $commentForm = $('.commentForm'), $listDiv = $('#listDiv'), selectedPostId;
 $(function(){ 
-	initDialog();
 	initEvent();
-	initAjaxForm();
 	initCommentForm();
-	initFileupload();
+	
 	$('img[rel]').overlay();
 	$('.post-comment-actions .rt').live( 'click', function() {
 		$('textarea.comment').val("@" + $(this).attr('writer') + ' ').focus();
@@ -235,39 +221,18 @@ $(function(){
 	$('#movePrev').focusin().addClass('ui-stage-hover');
 });
 
-function initDialog() {
-	$registDiv.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 600,
-		modal: false,
-		buttons: {
-			'생성': function() {
-	  			$postForm.submit();
-			},
-			'취소': function() {
-				$(this).dialog( "close" );
-			}
-		},
-		open: function() {
-			 $('textarea#postContent').wysiwyg();
-		},
-		close: function() {
-			refreshListDiv();
-		}
-	});
-}
-
 function initEvent() {
 	$('.post-image-detailImage:not(:first)').hide();
 	selectedPostId = $('.post-image-thumbnail').first().attr('rel');
 	$('.post-image-thumbnail :first').addClass('post-image-thumbnail-selected');
-	$('#writeBtn').click( function(e){ $registDiv.dialog('open'); });
+	$('#writeBtn').click( function(e){ 
+		changePageToForm();
+	});
 	$('.post-image-thumbnail').click( function(){
 		var $this = $(this), postId = '#post-' + $this.attr('rel'), 
 			$imgEl = $this.children().first();
-		$('.post-image-detailImage:not(:hidden)').hide('drop', 1000, function(){
-			$(postId).show('drop', 1000, function() {
+		$('.post-image-detailImage:not(:hidden)').hide('drop', 300, function(){
+			$(postId).show('drop', 300, function() {
 				$('.post-image-thumbnail img').removeClass('post-image-thumbnail-selected');
 				$imgEl.addClass('post-image-thumbnail-selected');
 				content = $(this).find('.detail-content').text();
@@ -276,19 +241,12 @@ function initEvent() {
 		});
 	}); 
 	$('#movePrev, #moveNext').click( function(){
-		$.ajax({
-			url : '${study.id}/board/imagePost/list/' + $(this).text(),
-			beforeSend : function(){
-				$('#mainBar').hide('blind', 1000);
-			},success : function(html){
-				$listDiv.html(html);
-			}
-		});
+		Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost/list/' + $(this).text(), $listDiv);
 	});
 	$('.action.comment_delete').live( 'click', function() {
         var $this = $(this);
         if( confirm( '삭제 하시겠습니까?')) {
-			$.post( $this.attr('href'), null, function(data) {
+			$.post( $this.attr('href'), {_method:'DELETE'}, function(data) {
 				$this.parent().parent().hide( 'blind', null, 1000).remove();
 				$.growlUI('Notification', '댓글을 삭제 하였습니다.');
 			}, 'json');
@@ -298,25 +256,37 @@ function initEvent() {
 	$('.deleteBtn').live( 'click', function(){
 		var $this = $(this);
         if( confirm( '삭제 하시겠습니까?')) {
-        	$.post( '${study.id}/board/imagePost/remove/' + $this.attr('id'), null, function() {
-        		refreshListDiv();
-			});
+        	$.ajax({
+        		url : '${study.id}/board/imagePost/' + $this.attr('id'),
+        		data : {_method: 'DELETE'},
+        		type : 'POST',
+        		beforeSend : function(){
+        			s_waitblock();
+        		},success : function(html){
+        			Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost/list/0', $listDiv);
+        		}
+        	});
         }
         return false;
 	});
+	$('.updateBtn').live( 'click', function() {
+		$.get( '${study.id}/board/imagePost/' + $(this).attr('id'), function(html){
+			$listDiv.html(html);	
+		});
+		return false;
+	});
+	$('.icon-left').click( function(){
+		$prevEl = $('.post-image-thumbnail-selected').parent().prev();
+		navigateImage( $prevEl);
+		return false;
+	});
+	$('.icon-right').click( function(){
+		$nextEl = $('.post-image-thumbnail-selected').parent().next();
+		navigateImage( $nextEl);
+		return false;
+	});
 }
-function initAjaxForm() {
-	var options = { 
-        success: function(data) {
-			$registDiv.dialog('close');
-		}, 
-        clearForm: true
-    }; 
- 	$postForm.submit(function() { 
-		$(this).ajaxSubmit(options); 
-		return false; 
-	}); 
-}
+
 function initCommentForm() {
 	var commentOptions = {
 		beforeSubmit: function(arr, $form, options) { 
@@ -341,23 +311,38 @@ function initCommentForm() {
 	});
 }
 
-function initFileupload() {
-	$('#file').MultiFile({
-		list: '#fileArea',
-		max: 5,
-		accept: 'gif|jpg|png'
+function changePageToForm() {
+	Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost', $listDiv);
+}
+
+function navigateImage( $targetEl) {
+	if ($nextEl.length < 1) {
+		alert('이동할 이미지가 없습니다.');
+		return;
+	}
+	postId = '#post-' + $targetEl.attr('rel');
+	$('.post-image-detailImage:not(:hidden)').hide('drop', 300, function(){
+		$(postId).show('drop', 300, function() {
+			$('.post-image-thumbnail img').removeClass('post-image-thumbnail-selected');
+			$targetEl.find('img').addClass('post-image-thumbnail-selected');
+			content = $(this).find('.detail-content').text();
+			$('.content').text(content);
+		});
 	});
 }
 
-function refreshListDiv() {
+var Study = {};
+Study.Post = {};
+Study.Post.blockUIAjaxReq = function( url, $target) {
 	$.ajax({
-		url : '${study.id}/board/imagePost/list/0',
+		url : url,
 		beforeSend : function(){
 			s_waitblock();
 		},success : function(html){
-			$listDiv.html(html);
+			$target.html(html);
 			$.unblockUI();
 		}
 	});
-}
+};
+
 </script>
