@@ -16,7 +16,9 @@ import springsprout.service.notification.message.StudyMailMessage;
 import springsprout.service.security.SecurityService;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service("studyService")
 @Transactional
@@ -116,6 +118,10 @@ public class StudyServiceImpl implements StudyService {
 
     public Member getManagerOf(Study study) {
         return repository.getManagerByStudyId(study.getId());
+    }
+
+    public Set<Member> getMembersOf(Study study) {
+        return new HashSet<Member>(repository.getMemberListByStudyId(study.getId()));
     }
 
 }

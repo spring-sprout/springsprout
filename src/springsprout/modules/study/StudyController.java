@@ -1,12 +1,5 @@
 package springsprout.modules.study;
 
-import static springsprout.common.SpringSprout2System.JSON_VIEW;
-import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectStudyView;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import springsprout.domain.Study;
 import springsprout.modules.study.exception.StudyMaximumOverException;
 import springsprout.modules.study.meeting.support.CountInfoDTO;
 import springsprout.service.security.SecurityService;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
+import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectStudyView;
 
 
 @Controller

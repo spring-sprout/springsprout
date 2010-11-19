@@ -1,13 +1,12 @@
 package springsprout.modules.study.meeting.presentation;
 
-import java.util.List;
-
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.Presentation;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import springsprout.common.exception.AsyncExceptionTemplate;
-import springsprout.common.exception.ExceptionTemplate;
 import springsprout.common.exception.ExceptionalWork;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
@@ -20,6 +19,7 @@ import springsprout.service.security.SecurityService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -144,5 +144,9 @@ public class StudyServiceAdvancedImpl implements StudyService {
 
     public Member getManagerOf(Study study) {
         return studyService.getManagerOf(study);
+    }
+
+    public Set<Member> getMembersOf(Study study) {
+        return studyService.getMembersOf(study);
     }
 }

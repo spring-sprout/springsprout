@@ -44,6 +44,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import static springsprout.modules.calendar.CalendarUtil.*;
 
@@ -60,7 +61,7 @@ import static springsprout.modules.calendar.CalendarUtil.*;
 public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 	
 	@Autowired MemberService memberService;
-	@Autowired StudyRepository repository;
+	@Resource StudyService studyService;
 
     public static final String OWN_CALENDAR_URL = "https://www.google.com/calendar/feeds/default/owncalendars/full";
     final Logger logger = LoggerFactory.getLogger(GoogleCalendarServiceImpl.class);
@@ -136,7 +137,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
             }
         });
         
-        Member manager = memberService.getMemberById(study.getManager().getId());
+        Member manager = studyService.getManagerOf(study);
         addToAccessControlList(manager.getEmail(), newCalendar);
         setCalendarId(newCalendar, study);
         return newCalendar;

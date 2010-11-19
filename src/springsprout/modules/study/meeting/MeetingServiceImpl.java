@@ -1,26 +1,12 @@
 package springsprout.modules.study.meeting;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import springsprout.domain.Attendance;
-import springsprout.domain.Comment;
-import springsprout.domain.Meeting;
-import springsprout.domain.Member;
-import springsprout.domain.Presentation;
-import springsprout.domain.Resource;
-import springsprout.domain.Study;
-import springsprout.domain.UploadFile;
+import springsprout.domain.*;
 import springsprout.domain.enumeration.MeetingStatus;
 import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.comment.CommentRepository;
@@ -35,6 +21,11 @@ import springsprout.service.notification.NotificationService;
 import springsprout.service.notification.message.CommentMailMessage;
 import springsprout.service.notification.message.MeetingMailMessage;
 import springsprout.service.security.SecurityService;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 @Transactional

@@ -1,11 +1,6 @@
 package springsprout.modules.study.meeting;
 
-import springsprout.domain.Attendance;
-import springsprout.domain.Comment;
-import springsprout.domain.Meeting;
-import springsprout.domain.Presentation;
-import springsprout.domain.Resource;
-import springsprout.domain.UploadFile;
+import springsprout.domain.*;
 
 import java.util.List;
 

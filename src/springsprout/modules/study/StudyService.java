@@ -1,6 +1,5 @@
 package springsprout.modules.study;
 
-import springsprout.domain.Comment;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContainer;
@@ -8,6 +7,7 @@ import springsprout.modules.study.support.StudyCriteria;
 import springsprout.modules.study.support.StudyIndexInfo;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -54,5 +54,7 @@ public interface StudyService {
     StudyIndexInfo makeStudyIndexInfo();
 
     Member getManagerOf(Study study);
+
+    Set<Member> getMembersOf(Study study);
 
 }

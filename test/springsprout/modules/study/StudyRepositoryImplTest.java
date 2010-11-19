@@ -14,6 +14,7 @@ import springsprout.modules.member.MemberRepositoryImpl;
 import springsprout.modules.study.support.StudyCriteria;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -104,5 +105,11 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
         assertThat(manager.getId(), is(1));
     }
 
-    
+    @Test
+    public void getMembersByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        List<Member> members = sr.getMemberListByStudyId(1);
+        assertThat(members.size(), is(2));
+    }
+
 }
