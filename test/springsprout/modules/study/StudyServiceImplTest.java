@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,6 @@ import springsprout.domain.enumeration.StudyStatus;
 import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.member.MemberRepository;
 import springsprout.modules.study.exception.StudyMaximumOverException;
-import springsprout.modules.study.support.StudyAttrList;
 import springsprout.service.notification.UnifiedNotificationService;
 import springsprout.service.security.SecurityService;
 
@@ -36,9 +34,8 @@ public class StudyServiceImplTest {
 		service = new StudyServiceImpl();
 		service.securityService = securityService;
 		service.repository = repository;
-        service.notiService = notiService;
+        service.unifiedNotificationService = notiService;
         service.memberRepository = memberRepository;
-        service.calendarService = googleCalendarService;
 	}
 
 	@Test
@@ -123,10 +120,5 @@ public class StudyServiceImplTest {
         service.startStudy(study);
         assertThat(study.getStatus(), is(StudyStatus.STARTED));
     }
-	
-    @Test
-	public void printData() {
-		Logger.getRootLogger().info( StudyAttrList.TITLE_ADD);
-	}
 	
 }

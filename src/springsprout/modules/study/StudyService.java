@@ -1,12 +1,14 @@
 package springsprout.modules.study;
 
-import springsprout.domain.Comment;
+import springsprout.domain.Meeting;
+import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContainer;
 import springsprout.modules.study.support.StudyCriteria;
 import springsprout.modules.study.support.StudyIndexInfo;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -50,6 +52,12 @@ public interface StudyService {
      * 스터디 인덱스 화면에서 보여줄 정보를 구성한다.
      * @return
      */
-    StudyIndexInfo makeStudyIndexInfo(); 
-    
+    StudyIndexInfo makeStudyIndexInfo();
+
+    Member getManagerOf(Study study);
+
+    Set<Member> getMembersOf(Study study);
+
+    Set<Meeting> getMeetingsOf(Study study);
+
 }

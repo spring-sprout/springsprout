@@ -1,17 +1,13 @@
 package springsprout.modules.study;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.member.MemberRepository;
 import springsprout.modules.study.support.StudyContainer;
 import springsprout.modules.study.support.StudyCriteria;
@@ -20,52 +16,38 @@ import springsprout.service.notification.NotificationService;
 import springsprout.service.notification.message.StudyMailMessage;
 import springsprout.service.security.SecurityService;
 
-@Service
+import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Service("studyService")
 @Transactional
 public class StudyServiceImpl implements StudyService {
 
 	@Autowired StudyRepository repository;
 	@Autowired SecurityService securityService;
     @Autowired MemberRepository memberRepository;
-    @Autowired @Qualifier("unifiedNotificationService") NotificationService notiService;
-    @Autowired GoogleCalendarService calendarService;
+    @Resource NotificationService unifiedNotificationService;
     
-	public void addStudy(Study study) {
+	public void addStudy(final Study study) {
 		Member currentMember = securityService.getPersistentMember();
 		currentMember.addManagedStudy(study);
 		repository.add(study);
-//        notiService.sendMessage(new StudyMailMessage(study, StudyStatus.OPEN, memberRepository.getMemberList()));
-//        calendarService.createNewStudyCalendar(study);
 	}
-	
+
 	@PreAuthorize("(#study.manager.email == principal.Username) or hasRole('ROLE_ADMIN')")
-	public void updateStudy(Study study, Boolean isGoingToBeNotified) {
-		Member currentMember = securityService.getCurrentMember();
-		
+	public void updateStudy(final Study study, final Boolean isGoingToBeNotified) {
 		repository.update(study);
-
-		calendarService.synchronizeForLegacy(study);
-		calendarService.synchronizeForLegacy(study.getMeetings());
-		
-		repository.update(study);
-		
-		calendarService.updateStudyCalendar(study);
-		calendarService.addToAccessControlList(study, currentMember);
-		
-        if(isGoingToBeNotified && (study.getStatus() != StudyStatus.ENDED)){
-            notiService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, memberRepository.getMemberList()));
-        }
 	}
 
-	public void addCurrentMember(Study study) {
-		Member currentMember = securityService.getPersistentMember();
-		calendarService.addToAccessControlList(study, currentMember);
+	public void addCurrentMember(final Study study) {
+		final Member currentMember = securityService.getPersistentMember();
 		study.addMember(currentMember);
 	}
 
-	public void removeCurrentMember(Study study) {
-		Member currentMember = securityService.getPersistentMember();
-		calendarService.removeToAccessControlList(study, currentMember);
+	public void removeCurrentMember(final Study study) {
+		final Member currentMember = securityService.getPersistentMember();
         study.removeMember(currentMember);
 	}
 
@@ -74,8 +56,7 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@PreAuthorize("(#study.manager.email == principal.Username) or hasRole('ROLE_ADMIN')")
-	public void deleteStudy(Study study) {
-		calendarService.deleteStudyCalendar(study);
+	public void deleteStudy(final Study study) {
 		study.setStatus(StudyStatus.DELETED);
 	}
 
@@ -128,12 +109,24 @@ public class StudyServiceImpl implements StudyService {
 
     public void notify(int studyId) {
         Study study = repository.getById(studyId);
-        notiService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, study.getCurrentMembers()));
+        unifiedNotificationService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, study.getCurrentMembers()));
     }
     
     @Transactional(readOnly=true)
     public StudyIndexInfo makeStudyIndexInfo() {
     	return new StudyIndexInfo( findActiveStudies(), repository.findPastStudies());
+    }
+
+    public Member getManagerOf(Study study) {
+        return repository.getManagerByStudyId(study.getId());
+    }
+
+    public Set<Member> getMembersOf(Study study) {
+        return new HashSet<Member>(repository.getMemberListByStudyId(study.getId()));
+    }
+
+    public Set<Meeting> getMeetingsOf(Study study) {
+        return new HashSet<Meeting>(repository.getMeetingsByStudyId(study.getId()));
     }
 
 }

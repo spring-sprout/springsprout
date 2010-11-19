@@ -1,9 +1,9 @@
 package springsprout.modules.study.meeting.presentation;
 
-import java.util.List;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.Presentation;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

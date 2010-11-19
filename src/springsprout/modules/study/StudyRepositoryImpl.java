@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import springsprout.common.dao.HibernateGenericDao;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
@@ -124,6 +125,24 @@ public class StudyRepositoryImpl extends HibernateGenericDao<Study> implements S
         if(rows > 0)
             c.setMaxResults(rows);
 		return c.list();
+    }
+
+    public Member getManagerByStudyId(Integer studyId) {
+        return (Member) getCurrentSession().createQuery("select s.manager from Study s where s.id = :studyId")
+                .setInteger("studyId", studyId)
+                .uniqueResult();
+    }
+
+    public List<Member> getMemberListByStudyId(Integer studyId) {
+        return (List<Member>) getCurrentSession().createQuery("select s.members from Study s where s.id = :studyId")
+                .setInteger("studyId", studyId)
+                .list();
+    }
+
+    public List<Meeting> getMeetingsByStudyId(Integer studyId) {
+        return (List<Meeting>) getCurrentSession().createQuery("select s.meetings from Study s where s.id = :studyId")
+                .setInteger("studyId", studyId)
+                .list();
     }
 
 

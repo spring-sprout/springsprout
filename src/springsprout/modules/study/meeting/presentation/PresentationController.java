@@ -1,11 +1,5 @@
 package springsprout.modules.study.meeting.presentation;
 
-import static springsprout.common.SpringSprout2System.JSON_VIEW;
-import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectMeetingView;
-import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectPresentationView;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import springsprout.common.enumeration.PersistentEnumUtil;
 import springsprout.common.util.BeanUtils;
 import springsprout.domain.Comment;
@@ -28,6 +21,12 @@ import springsprout.modules.study.StudyService;
 import springsprout.modules.study.meeting.MeetingService;
 import springsprout.modules.study.meeting.support.CommentDTO;
 import springsprout.modules.study.meeting.support.CountInfoDTO;
+
+import javax.validation.Valid;
+
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
+import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectMeetingView;
+import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectPresentationView;
 
 
 /**

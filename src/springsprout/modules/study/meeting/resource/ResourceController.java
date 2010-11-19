@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import springsprout.common.enumeration.PersistentEnumUtil;
 import springsprout.domain.Meeting;
 import springsprout.domain.Presentation;
@@ -33,7 +32,7 @@ public class ResourceController {
 
 	Logger log = LoggerFactory.getLogger(ResourceController.class);
 
-	@Autowired StudyService service;
+	@Autowired StudyService studyService;
 	@Autowired @Qualifier("fileService") FileService fileService;
     @Autowired MeetingService meetingService;
     @Autowired PresentationService presentationService;

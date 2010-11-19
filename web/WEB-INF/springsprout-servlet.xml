@@ -23,9 +23,8 @@
     </context:component-scan>
 
     <!-- ============================================================= -->
-    <!--  애노테이션 기반 MVC 사용                                        -->
+    <!--  디폴트 서블릿 사용하기                                         -->
     <!-- ============================================================= -->
-    <mvc:annotation-driven conversion-service="conversionService" />
     <mvc:default-servlet-handler/>
 
     <!-- ============================================================= -->
@@ -137,11 +136,4 @@
 	<!-- Valid Exception Json View -->
 	<bean id="validationJsonView" class="springsprout.common.web.view.ValidationJsonView" />
 
-	<!--<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">-->
-		<!--<property name="converters">-->
-			<!--<list>-->
-				<!--<bean class="springsprout.common.conversion.converter.TimeToWebStringConverter" />-->
-			<!--</list>-->
-		<!--</property>-->
-	<!--</bean>-->
 </beans>

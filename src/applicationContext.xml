@@ -23,10 +23,6 @@
 	<!-- ============================================================= -->
     <context:property-placeholder location="classpath:*.properties" />
 
-    <!--<util:properties id="dbPr" location="classpath:/database.properties" />-->
-    <!--<util:properties id="systemPr" location="classpath:/system.properties" />-->
-    <!--<util:properties id="calendarPr" location="classpath:/calendar.properties" />-->
-
 	<!-- ============================================================= -->
 	<!--  AOP                                                          -->
 	<!-- ============================================================= -->                      
@@ -50,7 +46,7 @@
 	<!-- ============================================================= -->
 	<!--  Transaction                                                  -->
 	<!-- ============================================================= -->
-	<tx:annotation-driven proxy-target-class="true"/>
+	<tx:annotation-driven />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
@@ -179,6 +175,14 @@
         <property name="title" value="${calendar.title}"/>
         <property name="username" value="${calendar.username}"/>
         <property name="password" value="${calendar.password}"/>
+    </bean>
+
+    <!-- ============================================================= -->
+    <!--  Exception Template Service                                   -->
+    <!-- ============================================================= -->
+    <bean id="exceptionTemplate" class="springsprout.common.exception.TransactionalAsyncExceptionTemplate">
+        <property name="asyncTaskExecutor" ref="myExecutor"/>
+        <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
 </beans>

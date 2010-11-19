@@ -42,8 +42,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
+import springsprout.service.security.SecurityService;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import static springsprout.modules.calendar.CalendarUtil.*;
 
@@ -60,7 +62,8 @@ import static springsprout.modules.calendar.CalendarUtil.*;
 public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 	
 	@Autowired MemberService memberService;
-	@Autowired StudyRepository repository;
+	@Resource StudyService studyService;
+    @Autowired SecurityService securityService;
 
     public static final String OWN_CALENDAR_URL = "https://www.google.com/calendar/feeds/default/owncalendars/full";
     final Logger logger = LoggerFactory.getLogger(GoogleCalendarServiceImpl.class);
@@ -136,7 +139,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
             }
         });
         
-        Member manager = memberService.getMemberById(study.getManager().getId());
+        Member manager = studyService.getManagerOf(study);
         addToAccessControlList(manager.getEmail(), newCalendar);
         setCalendarId(newCalendar, study);
         return newCalendar;
@@ -490,7 +493,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 	}
 
 	private void addACLForLegacyMemerOf(Study study) {
-		Set<Member> members = study.getMembers();
+		Set<Member> members = studyService.getMembersOf(study);
 		CalendarEntry calendar = findByCalendarId(getCalendarFeed(), study);
 		for (Member member: members) {
 			String email = member.getEmail();

@@ -8,12 +8,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.member.MemberRepositoryImpl;
 import springsprout.modules.study.support.StudyCriteria;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -44,7 +46,7 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
 		assertTrue(study.getMembers().contains(member));
 	}
 
-	@Ignore
+	@Test
 	public void getAll() throws Exception {
 		insertXmlData("testData.xml");
 		assertThat(sr.getStudyList().size(), is(2));
@@ -88,11 +90,36 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
         sl = sr.getStudyList(sc);
         assertThat(sl.size(), is(2));
     }
+
     @Test
-    public void 스터디갯수세기() throws Exception {
+    public void getTotalRowsCount() throws Exception {
         insertXmlData("testData.xml");
         StudyCriteria sc = new StudyCriteria();
         int count = sr.getTotalRowsCount(sc);
         assertThat(count, is(2));
     }
+
+    @Test
+    public void getManagerByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        Member manager = sr.getManagerByStudyId(1);
+        assertThat(manager.getId(), is(1));
+    }
+
+    @Test
+    public void getMembersByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        List<Member> members = sr.getMemberListByStudyId(1);
+        assertThat(members.size(), is(2));
+    }
+
+    @Test
+    public void getMeetingsByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        List<Meeting> meetings = sr.getMeetingsByStudyId(1);
+        assertThat(meetings.size(), is(2));
+        meetings = sr.getMeetingsByStudyId(2);
+        assertThat(meetings.size(), is(4));
+    }
+
 }

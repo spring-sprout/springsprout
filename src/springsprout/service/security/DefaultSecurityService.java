@@ -2,6 +2,7 @@ package springsprout.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,8 @@ public class DefaultSecurityService implements SecurityService {
 	@Autowired RoleRepository roleRepository;
 
 	public Member getCurrentMember() {
-		if(SecurityContextHolder.getContext().getAuthentication() == null)
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null)
 			return null;
 		Object princial = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (princial instanceof UserDetails) {

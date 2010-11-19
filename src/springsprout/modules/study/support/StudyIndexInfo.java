@@ -1,10 +1,10 @@
 package springsprout.modules.study.support;
 
-import java.util.List;
-import java.util.Set;
-
 import springsprout.domain.Meeting;
 import springsprout.domain.Study;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * 스터디 인덱스 화면 정보를 표시하기 위한 클래스
