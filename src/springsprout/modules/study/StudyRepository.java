@@ -1,11 +1,13 @@
 package springsprout.modules.study;
 
 import springsprout.common.dao.GenericDao;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContext;
 import springsprout.modules.study.support.StudyCriteria;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface StudyRepository extends GenericDao<Study>{
@@ -31,4 +33,6 @@ public interface StudyRepository extends GenericDao<Study>{
     Member getManagerByStudyId(Integer studyId);
 
     List<Member> getMemberListByStudyId(Integer studyId);
+
+    List<Meeting> getMeetingsByStudyId(Integer studyId);
 }

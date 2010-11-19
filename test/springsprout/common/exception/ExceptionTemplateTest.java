@@ -14,7 +14,7 @@ public class ExceptionTemplateTest {
 
     @Test
     public void doSomethingInTryCatchFinally() {
-        ExceptionTemplate exceptionTemplate = new ExceptionTemplate();
+        SimpleExceptionTemplate exceptionTemplate = new SimpleExceptionTemplate();
         try {
             exceptionTemplate.catchAll(new ExceptionalWork() {
                 public void run() throws Exception {

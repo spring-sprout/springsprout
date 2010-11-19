@@ -180,8 +180,9 @@
     <!-- ============================================================= -->
     <!--  Exception Template Service                                   -->
     <!-- ============================================================= -->
-    <bean id="exceptionTemplate" class="springsprout.common.exception.AsyncExceptionTemplate">
+    <bean id="exceptionTemplate" class="springsprout.common.exception.TransactionalAsyncExceptionTemplate">
         <property name="asyncTaskExecutor" ref="myExecutor"/>
+        <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
 </beans>

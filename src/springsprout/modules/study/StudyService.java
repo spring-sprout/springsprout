@@ -1,5 +1,6 @@
 package springsprout.modules.study;
 
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContainer;
@@ -56,5 +57,7 @@ public interface StudyService {
     Member getManagerOf(Study study);
 
     Set<Member> getMembersOf(Study study);
+
+    Set<Meeting> getMeetingsOf(Study study);
 
 }

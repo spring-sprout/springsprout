@@ -3,8 +3,9 @@ package springsprout.modules.study;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
-import springsprout.common.exception.AsyncExceptionTemplate;
+import springsprout.common.exception.ExceptionTemplate;
 import springsprout.common.exception.ExceptionalWork;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
@@ -38,7 +39,7 @@ public class StudyServiceAdvancedImpl implements StudyService {
     @Autowired MemberRepository memberRepository;
     @Autowired SecurityService securityService;
 
-    @Autowired AsyncExceptionTemplate exceptionTemplate;
+    @Autowired ExceptionTemplate exceptionTemplate;
 
     public void addStudy(final Study study) {
         studyService.addStudy(study);
@@ -57,7 +58,7 @@ public class StudyServiceAdvancedImpl implements StudyService {
         exceptionTemplate.catchAll(new ExceptionalWork(){
             public void run() throws Exception {
                 calendarService.synchronizeForLegacy(study);
-                calendarService.synchronizeForLegacy(study.getMeetings());
+                calendarService.synchronizeForLegacy(studyService.getMeetingsOf(study));
                 calendarService.updateStudyCalendar(study);
                 calendarService.addToAccessControlList(study, securityService.getCurrentMember());
 
@@ -148,5 +149,9 @@ public class StudyServiceAdvancedImpl implements StudyService {
 
     public Set<Member> getMembersOf(Study study) {
         return studyService.getMembersOf(study);
+    }
+
+    public Set<Meeting> getMeetingsOf(Study study) {
+        return studyService.getMeetingsOf(study);
     }
 }

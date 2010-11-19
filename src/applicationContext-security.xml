@@ -72,6 +72,13 @@
 	</beans:bean>
     -->
 
+    <beans:bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <beans:property name="targetClass" value="org.springframework.security.core.context.SecurityContextHolder"/>
+        <beans:property name="targetMethod" value="setStrategyName"/>
+        <!--<beans:property name="arguments" value="MODE_GLOBAL"/>-->
+        <beans:property name="arguments" value="MODE_INHERITABLETHREADLOCAL"/>
+    </beans:bean>
+
 	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
 		<beans:property name="useForward" value="true"/>
 		<beans:property name="defaultFailureUrl" value="/app/loginFailProcess"/>

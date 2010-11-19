@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.member.MemberRepositoryImpl;
@@ -110,6 +111,15 @@ public class StudyRepositoryImplTest extends DBUnitSupport{
         insertXmlData("testData.xml");
         List<Member> members = sr.getMemberListByStudyId(1);
         assertThat(members.size(), is(2));
+    }
+
+    @Test
+    public void getMeetingsByStudyId() throws Exception {
+        insertXmlData("testData.xml");
+        List<Meeting> meetings = sr.getMeetingsByStudyId(1);
+        assertThat(meetings.size(), is(2));
+        meetings = sr.getMeetingsByStudyId(2);
+        assertThat(meetings.size(), is(4));
     }
 
 }

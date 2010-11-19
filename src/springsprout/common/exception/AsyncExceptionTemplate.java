@@ -10,7 +10,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
  * Date: 2010. 11. 19
  * Time: 오전 12:10:09
  */
-public class AsyncExceptionTemplate {
+public class AsyncExceptionTemplate implements ExceptionTemplate {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());    
 

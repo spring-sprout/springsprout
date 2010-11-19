@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
@@ -122,6 +123,10 @@ public class StudyServiceImpl implements StudyService {
 
     public Set<Member> getMembersOf(Study study) {
         return new HashSet<Member>(repository.getMemberListByStudyId(study.getId()));
+    }
+
+    public Set<Meeting> getMeetingsOf(Study study) {
+        return new HashSet<Meeting>(repository.getMeetingsByStudyId(study.getId()));
     }
 
 }
