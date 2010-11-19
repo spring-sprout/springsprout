@@ -78,64 +78,7 @@
     font-size: 11px;
 }
 </style>
-<script type="text/javascript">
-$(function(){ 
-	$registDiv = $( '#registDiv'), $postForm = $('#postForm');
-	$registDiv.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 600,
-		modal: false,
-		buttons: {
-			'생성': function() {
-	  			$postForm.submit();
-			},
-			'취소': function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		open: function() {
-			 $('div#postContent').wysiwyg();
-		},
-		close: function() {
-			$('#listDiv').load('${study.id}/board/textPost/list/0');
-		}
-	});
 
-	$('#writeBtn').click( function(e){
-		  $registDiv.dialog('open');
-	});
-
- 	var options = { 
-        success:       function(data) {
-			$registDiv.dialog('close');
-		}, 
-        dataType:  'json',
-        clearForm: true
-    }; 
- 	$postForm.submit(function() { 
-		$(this).ajaxSubmit(options); 
-		return false; 
-	}); 
-
-	$('.post-text-title').click( function(event){
-		var postId = $(this).attr('id');
-		$('#listDiv').load('${study.id}/board/textPost/view/' + postId + '/page/' + '${pagingInfo.now}');
-		return false;
-	});	
-	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
-		.children().addClass('post-button-text').removeClass('ui-button-text');
-	  //Tooltips
-    $('.tip_trigger').hover(function(){
-        tip = $(this).find('.tip');
-        tip.show(); 
-    }, function() {
-		tip.hide(); 
-    });
-   
-
-});
-</script>
 <div id="mainBar">
 	<div class="post-list-actions">
 		<sec:authorize ifAnyGranted="ROLE_MEMBER">
@@ -199,3 +142,61 @@ $(function(){
 		</p>
 	</form:form>
 </div>
+<script type="text/javascript">
+$(function(){ 
+	$registDiv = $( '#registDiv'), $postForm = $('#postForm');
+	$registDiv.dialog({
+		autoOpen: false,
+		height: 300,
+		width: 600,
+		modal: false,
+		buttons: {
+			'생성': function() {
+	  			$postForm.submit();
+			},
+			'취소': function() {
+				$( this ).dialog( "close" );
+			}
+		},
+		open: function() {
+			 $('div#postContent').wysiwyg();
+		},
+		close: function() {
+			$('#listDiv').load('${study.id}/board/textPost/list/0');
+		}
+	});
+
+	$('#writeBtn').click( function(e){
+		  $registDiv.dialog('open');
+	});
+
+ 	var options = { 
+        success:       function(data) {
+			$registDiv.dialog('close');
+		}, 
+        dataType:  'json',
+        clearForm: true
+    }; 
+ 	$postForm.submit(function() { 
+		$(this).ajaxSubmit(options); 
+		return false; 
+	}); 
+
+	$('.post-text-title').click( function(event){
+		var postId = $(this).attr('id');
+		$('#listDiv').load('${study.id}/board/textPost/view/' + postId + '/page/' + '${pagingInfo.now}');
+		return false;
+	});	
+	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
+		.children().addClass('post-button-text').removeClass('ui-button-text');
+	  //Tooltips
+    $('.tip_trigger').hover(function(){
+        tip = $(this).find('.tip');
+        tip.show(); 
+    }, function() {
+		tip.hide(); 
+    });
+   
+
+});
+</script>

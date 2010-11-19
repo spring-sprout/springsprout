@@ -3,9 +3,6 @@ package springsprout.modules.study.board.imagePost;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,30 +16,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.WebUtils;
 
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Comment;
-import springsprout.domain.Resource;
 import springsprout.domain.Study;
-import springsprout.domain.UploadFile;
 import springsprout.domain.study.board.ImagePost;
-import springsprout.domain.study.board.Post;
-import springsprout.domain.study.board.TextPost;
-import springsprout.modules.file.FileService;
 import springsprout.modules.study.board.PostService;
 import springsprout.service.security.SecurityService;
 
 @Controller
-@RequestMapping("/study/view/{id}/board/imagePost/")
-@SessionAttributes({"study", "updatePost"})
+@RequestMapping("/study/view/{id}/board/imagePost")
+@SessionAttributes({"study"})
 public class ImagePostController {
 
 	@Autowired @Qualifier("imagePostService") PostService<ImagePost> service;
 	@Autowired SecurityService securityService;
 	
-	@RequestMapping("list/{page}")
+	@RequestMapping("/list/{page}")
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page, SessionStatus status) {
 		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE);
 		model.addAttribute(new ImagePost(study));
@@ -52,56 +42,51 @@ public class ImagePostController {
 		return "study/board/imagePost/list";
 	}
 	
-	@RequestMapping(value="write", method = RequestMethod.POST)
-	public void write(Model model, @ModelAttribute ImagePost post, HttpServletRequest request) {
+	@RequestMapping(method = RequestMethod.POST)
+	public String write(Model model, @ModelAttribute ImagePost post, HttpServletRequest request) {
 		service.addPost(post);
+		return "study/board/imagePost/list/0";
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.PUT)
-	@ResponseBody
-	public ImagePost update(ModelMap model, @ModelAttribute ImagePost updatePost, @PathVariable int id, SessionStatus status) {
-		ImagePost post = (ImagePost) model.get("updatePost");
-		post.setTitle(updatePost.getTitle());
-		post.setContent(updatePost.getContent());
+	@RequestMapping(method = RequestMethod.GET)
+	public String getForm(Model model, @ModelAttribute Study study) {
+		model.addAttribute("imagePost", new ImagePost(study));
+		model.addAttribute("title", "이미지 추가");
+		model.addAttribute("action", "/study/view/" + study.getId() + "/board/imagePost");
+		return "study/board/imagePost/form";
+	}
+	
+	@RequestMapping(value="/{postId}/update", method = RequestMethod.POST)
+	public String update(@PathVariable int postId, ModelMap model, @ModelAttribute ImagePost post) {
+		post.setId(postId);
 		service.updatePost(post);
-		return post;
+		return "study/board/imagePost/list";	
 	}
 	
-	@RequestMapping("remove/{id}")
-	public String remove(@PathVariable int id, ImagePost post) {
-		post.setId(id);
+	@RequestMapping(value="/{postId}", method = RequestMethod.GET)
+	public String getUpdateForm(@PathVariable int postId, Model model, @ModelAttribute Study study, HttpServletRequest request) {
+		model.addAttribute("imagePost", service.getPost(postId));
+		model.addAttribute("title", "이미지 수정");
+		model.addAttribute("action", "/study/view/" + study.getId() + "/board/imagePost/" + postId + "/update");
+		return "study/board/imagePost/form";
+	}
+	
+	@RequestMapping(value="/{postId}", method = RequestMethod.DELETE)
+	public String remove(@PathVariable int postId, ImagePost post, HttpServletRequest request) {
+		post.setId(postId);
 		service.removePost(post);
 		return "study/board/imagePost/list";
 	}
 	
-	@RequestMapping("view/{id}/page/{page}")
-	public String read(Model model, @PathVariable int id, @PathVariable int page, Study study) {
-		ImagePost post = service.getPost(id);
-		model.addAttribute( "updatePost", new ImagePost());
-		model.addAttribute( "comment", new Comment());
-		model.addAttribute( "page", page - 1);
-		model.addAttribute( post);
-		return "study/board/imagePost/view";
-	}
-	
-	@RequestMapping(value="{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public ImagePost read(Model model, @PathVariable int id) {
-		ImagePost post = service.getPost(id);
-		model.addAttribute( "updatePost", service.getPost(id));
-		return post;
-	}
-	
-	
-	@RequestMapping(value="{id}/comment/write", method = RequestMethod.POST)
-	public String writeComment(Model model, @PathVariable int id, Comment comment) {
+	@RequestMapping(value="/{id}/comment/write", method = RequestMethod.POST)
+	public String writeComment(@PathVariable int id, Model model, Comment comment) {
 		ImagePost post = service.getPost(id);
 		service.addComment(post, comment);
 		model.addAttribute("postId", id);
 		return "study/board/_commentSpot";
 	}
 	
-	@RequestMapping(value="{postId}/comment/{commentId}/remove", method = RequestMethod.POST)
+	@RequestMapping(value="/{postId}/comment/{commentId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public boolean removeComment( @PathVariable int postId, @PathVariable int commentId) {
 		service.removeComment( postId, commentId);
