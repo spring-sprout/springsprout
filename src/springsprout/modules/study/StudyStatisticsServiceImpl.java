@@ -4,8 +4,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.enumeration.DayOfWeek;
 import springsprout.common.util.DateUtils;
+import springsprout.domain.Attendance;
 import springsprout.domain.Meeting;
+import springsprout.domain.Member;
 import springsprout.modules.study.support.MeetingDayOfWeekData;
+import springsprout.modules.study.support.MemberMeetingData;
 
 import java.util.*;
 
@@ -40,12 +43,12 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
         List<MeetingDayOfWeekData> dataList  = new ArrayList<MeetingDayOfWeekData>();
         for(DayOfWeek dayOfWeek : dayCountMap.keySet()){
             Integer dayCount = dayCountMap.get(dayOfWeek);
-            Integer pecentage = (int)(dayCount/total*100);
+            Integer percentage = (int)(dayCount/total*100);
 
             MeetingDayOfWeekData data = new MeetingDayOfWeekData();
             data.setDayOfWeek(dayOfWeek);
             data.setMeetingCount(dayCount);
-            data.setPercentage(pecentage);
+            data.setPercentage(percentage);
 
             dataList.add(data);
         }
@@ -56,6 +59,48 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
             }
         });
         return dataList ;
+    }
+
+    public List<MemberMeetingData> getMemberMeetingStatisticsOf(Set<Meeting> meetings) {
+        Double total = new Double(meetings.size());
+        Map<Member, Integer> memberMeetingMap = new HashMap<Member, Integer>();
+
+        for(Meeting meeting : meetings){
+            for(Attendance attendance : meeting.getAttendances()){
+                if(attendance.isAttended()){
+                    Member member = attendance.getMember();
+                    Integer meetingCount = memberMeetingMap.get(member);
+                    if(meetingCount == null){
+                        memberMeetingMap.put(member, 1);
+                    } else {
+                        memberMeetingMap.put(member, meetingCount + 1);
+                    }
+                }
+            }
+        }
+
+        List<MemberMeetingData> dataList = new ArrayList<MemberMeetingData>();
+        for(Member member : memberMeetingMap.keySet()) {
+            Integer meetingCount = memberMeetingMap.get(member);
+            Integer percentage = (int)(meetingCount/total*100);
+
+            MemberMeetingData data = new MemberMeetingData();
+            data.setMember(member);
+            data.setMeetingCount(meetingCount);
+            data.setPercentage(percentage);
+
+            dataList.add(data);
+        }
+
+        Collections.sort(dataList, new Comparator<MemberMeetingData>(){
+            public int compare(MemberMeetingData data, MemberMeetingData otherData) {
+//                return data.getMember().getName().compareTo(otherData.getMember().getName());
+                return otherData.getPercentage() - data.getPercentage();
+            }
+        });
+        
+
+        return dataList;
     }
 
 }

@@ -126,6 +126,7 @@ public class StudyController {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
         model.addAttribute("meetingWeekStatistics", statisticsService.getMeetingDayStatisticsOf(study.getMeetings()));
+        model.addAttribute("memberMeetingStatistics", statisticsService.getMemberMeetingStatisticsOf(study.getMeetings()));
     	return "/study/view/meetings";
     }
 

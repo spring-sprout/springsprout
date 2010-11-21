@@ -132,11 +132,19 @@
                     <td class="count">${stat.meetingCount}</td>
                     <td class="graph last"><s2c:graph value="${stat.percentage}"/></td>
                 </tr>
-                <%--<tr class="rowAlternateLightGray">--%>
-                <%--<td class="name"></td>--%>
-                <%--<td class="count"></td>--%>
-                <%--<td class="graph last"></td>--%>
-                <%--</tr>--%>
+            </c:forEach>
+            </tbody>
+        </table>
+    </s2c:module>
+    <s2c:module name="회원별 모임 참석횟수">
+        <table cellspacing="0" cellpadding="2">
+            <tbody>
+            <c:forEach items="${memberMeetingStatistics}" var="stat2" varStatus="status">
+                <tr class="${status.count%2 == 0 ? 'rowAlternateLightGray': ''}">
+                    <td class="name">${stat2.member.name}</td>
+                    <td class="count">${stat2.meetingCount}</td>
+                    <td class="graph last"><s2c:graph value="${stat2.percentage}"/></td>
+                </tr>
             </c:forEach>
             </tbody>
         </table>
