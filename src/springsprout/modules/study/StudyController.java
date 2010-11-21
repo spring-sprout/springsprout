@@ -101,6 +101,13 @@ public class StudyController {
 		return STUDY_VIEW;
 	}
 
+    @RequestMapping("/{id}")
+	public String studyView(@PathVariable int id, Model model) {
+        model.addAttribute(advancedStudyService.getStudyById(id));
+        return "study/view2";
+    }
+
+
     @RequestMapping(value = "notify/{id}", method=RequestMethod.GET)
 	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
     	advancedStudyService.notify(id);

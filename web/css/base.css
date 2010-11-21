@@ -1,6 +1,6 @@
 @charset "UTF-8";
 *{margin:0;padding:0;}
-body, div, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{
+body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{
 	font:12.34px helvetica,arial,clean,sans-serif;
     font-family:'Malgun Gothic','verdana';
 	*font-size:small;
@@ -39,12 +39,11 @@ hr{margin: 10px 0px;}
 	text-align:right;
 }
 #main{
-	border-left:1px solid #D6D6D6;
-	border-right:1px solid #D6D6D6;
+	border:1px solid #D6D6D6;
 	margin:auto;
 	width:976px;
-	height:100%;
-	min-height: 100%;
+	/*height:100%;*/
+	/*min-height: 100%;*/
 }
 #topheader{
 	margin:auto;

@@ -3,19 +3,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ attribute name="ajaxlogin_yn" required="false"%>
 
-<script type="text/javascript">
-	<%--$(document).ready(function(){--%>
-	    <%--divLoad_get('<c:url value="/main/_topbarbtn"> <c:param name="ajaxlogin_yn" value="${ajaxlogin_yn}"/></c:url>','','#spacehr');--%>
-	<%--});--%>
-
-    <%--function loginCallback(){--%>
-        <%--divLoad_get('<c:url value="/main/_topbarbtn"/>','','#spacehr');--%>
-        <%--afterlogin_callback();--%>
-    <%--}--%>
-    <%--function afterlogin_callback(){--%>
-    <%--}--%>
-    
-</script>
 <div id="spacehr">
     <div id="buttonmenu">
     <sec:authorize ifNotGranted="ROLE_MEMBER, ROLE_ADMIN">
