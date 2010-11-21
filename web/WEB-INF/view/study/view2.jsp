@@ -3,6 +3,7 @@
 <%@ taglib prefix="s2c" tagdir="/WEB-INF/tags/s2c"%>
 <%@ taglib prefix="s" tagdir="/WEB-INF/tags/study"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style type="text/css">
@@ -147,35 +148,6 @@
         font-size: 1.167em;
         line-height: 1.429;
     }
-    ul.item-details {
-        display: inline-block;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        vertical-align: top;
-        width: 100%;
-    }
-    ul.item-details dl {
-        display: inline-block;
-        margin-bottom: 0.5em;
-        vertical-align: top;
-        width: 100%;
-    }
-    ul.item-details dl dt, ul.item-details dl dd {
-        display: block;
-        float: left;
-    }
-    ul.item-details dl dt {
-        color: #666666;
-        margin-right: 1%;
-        position: relative;
-        width: 18%;
-    }
-    ul.item-details dl dd {
-        display: block;
-        float: left;
-        width: 81%;
-    }
 </style>
 <page:defaultpage selected_menu="studies" banner_name="study-banner" ajaxlogin_yn="Y">
     <div id="container-header">
@@ -185,107 +157,41 @@
     <div id="main-content">
         <ul class="vertical tabs">
             <li class="active first">
-                <a href="#"><strong>Summary</strong></a>
+                <a href="<c:url value="${study.id}/summary"/>"><strong>Summary</strong></a>
             </li>
             <li>
-                <a href="#"><strong>게시판</strong></a>
+                <a href="<c:url value="${study.id}/summary"/>"><strong>게시판</strong></a>
             </li>
             <li>
-                <a href="#"><strong>모임</strong></a>
+                <a href="<c:url value="${study.id}/meetings"/>"><strong>모임</strong></a>
             </li>
             <li>
-                <a href="#"><strong>구성원</strong></a>
+                <a href="<c:url value="${study.id}/members"/>"><strong>구성원</strong></a>
             </li>
             <li>
-                <a href="#"><strong>의견</strong></a>
+                <a href="<c:url value="${study.id}/comments"/>"><strong>의견</strong></a>
             </li>
             <li>
-                <a href="#"><strong>일정</strong></a>
+                <a href="<c:url value="${study.id}/summary"/>"><strong>일정</strong></a>
             </li>
         </ul>
-            <div class="active-area">
-        <h2>Summary</h2>
-        <div id="quicklinks">
-            <ul class="operations">
-                <li>가입</li>
-                <li>관리</li>
-            </ul>
+        <div class="active-area">
         </div>
-        <div id="primary" class="column">
-            <div class="content">
-                <div class="module">
-                    <div class="mod-header">
-                        <h3>정보</h3>
-                    </div>
-                    <div class="mod-content">
-                        <ul class="item-details">
-                            <li>
-                                <dl>
-                                    <dt>리더:</dt>
-                                    <dd>${study.manager.name}</dd>
-                                </dl>
-                                <dl>
-                                    <dt>모임수:</dt>
-                                    <dd>${study.meetingCount}</dd>
-                                </dl>
-                                <dl>
-                                    <dt>참석인원:</dt>
-                                    <dd>${study.memberCount}/${study.maximumCount}</dd>
-                                </dl>
-                                <dl>
-                                    <dt>시작일:</dt>
-                                    <dd><s:date value="${study.startDay}"/></dd>
-                                </dl>
-                                <dl>
-                                    <dt>종료일:</dt>
-                                    <dd><s:date value="${study.endDay}"/></dd>
-                                </dl>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="module">
-                    <div class="mod-header">
-                        <h3>최근 모임</h3>
-                    </div>
-                    <div class="mod-content">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="secondary" class="column">
-            <div class="content">
-                <div class="module">
-                    <div class="mod-header">
-                        <h3>소개</h3>
-                    </div>
-                    <div class="mod-content">
-                        <s:nl2br value="${study.descr}"/>
-                    </div>
-                </div>
-                <div class="module">
-                    <div class="mod-header">
-                        <h3>활동 내역</h3>
-                    </div>
-                    <div class="mod-content">
+</div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    
 </page:defaultpage>
 <script type="text/javascript">
     $(function(){
-        $("ul.tabs li").click(function(){
-            $(this).addClass("active");
-            $(this).siblings().removeClass("active");
+        $("ul.tabs li a").click(function(){
+            var url = $(this).attr('href');
+            $.get(url, function(data){
+                $(".active-area").html(data);
+            });
+            $(this).parent().addClass("active");
+            $(this).parent().siblings().removeClass("active");
+            return false;
         });
 
-//        var activeAreaHeight = $(".active-area").height();
-//        $("#main").height(activeAreaHeight + 10);
+        $("ul.tabs li.active a").click();
     });
 </script>

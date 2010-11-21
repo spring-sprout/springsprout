@@ -107,6 +107,32 @@ public class StudyController {
         return "study/view2";
     }
 
+    @RequestMapping("/{id}/summary")
+	public String studySummary(@PathVariable int id, Model model) {
+        model.addAttribute(advancedStudyService.getStudyById(id));
+        return "study/view/summary";
+    }
+
+    @RequestMapping("/{id}/comments")
+    public String studyComments(@PathVariable int id, Model model) {
+        Study study = advancedStudyService.getStudyById(id);
+    	model.addAttribute(study);
+    	return "/study/view/comments";
+    }
+
+    @RequestMapping("/{id}/meetings")
+    public String studyMeetings(@PathVariable int id, Model model) {
+        Study study = advancedStudyService.getStudyById(id);
+    	model.addAttribute(study);
+    	return "/study/view/meetings";
+    }
+
+    @RequestMapping("/{id}/members")
+    public String studyMembers(@PathVariable int id, Model model) {
+        Study study = advancedStudyService.getStudyById(id);
+    	model.addAttribute(study);
+    	return "/study/view/members";
+    }
 
     @RequestMapping(value = "notify/{id}", method=RequestMethod.GET)
 	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {

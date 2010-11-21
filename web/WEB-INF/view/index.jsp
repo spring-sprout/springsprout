@@ -234,16 +234,7 @@
 	     });
 	}
 	
-    function changeMeetingDateFormat( $meetingItem) {
-        $meetingItem.each( function() {
-            var $this = $(this), openDate = $this.find('.openDateVal').val(), myDate = new Date();
-            myDate.setFullYear(openDate.slice(0, 4),openDate.slice(5, 7)-1,openDate.slice(8, 10));
-            $this.find('.month').text($.datepicker.regional['en-GB'].monthNamesShort[myDate.getMonth()]);
-            $this.find('.day').text(myDate.getDate());
-            $this.find('.shortDay').text($.datepicker.regional['en-GB'].dayNamesShort[myDate.getDay()]);
-        });
-		
-	}
+
 </script>
 
 <script type="text/javascript">
