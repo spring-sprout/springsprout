@@ -126,8 +126,8 @@
     <s2c:module name="요일별 모임횟수">
         <table cellspacing="0" cellpadding="2">
             <tbody>
-            <c:forEach items="${meetingWeekStatistics}" var="stat">
-                <tr>
+            <c:forEach items="${meetingWeekStatistics}" var="stat" varStatus="status">
+                <tr class="${status.count%2 == 0 ? 'rowAlternateLightGray': ''}">
                     <td class="name">${stat.dayOfWeek.title}</td>
                     <td class="count">${stat.meetingCount}</td>
                     <td class="graph last"><s2c:graph value="${stat.percentage}"/></td>
@@ -152,13 +152,13 @@
                             <li class="meetingItem s_waitblock round action ${meeting.status}" study="${study.id}" meeting="${meeting.id}">
                                 <input type="hidden" class="openDateVal" value="${meeting.openDate }" />
                                 <div class="openDate">
-                                            <span class="date">
-                                                <span class="month"></span>
-                                                <span class="day"></span>
-                                            </span>
-                                            <span class="dayOfWeek">
-                                                <span class="shortDay"></span>
-                                            </span>
+                                    <span class="date">
+                                        <span class="month"></span>
+                                        <span class="day"></span>
+                                    </span>
+                                    <span class="dayOfWeek">
+                                        <span class="shortDay"></span>
+                                    </span>
                                 </div>
                                 <div style="float: left; width: 280px;">
                                     <div class="description">
