@@ -178,7 +178,6 @@
         <div class="active-area">
         </div>
 </div>
-
 </page:defaultpage>
 <script type="text/javascript">
     $(function(){

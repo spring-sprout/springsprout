@@ -68,11 +68,13 @@
         width: 320px;
     }
     ul.meetings li .meeting-descr h4 {
+        font-weight: 200;
+        font-size: 1.2em;
         color: #333333;
-        padding-bottom: 5px;
+        padding-bottom: 4px;
     }
     ul.meetings li .meeting-descr div {
-        margin-top: 1px;
+        margin-top: 2px;
     }
 </style>
 <h2>Summary</h2>
@@ -82,45 +84,35 @@
         <li>관리</li>
     </ul>
 </div>
-<div id="primary" class="column">
-    <div class="content">
-        <div class="module">
-            <div class="mod-header">
-                <h3>정보</h3>
-            </div>
-            <div class="mod-content">
-                <ul class="item-details">
-                    <li>
-                        <dl>
-                            <dt>리더:</dt>
-                            <dd>${study.manager.name}</dd>
-                        </dl>
-                        <dl>
-                            <dt>모임수:</dt>
-                            <dd>${study.meetingCount}</dd>
-                        </dl>
-                        <dl>
-                            <dt>참석인원:</dt>
-                            <dd>${study.memberCount}/${study.maximumCount}</dd>
-                        </dl>
-                        <dl>
-                            <dt>시작일:</dt>
-                            <dd><s:date value="${study.startDay}"/></dd>
-                        </dl>
-                        <dl>
-                            <dt>종료일:</dt>
-                            <dd><s:date value="${study.endDay}"/></dd>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="module">
-            <div class="mod-header">
-                <h3>최근 모임</h3>
-            </div>
-            <div class="mod-content">
-                <ul class="meetings">
+<s2c:left-column>
+    <s2c:module name="정보">
+        <ul class="item-details">
+            <li>
+                <dl>
+                    <dt>리더:</dt>
+                    <dd>${study.manager.name}</dd>
+                </dl>
+                <dl>
+                    <dt>모임수:</dt>
+                    <dd>${study.meetingCount}</dd>
+                </dl>
+                <dl>
+                    <dt>참석인원:</dt>
+                    <dd>${study.memberCount}/${study.maximumCount}</dd>
+                </dl>
+                <dl>
+                    <dt>시작일:</dt>
+                    <dd><s:date value="${study.startDay}"/></dd>
+                </dl>
+                <dl>
+                    <dt>종료일:</dt>
+                    <dd><s:date value="${study.endDay}"/></dd>
+                </dl>
+            </li>
+        </ul>
+    </s2c:module>
+    <s2c:module name="최근 모임">
+        <ul class="meetings">
                     <c:forEach items="${study.meetings}" var="meeting" begin="0" end="2">
                         <li>
                             <input type="hidden" class="openDateVal" value="${meeting.openDate}" />
@@ -149,30 +141,16 @@
                         </li>
                     </c:forEach>
                 </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="secondary" class="column">
-    <div class="content">
-        <div class="module">
-            <div class="mod-header">
-                <h3>소개</h3>
-            </div>
-            <div class="mod-content">
-                <s:nl2br value="${study.descr}"/>
-            </div>
-        </div>
-        <div class="module">
-            <div class="mod-header">
-                <h3>활동 내역</h3>
-            </div>
-            <div class="mod-content">
+    </s2c:module>
+</s2c:left-column>
+<s2c:right-column>
+    <s2c:module name="소개">
+        <s:nl2br value="${study.descr}"/>    
+    </s2c:module>
+    <s2c:module name="활동 내역">
 
-            </div>
-        </div>
-    </div>
-</div>
+    </s2c:module>
+</s2c:right-column>
 <script type="text/javascript">
    $(function(){
         var $meetingItem = $(".meetings li");
