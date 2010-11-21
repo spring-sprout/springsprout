@@ -1,6 +1,6 @@
 @charset "UTF-8";
 *{margin:0;padding:0;}
-body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{
+body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote {
 	font:12.34px helvetica,arial,clean,sans-serif;
     font-family:'Malgun Gothic','verdana';
 	*font-size:small;
@@ -361,4 +361,35 @@ div.growlUI h2 {font-size: 13px;}
 
 img.commentAdd {
 	width: 55px;	
+}
+
+/* DD: DL 목록처리 */
+ul.item-details {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    width: 100%;
+}
+ul.item-details dl {
+    display: inline-block;
+    margin-bottom: 0.5em;
+    vertical-align: top;
+    width: 100%;
+}
+ul.item-details dl dt, ul.item-details dl dd {
+    display: block;
+    float: left;
+}
+ul.item-details dl dt {
+    color: #666666;
+    margin-right: 1%;
+    position: relative;
+    width: 18%;
+}
+ul.item-details dl dd {
+    display: block;
+    float: left;
+    width: 81%;
 }

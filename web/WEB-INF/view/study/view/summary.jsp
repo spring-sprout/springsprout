@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style type="text/css">
-    ul.item-details, ul.meetings {
+    ul.meetings {
         display: inline-block;
         list-style-type: none;
         margin: 0;
@@ -14,28 +14,6 @@
         vertical-align: top;
         width: 100%;
     }
-    ul.item-details dl {
-        display: inline-block;
-        margin-bottom: 0.5em;
-        vertical-align: top;
-        width: 100%;
-    }
-    ul.item-details dl dt, ul.item-details dl dd {
-        display: block;
-        float: left;
-    }
-    ul.item-details dl dt {
-        color: #666666;
-        margin-right: 1%;
-        position: relative;
-        width: 18%;
-    }
-    ul.item-details dl dd {
-        display: block;
-        float: left;
-        width: 81%;
-    }
-
     /*Meetings */
     ul.meetings li {
         cursor: pointer;
@@ -86,7 +64,7 @@
     }
     ul.meetings li .meeting-descr {
         float: left;
-        padding-left: 5px;
+        padding-left: 10px;
         width: 320px;
     }
     ul.meetings li .meeting-descr h4 {

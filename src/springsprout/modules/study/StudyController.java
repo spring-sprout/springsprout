@@ -39,6 +39,7 @@ public class StudyController {
 	
 	@Resource StudyService advancedStudyService;
 	@Autowired SecurityService securityService;
+    @Autowired StudyStatisticsService statisticsService;
 
 	@RequestMapping("index")
 	public String index(@RequestParam(required = false) String type, Model model) {
@@ -124,6 +125,7 @@ public class StudyController {
     public String studyMeetings(@PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
+        model.addAttribute("meetingWeekStatistics", statisticsService.getMeetingDayStatisticsOf(study.getMeetings()));
     	return "/study/view/meetings";
     }
 
