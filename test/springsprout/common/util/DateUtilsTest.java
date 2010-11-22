@@ -44,6 +44,6 @@ public class DateUtilsTest {
     @Test
     public void dayOfWeek(){
         DayOfWeek dayOfWeek = DateUtils.extractDayOfMeekFrom(DateUtils.dateOf(2010, 7, 1, 12, 20));
-        assertThat(dayOfWeek, is(DayOfWeek.TUESDAY));
+        assertThat(dayOfWeek, is(DayOfWeek.THURSDAY));
     }
 }
