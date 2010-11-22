@@ -30,7 +30,10 @@
 </style>
 <h2>구성원</h2>
 <s2c:left-column>
-    <s2c:module name="회원별 모임 참석횟수">
+    <s2c:module name="전체 참석율">
+        //TODO 참석자/불참자 비율
+    </s2c:module>
+    <s2c:module name="회원별 모임 참석율">
         <table cellspacing="0" cellpadding="2">
             <tbody>
             <c:forEach items="${memberMeetingStatistics}" var="stat2" varStatus="status">
