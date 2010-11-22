@@ -126,15 +126,16 @@ public class StudyController {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
         model.addAttribute("meetingWeekStatistics", statisticsService.getMeetingDayStatisticsOf(study.getMeetings()));
-        model.addAttribute("memberMeetingStatistics", statisticsService.getMemberMeetingStatisticsOf(study.getMeetings()));
-    	return "/study/view/meetings";
+        model.addAttribute("meetingMemberStatistics", statisticsService.getMeetingMemberStatisticsOf(study.getMeetings()));
+        return "/study/view/meetings";
     }
 
     @RequestMapping("/{id}/members")
     public String studyMembers(@PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
-    	return "/study/view/members";
+        model.addAttribute("memberMeetingStatistics", statisticsService.getMemberMeetingStatisticsOf(study.getMeetings()));
+        return "/study/view/members";
     }
 
     @RequestMapping(value = "notify/{id}", method=RequestMethod.GET)

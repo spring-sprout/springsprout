@@ -150,7 +150,7 @@ ol.statuses li:hover .actions img{
 }
 #list li {
 	background:#FFFFFF none repeat scroll 0 0;
-	border:2px solid #D6D6D6;
+	border:1px solid #D6D6D6;
 	display:inline;
 	float:left;
 	margin:8px 5px 0 5px;
@@ -189,11 +189,11 @@ ol.statuses li:hover .actions img{
 }
 #list li.OPEN, #list li.OPENED, #list li.STARTED {
 	background:#E0F8F7 none repeat scroll 0 0;
-    border:2px solid #4183C4;
+    border:1px solid #4183C4;
 }
 #list li.ENDED {
 	background:#E6E6E6 none repeat scroll 0 0;
-    border:2px solid #D6D6D6;
+    border:1px solid #D6D6D6;
 }
 #list li.false {
 	background:#F6CECE none repeat scroll 0 0;
@@ -228,7 +228,7 @@ ol.statuses li:hover .actions img{
 	width: 75%;
 	height: 35px;
 	background: transparent none repeat scroll 0 0;
-	border:2px solid #4183C4;
+	border:1px solid #4183C4;
 }
 #list div.detail:hover {
 	border-color:#4CC552;
@@ -249,7 +249,7 @@ ol.statuses li:hover .actions img{
 }
 .logo {
 	background:#FFFFFF none repeat scroll 0 0;
-	border:2px solid #D6D6D6;
+	border:1px solid #D6D6D6;
     margin:0px 20px 15px 0px;
 	padding:0px;
 	position:relative;

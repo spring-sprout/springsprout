@@ -54,40 +54,6 @@
     #meeting_list li.meetingItem {
         width: 90%;
     }
-
-    /*graph*/
-    .module table {
-        border: 0 none;
-        width: 100%;
-    }
-    .module table tr {
-        vertical-align:middle;
-    }
-    .rowAlternateLightGray {
-        background-color:#FAFAFA;
-    }
-    .module table tr td.icon {
-        display: table-cell;
-        width: 1.25em;
-    }
-    .module table tr td.count {
-        text-align:right;
-        padding: 2px;
-    }
-    .module table tr td.graph {
-        width:60%;
-    }
-    .module td.last {
-        padding-right:0;
-    }
-    .colour-bar-cont {
-        min-width:2px;
-    }
-    .colour-bar {
-        border-top: 13px solid #3C78B5;
-        height: 0;
-        overflow: hidden;
-    }
 </style>
 <h2>모임</h2>
 <s2c:left-column>
@@ -136,14 +102,14 @@
             </tbody>
         </table>
     </s2c:module>
-    <s2c:module name="회원별 모임 참석횟수">
+    <s2c:module name="모임별 출석률">
         <table cellspacing="0" cellpadding="2">
             <tbody>
-            <c:forEach items="${memberMeetingStatistics}" var="stat2" varStatus="status">
+            <c:forEach items="${meetingMemberStatistics}" var="stat" varStatus="status">
                 <tr class="${status.count%2 == 0 ? 'rowAlternateLightGray': ''}">
-                    <td class="name">${stat2.member.name}</td>
-                    <td class="count">${stat2.meetingCount}</td>
-                    <td class="graph last"><s2c:graph value="${stat2.percentage}"/></td>
+                    <td class="name">${stat.meeting.shortTitle}</td>
+                    <td class="count">${stat.realCount}/${stat.attendedCount}</td>
+                    <td class="graph last"><s2c:graph value="${stat.percentage}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -8,6 +8,7 @@ import springsprout.domain.Attendance;
 import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.modules.study.support.MeetingDayOfWeekData;
+import springsprout.modules.study.support.MeetingMemberData;
 import springsprout.modules.study.support.MemberMeetingData;
 
 import java.util.*;
@@ -99,6 +100,20 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
             }
         });
         
+
+        return dataList;
+    }
+
+    public List<MeetingMemberData> getMeetingMemberStatisticsOf(Set<Meeting> meetings) {
+        List<MeetingMemberData> dataList = new ArrayList<MeetingMemberData>();
+
+        for(Meeting meeting : meetings) {
+            MeetingMemberData data = new MeetingMemberData();
+            data.setMeeting(meeting);
+            data.setAttendedCount(meeting.getAttendanceCount());
+            data.setRealCount(meeting.getAttendedCount());
+            dataList.add(data);
+        }
 
         return dataList;
     }

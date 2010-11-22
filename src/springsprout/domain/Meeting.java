@@ -5,15 +5,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import springsprout.common.annotation.DomainInfo;
 import springsprout.common.convention.Convention;
 import springsprout.common.util.DateUtils;
+import springsprout.common.util.StringUtils;
 import springsprout.domain.enumeration.MeetingStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -444,4 +443,8 @@ public class Meeting implements Serializable {
 	public void setEtag(String etag) {
 		this.etag = etag;
 	}
+
+    public String getShortTitle() {
+        return StringUtils.cutBytes(this.getTitle(), 20);   
+    }
 }

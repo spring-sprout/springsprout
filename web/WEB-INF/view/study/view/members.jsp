@@ -23,7 +23,30 @@
     </c:otherwise>
 </c:choose>
 --%>
-<div id="member_list">
+<style type="text/css">
+    #list li.memberItem {
+        width: 80%;
+    }
+</style>
+<h2>구성원</h2>
+<s2c:left-column>
+    <s2c:module name="회원별 모임 참석횟수">
+        <table cellspacing="0" cellpadding="2">
+            <tbody>
+            <c:forEach items="${memberMeetingStatistics}" var="stat2" varStatus="status">
+                <tr class="${status.count%2 == 0 ? 'rowAlternateLightGray': ''}">
+                    <td class="name">${stat2.member.name}</td>
+                    <td class="count">${stat2.meetingCount}</td>
+                    <td class="graph last"><s2c:graph value="${stat2.percentage}"/></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </s2c:module>
+</s2c:left-column>
+<s2c:right-column>
+    <s2c:module name="스터디 참가 신청자">
+        <div id="member_list">
 	<c:choose>
    		<c:when test="${!empty study.members}">
 		<c:set var="studyObject" value="${study}"/>
@@ -37,7 +60,7 @@
                            totlaRate="${member.totalAttendanceRate}" />|
                 <std:trate currentRate="${member.studyTrustRates[studyObject]}"
                            totlaRate="${member.totalTrustRate}" /> <br/>
-				가입일: <fmt:formatDate value="${member.joined}" pattern="yyyy년 M월 d일" />
+				가입일: <s2c:date value="${member.joined}"/>
 			</div>
 			<div class="count">
 				${row.count}
@@ -52,21 +75,19 @@
    		</c:otherwise>
    	</c:choose>
 </div>
+    </s2c:module>
+</s2c:right-column>
 <script type="text/javascript">
     $(function(){
         $(".memberItem").each(function(){
             var arate = $(this).attr("arate");
-            if(arate == 100){
-                $(this).css("border", "2px solid #8D38C9");
-            } else if(arate > 0) {
-                $(this).css("border", "2px solid #4CC552");
+            if(arate > 0){
+                $(this).css("border", "1px solid #4183C4");
             }
 
             var trate = $(this).attr("trate");
-            if(trate == 100){
-                $(this).css("background", "#F9B7FF");
-            } else if(trate > 0) {
-                $(this).css("background", "#C3FDB8");
+            if(trate > 0){
+                $(this).css("background", "#E0F8F7 none repeat scroll 0 0");
             }
         });
     });

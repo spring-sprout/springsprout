@@ -2,6 +2,7 @@ package springsprout.modules.study;
 
 import springsprout.domain.Meeting;
 import springsprout.modules.study.support.MeetingDayOfWeekData;
+import springsprout.modules.study.support.MeetingMemberData;
 import springsprout.modules.study.support.MemberMeetingData;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface StudyStatisticsService {
     List<MeetingDayOfWeekData> getMeetingDayStatisticsOf(Set<Meeting> meetings);
 
     List<MemberMeetingData> getMemberMeetingStatisticsOf(Set<Meeting> meetings);
+
+    List<MeetingMemberData> getMeetingMemberStatisticsOf(Set<Meeting> meetings);
 }
