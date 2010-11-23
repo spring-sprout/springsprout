@@ -64,12 +64,6 @@
         border-top: 1px dotted #d3d3d3;
     }
 
-    li.active {
-        background-color: #F0F0F0;
-        background-image: url(" /images/indicator.gif");
-        border-top: 1px solid #BBBBBB;
-    }
-
     #main-content .active-area .full {
         width:99.8%;
     }

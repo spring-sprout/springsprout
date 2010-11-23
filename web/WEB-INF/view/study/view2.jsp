@@ -72,6 +72,9 @@
         background: none repeat scroll 0 0 #FFFFFF;
         color: #000000;
     }
+    ul.tabs li.active.loading a {
+        background: url("/images/indicator.gif") no-repeat scroll 95% center #FFFFFF;
+    }
     ul.tabs li strong {
         display: block;
         overflow: hidden;
@@ -182,12 +185,19 @@
 <script type="text/javascript">
     $(function(){
         $("ul.tabs li a").click(function(){
+            var parent = $(this).parent();
+            parent.siblings().removeClass("active");
+            parent.addClass("active");
+            parent.addClass("loading");
+
             var url = $(this).attr('href');
-            $.get(url, function(data){
+            $.get(url, function(data, textStatus){
                 $(".active-area").html(data);
+                if(textStatus === "success") {
+                    parent.removeClass("loading");
+                }
             });
-            $(this).parent().addClass("active");
-            $(this).parent().siblings().removeClass("active");
+            
             return false;
         });
 
