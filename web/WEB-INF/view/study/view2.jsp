@@ -160,7 +160,7 @@
                 <a href="<c:url value="${study.id}/summary"/>"><strong>Summary</strong></a>
             </li>
             <li>
-                <a href="<c:url value="${study.id}/summary"/>"><strong>게시판</strong></a>
+                <a href="<c:url value="${study.id}/post"/>"><strong>게시판</strong></a>
             </li>
             <li>
                 <a href="<c:url value="${study.id}/meetings"/>"><strong>모임</strong></a>
