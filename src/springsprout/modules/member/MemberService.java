@@ -4,6 +4,7 @@ import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Member;
 import springsprout.domain.Role;
+import springsprout.domain.Study;
 import springsprout.modules.ajax.support.AutoCompleteParams;
 import springsprout.modules.member.support.MemberContext;
 import springsprout.modules.member.support.MemberSearchParam;
@@ -58,4 +59,6 @@ public interface MemberService {
     void updateByAdmin(Member updatedMember, boolean statusEdit);
 
     void addRoleTo(Role role, Member member);
+
+    int getAttendenceRateOf(Member member, Study study);
 }

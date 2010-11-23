@@ -16,7 +16,6 @@
     }
     /*Meetings */
     ul.meetings li {
-        cursor: pointer;
         float: left;
         margin-bottom: 5px;
     }
@@ -71,7 +70,6 @@
         font-weight: 200;
         font-size: 1.2em;
         color: #333333;
-        padding-bottom: 4px;
     }
     ul.meetings li .meeting-descr div {
         margin-top: 2px;
@@ -126,7 +124,7 @@
                                 </span>
                             </div>
                             <div class="meeting-descr">
-                                <h4>${meeting.title}</h4>
+                                <h4><a href="/study/${study.id}/meeting/${meeting.id}">${meeting.title}</a></h4>
                                 <div>${meeting.location}</div>
                                 <div>
                                     <span class="dueTime"><fmt:formatDate value="${meeting.openTime}" pattern="a h시 mm분"/></span> ~

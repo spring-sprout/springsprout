@@ -1,5 +1,6 @@
 package springsprout.modules.study;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.enumeration.DayOfWeek;
@@ -7,10 +8,14 @@ import springsprout.common.util.DateUtils;
 import springsprout.domain.Attendance;
 import springsprout.domain.Meeting;
 import springsprout.domain.Member;
+import springsprout.domain.Study;
+import springsprout.modules.member.MemberService;
 import springsprout.modules.study.support.MeetingDayOfWeekData;
 import springsprout.modules.study.support.MeetingMemberData;
 import springsprout.modules.study.support.MemberMeetingData;
+import springsprout.modules.study.support.StudyMemberData;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -22,6 +27,9 @@ import java.util.*;
 @Service
 @Transactional
 public class StudyStatisticsServiceImpl implements StudyStatisticsService {
+
+    @Resource StudyService studyService;
+    @Autowired MemberService memberService;
 
     public List<MeetingDayOfWeekData> getMeetingDayStatisticsOf(Set<Meeting> meetings) {
         Double total = new Double(meetings.size());
@@ -99,7 +107,7 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
                 return otherData.getPercentage() - data.getPercentage();
             }
         });
-        
+
 
         return dataList;
     }
@@ -115,6 +123,36 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
             dataList.add(data);
         }
 
+        return dataList;
+    }
+
+    public List<StudyMemberData> getStudyMemberStatisticesOf(Study study) {
+        Double total = new Double(study.getMemberCount());
+        List<StudyMemberData> dataList = new ArrayList<StudyMemberData>();
+
+        int attdRateCnt = 0;
+        int notAttdRateCnt = 0;
+        for(Member member : studyService.getMembersOf(study)){
+            int attdRate = memberService.getAttendenceRateOf(member, study);
+            if(attdRate > 0){
+                attdRateCnt++;
+            } else {
+                notAttdRateCnt++;
+            }
+        }
+
+        StudyMemberData attendedData = new StudyMemberData();
+        attendedData.setTitle("참석자");
+        attendedData.setCount(attdRateCnt);
+        attendedData.setPercentage((int)(attdRateCnt/total*100));
+        dataList.add(attendedData);
+
+        StudyMemberData notAttendedDate = new StudyMemberData();
+        notAttendedDate.setTitle("불참자");
+        notAttendedDate.setCount(notAttdRateCnt);
+        notAttendedDate.setPercentage((int)(notAttdRateCnt/total*100));
+        dataList.add(notAttendedDate);
+        
         return dataList;
     }
 

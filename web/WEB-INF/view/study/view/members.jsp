@@ -27,11 +27,82 @@
     #list li.memberItem {
         width: 80%;
     }
+    
+    .mod-header .ops {
+        background-color: #FFFFFF;
+        float: right;
+        margin-top: 0.415em;
+        padding-left: 0.25em;
+    } 
+    .ops {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .ops li {
+        float: left;
+    }
+    .ops img {
+        cursor: pointer;
+    }
 </style>
 <h2>구성원</h2>
 <s2c:left-column>
+    <div class="module">
+        <div class="mod-header">
+            <h3 id="attention-title">스터디 참석 신청자</h3>
+            <ul class="ops">
+                <li><img src="/images/study/user-group-icon.png" alt="신청자" onclick="showAll()"></li>
+                <li><img src="/images/study/user-icon.png" alt="참석자" onclick="showAttended()"></li>
+                <li><img src="/images/study/offline-user-icon.png" alt="불참자" onclick="showNotAttended()"></li>
+            </ul>
+        </div>
+        <div class="mod-content">
+            <div id="member_list">
+                <c:choose>
+                    <c:when test="${!empty study.members}">
+                        <c:set var="studyObject" value="${study}"/>
+                        <ul id="list">
+                            <c:forEach var="member" items="${study.members}" varStatus="row">
+                                <li class="round memberItem" arate="${member.studyAttendanceRates[studyObject]}" trate="${member.studyTrustRates[studyObject]}">
+                                    <img src="${member.avatar}&s=50"/>
+                                    <div class="description">
+                                        <strong>${member.name}</strong> <br/>
+                                        <std:arate currentRate="${member.studyAttendanceRates[studyObject]}"
+                                                   totlaRate="${member.totalAttendanceRate}" />|
+                                        <std:trate currentRate="${member.studyTrustRates[studyObject]}"
+                                                   totlaRate="${member.totalTrustRate}" /> <br/>
+                                        가입일: <s2c:date value="${member.joined}"/>
+                                    </div>
+                                    <div class="count">
+                                            ${row.count}
+                                    </div>
+                                    <br class="clear"/>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        참석예정인 회원이 없습니다.
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </div>
+</s2c:left-column>
+<s2c:right-column>
     <s2c:module name="전체 참석율">
-        //TODO 참석자/불참자 비율
+        <table cellspacing="0" cellpadding="2">
+            <tbody>
+            <c:forEach items="${studyMemberStatistics}" var="stat" varStatus="status">
+                <tr class="${status.count%2 == 0 ? 'rowAlternateLightGray': ''}">
+                    <td class="name">${stat.title}</td>
+                    <td class="count">${stat.count}</td>
+                    <td class="graph last"><s2c:graph value="${stat.percentage}"/></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </s2c:module>
     <s2c:module name="회원별 모임 참석율">
         <table cellspacing="0" cellpadding="2">
@@ -45,39 +116,6 @@
             </c:forEach>
             </tbody>
         </table>
-    </s2c:module>
-</s2c:left-column>
-<s2c:right-column>
-    <s2c:module name="스터디 참가 신청자">
-        <div id="member_list">
-	<c:choose>
-   		<c:when test="${!empty study.members}">
-		<c:set var="studyObject" value="${study}"/>
-		<ul id="list">
-		<c:forEach var="member" items="${study.members}" varStatus="row">
-		<li class="round memberItem" arate="${member.studyAttendanceRates[studyObject]}" trate="${member.studyTrustRates[studyObject]}">
-			<img src="${member.avatar}&s=50"/>
-			<div class="description">
-				<strong>${member.name}</strong> <br/>
-                <std:arate currentRate="${member.studyAttendanceRates[studyObject]}"
-                           totlaRate="${member.totalAttendanceRate}" />|
-                <std:trate currentRate="${member.studyTrustRates[studyObject]}"
-                           totlaRate="${member.totalTrustRate}" /> <br/>
-				가입일: <s2c:date value="${member.joined}"/>
-			</div>
-			<div class="count">
-				${row.count}
-			</div>
-			<br class="clear"/>
-		</li>
-		</c:forEach>
-		</ul>
-   		</c:when>
-   		<c:otherwise>
-		     참석예정인 회원이 없습니다.
-   		</c:otherwise>
-   	</c:choose>
-</div>
     </s2c:module>
 </s2c:right-column>
 <script type="text/javascript">
@@ -94,4 +132,40 @@
             }
         });
     });
+
+    function showAttended() {
+        console.log("showAttended");
+        $(".memberItem").each(function(){
+            var arate = $(this).attr("arate");
+            var trate = $(this).attr("trate");
+
+            if(arate == 0 && trate == 0) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+        $("#attention-title").text("참석자");
+    }
+    function showNotAttended() {
+        console.log("showNotAttended");
+        $(".memberItem").each(function(){
+            var arate = $(this).attr("arate");
+            var trate = $(this).attr("trate");
+
+            if(arate == 0 && trate == 0) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        $("#attention-title").text("불참자");
+    }
+    function showAll(){
+        console.log("showAll");
+        $(".memberItem").each(function(){
+            $(this).show();    
+        });
+        $("#attention-title").text("스터디 참석 신청자");
+    }
 </script>

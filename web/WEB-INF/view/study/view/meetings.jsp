@@ -47,7 +47,15 @@
     .meetingTitle {
         font-weight: bold;
         font-size: 1.1em;
+        color: #4183C4;
     }
+    #meeting_list li.ENDED .meetingTitle {
+        color: #808080;
+    }
+    #meeting_list li:hover .meetingTitle {
+        color: green;
+    }
+
     .dueTime {
         font-weight: bold;
     }
@@ -57,6 +65,49 @@
 </style>
 <h2>모임</h2>
 <s2c:left-column>
+    <s2c:module name="모임목록">
+        <div id="meeting_list">
+            <c:choose>
+                <c:when test="${!empty study.meetings}">
+                    <ul id="list">
+                        <c:forEach var="meeting" items="${study.meetings}" varStatus="status">
+                            <li class="meetingItem s_waitblock round action ${meeting.status}" study="${study.id}" meeting="${meeting.id}">
+                                <input type="hidden" class="openDateVal" value="${meeting.openDate }" />
+                                <div class="openDate">
+                                    <span class="date">
+                                        <span class="month"></span>
+                                        <span class="day"></span>
+                                    </span>
+                                    <span class="dayOfWeek">
+                                        <span class="shortDay"></span>
+                                    </span>
+                                </div>
+                                <div style="float: left; width: 280px;">
+                                    <div class="description">
+                                        <span class="meetingTitle">${meeting.title}</span><br/>
+                                        모임장: ${meeting.owner.name} |
+                                        상태: ${meeting.status.descr} |
+                                        인원수: ${meeting.attendedCount}/${meeting.attendanceCount}/${meeting.maximum} <br/>
+                                        장소: ${meeting.location}<br/>
+                                        시간: <span class="dueTime">${meeting.openTime}</span> ~ <span class="dueTime">${meeting.closeTime}</span>
+                                    </div>
+                                </div>
+                                <div class="count">
+                                    ${meeting.cnt}
+                                </div>
+                                <br class="clear"/>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    모임 정보가 없습니다.
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </s2c:module>
+</s2c:left-column>
+<s2c:right-column>
     <s2c:module name="최근모임">
         <c:forEach items="${study.meetings}" begin="0" end="0" var="lastMeeting">
             <ul class="item-details">
@@ -64,7 +115,7 @@
                     <dl>
                         <dt>모임명: </dt>
                         <dd>
-                            ${lastMeeting.title}
+                            <a href="/study/${study.id}/meeting/${lastMeeting.id}">${lastMeeting.title}</a>
                         </dd>
                         <dt>모임장: </dt>
                         <dd>
@@ -114,49 +165,6 @@
             </c:forEach>
             </tbody>
         </table>
-    </s2c:module>
-</s2c:left-column>
-<s2c:right-column>
-    <s2c:module name="모임목록">
-        <div id="meeting_list">
-            <c:choose>
-                <c:when test="${!empty study.meetings}">
-                    <ul id="list">
-                        <c:forEach var="meeting" items="${study.meetings}" varStatus="status">
-                            <li class="meetingItem s_waitblock round action ${meeting.status}" study="${study.id}" meeting="${meeting.id}">
-                                <input type="hidden" class="openDateVal" value="${meeting.openDate }" />
-                                <div class="openDate">
-                                    <span class="date">
-                                        <span class="month"></span>
-                                        <span class="day"></span>
-                                    </span>
-                                    <span class="dayOfWeek">
-                                        <span class="shortDay"></span>
-                                    </span>
-                                </div>
-                                <div style="float: left; width: 280px;">
-                                    <div class="description">
-                                        <span class="meetingTitle">${meeting.title}</span><br/>
-                                        모임장: ${meeting.owner.name} |
-                                        상태: ${meeting.status.descr} |
-                                        인원수: ${meeting.attendedCount}/${meeting.attendanceCount}/${meeting.maximum} <br/>
-                                        장소: ${meeting.location}<br/>
-                                        시간: <span class="dueTime">${meeting.openTime}</span> ~ <span class="dueTime">${meeting.closeTime}</span>
-                                    </div>
-                                    <div class="count">
-                                            ${meeting.cnt}
-                                    </div>
-                                </div>
-                                <br class="clear"/>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </c:when>
-                <c:otherwise>
-                    모임 정보가 없습니다.
-                </c:otherwise>
-            </c:choose>
-        </div>
     </s2c:module>
 </s2c:right-column>
 
