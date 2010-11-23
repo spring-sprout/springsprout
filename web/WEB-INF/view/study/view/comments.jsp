@@ -63,15 +63,20 @@
         color: #FFFFFF;
         border-top: 1px dotted #d3d3d3;
     }
+
+    li.active {
+        background-color: #F0F0F0;
+        background-image: url(" /images/indicator.gif");
+        border-top: 1px solid #BBBBBB;
+    }
+
+    #main-content .active-area .full {
+        width:99.8%;
+    }
 </style>
 <h2>의견</h2>
-<s2c:left-column>
-    <s2c:module name="회원별 의견제시율">
-
-    </s2c:module>
-</s2c:left-column>
-<s2c:right-column>
-    <s2c:module name="전체 의견">
+<s2c:full-column>
+    <s2c:module name="의견 모아보기">
         <div id="meeting_comments">
             <c:forEach items="${study.meetings}" var="meeting">
                 <c:forEach items="${meeting.comments}" var="comment">
@@ -90,5 +95,5 @@
                 </c:forEach>
             </c:forEach>
         </div>
-    </s2c:module>
-</s2c:right-column>
+        </s2c:module>
+</s2c:full-column>
