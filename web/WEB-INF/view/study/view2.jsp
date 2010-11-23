@@ -135,7 +135,7 @@
         background: url("/images/study/mod_header_bg.png") repeat-x scroll 0 18px #FFFFFF;
         padding: 0.5em 0;
     }
-    .mod-header h3 {
+    .mod-header h3, .mod-header span {
         background-color: #FFFFFF;
         color: #808080;
         display: inline;
@@ -144,6 +144,8 @@
         margin: 0;
         padding-right: 0.25em;
     }
+    .mod-header span { font-size: 0.8em; font-weight: 100; background-color: transparent; }
+    .mod-header span:HOVER { color: black; cursor: pointer; }
     .mod-content {
         font-size: 1.167em;
         line-height: 1.429;

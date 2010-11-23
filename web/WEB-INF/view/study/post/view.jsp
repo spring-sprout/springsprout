@@ -8,49 +8,55 @@
 <link href="<c:url value="/css/study/post.css"/>" media="screen" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
-.post-reply-count, .post-comment-count, .post-view-count {
-	text-align: center;
-	float: left;
-	height: 45px;
-	width: 38px;
-	margin: 1px;
+#bottomFull {
+	width: 99%;
 }
-
-.post-reply-count {
-	background-color: #90EE90;
-}
-.post-comment-count{
-	background-color: #006400;
-	width: 60px;
-	color: white;
-}
-
-.post-comment-count .post-count {
-}
-
-.post-view-count {
-	background-color: #E6E6FA;
-}
-
-.post-count {
-	font-weight: bold;
-	font-size: 1.5em;
-}
-
-.post-text-list {
-	border-bottom: 1px dotted #999999;
-	overflow:hidden;
-	padding:5px;
-}
-
-.post-text-list-header {
-	border-bottom: 1px solid black;
-	overflow:hidden;
-	padding-bottom:5px;
-}
-.post-button { margin: 2px 2px; }
-.post-button-text { display: block; padding: 0.2em 0.5em; color: #008080; }
 </style>
+
+<h2>Post Summary</h2>
+
+<s2c:left-column>
+    <s2c:module name="Text" more="더보기">
+        <ul class="item-details">
+            <li>
+                <dl>
+                    <dt>리더:</dt>
+                    <dd>${study.manager.name}</dd>
+                </dl>
+                <dl>
+                    <dt>모임수:</dt>
+                    <dd>${study.meetingCount}</dd>
+                </dl>
+                <dl>
+                    <dt>참석인원:</dt>
+                    <dd>${study.memberCount}/${study.maximumCount}</dd>
+                </dl>
+                <dl>
+                    <dt>시작일:</dt>
+                    <dd><s:date value="${study.startDay}"/></dd>
+                </dl>
+                <dl>
+                    <dt>종료일:</dt>
+                    <dd><s:date value="${study.endDay}"/></dd>
+                </dl>
+            </li>
+        </ul>
+    </s2c:module>
+    
+</s2c:left-column>
+<s2c:right-column>
+    <s2c:module name="Poll" more="더보기">
+        <s:nl2br value="${study.descr}"/>    
+    </s2c:module>
+    <s2c:module name="토론" more="더보기">
+
+    </s2c:module>
+</s2c:right-column>
+<s2c:bottom-column>
+	<s2c:module name="Image" more="더보기">
+	
+	</s2c:module>
+</s2c:bottom-column>
 <script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
 <script type="text/javascript">
 $(function(){ 
@@ -65,17 +71,3 @@ $(function(){
 	});
 });
 </script>
-
-<div id="board" style="overflow: hidden;">
-	<div id="typesDiv" style="width:15%; float: left;">
-		<div id="allPost">All Post</div>
-		<div id="textPost">Text</div>
-		<div id="disPost">토론</div>
-		<div id="tesPost">설문</div>
-		<div id="imagePost">Image</div>
-	</div>
-	<div id="listDiv" class="boardList" style="width: 85%; float: left;">
-		최신글 목록 표시
-		${study.id }
-	</div>
-</div>
