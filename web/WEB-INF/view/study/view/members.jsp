@@ -120,52 +120,21 @@
 </s2c:right-column>
 <script type="text/javascript">
     $(function(){
-        $(".memberItem").each(function(){
-            var arate = $(this).attr("arate");
-            if(arate > 0){
-                $(this).css("border", "1px solid #4183C4");
-            }
-
-            var trate = $(this).attr("trate");
-            if(trate > 0){
-                $(this).css("background", "#E0F8F7 none repeat scroll 0 0");
-            }
-        });
+        $(".memberItem:not([arate=0])").css("border", "1px solid #4183C4");
+        $(".memberItem:not([trate=0])").css("background", "#E0F8F7 none repeat scroll 0 0");
     });
 
     function showAttended() {
-        console.log("showAttended");
-        $(".memberItem").each(function(){
-            var arate = $(this).attr("arate");
-            var trate = $(this).attr("trate");
-
-            if(arate == 0 && trate == 0) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        });
+        $(".memberItem").hide().filter(":not([arate=0][trate=0])").show();
         $("#attention-title").text("참석자");
     }
     function showNotAttended() {
-        console.log("showNotAttended");
-        $(".memberItem").each(function(){
-            var arate = $(this).attr("arate");
-            var trate = $(this).attr("trate");
-
-            if(arate == 0 && trate == 0) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
+        $(".memberItem").hide().filter("[arate=0][trate=0]").show();
         $("#attention-title").text("불참자");
     }
-    function showAll(){
-        console.log("showAll");
-        $(".memberItem").each(function(){
-            $(this).show();    
-        });
-        $("#attention-title").text("스터디 참석 신청자");
+    function showAll() {
+        $(".memberItem").show();
+        $("#attention-title").text("스터디참석신청자");
     }
+
 </script>
