@@ -49,7 +49,7 @@
                         <li><a href="http://wiki.springsprout.org" target="_blank">봄싹 위키</a></li>
                         <li><a href="http://springstudyclub.tistory.com/" target="_blank">봄싹 블로그</a></li>
                         <li><a href="http://jira.springsprout.org" target="_blank">봄싹 이슈트래커</a></li>
-                        <li><a href="http://code.springsprout.org" target="_blank">봄싹 코드 뷰어</a></li>
+                        <li><a href="https://github.com/whiteship/springsprout" target="_blank">봄싹 Git(+코드 뷰어)</a></li>
                     </ul>
                 </div>
                 <div id="thanks">
