@@ -102,6 +102,7 @@ input.comment-submit { height: 55px; float: left; width: 10%; margin-left: 0.5em
 	overflow: hidden;	
 }
 .comment-area:HOVER { background-color:#E0F8F7; }
+
 .comment-area:HOVER .post-comment-actions { visibility:visible;}
 
 .post-comment-writer-info { float:left; width: 15%; }
