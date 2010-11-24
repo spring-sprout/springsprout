@@ -8,9 +8,9 @@
 <link href="<c:url value="/css/study/post.css"/>" media="screen" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
-#bottomFull {
-	width: 99%;
-}
+#bottomFull { width: 99%; }
+.post-image-thumbnail-default { margin: 2px; border: 1px green solid; }
+.post-image-thumbnail-default:HOVER { cursor: pointer; border-width: 2px; }
 </style>
 
 <h2>Post Summary</h2>
@@ -46,15 +46,27 @@
 </s2c:left-column>
 <s2c:right-column>
     <s2c:module name="Poll" more="더보기">
-        <s:nl2br value="${study.descr}"/>    
+        <s2c:portlet target="${discuss}">
+			asdfasdf
+		</s2c:portlet>  
     </s2c:module>
     <s2c:module name="토론" more="더보기">
-
+		<s2c:portlet target="${discuss}">
+			asdfasdf
+		</s2c:portlet>
     </s2c:module>
 </s2c:right-column>
 <s2c:bottom-column>
 	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
-	
+		<div id="thumbnailList" align="center" >
+		<s2c:portlet target="${images}">
+			<c:forEach var="image" items="${images}">
+				<div class="thumbnail" style="float: left;" id="${image.id}">
+					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" />
+				</div>
+			</c:forEach>
+		</s2c:portlet>
+		</div>
 	</s2c:module>
 </s2c:bottom-column>
 <script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
@@ -64,11 +76,9 @@ $(function(){
 		$('.active-area').load($(this).next().text());
 		return false;
 	});
-	$('#allPost').click( function( event){
-		$('#listDiv').load('/study/${study.id}/board/allPost');
+	$('.thumbnail').click( function(){
+		$('.active-area').load('${study.id}/post/imagePost/listBySelectId/' + $(this).attr('id'));
 	});
-	$('#imagePost').click( function( event){
-		$('#listDiv').load('${study.id}/board/imagePost/list/0');
-	});
+	
 });
 </script>

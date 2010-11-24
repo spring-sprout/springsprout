@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
-.post-list-actions { float: none !important;}
+.post-list-actions { float: none !important; padding: 10px 5px 0px 0px;}
 img:HOVER { cursor: pointer; }
 .post-image-detail-image {
 	max-width: 70%;
@@ -54,9 +54,7 @@ img:HOVER { cursor: pointer; }
 
 /* close button positioned on upper right corner */
 .simple_overlay { width: 1000px;}
-.simple_overlay div {
-	float:left;
-}
+.simple_overlay div { float:left; }
 .simple_overlay .close {
 	background-image:url(/resources/js/plugin/jqueryTools/images/close.png);
 	position:absolute;
@@ -80,34 +78,47 @@ img:HOVER { cursor: pointer; }
 	color:#aba;
 	font-size:15px;
 }
-.detail-writer {
-	text-align: right;
-}
+.detail-writer { text-align: right; }
 
 .comment-form { 
 	overflow: hidden;
 	padding: 4px;
 }
-.comment-list { 
-	border-top: solid gray 2px;
-}
-textarea.comment  { width: 85%; float: left;}
-input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em;}
-.fileArea { background-color: white; }
-#movePrev:HOVER, #moveNext:HOVER {
-	cursor: pointer;
-}
+.comment-list { border-top: solid gray 2px; }
+textarea.comment  { width: 89%; float: left; border: 2px solid green;}
+input.comment-submit { height: 55px; float: left; width: 10%; margin-left: 0.5em;}
+#movePrev:HOVER, #moveNext:HOVER { cursor: pointer; }
 .icon-arrow { width: 70px; }
 .icon-arrow:HOVER { width: 75px; }
 .icon-left { float:left; }
 .icon-right { float:right; }
 
 .mod-content { padding: 10px; }
+.mod-header { margin: 5px;}
+
+.comment-area {
+	border-bottom: 1px dotted black;
+	padding: 5px;
+	overflow: hidden;	
+}
+.comment-area:HOVER { background-color:#E0F8F7; }
+.comment-area:HOVER .post-comment-actions { visibility:visible;}
+
+.post-comment-writer-info { float:left; width: 15%; }
+.post-comment-writer {
+	float: left;
+	font-size: 0.8em;
+	padding-left: 5px;
+}
+.post-comment-data { float:left; padding-left: 3px;}
+.post-comment-actions { float:right; visibility: hidden;}
+
 </style>
 <div class="post-list-actions" align="right">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
 		<button id="writeBtn">글쓰기</button>
 	</sec:authorize>
+	<button id="moveToListBtn">목록으로</button>
 </div>
 <s2c:module name="List of Image Post">
 	<div class="post-image-container">
@@ -142,7 +153,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 					<div class="comment-list">
 						<h3>Your Comment↓</h3>
 						<div id="commentFormDiv" class="comment-form">
-							<form:form id="commentForm" action="/study/view/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
+							<form:form id="commentForm" action="/study/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
 								<form:textarea path="comment" cssClass="comment" />
 								<input type="submit" class="comment-submit" value="보내기"/>
 							</form:form>
@@ -165,7 +176,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 	                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 	                              <c:if test="${currentUserName == comment.writer.email}">
 	                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-	                                       href="/study/view/${study.id}/post/imagePost/${post.id}/comment/${comment.id}"/>
+	                                       href="/study/${study.id}/post/imagePost/${post.id}/comment/${comment.id}"/>
 	                              </c:if>
 							</sec:authorize>
 						</div>
@@ -212,6 +223,9 @@ function initEvent() {
 	$('.post-image-thumbnail :first').addClass('post-image-thumbnail-selected');
 	$('#writeBtn').click( function(e){ 
 		changePageToForm();
+	});
+	$('#moveToListBtn').click( function(e){
+		$actionArea.load('${study.id}/post');
 	});
 	$('.post-image-thumbnail').click( function(){
 		var $this = $(this), postId = '#post-' + $this.attr('rel'), 
@@ -261,12 +275,12 @@ function initEvent() {
 		return false;
 	});
 	$('.icon-left').click( function(){
-		$prevEl = $('.post-image-thumbnail-selected').parent().prev();
+		var $prevEl = $('.post-image-thumbnail-selected').parent().prev();
 		navigateImage( $prevEl);
 		return false;
 	});
 	$('.icon-right').click( function(){
-		$nextEl = $('.post-image-thumbnail-selected').parent().next();
+		var $nextEl = $('.post-image-thumbnail-selected').parent().next();
 		navigateImage( $nextEl);
 		return false;
 	});
@@ -301,7 +315,7 @@ function changePageToForm() {
 }
 
 function navigateImage( $targetEl) {
-	if ($nextEl.length < 1) {
+	if ($targetEl.length < 1) {
 		alert('이동할 이미지가 없습니다.');
 		return;
 	}

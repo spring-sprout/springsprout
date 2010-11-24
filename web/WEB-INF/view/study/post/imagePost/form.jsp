@@ -6,15 +6,16 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
+#postForm p { margin: 2px;}
 label, .MultiFile-wrap { display: inline !important;}
-fieldset { padding: 5px; }
-legend { padding: 5px; }
 .MultiFile-label { background-color: whitesmoke; }
 .MultiFile-remove { color: red !important;}
-textarea { width: 95%; }
+textarea { width: 95%; border: 1px solid; }
+.mod-content { padding: 10px; }
+.mod-header { margin: 5px;}
+.form-button { padding-top: 5px }
 </style>
-<fieldset>
-	<legend>${title}</legend>
+<s2c:module name="Add New Image">
 	<form:form id="postForm" commandName="imagePost" method="POST" action="${action}" enctype="multipart/form-data">
 		<form:hidden path="rootStudy.id"/>
 		<p>
@@ -23,19 +24,19 @@ textarea { width: 95%; }
 		</p>
 		<p>
 			<form:label path="file">파일 : </form:label>
-			<input name="file" class="file" type="file" size="96%" />
-			<div class="fileArea"></div>
+			<input name="file" class="file" type="file" id="file" size="96%" />
 		</p>
+			<div id="fileArea"></div>
 		<p>
 			<form:label path="content">내용</form:label><br/>
 			<form:textarea path="content" id="postContent" rows="8" cols="100" />
 		</p>
-		<p align="center">
+		<p align="center" class="form-button">
 			<input type="submit" id="saveBtn" value="저장" />
 			<input type="button" id="cancleBtn" value="취소" />
 		</p>
 	</form:form>
-</fieldset>
+</s2c:module>
 <script type="text/javascript">
 $postForm = $('#postForm'), $activeArea = $('.active-area');
 $(function(){
@@ -47,7 +48,7 @@ $(function(){
 	
 	var options = { 
 		beforeSubmit: function(arr, $form, options) { 
-			if ($form.find('.fileArea').children().length <= 0) {
+			if ($form.find('#fileArea').children().length <= 0) {
 				alert('이미지를 선택하세요.');
 				$form.find('file').focus();
 				return false;
@@ -76,8 +77,8 @@ function initEvent(){
 }
 
 function initFileupload() {
-	$('.file').MultiFile({
-		list: '.fileArea',
+	$('#file').MultiFile({
+		list: '#fileArea',
 		max: 1,
 		accept: 'gif|jpg|png'
 	});

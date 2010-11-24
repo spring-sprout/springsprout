@@ -183,6 +183,7 @@ ul.main.study {
 	padding: 10px;
 	position:relative;
 }
+#content { height: auto !important;}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
@@ -195,7 +196,7 @@ ul.main.study {
 				</h3>	
 			</div>
 			<div class="studyDescr" style="height: 55%;">
-				<h1>Most Hot Study!!</h1>		
+				<h1>Hot Meeting!!</h1>		
 				<div style="padding: 2px;" >
 					<div class="studyBorder ui-corner-all">
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
