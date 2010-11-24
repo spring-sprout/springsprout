@@ -17,30 +17,15 @@
 
 <s2c:left-column>
     <s2c:module name="Text" more="더보기" url="${study.id}/post/textPost/list/0">
-        <ul class="item-details">
-            <li>
-                <dl>
-                    <dt>리더:</dt>
-                    <dd>${study.manager.name}</dd>
-                </dl>
-                <dl>
-                    <dt>모임수:</dt>
-                    <dd>${study.meetingCount}</dd>
-                </dl>
-                <dl>
-                    <dt>참석인원:</dt>
-                    <dd>${study.memberCount}/${study.maximumCount}</dd>
-                </dl>
-                <dl>
-                    <dt>시작일:</dt>
-                    <dd><s:date value="${study.startDay}"/></dd>
-                </dl>
-                <dl>
-                    <dt>종료일:</dt>
-                    <dd><s:date value="${study.endDay}"/></dd>
-                </dl>
-            </li>
-        </ul>
+        <ol class="item-details">
+            <s2c:portlet target="${texts}">
+            <c:forEach var="text" items="${texts}">
+				<li>
+					${text.title } ${text.writer.name }
+				</li>
+			</c:forEach>
+			</s2c:portlet>
+        </ol>
     </s2c:module>
     
 </s2c:left-column>

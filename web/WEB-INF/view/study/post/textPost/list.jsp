@@ -22,11 +22,7 @@
 	color: white;
 }
 
-.post-comment-count .post-count {
-}
-.post-view-count {
-	background-color: #E6E6FA;
-}
+.post-view-count { background-color: #E6E6FA; }
 
 .post-count {
 	font-weight: bold;
@@ -46,9 +42,7 @@
 	height: 23px;
 	width: 100%;
 }
-.post-text-title {
-	text-indent: 1em;
-}
+.post-text-title { text-indent: 1em; }
 .post-text-title:HOVER {
 	cursor: pointer;
 	text-decoration: underline;
@@ -64,7 +58,7 @@
 	border-right: none;
 	background: none repeat scroll 0 0 #FFFFFF;
 }
-.post-list-actions { float: right; }
+.post-list-actions { float: right; padding: 10px 5px 0px 0px;}
 .active { border-bottom: 1px solid white; }
 .tip {
     color: #fff;
@@ -77,60 +71,52 @@
     border-radius: 3px;
     font-size: 11px;
 }
+.mod-content { padding: 10px; }
+.mod-header { margin: 0 5px;}
+
 </style>
 
-<div id="mainBar">
-	<div class="post-list-actions">
-		<sec:authorize ifAnyGranted="ROLE_MEMBER">
-			<button id="writeBtn">글쓰기</button>
-		</sec:authorize>
-	</div>
-	<div id="post-list-header" class="post-text-list-header">
-		<div class="post-text-list-header-title"><h2>일반 포스트 목록</h2></div>
-	</div>
-	<div class="post-text-list-tabs">
-		<div class="active">active</div>
-		<div>hot</div>
-		<div>week</div>
-		<div>month</div>
-	</div>
-	<div id="post-list">
-	<c:forEach items="${textPostList}" var="post">
-		<div class="post-text-list">
-			<div id="post-text-summary-${post.id}">
-				<div class="post-text-summary-count"></div>
-					<div class="post-reply-count">
-						<div class="post-count">${post.branchCount}</div>
-						<div>reply</div>
+<div class="post-list-actions">
+	<sec:authorize ifAnyGranted="ROLE_MEMBER">
+		<button id="writeBtn">글쓰기</button>
+	</sec:authorize>
+</div>
+<s2c:module name="List of Text Post">
+	<s2c:portlet target="${textPostList}">
+		<div id="post-list">
+		<c:forEach items="${textPostList}" var="post">
+			<div class="post-text-list">
+				<div id="post-text-summary-${post.id}">
+					<div class="post-text-summary-count"></div>
+						<div class="post-reply-count">
+							<div class="post-count">${post.branchCount}</div>
+							<div>reply</div>
+						</div>
+						<div class="post-comment-count">
+							<div class="post-count">${post.commentCount}</div>
+							<div>comment</div>
+						</div>
+					<div class="post-text-summary">
+						<div class="post-text-title" id="${post.id}">
+							<h3 class="tip_trigger">${post.title}
+							<span class="tip">
+								<img class="photo fn logoSmall" height="48" width="48" src="${post.writer.avatar}" alt="${post.writer.name}"/>
+								<span>${post.content}</span>
+							</span>
+							</h3>
+						</div>
+						<div class="post-text-createdAt" align="right">${post.createdAt} writed by ${post.writer.name }</div>
 					</div>
-					<div class="post-comment-count">
-						<div class="post-count">${post.commentCount}</div>
-						<div>comment</div>
-					</div>
-					<div class="post-view-count">
-						<div class="post-count">10</div>
-						<div>view</div>
-					</div>
-				<div class="post-text-summary">
-					<div class="post-text-title" id="${post.id}">
-						<h3 class="tip_trigger">${post.title}
-						<span class="tip">
-							<img class="photo fn logoSmall" height="48" width="48" src="${post.writer.avatar}" alt="${post.writer.name}"/>
-							<span>${post.content}</span>
-						</span>
-						</h3>
-					</div>
-					<div class="post-text-createdAt" align="right">${post.createdAt} writed by ${post.writer.name }</div>
 				</div>
 			</div>
+		</c:forEach>
 		</div>
-	</c:forEach>
-	</div>
-	<div id="post-list-bottom"></div>
-</div>
-<s:postPaging />
+		<div id="post-list-bottom"></div>
+		<s:postPaging />
+	</s2c:portlet>
+</s2c:module>
 <div id="registDiv" title="일반 게시물 생성">
-	<form:form id="postForm" commandName="textPost" method="post" action="/study/view/${study.id}/board/textPost/write">
+	<form:form id="postForm" commandName="textPost" method="post" action="/study/${study.id}/post/textPost/write">
 		<form:hidden path="rootStudy.id"/>
 		<p>
 			<form:label path="title">제목 : </form:label>
@@ -162,7 +148,7 @@ $(function(){
 			 $('div#postContent').wysiwyg();
 		},
 		close: function() {
-			$('#listDiv').load('${study.id}/board/textPost/list/0');
+			$('#listDiv').load('${study.id}/post/textPost/list/0');
 		}
 	});
 
@@ -184,7 +170,7 @@ $(function(){
 
 	$('.post-text-title').click( function(event){
 		var postId = $(this).attr('id');
-		$('#listDiv').load('${study.id}/board/textPost/view/' + postId + '/page/' + '${pagingInfo.now}');
+		$('#listDiv').load('${study.id}/post/textPost/' + postId + '/page/' + '${pagingInfo.now}');
 		return false;
 	});	
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })

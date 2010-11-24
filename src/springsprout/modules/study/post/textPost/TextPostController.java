@@ -20,13 +20,13 @@ import springsprout.domain.study.board.TextPost;
 import springsprout.modules.study.post.PostService;
 
 @Controller
-@RequestMapping("/study/{id}/post/textPost/")
+@RequestMapping("/study/{id}/post/textPost")
 @SessionAttributes({"study", "updatePost"})
 public class TextPostController {
 
 	@Autowired @Qualifier("textPostService") PostService<TextPost> service;
 	
-	@RequestMapping("list/{page}")
+	@RequestMapping("/list/{page}")
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page) {
 		model.addAttribute(new TextPost(study));
 		model.addAttribute(service.getList( page, Paging.DEFAULT_SIZE));
@@ -34,14 +34,14 @@ public class TextPostController {
 		return "study/post/textPost/list";
 	}
 	
-	@RequestMapping(value="write", method = RequestMethod.POST)
+	@RequestMapping(value="/write", method = RequestMethod.POST)
 	@ResponseBody
 	public TextPost write(Model model, @ModelAttribute TextPost post) {
 		service.addPost(post);
 		return post;
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	@ResponseBody
 	public TextPost update(ModelMap model, @ModelAttribute TextPost updatePost, @PathVariable int id, SessionStatus status) {
 		TextPost post = (TextPost) model.get("updatePost");
@@ -51,12 +51,12 @@ public class TextPostController {
 		return post;
 	}
 	
-	@RequestMapping("remove")
+	@RequestMapping("/remove")
 	public void remove(TextPost post) {
 		service.removePost(post);
 	}
 	
-	@RequestMapping("view/{id}/page/{page}")
+	@RequestMapping("/{id}/page/{page}")
 	public String read(Model model, @PathVariable int id, @PathVariable int page, Study study) {
 		TextPost post = service.getPost(id);
 		model.addAttribute( "branchPost", new TextPost( post, study));
@@ -67,7 +67,7 @@ public class TextPostController {
 		return "study/post/textPost/view";
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public TextPost read(Model model, @PathVariable int id) {
 		TextPost post = service.getPost(id);
@@ -76,7 +76,7 @@ public class TextPostController {
 	}
 	
 	
-	@RequestMapping(value="{id}/comment/write", method = RequestMethod.POST)
+	@RequestMapping(value="/{id}/comment/write", method = RequestMethod.POST)
 	@ResponseBody
 	public Comment writeComment(@PathVariable int id, Comment comment) {
 		TextPost post = service.getPost(id);
@@ -84,7 +84,7 @@ public class TextPostController {
 		return comment;
 	}
 	
-	@RequestMapping(value="{postId}/comment/{commentId}/remove", method = RequestMethod.POST)
+	@RequestMapping(value="/{postId}/comment/{commentId}/remove", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean removeComment( @PathVariable int postId, @PathVariable int commentId) {
 		service.removeComment( postId, commentId);
