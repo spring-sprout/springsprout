@@ -10,20 +10,20 @@ import springsprout.domain.Study;
 import springsprout.domain.study.board.TextPost;
 
 @Controller
-@RequestMapping("/study/view/{id}/board/")
+@RequestMapping("/study/{id}")
 @SessionAttributes("study")
 public class PostController {
 	
-	@RequestMapping("view")
+	@RequestMapping("/post")
 	public String view(Model model, @ModelAttribute Study study) {
 		model.addAttribute(new TextPost(study));
-		return "study/board/view";
+		return "study/post/view";
 	}
 	
-	@RequestMapping("allPost")
+	@RequestMapping("/allPost")
 	public String viewRecentPost(Model model, @ModelAttribute Study study) {
 		model.addAttribute(new TextPost(study));
-		return "study/board/viewRecentPosts";
+		return "study/post/viewRecentPosts";
 	}
 	
 }
