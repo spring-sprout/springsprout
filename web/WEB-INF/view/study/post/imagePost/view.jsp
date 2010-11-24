@@ -351,13 +351,10 @@ $(function(){
 				$('#replyAddSpot').find('.reply-content').text( reply.content).end()
 					.find('.reply-title').text( reply.title).end()
 					.find('.comment-count').text( reply.commentCount).end()
-					//.find('.photo').text( reply.writer.avatar).end()
-					//.find('.post-comment-writer-name').text( reply.commentCount).end()
-					//.find('.post-comment-writer-createdText').text( reply.commentCount).end()
-					.find('.commentForm').attr('action', '/study/view/${study.id}/board/textPost/' + reply.id + '/comment/write');
+					.find('.commentForm').attr('action', '/study/${study.id}/active-area/textPost/' + reply.id + '/comment/write');
 				$('#reply-header').after( $('#replyAddSpot').html());
 				$replyDiv.dialog('close');
-				$('#listDiv').load('${study.id}/board/textPost/view/' + '${textPost.id}/page/' + '${page}');
+				$('active-area').load('${study.id}/active-area/textPost/view/' + '${textPost.id}/page/' + '${page}');
 			},  
 	        dataType:  'json',
 	        clearForm: true
@@ -370,7 +367,6 @@ $(function(){
 				.find( '.post-comment-writer-name').text( comment.writer.name).end()
 				.find( '.post-comment-writer-createdText').text( comment.createdText).end()
 				.find( '.post-comment-data').text( comment.comment).end()
-				//.find( '.entry-content').html( commentDto.comment).end()
 				.find( '.rt').attr( 'alt', 'RT ' + comment.writer.name).attr( 'writer', comment.writer.name).end()
 				.find( '.action.comment_delete').attr( '/study/view/${study.id}/board/textPost/${textPost.id}/comment/' + comment.id + '/remove');
 			$form.parent().after($('#commentAddSpot').html()).next().show('highlight', null, 1000);
@@ -382,7 +378,7 @@ $(function(){
 	};
 	var updateOptions = {
 	        success:       function(comment, statusText, xhr, $form) {
-	        	$('#listDiv').load('${study.id}/board/textPost/view/' + '${textPost.id}/page/' + '${page}');
+	        	$('.active-area').load('${study.id}/board/textPost/view/' + '${textPost.id}/page/' + '${page}');
 	        	$updateDiv.dialog('close');
 			},  
 	        dataType:  'json',
@@ -428,7 +424,7 @@ $(function(){
 		return false;
 	});
 	$('.listBtn').click( function(){
-		$('#listDiv').load('${study.id}/board/textPost/list/' + '${page}');
+		$('.active-area').load('${study.id}/post/textPost/list/' + '${page}');
 	});
 	// 버튼 모양으로 변경
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })

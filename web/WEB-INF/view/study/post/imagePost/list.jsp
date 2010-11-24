@@ -7,21 +7,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
 .post-list-actions { float: none !important;}
-.post-image-detailImage, .post-image-thumbnail {
-	
-}
-img:HOVER {
-	cursor: pointer;
-}
+img:HOVER { cursor: pointer; }
 .post-image-detail-image {
 	max-width: 70%;
 	margin: 10px;
 	border: solid 1px gray;
 }
-.post-image-thumbnail img {
-	margin: 5px;
-}
-
+.post-image-thumbnail img { margin: 5px;}
 .post-image-thumbnail-default {
 	opacity : 0.67;
 	opacity : 1;
@@ -33,9 +25,7 @@ img:HOVER {
 	border: solid 2px green;
 	width: 50%;
 }
-.post-image-container .images {
-	overflow: hidden;
-}
+.post-image-container .images { overflow: hidden;}
 
 .detail {
 	float: left;
@@ -48,29 +38,22 @@ img:HOVER {
 
 /* the overlayed element */
 .simple_overlay {
-	
 	/* must be initially hidden */
 	display:none;
-	
 	/* place overlay on top of other elements */
 	z-index:10000;
-	
 	/* styling */
 	background-color:#333;
-	
 	width:675px;	
 	min-height:200px;
 	border:1px solid #666;
-	
 	/* CSS3 styling for latest browsers */
 	-moz-box-shadow:0 0 90px 5px #000;
 	-webkit-box-shadow: 0 0 90px #000;	
 }
 
 /* close button positioned on upper right corner */
-.simple_overlay {
-	width: 1000px;
-}
+.simple_overlay { width: 1000px;}
 .simple_overlay div {
 	float:left;
 }
@@ -118,13 +101,15 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 .icon-arrow:HOVER { width: 75px; }
 .icon-left { float:left; }
 .icon-right { float:right; }
+
+.mod-content { padding: 10px; }
 </style>
-<div id="mainBar">
-	<div class="post-list-actions" align="right">
-		<sec:authorize ifAnyGranted="ROLE_MEMBER">
-			<button id="writeBtn">글쓰기</button>
-		</sec:authorize>
-	</div>
+<div class="post-list-actions" align="right">
+	<sec:authorize ifAnyGranted="ROLE_MEMBER">
+		<button id="writeBtn">글쓰기</button>
+	</sec:authorize>
+</div>
+<s2c:module name="List of Image Post">
 	<div class="post-image-container">
 		<div class="images">
 			<div class="detail">
@@ -157,7 +142,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 					<div class="comment-list">
 						<h3>Your Comment↓</h3>
 						<div id="commentFormDiv" class="comment-form">
-							<form:form id="commentForm" action="/study/view/${study.id}/board/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
+							<form:form id="commentForm" action="/study/view/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
 								<form:textarea path="comment" cssClass="comment" />
 								<input type="submit" class="comment-submit" value="보내기"/>
 							</form:form>
@@ -180,7 +165,7 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 	                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 	                              <c:if test="${currentUserName == comment.writer.email}">
 	                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-	                                       href="/study/view/${study.id}/board/imagePost/${post.id}/comment/${comment.id}"/>
+	                                       href="/study/view/${study.id}/post/imagePost/${post.id}/comment/${comment.id}"/>
 	                              </c:if>
 							</sec:authorize>
 						</div>
@@ -204,9 +189,9 @@ input.comment-submit { height: 60px; float: left; width: 10%; margin-left: 0.5em
 			</div>
 		</div>
 	</div>
-</div>
+</s2c:module>
 <script type="text/javascript">
-var $postForm = $('#postForm'), $commentForm = $('.commentForm'), $listDiv = $('#listDiv'), selectedPostId;
+var $postForm = $('#postForm'), $commentForm = $('.commentForm'), $actionArea = $('.active-area'), selectedPostId;
 $(function(){ 
 	initEvent();
 	initCommentForm();
@@ -241,7 +226,7 @@ function initEvent() {
 		});
 	}); 
 	$('#movePrev, #moveNext').click( function(){
-		Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost/list/' + $(this).text(), $listDiv);
+		Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost/list/' + $(this).text(), $actionArea);
 	});
 	$('.action.comment_delete').live( 'click', function() {
         var $this = $(this);
@@ -257,21 +242,21 @@ function initEvent() {
 		var $this = $(this);
         if( confirm( '삭제 하시겠습니까?')) {
         	$.ajax({
-        		url : '${study.id}/board/imagePost/' + $this.attr('id'),
+        		url : '${study.id}/post/imagePost/' + $this.attr('id'),
         		data : {_method: 'DELETE'},
         		type : 'POST',
         		beforeSend : function(){
         			s_waitblock();
         		},success : function(html){
-        			Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost/list/0', $listDiv);
+        			Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost/list/0', $actionArea);
         		}
         	});
         }
         return false;
 	});
 	$('.updateBtn').live( 'click', function() {
-		$.get( '${study.id}/board/imagePost/' + $(this).attr('id'), function(html){
-			$listDiv.html(html);	
+		$.get( '${study.id}/post/imagePost/' + $(this).attr('id'), function(html){
+			$actionArea.html(html);	
 		});
 		return false;
 	});
@@ -312,7 +297,7 @@ function initCommentForm() {
 }
 
 function changePageToForm() {
-	Study.Post.blockUIAjaxReq( '${study.id}/board/imagePost', $listDiv);
+	Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost', $actionArea);
 }
 
 function navigateImage( $targetEl) {

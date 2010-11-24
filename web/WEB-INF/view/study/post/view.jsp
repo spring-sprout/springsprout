@@ -16,7 +16,7 @@
 <h2>Post Summary</h2>
 
 <s2c:left-column>
-    <s2c:module name="Text" more="더보기">
+    <s2c:module name="Text" more="더보기" url="${study.id}/post/textPost/list/0">
         <ul class="item-details">
             <li>
                 <dl>
@@ -53,15 +53,16 @@
     </s2c:module>
 </s2c:right-column>
 <s2c:bottom-column>
-	<s2c:module name="Image" more="더보기">
+	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
 	
 	</s2c:module>
 </s2c:bottom-column>
 <script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
 <script type="text/javascript">
 $(function(){ 
-	$('#textPost').click( function( event){
-		$('#listDiv').load('${study.id}/board/textPost/list/0');			
+	$('.more').click( function(){
+		$('.active-area').load($(this).next().text());
+		return false;
 	});
 	$('#allPost').click( function( event){
 		$('#listDiv').load('/study/${study.id}/board/allPost');

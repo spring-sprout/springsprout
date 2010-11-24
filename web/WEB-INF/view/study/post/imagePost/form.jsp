@@ -37,7 +37,7 @@ textarea { width: 95%; }
 	</form:form>
 </fieldset>
 <script type="text/javascript">
-$postForm = $('#postForm'), $listDiv = $('#listDiv');
+$postForm = $('#postForm'), $activeArea = $('.active-area');
 $(function(){
 	initEvent();
 	initFileupload();
@@ -85,11 +85,11 @@ function initFileupload() {
 
 function refreshListDiv() {
 	$.ajax({
-		url : '${study.id}/board/imagePost/list/0',
+		url : '${study.id}/post/imagePost/list/0',
 		beforeSend : function(){
 			s_waitblock();
 		},success : function(html){
-			$listDiv.html(html);
+			$activeArea.html(html);
 			$.unblockUI();
 		}
 	});
