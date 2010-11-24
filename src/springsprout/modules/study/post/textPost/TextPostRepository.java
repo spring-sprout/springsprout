@@ -1,4 +1,4 @@
-package springsprout.modules.study.board.textPost;
+package springsprout.modules.study.post.textPost;
 
 import java.util.List;
 

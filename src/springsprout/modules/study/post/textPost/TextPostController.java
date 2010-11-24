@@ -1,4 +1,4 @@
-package springsprout.modules.study.board.textPost;
+package springsprout.modules.study.post.textPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,10 +17,10 @@ import springsprout.common.web.support.Paging;
 import springsprout.domain.Comment;
 import springsprout.domain.Study;
 import springsprout.domain.study.board.TextPost;
-import springsprout.modules.study.board.PostService;
+import springsprout.modules.study.post.PostService;
 
 @Controller
-@RequestMapping("/study/view/{id}/board/textPost/")
+@RequestMapping("/study/{id}/post/textPost/")
 @SessionAttributes({"study", "updatePost"})
 public class TextPostController {
 
@@ -31,7 +31,7 @@ public class TextPostController {
 		model.addAttribute(new TextPost(study));
 		model.addAttribute(service.getList( page, Paging.DEFAULT_SIZE));
 		model.addAttribute("pagingInfo", service.initPaing( page));
-		return "study/board/textPost/list";
+		return "study/post/textPost/list";
 	}
 	
 	@RequestMapping(value="write", method = RequestMethod.POST)
@@ -64,7 +64,7 @@ public class TextPostController {
 		model.addAttribute( "comment", new Comment());
 		model.addAttribute( "page", page - 1);
 		model.addAttribute( post);
-		return "study/board/textPost/view";
+		return "study/post/textPost/view";
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET)

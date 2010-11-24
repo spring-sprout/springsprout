@@ -1,4 +1,4 @@
-package springsprout.modules.study.board.imagePost;
+package springsprout.modules.study.post.imagePost;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import springsprout.domain.Comment;
 import springsprout.domain.study.board.ImageFile;
 import springsprout.domain.study.board.ImagePost;
 import springsprout.modules.file.FileService;
-import springsprout.modules.study.board.PostService;
+import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
 @Service("imagePostService")

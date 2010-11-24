@@ -1,4 +1,4 @@
-package springsprout.modules.study.board.textPost;
+package springsprout.modules.study.post.textPost;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +12,7 @@ import springsprout.common.web.support.PostPaging;
 import springsprout.domain.Comment;
 import springsprout.domain.study.board.TextPost;
 import springsprout.modules.comment.CommentRepository;
-import springsprout.modules.study.board.PostService;
+import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
 @Service("textPostService")

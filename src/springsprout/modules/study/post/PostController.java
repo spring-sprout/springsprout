@@ -1,4 +1,4 @@
-package springsprout.modules.study.board;
+package springsprout.modules.study.post;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

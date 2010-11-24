@@ -1,4 +1,4 @@
-package springsprout.modules.study.board;
+package springsprout.modules.study.post;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springsprout.common.test.DBUnitSupport;
 import springsprout.domain.study.board.TextPost;
-import springsprout.modules.study.board.textPost.TextPostRepository;
+import springsprout.modules.study.post.textPost.TextPostRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="/testContext.xml")

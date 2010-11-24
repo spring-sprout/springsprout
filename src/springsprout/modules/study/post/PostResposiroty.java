@@ -1,4 +1,4 @@
-package springsprout.modules.study.board;
+package springsprout.modules.study.post;
 
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.study.board.Post;

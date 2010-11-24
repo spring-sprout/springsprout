@@ -1,4 +1,4 @@
-package springsprout.modules.study.board.imagePost;
+package springsprout.modules.study.post.imagePost;
 
 import java.util.List;
 
