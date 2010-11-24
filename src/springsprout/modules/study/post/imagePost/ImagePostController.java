@@ -34,7 +34,7 @@ public class ImagePostController {
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page, SessionStatus status) {
 		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE);
 		model.addAttribute(new ImagePost(study));
-		model.addAttribute("posts", posts);
+		model.addAttribute("posts", posts.isEmpty() ? null : posts);
 		model.addAttribute("page", page);
 		model.addAttribute("comment", new Comment());
 		return "study/post/imagePost/list";

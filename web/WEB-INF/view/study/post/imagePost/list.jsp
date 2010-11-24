@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
-.post-list-actions { float: none !important; padding: 10px 5px 0px 0px;}
+.post-list-actions { float: right; padding: 10px 5px 0px 0px;}
 img:HOVER { cursor: pointer; }
 .post-image-detail-image {
 	max-width: 70%;
@@ -115,92 +115,94 @@ input.comment-submit { height: 55px; float: left; width: 10%; margin-left: 0.5em
 .post-comment-actions { float:right; visibility: hidden;}
 
 </style>
-<div class="post-list-actions" align="right">
+<div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
 		<button id="writeBtn">글쓰기</button>
 	</sec:authorize>
 	<button id="moveToListBtn">목록으로</button>
 </div>
 <s2c:module name="List of Image Post">
-	<div class="post-image-container">
-		<div class="images">
-			<div class="detail">
-				<c:forEach items="${posts}" var="post" varStatus="status">
-				<div class="post-image post-image-detailImage" align="center" id="post-${post.id}">
-					<img src="/images/study/monotone_arrow_left.png" class="icon-arrow icon-left" />
-					<img class="post-image-detail-image" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
-					<img src="/images/study/monotone_arrow_right.png" class="icon-arrow icon-right"/>
-					<div class="simple_overlay" id="${post.id}">
-						<!-- large image -->
-						<div style="width: 80%;">
-							<img style="max-width: 100%;" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" />
-						</div>
-						<!-- image details -->
-						<div class="details">
-							<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-							<c:if test="${currentUserName == post.writer.email}">
-								<button class="updateBtn" id="${post.id}">수정</button>
-								<button class="deleteBtn" id="${post.id}">삭제</button>
-							</c:if>
-							<h3 class="detail-title">${post.title}</h3>
-							<h4 class="detail-writer">${post.writer.name}</h4>
-							<p class="detail-content">${post.content}</p>
-						</div>
-					</div>
-				<div class="contents" id="content-${post.id}" align="left">
-					<div class="content">
-						${post.content}
-					</div>
-					<div class="comment-list">
-						<h3>Your Comment↓</h3>
-						<div id="commentFormDiv" class="comment-form">
-							<form:form id="commentForm" action="/study/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
-								<form:textarea path="comment" cssClass="comment" />
-								<input type="submit" class="comment-submit" value="보내기"/>
-							</form:form>
-						</div>
-						<c:forEach items="${post.comments}" var="comment">
-						<div class="comment-area">
-						<div class="post-comment-writer-info">
-							<div class="thumb">
-								<img class="photo fn logoSmall" height="24" width="24" src="${comment.writer.avatar}" alt="${comment.writer.name}"/>
-							</div>
-							<div class="post-comment-writer">
-								<span class="post-comment-writer-name">${comment.writer.name}</span><br/>
-								<span class="post-comment-writer-createdText">${comment.createdText}</span>
-							</div>
-						</div>
-						<div class="post-comment-data">${comment.comment}</div>
-						<div class="post-comment-actions">
-							<img class="rt" src="<c:url value="/images/icon_reply.gif"/>" alt="RT ${comment.writer.name}" writer="${comment.writer.name}" class="action" title="댓글" />
-							<sec:authorize ifAnyGranted="ROLE_MEMBER">
-	                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-	                              <c:if test="${currentUserName == comment.writer.email}">
-	                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-	                                       href="/study/${study.id}/post/imagePost/${post.id}/comment/${comment.id}"/>
-	                              </c:if>
-							</sec:authorize>
-						</div>
-						</div>
-						</c:forEach>
-					</div>
-				</div>
-				</div>
-				</c:forEach>
-			</div>
-			<div class="list" align="center">
-				<span id="movePrev" class="ui-icon ui-icon-triangle-1-n">${page - 1}</span>
-				<div class="post-image post-image-thumbnail-list">
+	<s2c:portlet target="${posts}">
+		<div class="post-image-container">
+			<div class="images">
+				<div class="detail">
 					<c:forEach items="${posts}" var="post" varStatus="status">
-					<div class="post-image post-image-thumbnail" rel="${post.id}">
-						<img class="post-image-thumbnail-default" src="/images/userimage/${post.writer.email}/${post.imageFile.thumbNailName}" alt="${post.title}" title="${post.title}" />
+					<div class="post-image post-image-detailImage" align="center" id="post-${post.id}">
+						<img src="/images/study/monotone_arrow_left.png" class="icon-arrow icon-left" />
+						<img class="post-image-detail-image" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" alt="image${status.count }" rel="#${post.id}"/>
+						<img src="/images/study/monotone_arrow_right.png" class="icon-arrow icon-right"/>
+						<div class="simple_overlay" id="${post.id}">
+							<!-- large image -->
+							<div style="width: 80%;">
+								<img style="max-width: 100%;" src="/images/userimage/${post.writer.email}/${post.imageFile.savedFileName}" />
+							</div>
+							<!-- image details -->
+							<div class="details">
+								<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+								<c:if test="${currentUserName == post.writer.email}">
+									<button class="updateBtn" id="${post.id}">수정</button>
+									<button class="deleteBtn" id="${post.id}">삭제</button>
+								</c:if>
+								<h3 class="detail-title">${post.title}</h3>
+								<h4 class="detail-writer">${post.writer.name}</h4>
+								<p class="detail-content">${post.content}</p>
+							</div>
+						</div>
+					<div class="contents" id="content-${post.id}" align="left">
+						<div class="content">
+							${post.content}
+						</div>
+						<div class="comment-list">
+							<h3>Your Comment↓</h3>
+							<div id="commentFormDiv" class="comment-form">
+								<form:form id="commentForm" action="/study/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
+									<form:textarea path="comment" cssClass="comment" />
+									<input type="submit" class="comment-submit" value="보내기"/>
+								</form:form>
+							</div>
+							<c:forEach items="${post.comments}" var="comment">
+							<div class="comment-area">
+							<div class="post-comment-writer-info">
+								<div class="thumb">
+									<img class="photo fn logoSmall" height="24" width="24" src="${comment.writer.avatar}" alt="${comment.writer.name}"/>
+								</div>
+								<div class="post-comment-writer">
+									<span class="post-comment-writer-name">${comment.writer.name}</span><br/>
+									<span class="post-comment-writer-createdText">${comment.createdText}</span>
+								</div>
+							</div>
+							<div class="post-comment-data">${comment.comment}</div>
+							<div class="post-comment-actions">
+								<img class="rt" src="<c:url value="/images/icon_reply.gif"/>" alt="RT ${comment.writer.name}" writer="${comment.writer.name}" class="action" title="댓글" />
+								<sec:authorize ifAnyGranted="ROLE_MEMBER">
+		                              <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+		                              <c:if test="${currentUserName == comment.writer.email}">
+		                                  <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
+		                                       href="/study/${study.id}/post/imagePost/${post.id}/comment/${comment.id}"/>
+		                              </c:if>
+								</sec:authorize>
+							</div>
+							</div>
+							</c:forEach>
+						</div>
+					</div>
 					</div>
 					</c:forEach>
 				</div>
-				<span id="moveNext" class="ui-icon ui-icon-triangle-1-s">${page + 1}</span>
+				<div class="list" align="center">
+					<span id="movePrev" class="ui-icon ui-icon-triangle-1-n">${page - 1}</span>
+					<div class="post-image post-image-thumbnail-list">
+						<c:forEach items="${posts}" var="post" varStatus="status">
+						<div class="post-image post-image-thumbnail" rel="${post.id}">
+							<img class="post-image-thumbnail-default" src="/images/userimage/${post.writer.email}/${post.imageFile.thumbNailName}" alt="${post.title}" title="${post.title}" />
+						</div>
+						</c:forEach>
+					</div>
+					<span id="moveNext" class="ui-icon ui-icon-triangle-1-s">${page + 1}</span>
+				</div>
 			</div>
 		</div>
-	</div>
+	</s2c:portlet>
 </s2c:module>
 <script type="text/javascript">
 var $postForm = $('#postForm'), $commentForm = $('.commentForm'), $actionArea = $('.active-area'), selectedPostId;
