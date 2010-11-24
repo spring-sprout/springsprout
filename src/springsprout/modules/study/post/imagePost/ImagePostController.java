@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,7 +20,6 @@ import springsprout.common.web.support.Paging;
 import springsprout.domain.Comment;
 import springsprout.domain.Study;
 import springsprout.domain.study.board.ImagePost;
-import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
 @Controller
@@ -29,7 +27,7 @@ import springsprout.service.security.SecurityService;
 @SessionAttributes({"study"})
 public class ImagePostController {
 
-	@Autowired @Qualifier("imagePostService") PostService<ImagePost> service;
+	@Autowired ImagePostService service;
 	@Autowired SecurityService securityService;
 	
 	@RequestMapping("/list/{page}")
@@ -38,6 +36,16 @@ public class ImagePostController {
 		model.addAttribute(new ImagePost(study));
 		model.addAttribute("posts", posts);
 		model.addAttribute("page", page);
+		model.addAttribute("comment", new Comment());
+		return "study/post/imagePost/list";
+	}
+	
+	@RequestMapping("/listBySelectId/{id}")
+	public String getListBySelectId(Model model, @ModelAttribute Study study, @PathVariable int id, SessionStatus status) {
+		List<ImagePost> posts = service.getListBySelecteId( id, Paging.DEFAULT_SIZE);
+		model.addAttribute(new ImagePost(study));
+		model.addAttribute("posts", posts);
+		//model.addAttribute("page", page);
 		model.addAttribute("comment", new Comment());
 		return "study/post/imagePost/list";
 	}

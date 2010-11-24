@@ -12,12 +12,11 @@ import springsprout.domain.Comment;
 import springsprout.domain.study.board.ImageFile;
 import springsprout.domain.study.board.ImagePost;
 import springsprout.modules.file.FileService;
-import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
 @Service("imagePostService")
 @Transactional
-public class ImagePostServiceImpl implements PostService<ImagePost> {
+public class ImagePostServiceImpl implements ImagePostService {
 	
 	@Autowired ImagePostRepository repository;
 	@Autowired @Qualifier("imageFileService") FileService fileService;
@@ -25,6 +24,10 @@ public class ImagePostServiceImpl implements PostService<ImagePost> {
 
 	public List<ImagePost> getList( int start, int limit) {
 		return repository.getRootPostList(start * limit, limit);
+	}
+	
+	public List<ImagePost> getListBySelecteId(int id, int limit) {
+		return repository.getRootPostList(id, limit);
 	}
 
 	public ImagePost getPost( int postId) {
@@ -87,4 +90,5 @@ public class ImagePostServiceImpl implements PostService<ImagePost> {
 	public PostPaging initPaing( int i) {
 		throw new UnsupportedOperationException("이미지 게시판에서는 페이징을 쓰지 않아요.");
 	}
+	
 }
