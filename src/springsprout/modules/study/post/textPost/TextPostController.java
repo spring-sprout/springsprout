@@ -74,6 +74,20 @@ public class TextPostController {
 		return "study/post/textPost/form";
 	}
 	
+	@RequestMapping(value="/{postId}/reply", method = RequestMethod.GET)
+	public String getReplyForm(Model model, @ModelAttribute Study study,
+			@PathVariable int id, @PathVariable int postId, @RequestParam int page) {
+		TextPost parent = service.getPost(postId);
+		model.addAttribute("parent", service.getPost(postId));
+		model.addAttribute("textPost", new TextPost( parent, study));
+		model.addAttribute("title", "Reply to");
+		model.addAttribute("method", RequestMethod.POST.toString());
+		String actionUrl = "/study/" + id + "/post/textPost/" + postId + "/reply?page=" + page;
+		model.addAttribute("action", actionUrl);
+		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/" + postId + "?page=" + page);
+		return "study/post/textPost/replyForm";
+	}
+	
 	@RequestMapping("/{postId}")
 	public String read(Model model, @PathVariable int postId, @RequestParam int page, Study study) {
 		TextPost post = service.getPost(postId);

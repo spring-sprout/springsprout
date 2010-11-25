@@ -12,12 +12,8 @@
 	overflow:hidden;
 	padding-bottom:5px;
 }
-.reply-comment-list {
-	padding-left: 2%;
-}
-.comment-list {
-	padding-left: 5%;
-}
+.reply-comment-list { padding-left: 2%; }
+.comment-list { padding-left: 5%; }
 .comment-header { 
 	border-bottom: 1px solid black;
 	overflow:hidden;
@@ -75,7 +71,7 @@ span#at { color:#2276BB; }
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
-		<button class="writeBtn">답글</button>
+		<button id="replyBtn" class="writeBtn">답글</button>
 		<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 		<c:if test="${currentUserName == textPost.writer.email}">
 		<button id="updateBtn" class="updateBtn" id="${textPost.id}">수정</button>
@@ -213,58 +209,6 @@ span#at { color:#2276BB; }
 	</div>
 </div>
 </s2c:module>
-<!-- 작성 및 수정에 필요 한 HTML 조각 들  -->
-<div id="replyDiv" title="답글 - 일반 게시물 생성">
-	<form:form id="replyForm" modelAttribute="branchPost" method="post" action="/study/${study.id}/post/textPost/write">
-		<form:hidden path="rootPost.id"/>
-		<form:hidden path="rootStudy.id"/>
-		<p>
-			<form:label path="title">제목 : </form:label>
-			<form:input path="title" cssStyle="width: 90%;" />
-		</p>
-		<p>
-			<form:label path="content">내용</form:label><br/>
-			<form:textarea path="content" id="postContent" rows="8" cols="100" />
-		</p>
-	</form:form>
-</div>
-
-<div id="replyAddSpot" style="display:none;">
-	<div class="replyPost">
-		<div class="reply-data post-text-reply">
-			<div class="reply-title"></div>
-			<div class="reply-content"></div>
-			<div>
-				<div class="post-comment-writer-info">
-					<div class="thumb">
-						<img class="photo fn logoSmall" height="24" width="24" src="" alt=""/>
-					</div>
-					<div class="post-comment-writer">
-						<span class="post-comment-writer-name"></span><br/>
-						<span class="post-comment-writer-createdText"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="reply-comment-list">
-			<div class="comment-header">
-				<h5 style="float: left;"><span class="comment-count"></span> Comments</h5>
-				<div style="float: right;">
-					<button class="updateReplyBtn post-button" id="${reply.id}">수정</button>
-					<button class="writeReplyBtn">댓글 작성</button>
-				</div>
-			</div>
-			<div class="comment-list">
-				<div class="reply-comment-form">
-					<form:form cssClass="commentForm" commandName="comment" action="" method="post">
-						<form:textarea path="comment" cssClass="comment root" cssStyle="float: left;"/>
-						<input type="submit" style="float: right;" />
-					</form:form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <div id="commentAddSpot" style="display: none;">
 	<div class="comment-area">
 		<div class="post-comment-writer-info">
@@ -285,81 +229,10 @@ span#at { color:#2276BB; }
 	</div>
 </div>
 <script type="text/javascript">
+var $updateDiv = $('#updateDiv'), $replyDiv = $('#replyDiv'),
+	$updateForm = $('#updateForm'), $replyForm = $('#replyForm'),
+	$actionArea = $('.active-area');
 $(function(){ 
-	var $updateDiv = $('#updateDiv'), $replyDiv = $('#replyDiv'),
-		$updateForm = $('#updateForm'), $replyForm = $('#replyForm'),
-		$actionArea = $('.active-area');
-	
-	$replyDiv.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 600,
-		modal: true,
-		buttons: {
-			'저장': function() {
-				$replyForm.submit();
-			},
-			'닫기': function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		open: function() {
-			$('textarea').wysiwyg();
-		},
-		close: function() {
-		}
-	});
-	$updateDiv.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 600,
-		modal: true,
-		buttons: {
-			'수정': function() {
-				$updateForm.submit();
-			}, '닫기': function() {
-				$(this).dialog( "close" );
-			}
-		},
-		open: function() {
-			$('textarea').wysiwyg();
-		},
-		close: function() {
-		}
-	});
-	
-	$('.writeBtn').click( function(e){ $replyDiv.dialog('open'); });
-	$('#updateBtn').click( function(e){
-		$actionArea.load('${study.id}/post/textPost/${textPost.id}/update?page=${page}');
-	});
-	
-	$('.updateReplyBtn').click( function(e){ 
-		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id'), null, function(post){
-			$updateForm.find('input[name="title"]').val(post.title).end()
-				.find('textarea[name="content"]').val(post.content).end()
-				.attr('action', '/study/${study.id}/post/textPost/' + post.id);
-			$updateDiv.dialog('open'); 
-		});
-	});
-
-
-	var options = { 
-	        success:       function(reply, statusText, xhr, $form) {
-				$('#replyAddSpot').find('.reply-content').text( reply.content).end()
-					.find('.reply-title').text( reply.title).end()
-					.find('.comment-count').text( reply.commentCount).end()
-					//.find('.photo').text( reply.writer.avatar).end()
-					//.find('.post-comment-writer-name').text( reply.commentCount).end()
-					//.find('.post-comment-writer-createdText').text( reply.commentCount).end()
-					.find('.commentForm').attr('action', '/study/${study.id}/post/textPost/' + reply.id + '/comment/write');
-				$('#reply-header').after( $('#replyAddSpot').html());
-				$replyDiv.dialog('close');
-				$('#listDiv').load('${study.id}/post/textPost/' + '${textPost.id}/page/' + '${page}');
-			},  
-	        dataType:  'json',
-	        clearForm: true
-	}; 
-	
 	var commentOptions = {
         success:       function(comment, statusText, xhr, $form) {
 			$form.parent().slideToggle("slow");
@@ -377,28 +250,12 @@ $(function(){
         dataType:  'json',
         clearForm: true
 	};
-	var updateOptions = {
-	        success:       function(comment, statusText, xhr, $form) {
-	        	$('#listDiv').load('${study.id}/post/textPost/' + '${textPost.id}/page/' + '${page}');
-	        	$updateDiv.dialog('close');
-			},  
-	        dataType:  'json',
-	        clearForm: true
-		};
-	$replyForm.submit(function() { 
-		$(this).ajaxSubmit(options); 
-		return false;
-	});
 	
 	$('.commentForm').live( 'submit', function() { 
 		$(this).ajaxSubmit(commentOptions); 
 		return false;
 	});
-	$updateForm.submit( function() { 
-		$(this).ajaxSubmit(updateOptions); 
-		return false;
-	});
-	
+		
 	$('.post-comment-actions .rt').live( 'click', function() {
 		var $form = $(this).parent().parent().parent().children().first();
 		if ($form.is(':hidden')) {
@@ -419,6 +276,29 @@ $(function(){
         return false;
     });
 	
+	// 버튼 모양으로 변경
+	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
+		.children().addClass('post-button-text').removeClass('ui-button-text');
+	
+});
+
+function initEvent() {
+	$('#replyBtn').click( function(e){ 
+		$actionArea.load('${study.id}/post/textPost/${textPost.id}/reply?page=${page}');
+	});
+	$('#updateBtn').click( function(e){
+		$actionArea.load('${study.id}/post/textPost/${textPost.id}/update?page=${page}');
+	});
+	
+	$('.updateReplyBtn').click( function(e){ 
+		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id'), null, function(post){
+			$updateForm.find('input[name="title"]').val(post.title).end()
+				.find('textarea[name="content"]').val(post.content).end()
+				.attr('action', '/study/${study.id}/post/textPost/' + post.id);
+			$updateDiv.dialog('open'); 
+		});
+	});
+	
 	$('.writeReplyBtn').live( 'click', function() {
 		$this = $(this);
 		$this.parent().parent().next().find('.reply-comment-form').slideToggle('slow');
@@ -427,9 +307,5 @@ $(function(){
 	$('#moveToListBtn').click( function(){
 		$actionArea.load('${study.id}/post/textPost/list/' + '${page}');
 	});
-	// 버튼 모양으로 변경
-	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
-		.children().addClass('post-button-text').removeClass('ui-button-text');
-	
-});
+}
 </script>
