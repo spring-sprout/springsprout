@@ -16,8 +16,8 @@ textarea { width: 95%; border: 1px solid; }
 <s2c:module name="${title} Text Post">
 	<fieldset>
 		<legend>원본 글</legend>
-		${ parent.title }
-		${ parent.content }
+		<h3>${ parent.title }</h3>
+		<p>${ parent.content }</p>
 	</fieldset>
 	<form:form id="postForm" commandName="textPost" method="${method}" action="${action}" enctype="multipart/form-data">
 		<form:hidden path="rootPost.id"/>

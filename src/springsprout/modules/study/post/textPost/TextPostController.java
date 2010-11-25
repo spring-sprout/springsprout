@@ -42,12 +42,12 @@ public class TextPostController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getForm(Model model, @ModelAttribute Study study) {
+	public String getForm(Model model, @ModelAttribute Study study, @PathVariable int id) {
 		model.addAttribute(new TextPost(study));
 		model.addAttribute("title", "Add New");
 		model.addAttribute("method", RequestMethod.POST.toString());
-		model.addAttribute("action", "/study/" + study.getId() + "/post/textPost");
-		model.addAttribute("cancelUrl", "/study/post/textPost/list");
+		model.addAttribute("action", "/study/" + id + "/post/textPost");
+		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/list/0");
 		return "study/post/textPost/form";
 	}
 	
@@ -57,7 +57,7 @@ public class TextPostController {
 		service.updatePost(textPost);
 		model.addAttribute( "branchPost", new TextPost( textPost, study));
 		model.addAttribute( "comment", new Comment());
-		model.addAttribute( "page", page - 1);
+		model.addAttribute( "page", page);
 		model.addAttribute( textPost);
 		return "study/post/textPost/view";
 	}
@@ -98,19 +98,15 @@ public class TextPostController {
 	}
 	
 	@RequestMapping(value="/{postId}/comment", method = RequestMethod.POST)
-	@ResponseBody
-	public Comment writeComment(@PathVariable int postId, Comment comment) {
+	public @ResponseBody Comment write(@PathVariable int postId, Comment comment) {
 		TextPost post = service.getPost(postId);
 		service.addComment(post, comment);
 		return comment;
 	}
 	
-	@RequestMapping(value="/{postId}/comment/{commentId}/remove", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean removeComment( @PathVariable int postId, @PathVariable int commentId) {
+	@RequestMapping(value="/{postId}/comment/{commentId}", method = RequestMethod.DELETE)
+	public @ResponseBody boolean removeComment( @PathVariable int postId, @PathVariable int commentId) {
 		service.removeComment( postId, commentId);
 		return true;
 	}
-	
-	
 }

@@ -64,10 +64,11 @@ span#at { color:#2276BB; }
 	text-indent:0.8em;
 }
 .reply-title { font-weight: bold;}
-.post-commentSubmitBtn { height: 60px; float: right; width: 50px; }
+.post-commentSubmitBtn { height: 50px; float: right; width: 10%; }
 .mod-content { padding: 10px; }
 .mod-header { margin: 0 5px;}
 .post-list-actions { float: right; padding: 10px 5px 0px 0px;}
+.writeReplyBtn { margin: 2px;}
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
@@ -173,7 +174,7 @@ span#at { color:#2276BB; }
 			</div>
 			<div class="comment-list">
 				<div id="commentFormDiv" class="reply-comment-form">
-					<form:form cssClass="commentForm" commandName="comment" action="/study/${study.id}/post/textPost/${reply.id}/comment/write" method="post">
+					<form:form cssClass="commentForm" commandName="comment" action="/study/${study.id}/post/textPost/${reply.id}/comment" method="post">
 						<form:textarea path="comment" cssClass="comment root" cssStyle="float: left;"/>
 						<input type="submit" class="post-commentSubmitBtn" value="보내기" />
 					</form:form>
@@ -195,8 +196,8 @@ span#at { color:#2276BB; }
 						<sec:authorize ifAnyGranted="ROLE_MEMBER">
 							<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 								<c:if test="${currentUserName == comment.writer.email}">
-								<img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-                                	href="/study/${study.id}/post/textPost/${reply.id}/comment/${comment.id}/remove"/>
+								<img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제" 
+									href="/study/${study.id}/post/textPost/${reply.id}/comment/${comment.id}/remove"/>
                               	</c:if>
 						</sec:authorize>
 					</div>
@@ -233,6 +234,8 @@ var $updateDiv = $('#updateDiv'), $replyDiv = $('#replyDiv'),
 	$updateForm = $('#updateForm'), $replyForm = $('#replyForm'),
 	$actionArea = $('.active-area');
 $(function(){ 
+	initEvent();
+	
 	var commentOptions = {
         success:       function(comment, statusText, xhr, $form) {
 			$form.parent().slideToggle("slow");
@@ -268,9 +271,9 @@ $(function(){
         var $this = $(this);
 		var $commentCount = $this.parent().parent().parent().prev().children().first().children().first();
         if( confirm( "삭제 하시겠습니까?")) {
-			$.post( $this.attr("href"), null, function(data) {
-			$this.parent().parent().hide( 'blind', null, 1000).remove();
-			$commentCount.text( parseInt( $commentCount.text()) - 1);
+			$.post( $this.attr("href"), {_method : 'DELETE'}, function(data) {
+				$this.parent().parent().hide( 'blind', null, 1000).remove();
+				$commentCount.text( parseInt( $commentCount.text()) - 1);
 			}, 'json');
         }
         return false;
@@ -291,11 +294,13 @@ function initEvent() {
 	});
 	
 	$('.updateReplyBtn').click( function(e){ 
-		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id'), null, function(post){
-			$updateForm.find('input[name="title"]').val(post.title).end()
-				.find('textarea[name="content"]').val(post.content).end()
-				.attr('action', '/study/${study.id}/post/textPost/' + post.id);
-			$updateDiv.dialog('open'); 
+		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id')+'/update?page=${page}'
+			, null
+			, function(post){
+				$updateForm.find('input[name="title"]').val(post.title).end()
+					.find('textarea[name="content"]').val(post.content).end()
+					.attr('action', '/study/${study.id}/post/textPost/' + post.id);
+				$updateDiv.dialog('open'); 
 		});
 	});
 	
