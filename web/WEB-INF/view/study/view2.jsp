@@ -102,7 +102,7 @@
     #quicklinks {
         position: absolute;
         right: 8px;
-        top: 10px;
+        top: 15px;
         z-index: 1000;
     }
     ul.operations {

@@ -2,7 +2,7 @@
 *{margin:0;padding:0;}
 body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote {
 	font:12px/1.4 helvetica,arial,clean,sans-serif;
-    font-family:'Malgun Gothic','verdana';
+    font-family: 'arial', 'FreeSans', 'Helvetica', 'Malgun Gothic','verdana';
 	*font-size:small;
 }
 table {
