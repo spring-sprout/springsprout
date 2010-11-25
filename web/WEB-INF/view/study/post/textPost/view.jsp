@@ -69,21 +69,25 @@ span#at { color:#2276BB; }
 }
 .reply-title { font-weight: bold;}
 .post-commentSubmitBtn { height: 60px; float: right; width: 50px; }
+.mod-content { padding: 10px; }
+.mod-header { margin: 0 5px;}
+.post-list-actions { float: right; padding: 10px 5px 0px 0px;}
 </style>
+<div class="post-list-actions">
+	<sec:authorize ifAnyGranted="ROLE_MEMBER">
+		<button class="writeBtn">답글</button>
+		<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+		<c:if test="${currentUserName == textPost.writer.email}">
+		<button id="updateBtn" class="updateBtn" id="${textPost.id}">수정</button>
+		</c:if>
+	</sec:authorize>
+	<button id="moveToListBtn" class="listBtn">목록으로</button>
+</div>
+<s2c:module name="Text Post Detail">
 <div id="textPost-detail">
 	<div class="post-root">
 	<div id="post-list-header" class="post-text-list-header">
-		<h2 style="float: left;">${textPost.title }</h2>
-		<div style="float: right;">
-			<sec:authorize ifAnyGranted="ROLE_MEMBER">
-				<button class="writeBtn">답글</button>
-				<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-				<c:if test="${currentUserName == textPost.writer.email}">
-				<button class="updateBtn" id="${textPost.id}">수정</button>
-				</c:if>
-			</sec:authorize>
-			<button class="listBtn">목록으로</button>
-		</div>
+		<h2>${textPost.title }</h2>
 	</div>
 	<div id="rootPost" class="post-text-root">
 		<div class="text-post-content wysiwyg">
@@ -108,7 +112,7 @@ span#at { color:#2276BB; }
 		</div>
 		<div class="comment-list">
 			<div id="commentFormDiv" class="reply-comment-form">
-				<form:form id="commentForm" cssClass="commentForm" commandName="comment" action="/study/view/${study.id}/board/textPost/${textPost.id}/comment/write" method="post">
+				<form:form id="commentForm" cssClass="commentForm" commandName="comment" action="/study/${study.id}/post/textPost/${textPost.id}/comment" method="post">
 					<form:textarea path="comment" cssClass="comment root" cssStyle="float: left;"/>
 					<input type="submit" class="post-commentSubmitBtn" value="보내기" />
 				</form:form>
@@ -131,7 +135,7 @@ span#at { color:#2276BB; }
                               <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
                               <c:if test="${currentUserName == comment.writer.email}">
                                   <img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-                                       href="/study/view/${study.id}/board/textPost/${textPost.id}/comment/${comment.id}/remove"/>
+                                       href="/study/${study.id}/post/textPost/${textPost.id}/comment/${comment.id}/remove"/>
                               </c:if>
 						</sec:authorize>
 					</div>
@@ -173,7 +177,7 @@ span#at { color:#2276BB; }
 			</div>
 			<div class="comment-list">
 				<div id="commentFormDiv" class="reply-comment-form">
-					<form:form cssClass="commentForm" commandName="comment" action="/study/view/${study.id}/board/textPost/${reply.id}/comment/write" method="post">
+					<form:form cssClass="commentForm" commandName="comment" action="/study/${study.id}/post/textPost/${reply.id}/comment/write" method="post">
 						<form:textarea path="comment" cssClass="comment root" cssStyle="float: left;"/>
 						<input type="submit" class="post-commentSubmitBtn" value="보내기" />
 					</form:form>
@@ -196,7 +200,7 @@ span#at { color:#2276BB; }
 							<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 								<c:if test="${currentUserName == comment.writer.email}">
 								<img id="commentDel" class="action comment_delete" src="<c:url value="/images/study/delete_smallest.png"/>" title="삭제"
-                                	href="/study/view/${study.id}/board/textPost/${reply.id}/comment/${comment.id}/remove"/>
+                                	href="/study/${study.id}/post/textPost/${reply.id}/comment/${comment.id}/remove"/>
                               	</c:if>
 						</sec:authorize>
 					</div>
@@ -208,9 +212,10 @@ span#at { color:#2276BB; }
 		</c:forEach>
 	</div>
 </div>
+</s2c:module>
 <!-- 작성 및 수정에 필요 한 HTML 조각 들  -->
 <div id="replyDiv" title="답글 - 일반 게시물 생성">
-	<form:form id="replyForm" modelAttribute="branchPost" method="post" action="/study/view/${study.id}/board/textPost/write">
+	<form:form id="replyForm" modelAttribute="branchPost" method="post" action="/study/${study.id}/post/textPost/write">
 		<form:hidden path="rootPost.id"/>
 		<form:hidden path="rootStudy.id"/>
 		<p>
@@ -223,20 +228,7 @@ span#at { color:#2276BB; }
 		</p>
 	</form:form>
 </div>
-<div id="updateDiv" title="수정">
-	<form:form id="updateForm" modelAttribute="updatePost" method="PUT" action="/study/view/${study.id}/board/textPost/">
-		<form:hidden path="rootPost.id"/>
-		<form:hidden path="rootStudy.id"/>
-		<p>
-			<form:label path="title">제목 : </form:label>
-			<form:input path="title" cssStyle="width: 90%;" />
-		</p>
-		<p>
-			<form:label path="content">내용</form:label><br/>
-			<form:textarea path="content" id="postContent" rows="8" cols="100" cssStyle="width: 100%;"/>
-		</p>
-	</form:form>
-</div>
+
 <div id="replyAddSpot" style="display:none;">
 	<div class="replyPost">
 		<div class="reply-data post-text-reply">
@@ -295,7 +287,8 @@ span#at { color:#2276BB; }
 <script type="text/javascript">
 $(function(){ 
 	var $updateDiv = $('#updateDiv'), $replyDiv = $('#replyDiv'),
-		$updateForm = $('#updateForm'), $replyForm = $('#replyForm');
+		$updateForm = $('#updateForm'), $replyForm = $('#replyForm'),
+		$actionArea = $('.active-area');
 	
 	$replyDiv.dialog({
 		autoOpen: false,
@@ -336,11 +329,15 @@ $(function(){
 	});
 	
 	$('.writeBtn').click( function(e){ $replyDiv.dialog('open'); });
-	$('.updateReplyBtn, .updateBtn').click( function(e){ 
-		$.getJSON('/study/view/${study.id}/board/textPost/'+$(this).attr('id'), null, function(post){
+	$('#updateBtn').click( function(e){
+		$actionArea.load('${study.id}/post/textPost/${textPost.id}/update?page=${page}');
+	});
+	
+	$('.updateReplyBtn').click( function(e){ 
+		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id'), null, function(post){
 			$updateForm.find('input[name="title"]').val(post.title).end()
 				.find('textarea[name="content"]').val(post.content).end()
-				.attr('action', '/study/view/${study.id}/board/textPost/' + post.id);
+				.attr('action', '/study/${study.id}/post/textPost/' + post.id);
 			$updateDiv.dialog('open'); 
 		});
 	});
@@ -354,10 +351,10 @@ $(function(){
 					//.find('.photo').text( reply.writer.avatar).end()
 					//.find('.post-comment-writer-name').text( reply.commentCount).end()
 					//.find('.post-comment-writer-createdText').text( reply.commentCount).end()
-					.find('.commentForm').attr('action', '/study/view/${study.id}/board/textPost/' + reply.id + '/comment/write');
+					.find('.commentForm').attr('action', '/study/${study.id}/post/textPost/' + reply.id + '/comment/write');
 				$('#reply-header').after( $('#replyAddSpot').html());
 				$replyDiv.dialog('close');
-				$('#listDiv').load('${study.id}/board/textPost/view/' + '${textPost.id}/page/' + '${page}');
+				$('#listDiv').load('${study.id}/post/textPost/' + '${textPost.id}/page/' + '${page}');
 			},  
 	        dataType:  'json',
 	        clearForm: true
@@ -372,7 +369,7 @@ $(function(){
 				.find( '.post-comment-data').text( comment.comment).end()
 				//.find( '.entry-content').html( commentDto.comment).end()
 				.find( '.rt').attr( 'alt', 'RT ' + comment.writer.name).attr( 'writer', comment.writer.name).end()
-				.find( '.action.comment_delete').attr( '/study/view/${study.id}/board/textPost/${textPost.id}/comment/' + comment.id + '/remove');
+				.find( '.action.comment_delete').attr( '/study/${study.id}/post/textPost/${textPost.id}/comment/' + comment.id + '/remove');
 			$form.parent().after($('#commentAddSpot').html()).next().show('highlight', null, 1000);
 			var $commentCount = $form.parent().parent().prev().children().first().children().first();
 			$commentCount.text( parseInt( $commentCount.text()) + 1);
@@ -382,7 +379,7 @@ $(function(){
 	};
 	var updateOptions = {
 	        success:       function(comment, statusText, xhr, $form) {
-	        	$('#listDiv').load('${study.id}/board/textPost/view/' + '${textPost.id}/page/' + '${page}');
+	        	$('#listDiv').load('${study.id}/post/textPost/' + '${textPost.id}/page/' + '${page}');
 	        	$updateDiv.dialog('close');
 			},  
 	        dataType:  'json',
@@ -427,8 +424,8 @@ $(function(){
 		$this.parent().parent().next().find('.reply-comment-form').slideToggle('slow');
 		return false;
 	});
-	$('.listBtn').click( function(){
-		$('#listDiv').load('${study.id}/board/textPost/list/' + '${page}');
+	$('#moveToListBtn').click( function(){
+		$actionArea.load('${study.id}/post/textPost/list/' + '${page}');
 	});
 	// 버튼 모양으로 변경
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })

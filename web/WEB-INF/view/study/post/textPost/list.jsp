@@ -80,6 +80,7 @@
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
 		<button id="writeBtn">글쓰기</button>
 	</sec:authorize>
+	<button id="moveToListBtn">목록으로</button>
 </div>
 <s2c:module name="List of Text Post">
 	<s2c:portlet target="${textPostList}">
@@ -115,62 +116,19 @@
 		<s:postPaging />
 	</s2c:portlet>
 </s2c:module>
-<div id="registDiv" title="일반 게시물 생성">
-	<form:form id="postForm" commandName="textPost" method="post" action="/study/${study.id}/post/textPost/write">
-		<form:hidden path="rootStudy.id"/>
-		<p>
-			<form:label path="title">제목 : </form:label>
-			<form:input path="title" cssStyle="width: 90%;" />
-		</p>
-		<p>
-			<form:label path="content">내용</form:label><br/>
-			<form:textarea path="content" id="postContent" rows="8" cols="100" />
-		</p>
-	</form:form>
-</div>
+
 <script type="text/javascript">
 $(function(){ 
-	$registDiv = $( '#registDiv'), $postForm = $('#postForm');
-	$registDiv.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 600,
-		modal: false,
-		buttons: {
-			'생성': function() {
-	  			$postForm.submit();
-			},
-			'취소': function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		open: function() {
-			 $('div#postContent').wysiwyg();
-		},
-		close: function() {
-			$('#listDiv').load('${study.id}/post/textPost/list/0');
-		}
-	});
-
+	var $postForm = $('#postForm'), $actionArea = $('.active-area');
 	$('#writeBtn').click( function(e){
-		  $registDiv.dialog('open');
+		$actionArea.load('${study.id}/post/textPost');
 	});
-
- 	var options = { 
-        success:       function(data) {
-			$registDiv.dialog('close');
-		}, 
-        dataType:  'json',
-        clearForm: true
-    }; 
- 	$postForm.submit(function() { 
-		$(this).ajaxSubmit(options); 
-		return false; 
-	}); 
-
+	$('#moveToListBtn').click( function(e){
+		$actionArea.load('${study.id}/post');
+	});
 	$('.post-text-title').click( function(event){
 		var postId = $(this).attr('id');
-		$('#listDiv').load('${study.id}/post/textPost/' + postId + '/page/' + '${pagingInfo.now}');
+		$actionArea.load('${study.id}/post/textPost/' + postId + '?page=${pagingInfo.now}');
 		return false;
 	});	
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })

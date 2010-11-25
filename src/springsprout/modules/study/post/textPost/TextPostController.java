@@ -1,5 +1,6 @@
 package springsprout.modules.study.post.textPost;
 
+import org.junit.experimental.theories.ParametersSuppliedBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -21,7 +23,7 @@ import springsprout.modules.study.post.PostService;
 
 @Controller
 @RequestMapping("/study/{id}/post/textPost")
-@SessionAttributes({"study", "updatePost"})
+@SessionAttributes({"study", "textPost"})
 public class TextPostController {
 
 	@Autowired @Qualifier("textPostService") PostService<TextPost> service;
@@ -34,52 +36,58 @@ public class TextPostController {
 		return "study/post/textPost/list";
 	}
 	
-	@RequestMapping(value="/write", method = RequestMethod.POST)
-	@ResponseBody
-	public TextPost write(Model model, @ModelAttribute TextPost post) {
+	@RequestMapping(method = RequestMethod.POST)
+	public String write(Model model, @ModelAttribute TextPost post) {
 		service.addPost(post);
-		return post;
+		return "study/post/textPost/list";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getForm(Model model, @ModelAttribute Study study) {
+		model.addAttribute(new TextPost(study));
+		model.addAttribute("title", "Add New");
+		model.addAttribute("method", RequestMethod.POST.toString());
+		model.addAttribute("action", "/study/" + study.getId() + "/post/textPost");
+		model.addAttribute("cancelUrl", "/study/post/textPost/list");
+		return "study/post/textPost/form";
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	@ResponseBody
-	public TextPost update(ModelMap model, @ModelAttribute TextPost updatePost, @PathVariable int id, SessionStatus status) {
-		TextPost post = (TextPost) model.get("updatePost");
-		post.setTitle(updatePost.getTitle());
-		post.setContent(updatePost.getContent());
-		service.updatePost(post);
-		return post;
+	public String update(ModelMap model, @ModelAttribute TextPost textPost, @ModelAttribute Study study, 
+			@PathVariable int id, @RequestParam int page, SessionStatus status) {
+		service.updatePost(textPost);
+		model.addAttribute( "branchPost", new TextPost( textPost, study));
+		model.addAttribute( "comment", new Comment());
+		model.addAttribute( "page", page - 1);
+		model.addAttribute( textPost);
+		return "study/post/textPost/view";
 	}
 	
-	@RequestMapping("/remove")
-	public void remove(TextPost post) {
-		service.removePost(post);
+	@RequestMapping(value="/{postId}/update", method = RequestMethod.GET)
+	public String getUpdateForm(Model model, @PathVariable int id, @PathVariable int postId, @RequestParam int page) {
+		model.addAttribute("textPost", service.getPost(postId));
+		model.addAttribute("title", "Update");
+		model.addAttribute("method", RequestMethod.PUT.toString());
+		String actionUrl = "/study/" + id + "/post/textPost/" + postId + "?page=" + page;
+		model.addAttribute("action", actionUrl);
+		model.addAttribute("cancelUrl", actionUrl);
+		return "study/post/textPost/form";
 	}
 	
-	@RequestMapping("/{id}/page/{page}")
-	public String read(Model model, @PathVariable int id, @PathVariable int page, Study study) {
-		TextPost post = service.getPost(id);
+	@RequestMapping("/{postId}")
+	public String read(Model model, @PathVariable int postId, @RequestParam int page, Study study) {
+		TextPost post = service.getPost(postId);
 		model.addAttribute( "branchPost", new TextPost( post, study));
-		model.addAttribute( "updatePost", new TextPost());
 		model.addAttribute( "comment", new Comment());
 		model.addAttribute( "page", page - 1);
 		model.addAttribute( post);
 		return "study/post/textPost/view";
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/{postId}/comment", method = RequestMethod.POST)
 	@ResponseBody
-	public TextPost read(Model model, @PathVariable int id) {
-		TextPost post = service.getPost(id);
-		model.addAttribute( "updatePost", service.getPost(id));
-		return post;
-	}
-	
-	
-	@RequestMapping(value="/{id}/comment/write", method = RequestMethod.POST)
-	@ResponseBody
-	public Comment writeComment(@PathVariable int id, Comment comment) {
-		TextPost post = service.getPost(id);
+	public Comment writeComment(@PathVariable int postId, Comment comment) {
+		TextPost post = service.getPost(postId);
 		service.addComment(post, comment);
 		return comment;
 	}

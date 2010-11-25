@@ -82,7 +82,7 @@ span#at { color:#2276BB; }
 				<button class="updateBtn" id="${textPost.id}">수정</button>
 				</c:if>
 			</sec:authorize>
-			<button class="listBtn">목록으로</button>
+			<button id="moveListBtn" class="listBtn">목록으로</button>
 		</div>
 	</div>
 	<div id="rootPost" class="post-text-root">
@@ -295,7 +295,8 @@ span#at { color:#2276BB; }
 <script type="text/javascript">
 $(function(){ 
 	var $updateDiv = $('#updateDiv'), $replyDiv = $('#replyDiv'),
-		$updateForm = $('#updateForm'), $replyForm = $('#replyForm');
+		$updateForm = $('#updateForm'), $replyForm = $('#replyForm'),
+		$actionArea = $('.active-area');
 	
 	$replyDiv.dialog({
 		autoOpen: false,
@@ -423,8 +424,8 @@ $(function(){
 		$this.parent().parent().next().find('.reply-comment-form').slideToggle('slow');
 		return false;
 	});
-	$('.listBtn').click( function(){
-		$('.active-area').load('${study.id}/post/textPost/list/' + '${page}');
+	$('#moveListBtn').click( function(){
+		$actionArea.load('${study.id}/post/textPost/list/' + '${page}');
 	});
 	// 버튼 모양으로 변경
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
