@@ -111,6 +111,7 @@ public class StudyController {
     @RequestMapping("/{id}/summary")
 	public String studySummary(@PathVariable int id, Model model) {
         model.addAttribute(advancedStudyService.getStudyById(id));
+        model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
         return "study/view/summary";
     }
 
@@ -134,6 +135,7 @@ public class StudyController {
     public String studyMembers(@PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
+        model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
         model.addAttribute("memberMeetingStatistics", statisticsService.getMemberMeetingStatisticsOf(study.getMeetings()));
         model.addAttribute("studyMemberStatistics", statisticsService.getStudyMemberStatisticesOf(study));
         return "/study/view/members";
@@ -194,7 +196,7 @@ public class StudyController {
 		Study study = advancedStudyService.getStudyById(id);
 		try {
             advancedStudyService.addCurrentMember(study);
-            setSession(session, study.getStudyName(), " 스터디에 참석하셨습니다.");
+            setSession(session, study.getStudyName(), " 스터디에 가입 하셨습니다.");
         } catch (StudyMaximumOverException e){
         	setSession(session, study.getStudyName(), " 스터디 제한 인원을 확인하세요.");
             log.debug("Check study's maximum member count");
@@ -207,7 +209,7 @@ public class StudyController {
 	public String removeCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.removeCurrentMember(study);
-		setSession(session, study.getStudyName(), "스터디에 참석을 취소 하셨습니다.");
+		setSession(session, study.getStudyName(), "스터디에서 탈퇴 하셨습니다.");
 		return redirectStudyView(id);
 	}
 	

@@ -10,7 +10,7 @@
 <style type="text/css">
     .openDate {
         float: left;
-        width: 40px;
+        width: 50px;
         text-align: center;
         font-weight: bold;
     }
@@ -62,8 +62,24 @@
     #meeting_list li.meetingItem {
         width: 90%;
     }
+
+    <%-- ===================== --%>
+    <%--    메뉴 아이콘 설정     --%>
+    <%-- ===================== --%>
+    .menu-bar .menu-button a.add-meeting span {
+        background-image: url("/images/Add-Folder-24x24.png");
+    }
 </style>
 <h2>모임</h2>
+<div id="quicklinks">
+    <ul class="operations menu-bar">
+        <li class="menu-button">
+            <a class="add-meeting" href="<c:url value="/study/meeting?studyId=${study.id}"/>">
+                <span>모임 추가</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <s2c:left-column>
     <s2c:module name="모임목록">
         <div id="meeting_list">

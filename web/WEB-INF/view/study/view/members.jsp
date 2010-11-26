@@ -47,6 +47,22 @@
     }
 </style>
 <h2>구성원</h2>
+<div id="quicklinks">
+    <ul class="operations menu-bar">
+        <li class="menu-button">
+            <c:if test="${(study.isStarted || study.isOpened) && (!isAlreadyJoinMember)}">
+                <a href="<c:url value="/study/join/${study.id}"/>" title="스터디 가입">
+                    <span>가입</span>
+                </a>
+            </c:if>
+            <c:if test="${(study.isStarted || study.isOpened) && (isAlreadyJoinMember)}">
+                <a href="<c:url value="/study/out/${study.id}"/>" title="스터디 탈퇴">
+                    <span>탈퇴</span>
+                </a>
+            </c:if>
+        </li>
+    </ul>
+</div>
 <s2c:left-column>
     <div class="module">
         <div class="mod-header">
