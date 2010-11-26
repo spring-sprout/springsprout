@@ -23,11 +23,7 @@
 }
 
 .post-view-count { background-color: #E6E6FA; }
-
-.post-count {
-	font-weight: bold;
-	font-size: 1.5em;
-}
+.post-count { font-weight: bold; font-size: 1.5em; }
 
 .post-text-list {
 	border-bottom: 1px dotted #999999;
@@ -78,9 +74,9 @@
 
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
-		<button id="writeBtn">글쓰기</button>
+		<button id="writeBtn" class="post-button">글쓰기</button>
 	</sec:authorize>
-	<button id="moveToListBtn">목록으로</button>
+	<button id="moveToListBtn" class="post-button">목록으로</button>
 </div>
 <s2c:module name="List of Text Post">
 	<s2c:portlet target="${textPostList}">

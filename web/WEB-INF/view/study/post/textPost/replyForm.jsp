@@ -8,6 +8,7 @@
 <style type="text/css">
 #postForm p { margin: 2px;}
 label { display: inline !important;}
+fieldset { padding: 5px; width: 93%; }
 textarea { width: 95%; border: 1px solid; }
 .mod-content { padding: 10px; }
 .mod-header { margin: 5px;}

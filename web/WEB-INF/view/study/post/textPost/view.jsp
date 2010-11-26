@@ -14,44 +14,13 @@
 }
 .reply-comment-list { padding-left: 2%; }
 .comment-list { padding-left: 5%; }
-.comment-header { 
-	border-bottom: 1px solid black;
-	overflow:hidden;
-}
-.comment-area {
-	border-bottom: 1px dotted black;
-	padding: 5px;
-	overflow: hidden;	
-}
-
-.comment {
-	width: 89%;
-	height: 50px;
-	border: 2px solid green;
-}
-
+.comment-header { border-bottom: 1px solid black; overflow:hidden; }
 .reply-comment-form { 
 	overflow: hidden;
 	display: none;
 	padding: 4px;
 }
-.post-root { 
-	border-bottom: 2px solid #006400;
-	padding: 10px 0;
-}
-.post-comment-writer-info { float:left; width: 15%; }
-.post-comment-writer {
-	float: left;
-	font-size: 0.8em;
-	padding-left: 5px;
-}
-.post-comment-data { float:left; padding-left: 3px;}
-.post-comment-actions { float:right; visibility: hidden;}
-.comment-area:HOVER { background-color:#E0F8F7; }
-.comment-area:HOVER .post-comment-actions { visibility:visible;}
-.post-comment-writer-name { font-weight:bold;}
-.rt:HOVER { cursor: pointer; }
-span#at { color:#2276BB; }
+.post-root {  border-bottom: 2px solid #006400; padding: 10px 0; }
 .post-text-root, .post-text-reply { overflow: hidden; }
 .post-text-root-writer-info, .post-text-reply-writer-info { float: right; border: solid 1px #1E90FF; width: 200px; }
 .post-text-reply-writer-info { font-size: 0.9em; }
@@ -69,16 +38,17 @@ span#at { color:#2276BB; }
 .mod-header { margin: 0 5px;}
 .post-list-actions { float: right; padding: 10px 5px 0px 0px;}
 .writeReplyBtn { margin: 2px;}
+
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
-		<button id="replyBtn" class="writeBtn">답글</button>
+		<button id="replyBtn" class="writeBtn post-button">답글</button>
 		<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 		<c:if test="${currentUserName == textPost.writer.email}">
-		<button id="updateBtn" class="updateBtn" id="${textPost.id}">수정</button>
+		<button id="updateBtn" class="updateBtn post-button" id="${textPost.id}">수정</button>
 		</c:if>
 	</sec:authorize>
-	<button id="moveToListBtn" class="listBtn">목록으로</button>
+	<button id="moveToListBtn" class="listBtn post-button">목록으로</button>
 </div>
 <s2c:module name="Text Post Detail">
 <div id="textPost-detail">
@@ -292,16 +262,8 @@ function initEvent() {
 	$('#updateBtn').click( function(e){
 		$actionArea.load('${study.id}/post/textPost/${textPost.id}/update?page=${page}');
 	});
-	
 	$('.updateReplyBtn').click( function(e){ 
-		$.getJSON('/study/${study.id}/post/textPost/'+$(this).attr('id')+'/update?page=${page}'
-			, null
-			, function(post){
-				$updateForm.find('input[name="title"]').val(post.title).end()
-					.find('textarea[name="content"]').val(post.content).end()
-					.attr('action', '/study/${study.id}/post/textPost/' + post.id);
-				$updateDiv.dialog('open'); 
-		});
+		$actionArea.load('${study.id}/post/textPost/${textPost.id}/replyUpdate/'+$(this).attr('id')+'?page=${page}');
 	});
 	
 	$('.writeReplyBtn').live( 'click', function() {

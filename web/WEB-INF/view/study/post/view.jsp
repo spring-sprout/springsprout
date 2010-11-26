@@ -5,12 +5,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link href="<c:url value="/css/study/post.css"/>" media="screen" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
 #bottomFull { width: 99%; }
 .post-image-thumbnail-default { margin: 2px; border: 1px green solid; }
 .post-image-thumbnail-default:HOVER { cursor: pointer; border-width: 2px; }
+.post-summary { font-size: 0.9em; list-style-type: none; }
+.post-summary-title { float: left; width: 80%;}
+.post-summary-title:HOVER { cursor: pointer; text-decoration: underline; font-weight: bold; color: green; }
+.post-summary-writer { float: right; width: 20%; }
 </style>
 
 <h2>Post Summary</h2>
@@ -20,8 +23,8 @@
         <ol class="item-details">
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
-				<li>
-					${text.title } ${text.writer.name }
+				<li class="post-summary">
+					<div id="postTitle" class="post-summary-title" title="${text.title}">${text.title}</div><div class="post-summary-writer">${text.writer.name}</div>
 				</li>
 			</c:forEach>
 			</s2c:portlet>
@@ -65,5 +68,6 @@ $(function(){
 		$('.active-area').load('${study.id}/post/imagePost/listBySelectId/' + $(this).attr('id'));
 	});
 	
+	SPROUT.common.util.cutStringUsingDot($('.post-summary').children(), 45);
 });
 </script>
