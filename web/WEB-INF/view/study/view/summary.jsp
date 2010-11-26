@@ -202,6 +202,9 @@
     .menu-bar .menu-button span, .menu-bar .menu-group .menu-title span span {
         padding-left: 25px;
     }
+    .menu-bar .menu-button span.no-icon, .menu-bar .menu-group .menu-title span span.no-icon {
+        padding-left: 10px;
+    }
     .menu-bar li.menu-group .menu-title, .menu-bar li.menu-button a {
         -moz-border-radius: 3px 3px 3px 3px;
         color: #535353;
@@ -252,6 +255,12 @@
         left: auto;
         right: 20000px;
     }
+    .menu-bar .menu-group .drop-down ul li a span {
+        line-height: 2em;
+    }
+    .menu-bar .menu-group div.drop-down a.no-icon {
+        padding-left: 10px;    
+    }
     .menu-bar .menu-group a.mgt span span,
     .menu-bar .menu-group.opened a.mgt span span{
         background-image: url("/images/tools_20.png");
@@ -271,17 +280,17 @@
     <ul class="operations menu-bar">
         <li class="menu-button">
             <a class="back" href="<c:url value="/study/index3"/>" title="스터디 목록으로 이동">
-                <span>스터디 목록</span>
+                <span class="no-icon">스터디 목록</span>
             </a>
         </li>
         <li class="menu-button">
             <a class="join" href="<c:url value="/study/join/${study.id}"/>" title="스터디 참여">
-                <span>가입</span>
+                <span class="no-icon">가입</span>
             </a>
         </li>
         <li class="menu-button">
             <a class="out" href="<c:url value="/study/out/${study.id}"/>" title="스터디 탈퇴">
-                <span>탈퇴</span>
+                <span class="no-icon">탈퇴</span>
             </a>
         </li>
         <li class="menu-group">
@@ -292,14 +301,14 @@
             </a>
             <div id="study-mgt-menu" class="drop-down most-right-menu assistive">
                 <ul class="first">
-                    <li><a href="<c:url value="/study/notify/${study.id}"/>"><span>스터디 알림</span></a></li>
-                    <li><a href="<c:url value="/study/update/${study.id}"/>"><span>스터디 수정</span></a></li>
-                    <li><a href="<c:url value="/study/end/${study.id}"/>"><span>스터디 종료</span></a></li>
-                    <li><a href="<c:url value="/study/delete/${study.id}"/>"><span>스터디 삭제</span></a></li>
-                    <li><a href="<c:url value="/study/start/${study.id}"/>"><span>스터디 시작</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/notify/${study.id}"/>"><span>스터디 알림</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/update/${study.id}"/>"><span>스터디 수정</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/end/${study.id}"/>"><span>스터디 종료</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/delete/${study.id}"/>"><span>스터디 삭제</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/start/${study.id}"/>"><span>스터디 시작</span></a></li>
                 </ul>
                 <ul>
-                    <li><a href="<c:url value="/study/meeting?studyId=${study.id}"/>"><span>모임 추가</span></a></li>
+                    <li><a class="no-icon" href="<c:url value="/study/meeting?studyId=${study.id}"/>"><span>모임 추가</span></a></li>
                 </ul>
             </div>
         </li>
