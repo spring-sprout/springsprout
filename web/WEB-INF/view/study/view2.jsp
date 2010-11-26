@@ -109,7 +109,7 @@
         list-style-type: none;
         margin: 0;
     }
-    ul.operations li {
+    ul.operations li.menu-button, ul.operations li.menu-group{
         float: left;
         margin: 0 0 0 4px;
         position: relative;
