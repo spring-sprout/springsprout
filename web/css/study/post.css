@@ -5,10 +5,12 @@
 .post-comment-writer-name { font-weight:bold;}
 .post-comment-data { float:left; padding-left: 3px; width: 70%;}
 .post-comment-actions { float:right; visibility: hidden;}
+textarea.comment  { width: 89%; float: left; border: 2px solid green;}
 .comment-area { border-bottom: 1px dotted black; padding: 5px; overflow: hidden; }
-.comment-area:HOVER { background-color:#E0F8F7; }
+.comment-area:HOVER { background-color:#E0F8F7;}
 .comment-area:HOVER .post-comment-actions { visibility:visible;}
 .rt:HOVER { cursor: pointer; }
 span#at { color:#2276BB; }
 
 .post-list-actions { float: right; }
+.post-button { font-size: 1.0em; padding: 3px;}
