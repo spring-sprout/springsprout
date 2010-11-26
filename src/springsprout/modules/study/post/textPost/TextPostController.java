@@ -81,10 +81,32 @@ public class TextPostController {
 		model.addAttribute("textPost", new TextPost( parent, study));
 		model.addAttribute("title", "Reply to");
 		model.addAttribute("method", RequestMethod.POST.toString());
-		String actionUrl = "/study/" + id + "/post/textPost/" + postId + "/reply?page=" + page;
-		model.addAttribute("action", actionUrl);
+		model.addAttribute("action", "/study/" + id + "/post/textPost/" + postId + "/reply?page=" + page);
 		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/" + postId + "?page=" + page);
 		return "study/post/textPost/replyForm";
+	}
+	
+	@RequestMapping(value="/{postId}/replyUpdate/{replyId}", method = RequestMethod.GET)
+	public String getReplyUpdateForm(Model model, @ModelAttribute Study study,
+			@PathVariable int id, @PathVariable int postId, @PathVariable int replyId, @RequestParam int page) {
+		model.addAttribute("parent", service.getPost(postId));
+		model.addAttribute("textPost", service.getPost(replyId));
+		model.addAttribute("title", "Update Reply to");
+		model.addAttribute("method", RequestMethod.PUT.toString());
+		model.addAttribute("action", "/study/" + id + "/post/textPost/" + postId + "/replyUpdate?page=" + page);
+		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/" + postId + "?page=" + page);
+		return "study/post/textPost/replyForm";
+	}
+	
+	@RequestMapping(value="/{postId}/replyUpdate", method=RequestMethod.PUT)
+	public String updateReply(ModelMap model, @ModelAttribute TextPost textPost, @ModelAttribute Study study, 
+			@PathVariable int postId, @RequestParam int page, SessionStatus status) {
+		service.updatePost(textPost);
+		model.addAttribute( "branchPost", new TextPost( textPost, study));
+		model.addAttribute( "comment", new Comment());
+		model.addAttribute( "page", page);
+		model.addAttribute( service.getPost(postId));
+		return "study/post/textPost/view";
 	}
 	
 	@RequestMapping("/{postId}")
