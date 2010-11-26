@@ -15,6 +15,7 @@
     </c:when>
 	<c:when test="${selected_menu == 'studies'}" >
 		<link href="<c:url value="/css/studies.css"/>" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<c:url value="/css/study/post.css"/>" media="screen" rel="stylesheet" type="text/css" />
 		<link href="<c:url value="/resources/css/pikachoose/pikachoose.css"/>" media="screen" rel="stylesheet" type="text/css" />
 		<link href="<c:url value="/resources/css/jquery.autocomplete.css"/>" media="screen" rel="stylesheet" type="text/css" />
 		<link href="<c:url value="/resources/css/thickbox.css"/>" media="screen" rel="stylesheet" type="text/css" />
