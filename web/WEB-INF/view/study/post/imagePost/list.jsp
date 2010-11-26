@@ -85,8 +85,7 @@ img:HOVER { cursor: pointer; }
 	padding: 4px;
 }
 .comment-list { border-top: solid gray 2px; }
-textarea.comment  { width: 89%; float: left; border: 2px solid green;}
-input.comment-submit { height: 55px; float: left; width: 10%; margin-left: 0.5em;}
+input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;}
 #movePrev:HOVER, #moveNext:HOVER { cursor: pointer; }
 .icon-arrow { width: 70px; }
 .icon-arrow:HOVER { width: 75px; }
@@ -96,30 +95,12 @@ input.comment-submit { height: 55px; float: left; width: 10%; margin-left: 0.5em
 .mod-content { padding: 10px; }
 .mod-header { margin: 5px;}
 
-.comment-area {
-	border-bottom: 1px dotted black;
-	padding: 5px;
-	overflow: hidden;	
-}
-.comment-area:HOVER { background-color:#E0F8F7; }
-
-.comment-area:HOVER .post-comment-actions { visibility:visible;}
-
-.post-comment-writer-info { float:left; width: 15%; }
-.post-comment-writer {
-	float: left;
-	font-size: 0.8em;
-	padding-left: 5px;
-}
-.post-comment-data { float:left; padding-left: 3px;}
-.post-comment-actions { float:right; visibility: hidden;}
-
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
-		<button id="writeBtn">글쓰기</button>
+		<button id="writeBtn" class="post-button">글쓰기</button>
 	</sec:authorize>
-	<button id="moveToListBtn">목록으로</button>
+	<button id="moveToListBtn" class="post-button">목록으로</button>
 </div>
 <s2c:module name="List of Image Post">
 	<s2c:portlet target="${posts}">
