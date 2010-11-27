@@ -177,7 +177,7 @@
                 <a href="<c:url value="${study.id}/comments"/>"><strong>의견</strong></a>
             </li>
             <li>
-                <a href="<c:url value="${study.id}/summary"/>"><strong>일정</strong></a>
+                <a href="<c:url value="${study.id}/calendar"/>"><strong>일정</strong></a>
             </li>
         </ul>
         <div class="active-area">

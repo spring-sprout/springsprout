@@ -141,6 +141,13 @@ public class StudyController {
         return "/study/view/members";
     }
 
+    @RequestMapping("/{id}/calendar")
+    public String studyCalendar(@PathVariable int id, Model model) {
+        Study study = advancedStudyService.getStudyById(id);
+    	model.addAttribute(study);
+        return "/study/view/calendar";
+    }
+
     @RequestMapping(value = "notify/{id}", method=RequestMethod.GET)
 	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
     	advancedStudyService.notify(id);
