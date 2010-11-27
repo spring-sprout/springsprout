@@ -97,7 +97,7 @@
 
 
 </style>
-<h2>Summary</h2>
+<h2>종합</h2>
 <div id="quicklinks">
     <c:if test="${isManagerOrAdmin}">
         <ul class="operations menu-bar">

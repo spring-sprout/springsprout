@@ -27,6 +27,7 @@
     }
     #container-header h1 {
         color: #3C78B5;
+        margin-left: 10px;
     }
     #main-content {
         min-width: 966px;
@@ -36,7 +37,7 @@
         float: left;
         margin-right: -0.083em;
         position: relative;
-        width: 11em;
+        width: 8em;
     }
     ul.vertical li {
         margin:-0.083em 0 0;
@@ -156,13 +157,13 @@
 </style>
 <page:defaultpage selected_menu="studies" banner_name="study-banner" ajaxlogin_yn="Y">
     <div id="container-header">
-        <img src="${study.logo}" alt="${study.studyName}" class="logo50">
+        <img src="${study.logo}" alt="${study.studyName}" class="logo70">
         <h1>${study.studyName}</h1>
     </div>
     <div id="main-content">
         <ul class="vertical tabs">
             <li class="active first">
-                <a href="<c:url value="${study.id}/summary"/>"><strong>Summary</strong></a>
+                <a href="<c:url value="${study.id}/summary"/>"><strong>종합</strong></a>
             </li>
             <li>
                 <a href="<c:url value="${study.id}/post"/>"><strong>게시판</strong></a>

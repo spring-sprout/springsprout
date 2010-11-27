@@ -167,7 +167,7 @@
     	
         $("#studies li").click( function(){
             //var url = '<!-- c:url value="/study/view/"/ -->' + $(this).attr("study");
-            var url = '/study/view/' + $(this).attr("study");
+            var url = '/study/' + $(this).attr("study");
             $(document).attr("location", url);
         });
 

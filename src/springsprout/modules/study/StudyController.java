@@ -31,10 +31,10 @@ public class StudyController {
 
 	private static final String STUDY_FORM = "study/form";
 	private static final String STUDY_INDEX = "study/index";
-	private static final String STUDY_VIEW = "study/view";
+	private static final String STUDY_VIEW = "study";
 	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/index";
 	
-	private static final String URL_STUDY_VIEW = "/study/view/";
+	private static final String URL_STUDY_VIEW = "/study/";
 	private static final String URL_STUDY_INDEX = "/study/index";
 	
 	@Resource StudyService advancedStudyService;
@@ -92,6 +92,7 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
+    @Deprecated
 	@RequestMapping("view/{id}")
 	public String view(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
