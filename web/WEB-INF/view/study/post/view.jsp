@@ -12,6 +12,7 @@
 .post-image-thumbnail-default:HOVER { cursor: pointer; border-width: 2px; }
 .post-summary { font-size: 0.9em; list-style-type: none; }
 .post-summary-title { float: left; width: 80%;}
+.post-summary-title:VISITED { color: black; }
 .post-summary-title:HOVER { cursor: pointer; text-decoration: underline; font-weight: bold; color: green; }
 .post-summary-writer { float: right; width: 20%; }
 </style>
@@ -24,7 +25,7 @@
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
 				<li class="post-summary">
-					<div id="postTitle" class="post-summary-title" title="${text.title}">${text.title}</div><div class="post-summary-writer">${text.writer.name}</div>
+					<a href="#" class="post-summary-title" title="${text.title}" rel="${text.id}">${text.title}</a><div class="post-summary-writer">${text.writer.name}</div>
 				</li>
 			</c:forEach>
 			</s2c:portlet>
@@ -60,12 +61,18 @@
 <script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
 <script type="text/javascript">
 $(function(){ 
+	var $actionArea = $('.active-area');
 	$('.more').click( function(){
-		$('.active-area').load($(this).next().text());
+		$actionArea.load($(this).next().text());
+		return false;
+	});
+	$('.post-summary-title').click( function(){
+		var postId = $(this).attr('rel');
+		$actionArea.load('${study.id}/post/textPost/' + postId + '?page=1');
 		return false;
 	});
 	$('.thumbnail').click( function(){
-		$('.active-area').load('${study.id}/post/imagePost/listBySelectId/' + $(this).attr('id'));
+		$actionArea.load('${study.id}/post/imagePost/listBySelectId/' + $(this).attr('id'));
 	});
 	
 	SPROUT.common.util.cutStringUsingDot($('.post-summary').children(), 45);
