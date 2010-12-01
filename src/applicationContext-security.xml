@@ -22,11 +22,14 @@
 		<intercept-url pattern="/study/index/past" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/study/form" access="ROLE_ADMIN" />
 		<intercept-url pattern="/study/*/form" access="ROLE_ADMIN" />
-		<intercept-url pattern="/study/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/study/delete/*" access="ROLE_ADMIN" />
-		<intercept-url pattern="/study/end/*" access="ROLE_ADMIN" />
-		<intercept-url pattern="/study/start/*" access="ROLE_ADMIN" />
-        <intercept-url pattern="/study/view/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/study/*/start" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/*/end" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/*/delete" access="ROLE_ADMIN" />
+		<intercept-url pattern="/study/*/notify" access="ROLE_ADMIN" />
+
+        <intercept-url pattern="/study/**/meeting/**" access="ROLE_MEMBER" />
+
+        <intercept-url pattern="/study/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
 		<intercept-url pattern="/term/my" access="ROLE_MEMBER" />
 		<intercept-url pattern="/term/mykor" access="ROLE_MEMBER" />
@@ -45,8 +48,6 @@
 		<intercept-url pattern="/term/*/kor/*/delete" access="ROLE_MEMBER, ROLE_ADMIN" />
 		<intercept-url pattern="/term/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
-        <intercept-url pattern="/study/**/meeting/**" access="ROLE_MEMBER" />
-		<intercept-url pattern="/study/**" access="ROLE_MEMBER" />
 		<intercept-url pattern="/file/list" access="ROLE_ADMIN" />
 		<intercept-url pattern="/file/**" access="ROLE_MEMBER" />
 

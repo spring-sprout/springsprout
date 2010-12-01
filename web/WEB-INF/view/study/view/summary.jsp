@@ -102,7 +102,7 @@
     <c:if test="${isManagerOrAdmin}">
         <ul class="operations menu-bar">
             <li class="menu-button">
-                <a class="no-icon" href="<c:url value="/study/notify/${study.id}"/>">
+                <a class="no-icon" href="<c:url value="/study/${study.id}/notify"/>">
                     <span class="no-icon">스터디 알림</span>
                 </a>
             </li>
@@ -115,9 +115,9 @@
                 <div id="study-mgt-menu" class="drop-down most-right-menu assistive">
                     <ul class="first">
                         <li><a class="no-icon" href="<c:url value="/study/${study.id}/form"/>"><span>스터디 수정</span></a></li>
-                        <li><a class="no-icon" href="<c:url value="/study/end/${study.id}"/>"><span>스터디 종료</span></a></li>
-                        <li><a class="no-icon" href="<c:url value="/study/delete/${study.id}"/>"><span>스터디 삭제</span></a></li>
-                        <li><a class="no-icon" href="<c:url value="/study/start/${study.id}"/>"><span>스터디 시작</span></a></li>
+                        <li><a class="no-icon" href="<c:url value="/study/${study.id}/end"/>"><span>스터디 종료</span></a></li>
+                        <li><a class="no-icon" href="<c:url value="/study/${study.id}/start"/>"><span>스터디 시작</span></a></li>
+                        <li><a class="no-icon" href="<c:url value="/study/${study.id}/delete"/>"><span>스터디 삭제</span></a></li>
                     </ul>
                 </div>
             </li>

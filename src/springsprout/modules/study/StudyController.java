@@ -32,32 +32,16 @@ public class StudyController {
 	private static final String STUDY_FORM = "study/form";
 	private static final String STUDY_UPDATE_FORM = "study/update";
 	private static final String STUDY_INDEX = "study/index";
-	private static final String STUDY_VIEW = "study";
-	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/index";
+	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/";
 	
 	private static final String URL_STUDY_VIEW = "/study/";
-	private static final String URL_STUDY_INDEX = "/study/index";
+	private static final String URL_STUDY_INDEX = "/study/";
 	
 	@Resource StudyService advancedStudyService;
 	@Autowired SecurityService securityService;
     @Autowired StudyStatisticsService statisticsService;
 
-	@RequestMapping("/index")
-	public String index(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
-        model.addAttribute("minitab_active", "active");
-		return STUDY_INDEX;
-    }
-	
-	@RequestMapping("/index2")
-	public String index2(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
-        model.addAttribute("minitab_active", "active");
-        model.addAttribute(advancedStudyService.getStudyById(5));
-		return "study/index2";
-    }
-	
-	@RequestMapping("/index3")
+	@RequestMapping
 	public String index3(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute( "list", this.advancedStudyService.findActiveStudies());
         model.addAttribute( "minitab_active", "active");
@@ -67,13 +51,6 @@ public class StudyController {
 		return "study/index3";
     }
 
-	@RequestMapping("/index/past")
-	public String index(Model model) {
-        model.addAttribute("list", this.advancedStudyService.findPastStudies());
-		model.addAttribute("minitab_past", "active");
-		return STUDY_INDEX;
-	}
-    
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String addForm(Model model) {
         model.addAttribute(new Study());
@@ -93,21 +70,10 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
-    @Deprecated
-	@RequestMapping("/view/{id}")
-	public String view(@PathVariable int id, Model model) {
-		Study study = advancedStudyService.getStudyById(id);
-        model.addAttribute(study);
-        model.addAttribute("memberCount", study.getMemberCount());
-        model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-        model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
-		return STUDY_VIEW;
-	}
-
     @RequestMapping("/{id}")
 	public String studyView(@PathVariable int id, Model model) {
         model.addAttribute(advancedStudyService.getStudyById(id));
-        return "study/view2";
+        return "study/view";
     }
 
     @RequestMapping("/{id}/summary")
@@ -150,20 +116,6 @@ public class StudyController {
         return "/study/view/calendar";
     }
 
-    @RequestMapping(value = "/notify/{id}", method=RequestMethod.GET)
-	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
-    	advancedStudyService.notify(id);
-        return new ModelAndView(JSON_VIEW).addObject("studyName", advancedStudyService.getStudyById(id).getStudyName());
-	}
-
-	@RequestMapping("/delete/{id}")
-	public String delete(@PathVariable int id, HttpSession session) {
-		Study study = advancedStudyService.getStudyById(id);
-		advancedStudyService.deleteStudy(study);
-		setSession(session, study.getStudyName(), " 스터디가 폐쇄되었습니다.");
-		return REDIRECT_STUDY_INDEX;
-	}
-
 	@RequestMapping(value = "/{id}/form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
@@ -184,7 +136,7 @@ public class StudyController {
 		return redirectStudyView(study.getId());
 	}
 
-	@RequestMapping("/end/{id}")
+	@RequestMapping("/{id}/end")
 	public String endStudy(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.endStudy(study);
@@ -192,7 +144,7 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
-	@RequestMapping("/start/{id}")
+	@RequestMapping("/{id}/start")
 	public String startStudy(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.startStudy(study);
@@ -200,7 +152,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-	@RequestMapping("/join/{id}")
+	@RequestMapping("/id}/join")
 	public String addCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		try {
@@ -214,7 +166,21 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-	@RequestMapping("/out/{id}")
+    @RequestMapping(value = "/{id}/notify", method=RequestMethod.GET)
+	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
+    	advancedStudyService.notify(id);
+        return new ModelAndView(JSON_VIEW).addObject("studyName", advancedStudyService.getStudyById(id).getStudyName());
+	}
+
+	@RequestMapping("/{id}/delete")
+	public String delete(@PathVariable int id, HttpSession session) {
+		Study study = advancedStudyService.getStudyById(id);
+		advancedStudyService.deleteStudy(study);
+		setSession(session, study.getStudyName(), " 스터디가 폐쇄되었습니다.");
+		return REDIRECT_STUDY_INDEX;
+	}
+
+	@RequestMapping("/{id}/out")
 	public String removeCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.removeCurrentMember(study);
@@ -222,37 +188,76 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 	
-	@RequestMapping("/view/{id}/meetings")
+	private void setSession(HttpSession session, String studyName, String msg) {
+		session.setAttribute("SESSION_FLASH_MSG", studyName + msg);
+	}
+
+    //* ======================= *//
+    //*     지워야 할 것 들       *//
+    //* ======================= *//
+    @RequestMapping("/index")
+    @Deprecated
+	public String index(@RequestParam(required = false) String type, Model model) {
+		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
+        model.addAttribute("minitab_active", "active");
+		return STUDY_INDEX;
+    }
+
+	@RequestMapping("/index2")
+    @Deprecated
+	public String index2(@RequestParam(required = false) String type, Model model) {
+		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
+        model.addAttribute("minitab_active", "active");
+        model.addAttribute(advancedStudyService.getStudyById(5));
+		return "study/index2";
+    }
+
+    @RequestMapping("/index/past")
+    @Deprecated
+	public String index(Model model) {
+        model.addAttribute("list", this.advancedStudyService.findPastStudies());
+		model.addAttribute("minitab_past", "active");
+		return STUDY_INDEX;
+	}
+
+    @RequestMapping("/view/{id}/meetings")
+    @Deprecated
     public String viewMeeting( @PathVariable int id, Model model) {
 		model.addAttribute(advancedStudyService.getStudyById(id));
 		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
 		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
     	return "/study/_meetings";
     }
-	    
+
     @RequestMapping("/view/{id}/meetingMembers")
+    @Deprecated
     public String viewMeetingMembers( @PathVariable int id, Model model) {
     	model.addAttribute(advancedStudyService.getStudyById(id));
 		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
 		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
     	return "/study/_members";
     }
-    
+
     @RequestMapping("/view/{id}/updateTabDataCounts")
     @ResponseBody
+    @Deprecated
     public CountInfoDTO updateTabDataCounts( @PathVariable int id) {
     	return new CountInfoDTO(advancedStudyService.getStudyById(id));
     }
-    
+
     @RequestMapping("/view/{id}/comments")
+    @Deprecated
     public String viewComments( @PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
     	return "/study/_comments";
     }
 
-	private void setSession(HttpSession session, String studyName, String msg) {
-		session.setAttribute("SESSION_FLASH_MSG", studyName + msg);
-	}
+    @RequestMapping("/view/{id}")
+    @Deprecated
+	public String view(@PathVariable int id, Model model) {
+        model.addAttribute(advancedStudyService.getStudyById(id));
+        return "study/view_old";
+    }
 
 }
