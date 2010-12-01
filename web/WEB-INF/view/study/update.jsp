@@ -14,7 +14,7 @@
 	<s:defaultpage>
 		<h1>${title}</h1>
 			<hr class="clear"/>
-			<form:form commandName="study" method="POST" id="studyForm" cssStyle="width: 80%;">
+			<form:form commandName="study" method="PUT" id="studyForm" cssStyle="width: 80%;">
                 <h2 class="summary"></h2>
 				<form:hidden path="manager"/>
 	   			<form:hidden path="id"/>

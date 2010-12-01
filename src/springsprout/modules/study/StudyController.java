@@ -30,6 +30,7 @@ public class StudyController {
 	Logger log = LoggerFactory.getLogger(StudyController.class);
 
 	private static final String STUDY_FORM = "study/form";
+	private static final String STUDY_UPDATE_FORM = "study/update";
 	private static final String STUDY_INDEX = "study/index";
 	private static final String STUDY_VIEW = "study";
 	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/index";
@@ -163,20 +164,20 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
 		model.addAttribute(study);
 		model.addAttribute("title", "스터디 수정");
         model.addAttribute("backUrl", URL_STUDY_VIEW + study.getId());
         model.addAttribute("isUpdate", true);
-        return STUDY_FORM;
+        return STUDY_UPDATE_FORM;
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/form", method = RequestMethod.PUT)
 	public String updateForm(boolean isGoingToBeNotified, @Valid Study study, BindingResult result, HttpSession session, SessionStatus status)
 			throws ServletRequestBindingException {
-		if (result.hasErrors()) return STUDY_FORM;
+		if (result.hasErrors()) return STUDY_UPDATE_FORM;
 		advancedStudyService.updateStudy(study, isGoingToBeNotified);
 		status.setComplete();
         setSession(session, study.getStudyName(), " 스터디가 수정되었습니다.");

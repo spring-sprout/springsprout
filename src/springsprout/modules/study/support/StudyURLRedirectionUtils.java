@@ -17,7 +17,7 @@ public class StudyURLRedirectionUtils {
     }
 
     public static String redirectStudyView(int studyId) {
-        return "redirect:/study/view/" + studyId + "";
+        return "redirect:/study/" + studyId + "";
     }
 
 }
