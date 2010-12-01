@@ -31,18 +31,14 @@ public class StudyController {
 
 	private static final String STUDY_FORM = "study/form";
 	private static final String STUDY_UPDATE_FORM = "study/update";
-	private static final String STUDY_INDEX = "study/index";
 	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/";
-	
-	private static final String URL_STUDY_VIEW = "/study/";
-	private static final String URL_STUDY_INDEX = "/study/";
 	
 	@Resource StudyService advancedStudyService;
 	@Autowired SecurityService securityService;
     @Autowired StudyStatisticsService statisticsService;
 
 	@RequestMapping
-	public String index3(@RequestParam(required = false) String type, Model model) {
+	public String newIndex(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute( "list", this.advancedStudyService.findActiveStudies());
         model.addAttribute( "minitab_active", "active");
         model.addAttribute( advancedStudyService.findActiveStudies().get(0));
@@ -55,7 +51,7 @@ public class StudyController {
 	public String addForm(Model model) {
         model.addAttribute(new Study());
         model.addAttribute("title", "스터디 추가");
-        model.addAttribute("backUrl", URL_STUDY_INDEX);
+        model.addAttribute("backUrl", "/study/");
         model.addAttribute("isUpdate", false);
         return STUDY_FORM;
 	}
@@ -121,7 +117,7 @@ public class StudyController {
 		Study study = advancedStudyService.getStudyById(id);
 		model.addAttribute(study);
 		model.addAttribute("title", "스터디 수정");
-        model.addAttribute("backUrl", URL_STUDY_VIEW + study.getId());
+        model.addAttribute("backUrl", "/study/" + study.getId());
         model.addAttribute("isUpdate", true);
         return STUDY_UPDATE_FORM;
 	}
@@ -166,7 +162,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-    @RequestMapping(value = "/{id}/notify", method=RequestMethod.GET)
+    @RequestMapping("/{id}/notify")
 	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
     	advancedStudyService.notify(id);
         return new ModelAndView(JSON_VIEW).addObject("studyName", advancedStudyService.getStudyById(id).getStudyName());
@@ -200,7 +196,7 @@ public class StudyController {
 	public String index(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
         model.addAttribute("minitab_active", "active");
-		return STUDY_INDEX;
+		return "study/index";
     }
 
 	@RequestMapping("/index2")
@@ -217,7 +213,7 @@ public class StudyController {
 	public String index(Model model) {
         model.addAttribute("list", this.advancedStudyService.findPastStudies());
 		model.addAttribute("minitab_past", "active");
-		return STUDY_INDEX;
+		return "study/index";
 	}
 
     @RequestMapping("/view/{id}/meetings")
