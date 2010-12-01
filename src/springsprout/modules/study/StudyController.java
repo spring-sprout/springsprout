@@ -109,6 +109,7 @@ public class StudyController {
     public String studyCalendar(@PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);
+        model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
         return "/study/view/calendar";
     }
 
