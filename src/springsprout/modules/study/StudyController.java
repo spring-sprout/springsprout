@@ -24,7 +24,7 @@ import static springsprout.modules.study.support.StudyURLRedirectionUtils.redire
 
 
 @Controller
-@RequestMapping("/study/")
+@RequestMapping("/study")
 @SessionAttributes("study")
 public class StudyController {
 	Logger log = LoggerFactory.getLogger(StudyController.class);
@@ -41,14 +41,14 @@ public class StudyController {
 	@Autowired SecurityService securityService;
     @Autowired StudyStatisticsService statisticsService;
 
-	@RequestMapping("index")
+	@RequestMapping("/index")
 	public String index(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
         model.addAttribute("minitab_active", "active");
 		return STUDY_INDEX;
     }
 	
-	@RequestMapping("index2")
+	@RequestMapping("/index2")
 	public String index2(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
         model.addAttribute("minitab_active", "active");
@@ -56,7 +56,7 @@ public class StudyController {
 		return "study/index2";
     }
 	
-	@RequestMapping("index3")
+	@RequestMapping("/index3")
 	public String index3(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute( "list", this.advancedStudyService.findActiveStudies());
         model.addAttribute( "minitab_active", "active");
@@ -66,14 +66,14 @@ public class StudyController {
 		return "study/index3";
     }
 
-	@RequestMapping("index/past")
+	@RequestMapping("/index/past")
 	public String index(Model model) {
         model.addAttribute("list", this.advancedStudyService.findPastStudies());
 		model.addAttribute("minitab_past", "active");
 		return STUDY_INDEX;
 	}
     
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String addForm(Model model) {
         model.addAttribute(new Study());
         model.addAttribute("title", "스터디 추가");
@@ -82,7 +82,7 @@ public class StudyController {
         return STUDY_FORM;
 	}
 
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public String addForm( @Valid Study study, BindingResult result, Model model, HttpSession session, SessionStatus status) {
 		model.addAttribute("title", "스더티 추가");
 		if (result.hasErrors()) return STUDY_FORM;
@@ -93,7 +93,7 @@ public class StudyController {
 	}
 
     @Deprecated
-	@RequestMapping("view/{id}")
+	@RequestMapping("/view/{id}")
 	public String view(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
         model.addAttribute(study);
@@ -149,13 +149,13 @@ public class StudyController {
         return "/study/view/calendar";
     }
 
-    @RequestMapping(value = "notify/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/notify/{id}", method=RequestMethod.GET)
 	public ModelAndView notify(@PathVariable int id, Model model, HttpSession session) {
     	advancedStudyService.notify(id);
         return new ModelAndView(JSON_VIEW).addObject("studyName", advancedStudyService.getStudyById(id).getStudyName());
 	}
 
-	@RequestMapping("delete/{id}")
+	@RequestMapping("/delete/{id}")
 	public String delete(@PathVariable int id, HttpSession session) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.deleteStudy(study);
@@ -163,7 +163,7 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
-	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable int id, Model model) {
 		Study study = advancedStudyService.getStudyById(id);
 		model.addAttribute(study);
@@ -173,7 +173,7 @@ public class StudyController {
         return STUDY_FORM;
 	}
 
-	@RequestMapping(value = "update/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public String updateForm(boolean isGoingToBeNotified, @Valid Study study, BindingResult result, HttpSession session, SessionStatus status)
 			throws ServletRequestBindingException {
 		if (result.hasErrors()) return STUDY_FORM;
@@ -183,7 +183,7 @@ public class StudyController {
 		return redirectStudyView(study.getId());
 	}
 
-	@RequestMapping("end/{id}")
+	@RequestMapping("/end/{id}")
 	public String endStudy(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.endStudy(study);
@@ -191,7 +191,7 @@ public class StudyController {
 		return REDIRECT_STUDY_INDEX;
 	}
 
-	@RequestMapping("start/{id}")
+	@RequestMapping("/start/{id}")
 	public String startStudy(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.startStudy(study);
@@ -199,7 +199,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-	@RequestMapping("join/{id}")
+	@RequestMapping("/join/{id}")
 	public String addCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		try {
@@ -213,7 +213,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-	@RequestMapping("out/{id}")
+	@RequestMapping("/out/{id}")
 	public String removeCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		advancedStudyService.removeCurrentMember(study);
@@ -221,7 +221,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 	
-	@RequestMapping("view/{id}/meetings")
+	@RequestMapping("/view/{id}/meetings")
     public String viewMeeting( @PathVariable int id, Model model) {
 		model.addAttribute(advancedStudyService.getStudyById(id));
 		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
@@ -229,7 +229,7 @@ public class StudyController {
     	return "/study/_meetings";
     }
 	    
-    @RequestMapping("view/{id}/meetingMembers")
+    @RequestMapping("/view/{id}/meetingMembers")
     public String viewMeetingMembers( @PathVariable int id, Model model) {
     	model.addAttribute(advancedStudyService.getStudyById(id));
 		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
@@ -237,13 +237,13 @@ public class StudyController {
     	return "/study/_members";
     }
     
-    @RequestMapping("view/{id}/updateTabDataCounts")
+    @RequestMapping("/view/{id}/updateTabDataCounts")
     @ResponseBody
     public CountInfoDTO updateTabDataCounts( @PathVariable int id) {
     	return new CountInfoDTO(advancedStudyService.getStudyById(id));
     }
     
-    @RequestMapping("view/{id}/comments")
+    @RequestMapping("/view/{id}/comments")
     public String viewComments( @PathVariable int id, Model model) {
         Study study = advancedStudyService.getStudyById(id);
     	model.addAttribute(study);

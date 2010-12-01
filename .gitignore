@@ -1,8 +1,7 @@
 .DS_Store
-
 .settings
 .classpath
 .project
 .springBeans
-
 target
+Springsprout.iml

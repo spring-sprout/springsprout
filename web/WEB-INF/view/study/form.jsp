@@ -4,38 +4,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" tagdir="/WEB-INF/tags/study"%>
 <style type="text/css">
+    .form-row {
+        width: 100%;
+        float: left;
+    }
 
 </style>
 <page:defaultpage selected_menu="studies">
 	<s:defaultpage>
-		<h1>${ title }</h1>
+		<h1>${title}</h1>
 			<hr class="clear"/>
 			<form:form commandName="study" method="post" id="studyForm" cssStyle="width: 80%;">
-				<center>
-					<h2 class="summary"></h2>
-				</center>
+                <h2 class="summary"></h2>
 				<form:hidden path="manager"/>
 	   			<form:hidden path="id"/>
-	   			<div style="width: 100%; float: left;">
+	   			<div class="form-row">
 		   			<div class="logo round" align="center">
 						<img id="logoImg" src="<c:url value="${study.logo != null && study.logo != ''  ? study.logo : '/images/study/logos/default.png'}" />" />
 						<br/>
 						<input id="logo" name="logo" type="hidden" value="<c:url value="${study.logo != null && study.logo != ''  ? study.logo : '/images/study/logos/default.png'}" />"/>
 						<span>로고를 선택하세요.</span>
 					</div>
-					<div>
-						<s:ftext title="스터디명" path="studyName" pstyle="float:left; " size="94%;"/>
-						<s:ftext title="최대인원수" path="maximum" pstyle="float:left;" />
-					</div>
-				</div>
-				<div style="width: 100%; float: left;">
+                    <s:ftext title="스터디명" path="studyName" size="50" descr="나중에 변경할 수도 있습니다."/>
+                    <s:ftext title="최대인원수" path="maximum" />
+                </div>
+				<div class="form-row">
 					<div style="float: left;">시작일 : <form:input path="startDay" cssClass="inputNoneBorder"/><div class="fdate"></div></div>
 					<div style="float: left; margin-left: 20px;">종료일 : <form:input path="endDay" cssClass="inputNoneBorder"/><div class="fdate"></div></div>
 				</div>
-				<div style="width:100%; float: left;">
+				<div class="form-row">
 					<s:ftextarea title="설명" path="descr" rows="4" cols="100" id="descr" style="width: 100%;"/>
 				</div>
-				<div style="width:100%; float: left;">
+				<div class="form-row">
 					<c:if test="${ isUpdate }">
 					<p>
 	            		<label style="display: inline;">수정 내역을 통지할까요?</label>
@@ -43,7 +43,6 @@
 	           		</p>
 					</c:if>
 				</div>
-				<hr class="clear"/>
 				<div style="width: 100%; padding-bottom: 10px;" align="center">
 					<input type="submit" value="저장" class="jButton" />
 		            <s:back-button url="${backUrl}" />
@@ -72,7 +71,7 @@
 					<li><a href="#"><img src="<c:url value="/images/study/logos/iphone/photo-128x128.png" />"/></a></li>
 				</ul>
 				<div id="flickrSearch" style="display: none;" align="center">
-					<input type="text" id="textSearch"></input>
+					<input type="text" id="textSearch"/>
 					<button id="btnSearch">검색</button><br/>
 					<div id="searchResult"></div>
 				</div>
