@@ -12,11 +12,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import springsprout.common.annotation.DomainInfo;
-import springsprout.domain.Member;
 
 /**
  * 설문기간 동안에 포함된 설문만 설문에 응할 수 있도록 하고, 
  * 설문 기간이 지난 설문은 그날 자정(일일 배치)에서 설문 결과를 처리하도록 한다.
+ * 응답 결과를 가지고 있을 까 아니면 뷰에서 계산 해서 보여 줄 까
+ * 
  * 
  * @author 김제준
  *
@@ -29,16 +30,19 @@ public class SurbeyPost extends Post {
 	@DomainInfo("질문 유형")
 	private String type;
 	
+	@DomainInfo("질문 목록")
+	private List<String> questions;
+	
 	@DomainInfo("설문시작기간")
 	private Date startDue;
 	
 	@DomainInfo("설문종료기간")
 	private Date endDue;
 	
-	@DomainInfo("응답자")
+	@DomainInfo("응답목록")
 	@OneToMany(cascade={CascadeType.ALL})
 	@Cache(usage= CacheConcurrencyStrategy.READ_WRITE)
-	private List<Member> respondent;
+	private List<RespondSurbey> responds;
 	
 	public String getType() {
 		return type;
@@ -64,12 +68,20 @@ public class SurbeyPost extends Post {
 		this.endDue = endDue;
 	}
 
-	public List<Member> getRespondent() {
-		return respondent;
+	public void setQuestions(List<String> questions) {
+		this.questions = questions;
 	}
 
-	public void setRespondent(List<Member> respondent) {
-		this.respondent = respondent;
+	public List<String> getQuestions() {
+		return questions;
+	}
+
+	public void setResponds(List<RespondSurbey> responds) {
+		this.responds = responds;
+	}
+
+	public List<RespondSurbey> getResponds() {
+		return responds;
 	}
 	
 }
