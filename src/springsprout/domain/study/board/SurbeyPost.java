@@ -2,6 +2,7 @@ package springsprout.domain.study.board;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -29,9 +30,6 @@ public class SurbeyPost extends Post {
 
 	@DomainInfo("질문 유형")
 	private String type;
-	
-	@DomainInfo("질문 목록")
-	private List<String> questions;
 	
 	@DomainInfo("설문시작기간")
 	private Date startDue;
@@ -66,14 +64,6 @@ public class SurbeyPost extends Post {
 
 	public void setEndDue(Date endDue) {
 		this.endDue = endDue;
-	}
-
-	public void setQuestions(List<String> questions) {
-		this.questions = questions;
-	}
-
-	public List<String> getQuestions() {
-		return questions;
 	}
 
 	public void setResponds(List<RespondSurbey> responds) {
