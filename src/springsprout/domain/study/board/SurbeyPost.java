@@ -11,8 +11,11 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import springsprout.common.annotation.DomainInfo;
+import springsprout.domain.Study;
+import springsprout.domain.enumeration.SurbeyStatus;
 
 /**
  * 설문기간 동안에 포함된 설문만 설문에 응할 수 있도록 하고, 
@@ -29,7 +32,8 @@ import springsprout.common.annotation.DomainInfo;
 public class SurbeyPost extends Post {
 
 	@DomainInfo("질문 유형")
-	private String type;
+	@Type(type="springsprout.domain.usertype.SurbeyStatusType")
+	private SurbeyStatus type;
 	
 	@DomainInfo("설문시작기간")
 	private Date startDue;
@@ -42,11 +46,15 @@ public class SurbeyPost extends Post {
 	@Cache(usage= CacheConcurrencyStrategy.READ_WRITE)
 	private List<RespondSurbey> responds;
 	
-	public String getType() {
+	public SurbeyPost(Study study) {
+		super.setRootStudy(study);
+	}
+
+	public SurbeyStatus getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(SurbeyStatus type) {
 		this.type = type;
 	}
 
