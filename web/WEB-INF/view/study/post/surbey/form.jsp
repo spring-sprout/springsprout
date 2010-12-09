@@ -14,7 +14,7 @@ textarea { width: 95%; border: 1px solid; }
 .form-button { padding-top: 5px }
 </style>
 <s2c:module name="${title} Surbey Post">
-	<form:form id="postForm" commandName="textPost" method="${method}" action="${action}" enctype="multipart/form-data">
+	<form:form id="postForm" commandName="surbeyPost" method="${method}" action="${action}" enctype="multipart/form-data">
 		<form:hidden path="rootStudy.id"/>
 		<form:hidden path="id"/>
 		<p>

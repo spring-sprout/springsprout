@@ -34,14 +34,12 @@
     
 </s2c:left-column>
 <s2c:right-column>
-    <s2c:module name="Poll" more="더보기">
+    <s2c:module name="Surbey" more="더보기" url="${study.id}/post/surbeyPost/list/0">
         <s2c:portlet target="${discuss}">
-			asdfasdf
 		</s2c:portlet>  
     </s2c:module>
     <s2c:module name="토론" more="더보기">
 		<s2c:portlet target="${discuss}">
-			asdfasdf
 		</s2c:portlet>
     </s2c:module>
 </s2c:right-column>
