@@ -87,5 +87,11 @@ public class MemberRepositoryImplTest extends DBUnitSupport{
 		assertNotNull(member);
 		assertThat(member.getId(), is(1));
 	}
+
+    @Test
+    public void getAttendenceRateOf() throws Exception {
+        insertXmlData("testData.xml");
+        int rate = memberRepository.getAttdRateBy(1, 1);    
+    }
 	
 }

@@ -3,12 +3,6 @@
 <%@ attribute name="ajaxlogin_yn" required="false" %>
 <%@ tag pageEncoding="utf-8"%>
 <c:if test="${ajaxlogin_yn == 'Y'}">
-<script type="text/javascript">
-	$(document).ready(function(){
-        
-
-	});
-</script>
 </c:if>
 <div id="topheader">
 	<div id="mainlogo" class="left">

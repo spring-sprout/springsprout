@@ -102,3 +102,13 @@ function blockInMessgeWhere(target, msg){
 	$('div.blockMsg').css('top','0px');
 	$('#main .blockUI.blockOverlay').remove();
 }
+
+function changeMeetingDateFormat( $meetingItem) {
+    $meetingItem.each( function() {
+        var $this = $(this), openDate = $this.find('.openDateVal').val(), myDate = new Date();
+        myDate.setFullYear(openDate.slice(0, 4),openDate.slice(5, 7)-1,openDate.slice(8, 10));
+        $this.find('.month').text($.datepicker.regional['ko'].monthNamesShort[myDate.getMonth()]);
+        $this.find('.day').text(myDate.getDate());
+        $this.find('.shortDay').text($.datepicker.regional['ko'].dayNamesShort[myDate.getDay()]);
+    });
+}

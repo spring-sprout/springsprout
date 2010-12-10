@@ -21,6 +21,7 @@ import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Member;
 import springsprout.domain.Role;
+import springsprout.domain.Study;
 import springsprout.domain.enumeration.MemberStatus;
 import springsprout.modules.member.support.MemberContext;
 import springsprout.modules.member.support.MemberSearchParam;
@@ -196,6 +197,11 @@ public class MemberServiceImpl implements MemberService {
 
     public void addRoleTo(Role role, Member member) {
         repository.getById(member.getId()).addRole(role);
+    }
+
+    public int getAttendenceRateOf(Member member, Study study) {
+        return repository.getAttdRateBy(member.getId(), study.getId());
+
     }
 
     class PersistentEnumAwareConvertUtilsBean extends ConvertUtilsBean {

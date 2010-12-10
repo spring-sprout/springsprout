@@ -22,7 +22,7 @@
         <s2c:topbar ajaxlogin_yn="${ajaxlogin_yn}"/>
 	    <s2c:header selected_menu="${selected_menu}"ajaxlogin_yn="${ajaxlogin_yn}" />
         <s2c:main>           
-          	<s2c:banner banner_name="${banner_name}" banner_text="${banner_text}" />
+          	<%--<s2c:banner banner_name="${banner_name}" banner_text="${banner_text}" />--%>
             <jsp:doBody/>
         </s2c:main>
         <s2c:footer />

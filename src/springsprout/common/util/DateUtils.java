@@ -1,5 +1,7 @@
 package springsprout.common.util;
 
+import springsprout.common.enumeration.DayOfWeek;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -63,5 +65,21 @@ public class DateUtils {
     public static Date dateOf(int year, int month, int day, int hour, int min) {
         GregorianCalendar calendar = new GregorianCalendar(year, month-1, day, hour, min);
         return calendar.getTime();
+    }
+
+    public static DayOfWeek extractDayOfMeekFrom(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (dayOfWeek) {
+            case Calendar.MONDAY: return DayOfWeek.MONDAY;
+            case Calendar.TUESDAY: return DayOfWeek.TUESDAY;
+            case Calendar.WEDNESDAY: return DayOfWeek.WEDNESDAY;
+            case Calendar.THURSDAY: return DayOfWeek.THURSDAY;
+            case Calendar.FRIDAY: return DayOfWeek.FRIDAY;
+            case Calendar.SATURDAY: return DayOfWeek.SATURDAY;
+            case Calendar.SUNDAY: return DayOfWeek.SUNDAY;
+            default: throw new IllegalArgumentException("요일 판별 할 수 없음 [" + date + "]");
+        }
     }
 }

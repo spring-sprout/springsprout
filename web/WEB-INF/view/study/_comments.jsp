@@ -74,7 +74,7 @@
                     <span><a href="/study/${study.id}/meeting/${meeting.id}">${meeting.title}</a></span>
                 </div>
             </div>
-            <hr st>
+            <hr/>
         </c:forEach>
     </c:forEach>
 </div>

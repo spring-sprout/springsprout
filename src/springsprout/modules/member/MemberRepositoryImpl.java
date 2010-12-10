@@ -1,8 +1,10 @@
 package springsprout.modules.member;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -11,6 +13,7 @@ import springsprout.common.dao.HibernateGenericDao;
 import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Member;
+import springsprout.domain.Study;
 import springsprout.domain.enumeration.MemberStatus;
 import springsprout.modules.member.exception.MemberNotFoundException;
 import springsprout.modules.member.support.MemberContext;
@@ -98,6 +101,19 @@ public class MemberRepositoryImpl extends HibernateGenericDao<Member> implements
         if(originalMember == null)
             throw new MemberNotFoundException(updatedMember.getId());
         return originalMember;
+    }
+
+    public int getAttdRateBy(Integer memberId, Integer studyId) {
+        Object result = getCurrentSession().createSQLQuery(
+                "SELECT element " +
+                "FROM member_studyattendancerates " +
+                "WHERE member_id = :memberId and mapkey_id = :studyId")
+                .setParameter("memberId", memberId)
+                .setParameter("studyId", studyId)
+                .uniqueResult();
+
+        if(result == null) return 0;
+        else return (Integer)result;
     }
 
     private void applySearchParam(MemberSearchParam searchParam, Criteria c) {

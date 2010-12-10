@@ -1,12 +1,20 @@
 @charset "UTF-8";
 *{margin:0;padding:0;}
-body, div, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{
-	font:12.34px helvetica,arial,clean,sans-serif;
-    font-family:'Malgun Gothic','verdana';
-	*font-size:small;
+body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote {
+	font:12px/1.4 helvetica,arial,clean,sans-serif;
+    font-family: 'arial', 'FreeSans', 'Helvetica', 'Malgun Gothic','verdana';
+	font-size:small;
+}
+table {
+    font-size: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
 }
 
-body *{line-height:1.4em;}
+body *{
+    /*line-height:1.4em;*/
+}
 a{color:#4183C4;text-decoration:none;}
 a.action{color:#d00;text-decoration:underline;}
 a.action span{text-decoration:none;}
@@ -39,12 +47,11 @@ hr{margin: 10px 0px;}
 	text-align:right;
 }
 #main{
-	border-left:1px solid #D6D6D6;
-	border-right:1px solid #D6D6D6;
+	border:1px solid #D6D6D6;
 	margin:auto;
 	width:976px;
-	height:100%;
-	min-height: 100%;
+	/*height:100%;*/
+	/*min-height: 100%;*/
 }
 #topheader{
 	margin:auto;
@@ -196,7 +203,7 @@ hr{margin: 10px 0px;}
 	padding:20px;
 	border-bottom:2px solid #D6D6D6;
 	border-top:2px solid #D6D6D6;
-	height:100%;
+	/*height:100%;*/
 	min-height: 35em;
 	display:inline-block;
 	*display: inline;
@@ -362,4 +369,257 @@ div.growlUI h2 {font-size: 13px;}
 
 img.commentAdd {
 	width: 55px;	
+}
+
+/* DD: DL 목록처리 */
+ul.item-details {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    width: 100%;
+}
+ul.item-details dl {
+    display: inline-block;
+    margin-bottom: 0.5em;
+    vertical-align: top;
+    width: 100%;
+}
+ul.item-details dl dt, ul.item-details dl dd {
+    display: block;
+    float: left;
+}
+ul.item-details dl dt {
+    color: #666666;
+    margin-right: 1%;
+    position: relative;
+    width: 18%;
+}
+ul.item-details dl dd {
+    display: block;
+    float: left;
+    width: 81%;
+}
+
+/* graph */
+.module table {
+    border: 0 none;
+    width: 100%;
+}
+.module table tr {
+    vertical-align:middle;
+}
+.rowAlternateLightGray {
+    background-color:#FAFAFA;
+}
+.module table tr td.icon {
+    display: table-cell;
+    width: 1.25em;
+}
+.module table tr td.count {
+    text-align:right;
+    padding: 2px;
+}
+.module table tr td.graph {
+    width:60%;
+}
+.module td.last {
+    padding-right:0;
+}
+.colour-bar-cont {
+    min-width:2px;
+}
+.colour-bar {
+    border-top: 13px solid #3C78B5;
+    height: 0;
+    overflow: hidden;
+}
+
+<%-- 메뉴 만들기 --%>
+.menu-bar {
+    float: right;
+    line-height: 1.5;
+    position: relative;
+}
+.menu-bar, .menu-bar .menu-button, .menu-bar .menu-button a, .menu-bar .menu-button span, .menu-bar .menu-group .menu-title, .menu-bar .menu-group .menu-title span, .menu-bar .menu-group .menu-title span span, .menu-bar .drop-down a, .menu-bar .drop-down a span, .menu-bar .drop-down a span span {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.menu-bar .menu-button span, .menu-bar .menu-group .trigger span span {
+    padding-right: 1em;
+}
+.menu-bar .menu-group, .menu-bar .menu-button {
+    float: left;
+    list-style: none outside none;
+    position: relative;
+}
+.menu-bar .menu-group a, .menu-bar .menu-button a {
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.menu-bar .menu-button {
+    float: left;
+    line-height: 2;
+    list-style: none outside none;
+    position: static;
+}
+.menu-bar .menu-group .trigger span {
+    background-image: url("/images/menu_indicator.gif");
+    position: relative;
+}
+.menu-bar .menu-group.opened .trigger span {
+    background-image: url("/images/white_menu_indicator.gif");
+}
+.menu-bar .menu-group.opened .trigger span span, .menu-bar .menu-group .trigger span span {
+    background-image: none;
+}
+.menu-bar .menu-button a:hover, .menu-bar .menu-group.opened .trigger span {
+    color: #FFFFFF;
+}
+.menu-bar .menu-group .trigger span {
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+}
+.menu-bar .menu-button span, .menu-bar .menu-group .trigger span span {
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+}
+.menu-bar .menu-group .drop-down a {
+    background: none no-repeat scroll 4px 50% #FFFFFF;
+    border: medium none;
+    display: block;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 0.5em 0 24px;
+    text-decoration: none;
+}
+.menu-bar .drop-down {
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C1C1C1;
+    font-weight: normal;
+    left: 0;
+    /*min-width: 11em;*/
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 1000;
+}
+#header-menu-bar .drop-down {
+    min-width: 15em;
+}
+.menu-bar .drop-down.above {
+    -moz-border-radius: 3px 3px 0 0;
+    bottom: 2em;
+    margin-top: -2px;
+}
+.menu-bar .drop-down ul, .menu-bar ul.drop-down {
+    border-top: 1px solid #E1E1E1;
+    list-style: none outside none;
+    margin: 0;
+    padding: 5px 0;
+    position: relative;
+}
+.menu-bar .drop-down ul.first, .menu-bar ul.drop-down.first {
+    border-top: medium none;
+}
+.menu-bar .drop-down li {
+    margin: 0;
+    padding: 0;
+}
+.menu-bar .menu-group div.drop-down a {
+    background-position: 0.5em 50%;
+    background-repeat: no-repeat;
+    border: medium none;
+    display: block;
+    line-height: 2;
+    margin: 0;
+    padding: 0 1em 0 28px;
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.menu-bar .drop-down a img {
+    float: left;
+    height: 16px;
+    margin: 0.3em 0 0 -20px;
+    width: 16px;
+}
+
+.menu-bar .menu-group .section-secondary li a, .menu-bar .menu-group .section-modify li a {
+    font-size: 0.9em;
+    padding-left: 8px;
+}
+.menu-bar .menu-group .drop-down li.hidden {
+    display: none;
+}
+.menu-bar {
+    margin: 10px 0 0 1em;
+}
+.menu-bar .menu-button span, .menu-bar .menu-group .menu-title span span {
+    padding-left: 27px;
+    line-height: 27px;
+}
+.menu-bar .menu-button span.no-icon, .menu-bar .menu-group .menu-title span span.no-icon {
+    padding-left: 10px;
+}
+.menu-bar li.menu-group .menu-title, .menu-bar li.menu-button a {
+    -moz-border-radius: 3px 3px 3px 3px;
+    color: #535353;
+    font-size: 1.1em;
+    line-height: 20px;
+    padding: 0.35em 0.5em;
+}
+.menu-bar li.menu-group .menu-title {
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-bottomright: 0;
+}
+.menu-bar .menu-group .most-right-menu {
+    left: auto;
+    margin: 0;
+    right: 0;
+}
+.menu-bar li.menu-group .drop-down a {
+    color: #535353;
+}
+.menu-bar .menu-button a:hover,
+.menu-bar .menu-group li.active a,
+.menu-bar .menu-group.opened .drop-down li.active a,
+.menu-bar li.menu-button a.active,
+.menu-bar li.menu-group.opened .drop-down li.active a,
+.menu-bar li.menu-group a.trigger:hover{
+    background-color: #6699CC;
+    color: #FFFFFF;
+}
+.menu-bar .menu-group.opened a.trigger {
+    background-color: #6699CC;
+}
+.assistive {
+    height: 0;
+    left: -20000px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 4000px;
+}
+.menu-bar .menu-group .assistive {
+    display: block;
+    left: -20000px;
+    position: absolute;
+    visibility: visible;
+    width: 4000px;
+}
+.menu-bar .menu-group .most-right-menu.assistive {
+    left: auto;
+    right: 20000px;
+}
+.menu-bar .menu-group .drop-down ul li a span {
+    line-height: 2em;
+}
+.menu-bar .menu-group div.drop-down a.no-icon {
+    padding-left: 10px;
 }

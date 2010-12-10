@@ -49,7 +49,7 @@
                         <li><a href="http://wiki.springsprout.org" target="_blank">봄싹 위키</a></li>
                         <li><a href="http://springstudyclub.tistory.com/" target="_blank">봄싹 블로그</a></li>
                         <li><a href="http://jira.springsprout.org" target="_blank">봄싹 이슈트래커</a></li>
-                        <li><a href="http://code.springsprout.org" target="_blank">봄싹 코드 뷰어</a></li>
+                        <li><a href="https://github.com/whiteship/springsprout" target="_blank">봄싹 Git(+코드 뷰어)</a></li>
                     </ul>
                 </div>
                 <div id="thanks">
@@ -167,7 +167,7 @@
     	
         $("#studies li").click( function(){
             //var url = '<!-- c:url value="/study/view/"/ -->' + $(this).attr("study");
-            var url = '/study/view/' + $(this).attr("study");
+            var url = '/study/' + $(this).attr("study");
             $(document).attr("location", url);
         });
 
@@ -234,16 +234,7 @@
 	     });
 	}
 	
-    function changeMeetingDateFormat( $meetingItem) {
-        $meetingItem.each( function() {
-            var $this = $(this), openDate = $this.find('.openDateVal').val(), myDate = new Date();
-            myDate.setFullYear(openDate.slice(0, 4),openDate.slice(5, 7)-1,openDate.slice(8, 10));
-            $this.find('.month').text($.datepicker.regional['en-GB'].monthNamesShort[myDate.getMonth()]);
-            $this.find('.day').text(myDate.getDate());
-            $this.find('.shortDay').text($.datepicker.regional['en-GB'].dayNamesShort[myDate.getDay()]);
-        });
-		
-	}
+
 </script>
 
 <script type="text/javascript">
