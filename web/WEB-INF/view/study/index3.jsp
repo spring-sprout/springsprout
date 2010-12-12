@@ -196,7 +196,7 @@ ul.main.study {
 				</h3>	
 			</div>
 			<div class="studyDescr" style="height: 55%;">
-				<h1>Hot Meeting!!</h1>		
+				<h1>Recent Meeting!!</h1>		
 				<div style="padding: 2px;" >
 					<div class="studyBorder ui-corner-all">
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
@@ -244,8 +244,7 @@ ul.main.study {
 		<div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>Find Study Near for U!!</h1>
 			<hr class="horizontal-line">
-			Subject <input type="text"><br/>
-			Registor, Attendance <input type="text"><br/>
+			<input type="text" name="keyword" class="">
 			<button>find!</button>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">

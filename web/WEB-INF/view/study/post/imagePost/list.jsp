@@ -36,34 +36,6 @@ img:HOVER { cursor: pointer; }
 	width: 24%;
 }
 
-/* the overlayed element */
-.simple_overlay {
-	/* must be initially hidden */
-	display:none;
-	/* place overlay on top of other elements */
-	z-index:10000;
-	/* styling */
-	background-color:#333;
-	width:675px;	
-	min-height:200px;
-	border:1px solid #666;
-	/* CSS3 styling for latest browsers */
-	-moz-box-shadow:0 0 90px 5px #000;
-	-webkit-box-shadow: 0 0 90px #000;	
-}
-
-/* close button positioned on upper right corner */
-.simple_overlay { width: 1000px;}
-.simple_overlay div { float:left; }
-.simple_overlay .close {
-	background-image:url(/resources/js/plugin/jqueryTools/images/close.png);
-	position:absolute;
-	right:-15px;
-	top:-15px;
-	cursor:pointer;
-	height:35px;
-	width:35px;
-}
 .details {
 	position:absolute;
 	top:15px;

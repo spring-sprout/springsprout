@@ -97,7 +97,6 @@
 						<div class="post-text-title" id="${post.id}">
 							<h3 class="tip_trigger">${post.title}
 							<span class="tip">
-								<img class="photo fn logoSmall" height="48" width="48" src="${post.writer.avatar}" alt="${post.writer.name}"/>
 								<span>${post.content}</span>
 							</span>
 							</h3>

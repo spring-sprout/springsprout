@@ -8,40 +8,52 @@
 <style type="text/css">
 #postForm p { margin: 2px;}
 label { display: inline !important;}
-fieldset { padding: 5px; width: 93%; }
+fieldset { padding: 5px; }
 textarea { width: 95%; border: 1px solid; }
 .mod-content { padding: 10px; }
 .mod-header { margin: 5px;}
 .form-button { padding-top: 5px }
+.parent-content { text-indent: 0.8em; }
+#hideParent { float:right; }
 </style>
 <s2c:module name="${title} Text Post">
 	<fieldset>
 		<legend>원본 글</legend>
-		<h3>${ parent.title }</h3>
-		<p>${ parent.content }</p>
+		<div>
+			<div id="hideParent">보기</div>
+			<h3>${ parent.title }</h3>
+		</div>
+		<div id="parentContent">
+			<p class="parent-content">${ parent.content }</p>
+		</div>
 	</fieldset>
-	<form:form id="postForm" commandName="textPost" method="${method}" action="${action}" enctype="multipart/form-data">
-		<form:hidden path="rootPost.id"/>
-		<form:hidden path="rootStudy.id"/>
-		<p>
-			<form:label path="title">제목 : </form:label>
-			<form:input path="title" cssStyle="width: 90%;" />
-		</p>
-		<p>
-			<form:label path="content">내용</form:label><br/>
-			<form:textarea path="content" id="postContent" rows="8" cols="100" />
-		</p>
-		<p align="center" class="form-button">
-			<input type="submit" id="saveBtn" value="저장" />
-			<input type="button" id="cancleBtn" value="취소" />
-		</p>
-	</form:form>
+	<br/>
+	<fieldset>
+		<legend>답글</legend>	
+		<form:form id="postForm" commandName="textPost" method="${method}" action="${action}" enctype="multipart/form-data">
+			<form:hidden path="rootPost.id"/>
+			<form:hidden path="rootStudy.id"/>
+			<p>
+				<form:label path="title">제목 : </form:label>
+				<form:input path="title" cssStyle="width: 90%;" />
+			</p>
+			<p>
+				<form:label path="content">내용</form:label><br/>
+				<form:textarea path="content" id="postContent" rows="8" cols="100" />
+			</p>
+			<p align="center" class="form-button">
+				<input type="submit" id="saveBtn" value="저장" />
+				<input type="button" id="cancleBtn" value="취소" />
+			</p>
+		</form:form>
+	</fieldset>
 </s2c:module>
 <script type="text/javascript">
 $postForm = $('#postForm'), $activeArea = $('.active-area');
 $(function(){
 	initEvent();
 	
+	$('#postContent').wysiwyg();
 	$('#saveBtn, #cancleBtn').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
 		.children().addClass('post-button-text').removeClass('ui-button-text');
 	
@@ -61,7 +73,18 @@ $(function(){
 });
 
 function initEvent(){
-	$('#cancleBtn').click( function(e) { refreshListDiv(); });	
+	$('#parentContent').hide();
+	$('#cancleBtn').click( function(e) { refreshListDiv(); });
+	$('#hideParent').click( function(e) { 
+		var $this = $(this), text = $this.text();
+		$('#parentContent').toggle( function() {
+			if ( text === '숨기기') {
+				$this.text('보기');				
+			} else {
+				$this.text('숨기기');
+			}
+		}); 
+	});
 }
 
 function refreshListDiv() {
