@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+
+<jstl-view-resolver prefix="/WEB-INF/jsp/" suffix=".jsp" />
