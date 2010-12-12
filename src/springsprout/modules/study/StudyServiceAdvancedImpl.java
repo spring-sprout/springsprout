@@ -35,10 +35,8 @@ public class StudyServiceAdvancedImpl implements StudyService {
     @Resource NotificationService unifiedNotificationService;
     @Resource ThreadPoolTaskExecutor myExecutor;
     
-    @Autowired GoogleCalendarService calendarService;
     @Autowired MemberRepository memberRepository;
     @Autowired SecurityService securityService;
-
     @Autowired ExceptionTemplate exceptionTemplate;
 
     public void addStudy(final Study study) {
@@ -47,7 +45,6 @@ public class StudyServiceAdvancedImpl implements StudyService {
         exceptionTemplate.catchAll(new ExceptionalWork(){
             public void run() throws Exception {
                 unifiedNotificationService.sendMessage(new StudyMailMessage(study, StudyStatus.OPEN, memberRepository.getMemberList()));
-                calendarService.createNewStudyCalendar(study);
             }
         });
     }
@@ -57,11 +54,6 @@ public class StudyServiceAdvancedImpl implements StudyService {
 
         exceptionTemplate.catchAll(new ExceptionalWork(){
             public void run() throws Exception {
-                calendarService.synchronizeForLegacy(study);
-                calendarService.synchronizeForLegacy(studyService.getMeetingsOf(study));
-                calendarService.updateStudyCalendar(study);
-                calendarService.addToAccessControlList(study, securityService.getCurrentMember());
-
                 if (isGoingToBeNotified && (study.getStatus() != StudyStatus.ENDED)) {
                     unifiedNotificationService.sendMessage(new StudyMailMessage(study, StudyStatus.UPDATED, memberRepository.getMemberList()));
                 }
@@ -94,12 +86,6 @@ public class StudyServiceAdvancedImpl implements StudyService {
     }
 
     public void deleteStudy(final Study study) {
-        exceptionTemplate.catchAll(new ExceptionalWork(){
-            public void run() throws Exception {
-                calendarService.deleteStudyCalendar(study);
-            }
-        });
-
         studyService.deleteStudy(study);
     }
 
@@ -113,22 +99,10 @@ public class StudyServiceAdvancedImpl implements StudyService {
 
     public void addCurrentMember(final Study study) {
         studyService.addCurrentMember(study);
-
-        exceptionTemplate.catchAll(new ExceptionalWork(){
-            public void run() throws Exception {
-                calendarService.addToAccessControlList(study, securityService.getPersistentMember());
-            }
-        });
     }
 
     public void removeCurrentMember(final Study study) {
         studyService.removeCurrentMember(study);
-
-        exceptionTemplate.catchAll(new ExceptionalWork(){
-            public void run() throws Exception {
-                calendarService.removeToAccessControlList(study, securityService.getPersistentMember());
-            }
-        });
     }
 
     public boolean isCurrentUserAlreadyJoinedIn(int studyId) {

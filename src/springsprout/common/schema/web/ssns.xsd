@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xsd:schema xmlns="http://www.springsprout.org/schema/ssns"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            targetNamespace="http://www.springsprout.org/schema/ssns"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+
+    <xsd:element name="jstl-view-resolver">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" use="optional" default="internalResourceViewResolver"/>
+            <xsd:attribute name="prefix" type="xsd:string" use="optional" default="/WEB-INF/jsp/"/>
+            <xsd:attribute name="suffix" type="xsd:string" use="optional" default=".jsp"/>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
