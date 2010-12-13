@@ -184,6 +184,11 @@ ul.main.study {
 	position:relative;
 }
 #content { height: auto !important;}
+.study-index-search { 
+	width: 70%;
+	border: 2px solid green;
+    height: 30px;
+}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
@@ -244,8 +249,10 @@ ul.main.study {
 		<div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>Find Study Near for U!!</h1>
 			<hr class="horizontal-line">
-			<input type="text" name="keyword" class="">
-			<button>find!</button>
+			<div align="center">
+				<input type="text" name="keyword" class="study-index-search">
+				<button>find!</button>
+			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
 			<h1>Up Comming Studies!!</h1>
