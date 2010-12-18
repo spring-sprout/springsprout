@@ -23,6 +23,7 @@
 .post-root {  border-bottom: 2px solid #006400; padding: 10px 0; }
 .post-text-root, .post-text-reply { overflow: hidden; }
 .post-text-root-writer-info, .post-text-reply-writer-info { float: right; border: solid 1px #1E90FF; width: 200px; }
+.post-text-reply-writer-info { border: 0px; }
 .post-text-reply-writer-info { font-size: 0.9em; }
 .post-reply-list { padding-top: 10px;}
 .replyPost{ padding: 10px; margin: 5px; border: dashed 1px #6B8E23; }
@@ -31,6 +32,9 @@
 	border:1px solid gray;
 	margin:2px 0;
 	text-indent:0.8em;
+}
+.reply-content { 
+	border: 0px;
 }
 .reply-title { font-weight: bold;}
 .post-commentSubmitBtn { height: 50px; float: right; width: 10%; }

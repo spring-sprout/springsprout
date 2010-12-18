@@ -184,6 +184,11 @@ ul.main.study {
 	position:relative;
 }
 #content { height: auto !important;}
+.study-index-search { 
+	width: 70%;
+	border: 2px solid green;
+    height: 30px;
+}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
@@ -196,7 +201,7 @@ ul.main.study {
 				</h3>	
 			</div>
 			<div class="studyDescr" style="height: 55%;">
-				<h1>Hot Meeting!!</h1>		
+				<h1>Recent Meeting!!</h1>		
 				<div style="padding: 2px;" >
 					<div class="studyBorder ui-corner-all">
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
@@ -244,9 +249,10 @@ ul.main.study {
 		<div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>Find Study Near for U!!</h1>
 			<hr class="horizontal-line">
-			Subject <input type="text"><br/>
-			Registor, Attendance <input type="text"><br/>
-			<button>find!</button>
+			<div align="center">
+				<input type="text" name="keyword" class="study-index-search">
+				<button>find!</button>
+			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
 			<h1>Up Comming Studies!!</h1>

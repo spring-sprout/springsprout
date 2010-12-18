@@ -11,47 +11,52 @@
 .post-image-thumbnail-default { margin: 2px; border: 1px green solid; }
 .post-image-thumbnail-default:HOVER { cursor: pointer; border-width: 2px; }
 .post-summary { font-size: 0.9em; list-style-type: none; }
-.post-summary-title { float: left; width: 80%;}
+.post-summary-title { float: left; width:65%;}
 .post-summary-title:VISITED { color: black; }
 .post-summary-title:HOVER { cursor: pointer; text-decoration: underline; font-weight: bold; color: green; }
-.post-summary-writer { float: right; width: 20%; }
+.post-summary-writer { float: right; width: 10%; text-align: right; }
 </style>
 
 <h2>Post Summary</h2>
 
-<s2c:left-column>
+<s2c:bottom-column>
     <s2c:module name="Text" more="더보기" url="${study.id}/post/textPost/list/0">
         <ol class="item-details">
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
 				<li class="post-summary">
-					<a href="#" class="post-summary-title" title="${text.title}" rel="${text.id}">${text.title}</a><div class="post-summary-writer">${text.writer.name}</div>
+					<a href="#" class="post-summary-title" title="${text.title}" rel="${text.id}">${text.title}</a>${text.createdAt}<div class="post-summary-writer">${text.writer.name}</div>
 				</li>
 			</c:forEach>
 			</s2c:portlet>
         </ol>
     </s2c:module>
     
-</s2c:left-column>
-<s2c:right-column>
-    <s2c:module name="Poll" more="더보기">
-        <s2c:portlet target="${discuss}">
-			asdfasdf
-		</s2c:portlet>  
-    </s2c:module>
-    <s2c:module name="토론" more="더보기">
-		<s2c:portlet target="${discuss}">
-			asdfasdf
-		</s2c:portlet>
-    </s2c:module>
-</s2c:right-column>
+</s2c:bottom-column>
 <s2c:bottom-column>
 	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
 		<div id="thumbnailList" align="center" >
 		<s2c:portlet target="${images}">
 			<c:forEach var="image" items="${images}">
 				<div class="thumbnail" style="float: left;" id="${image.id}">
-					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" />
+					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" rel="#${image.id}"/>
+					<div class="simple_overlay" id="${image.id}">
+							<!-- large image -->
+							<div style="width: 80%;">
+								<img style="max-width: 100%;" src="/images/userimage/${image.writer.email}/${image.imageFile.savedFileName}" />
+							</div>
+							<!-- image details -->
+							<div class="details">
+								<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+								<c:if test="${currentUserName == image.writer.email}">
+									<button class="updateBtn" id="${image.id}">수정</button>
+									<button class="deleteBtn" id="${image.id}">삭제</button>
+								</c:if>
+								<h3 class="detail-title">${image.title}</h3>
+								<h4 class="detail-writer">${image.writer.name}</h4>
+								<p class="detail-content">${image.content}</p>
+							</div>
+						</div>
 				</div>
 			</c:forEach>
 		</s2c:portlet>
@@ -62,6 +67,7 @@
 <script type="text/javascript">
 $(function(){ 
 	var $actionArea = $('.active-area');
+	$('img[rel]').overlay();
 	$('.more').click( function(){
 		$actionArea.load($(this).next().text());
 		return false;
@@ -70,9 +76,6 @@ $(function(){
 		var postId = $(this).attr('rel');
 		$actionArea.load('${study.id}/post/textPost/' + postId + '?page=1');
 		return false;
-	});
-	$('.thumbnail').click( function(){
-		$actionArea.load('${study.id}/post/imagePost/listBySelectId/' + $(this).attr('id'));
 	});
 	
 	SPROUT.common.util.cutStringUsingDot($('.post-summary').children(), 45);

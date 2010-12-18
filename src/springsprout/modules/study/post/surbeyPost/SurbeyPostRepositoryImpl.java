@@ -3,8 +3,11 @@ package springsprout.modules.study.post.surbeyPost;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import springsprout.domain.study.board.SurbeyPost;
 
+@Repository
 public class SurbeyPostRepositoryImpl implements SurbeyPostRepository {
 
 	public void add(SurbeyPost entity) {

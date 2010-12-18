@@ -36,6 +36,7 @@ $postForm = $('#postForm'), $activeArea = $('.active-area');
 $(function(){
 	initEvent();
 	
+	$('#postContent').wysiwyg();
 	$('#saveBtn, #cancleBtn').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
 		.children().addClass('post-button-text').removeClass('ui-button-text');
 	
