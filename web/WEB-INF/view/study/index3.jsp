@@ -189,10 +189,14 @@ ul.main.study {
 	border: 2px solid green;
     height: 30px;
 }
+.buttons a { float: right; padding: 3px 3px;margin : 0 20 10 0;}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
 	<div id="content">
+		<div class="buttons">
+            <a id="btnRegist" class="confirmRequired" href="<c:url value="/study/form"/>">새 스터디 등록</a>
+		</div>
 		<div class="studyBorder ui-corner-all studyList" style="width:60%; float: left; padding: 5px;">
 			<div class="studyDescr">
 				<h2>SpringSprout Study!!</h2>
@@ -200,7 +204,7 @@ ul.main.study {
 					Do something • Learn something<br/>Share something • Change something
 				</h3>	
 			</div>
-			<div class="studyDescr" style="height: 55%;">
+			<div class="studyDescr" style="height: 300px;">
 				<h1>Recent Meeting!!</h1>		
 				<div style="padding: 2px;" >
 					<div class="studyBorder ui-corner-all">
@@ -223,7 +227,7 @@ ul.main.study {
 				<c:when test="${!empty list}">
 					<c:forEach items="${list}" var="study" varStatus="vs">
 					<div class="D_photoGroup" style="margin-left: 1.5em; background: url('<c:url value="${study.logo != null ? study.logo : '/resources/images/study/logos/default.png'}" />') no-repeat scroll center center #DCDCDC; width:45%; float: left;" >
-						<a class="D_photoGroup_link" href="http://www.meetup.com/Yoga-Hiking/">
+						<a class="D_photoGroup_link" href="${study.id }">
 							<span class="D_photoGroup_bkg"></span>
 							<span class="D_photoGroup_caption">
 							<span class="D_photoGroup_caption_body">
@@ -301,7 +305,7 @@ $(document).ready(function() {
 		dialogOpen( msg, actionUrl);
 		return false;
 	});
-    $('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
+    $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
 });
 </script>
 </page:defaultpage>
