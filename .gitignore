@@ -1,3 +1,9 @@
+# Not In This Branch     #
+##########################
+src
+test
+web
+
 # Eclipse Project Files #
 ##########################
 .settings
