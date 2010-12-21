@@ -16,7 +16,7 @@ public class SurbeyPostServieImpl implements SurbeyPostService {
 		return null;
 	}
 
-	public List<SurbeyPost> getList(int start, int limit) {
+	public List<SurbeyPost> getList(int start, int limit, int studyId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

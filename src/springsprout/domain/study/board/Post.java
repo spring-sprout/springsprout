@@ -49,7 +49,7 @@ public class Post {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@DomainInfo("상위스터디")
-	private Study rootStudy;
+	protected Study rootStudy;
 	
 	public Post() { }
 	

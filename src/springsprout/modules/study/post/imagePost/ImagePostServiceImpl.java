@@ -22,12 +22,12 @@ public class ImagePostServiceImpl implements ImagePostService {
 	@Autowired @Qualifier("imageFileService") FileService fileService;
 	@Autowired SecurityService securityService;
 
-	public List<ImagePost> getList( int start, int limit) {
-		return repository.getRootPostList(start * limit, limit);
+	public List<ImagePost> getList( int start, int limit, int studyId) {
+		return repository.getRootPostList(start * limit, limit, studyId);
 	}
 	
-	public List<ImagePost> getListBySelecteId(int id, int limit) {
-		return repository.getRootPostList(id, limit);
+	public List<ImagePost> getListBySelecteId(int id, int limit, int studyId) {
+		return repository.getRootPostList(id, limit, studyId);
 	}
 
 	public ImagePost getPost( int postId) {

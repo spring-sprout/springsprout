@@ -10,7 +10,7 @@ import springsprout.domain.study.board.Post;
 public interface PostService<T extends Post> {
 
 	public abstract List<T> getList();
-	public abstract List<T> getList(int start, int limit);
+	public abstract List<T> getList(int start, int limit, int studyId);
 	public abstract T getPost(int postId);
 	public abstract void addPost(T post);
 	public abstract void removePost(T post);

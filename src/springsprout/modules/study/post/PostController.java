@@ -26,8 +26,8 @@ public class PostController {
 	@RequestMapping("/post")
 	public String view(Model model, @ModelAttribute Study study) {
 		model.addAttribute(new TextPost(study));
-		List<TextPost> texts = textService.getList(0, 10);
-		List<ImagePost> images = imageService.getList(0, 7);
+		List<TextPost> texts = textService.getList(0, 10, study.getId());
+		List<ImagePost> images = imageService.getList(0, 7, study.getId());
 		model.addAttribute("texts", texts.isEmpty() ? null : texts);
 		model.addAttribute("images", images.isEmpty() ? null : images);
 		return "study/post/view";

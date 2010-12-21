@@ -21,8 +21,9 @@ public class TextPostRepositoryImpl extends HibernateGenericDao<TextPost> implem
 		return getCriteria().add(Restrictions.eq("rootPost.id", textPost.getId())).list();
 	}
 
-	public List<TextPost> getRootPostList(int start, int limit) {
-		return getCriteria().addOrder(Order.desc("createdAt")).add(Restrictions.isNull("rootPost")).setFirstResult(start).setMaxResults(limit).list();
+	public List<TextPost> getRootPostList(int start, int limit, int studyId) {
+		return getCriteria().addOrder(Order.desc("createdAt")).add(Restrictions.isNull("rootPost")).setFirstResult(start).setMaxResults(limit)
+			.add(Restrictions.eq("rootStudy.id", studyId)).list();
 	}         
 
 	public List<TextPost> findPostByTitle(String title) {

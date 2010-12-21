@@ -189,7 +189,7 @@ ul.main.study {
 	border: 2px solid green;
     height: 30px;
 }
-.buttons a { float: right; padding: 3px 3px;margin : 0 20 10 0;}
+.buttons a { float: right; padding: 3 3;margin : 0 20 10 0;}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
@@ -227,7 +227,7 @@ ul.main.study {
 				<c:when test="${!empty list}">
 					<c:forEach items="${list}" var="study" varStatus="vs">
 					<div class="D_photoGroup" style="margin-left: 1.5em; background: url('<c:url value="${study.logo != null ? study.logo : '/resources/images/study/logos/default.png'}" />') no-repeat scroll center center #DCDCDC; width:45%; float: left;" >
-						<a class="D_photoGroup_link" href="${study.id }">
+						<a class="D_photoGroup_link" href="/study/${study.id }">
 							<span class="D_photoGroup_bkg"></span>
 							<span class="D_photoGroup_caption">
 							<span class="D_photoGroup_caption_body">
