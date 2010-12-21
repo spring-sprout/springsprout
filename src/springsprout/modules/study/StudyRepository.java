@@ -35,4 +35,8 @@ public interface StudyRepository extends GenericDao<Study>{
     List<Member> getMemberListByStudyId(Integer studyId);
 
     List<Meeting> getMeetingsByStudyId(Integer studyId);
+    
+    Meeting getRecentMeeting();
+    
+    List<Study> findStudies(String key);
 }

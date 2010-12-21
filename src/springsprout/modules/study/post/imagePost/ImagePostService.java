@@ -7,5 +7,5 @@ import springsprout.modules.study.post.PostService;
 
 public interface ImagePostService extends PostService<ImagePost> {
 
-	public List<ImagePost> getListBySelecteId(int id, int limit);
+	public List<ImagePost> getListBySelecteId(int id, int limit, int studyId);
 }

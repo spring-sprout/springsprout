@@ -3,6 +3,7 @@ package springsprout.modules.study.post.imagePost;
 import java.util.List;
 
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import springsprout.common.dao.HibernateGenericDao;
@@ -17,8 +18,9 @@ import springsprout.domain.study.board.ImagePost;
 @Repository
 public class ImagePostRepositoryImpl extends HibernateGenericDao<ImagePost> implements ImagePostRepository {
 
-	public List<ImagePost> getRootPostList( int start, int limit) {
+	public List<ImagePost> getRootPostList( int start, int limit, int studyId) {
 		return getCriteria().addOrder(Order.desc("createdAt"))
-			.setFirstResult(start).setMaxResults(limit).list();
+			.setFirstResult(start).setMaxResults(limit)
+			.add(Restrictions.eq("rootStudy.id", studyId)).list();
 	}
 }

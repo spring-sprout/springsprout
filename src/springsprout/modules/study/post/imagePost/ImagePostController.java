@@ -32,7 +32,7 @@ public class ImagePostController {
 	
 	@RequestMapping("/list/{page}")
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page, SessionStatus status) {
-		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE);
+		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE, study.getId());
 		model.addAttribute(new ImagePost(study));
 		model.addAttribute("posts", posts.isEmpty() ? null : posts);
 		model.addAttribute("page", page);
@@ -42,7 +42,7 @@ public class ImagePostController {
 	
 	@RequestMapping("/listBySelectId/{id}")
 	public String getListBySelectId(Model model, @ModelAttribute Study study, @PathVariable int id, SessionStatus status) {
-		List<ImagePost> posts = service.getListBySelecteId( id, Paging.DEFAULT_SIZE);
+		List<ImagePost> posts = service.getListBySelecteId( id, Paging.DEFAULT_SIZE, study.getId());
 		model.addAttribute(new ImagePost(study));
 		model.addAttribute("posts", posts);
 		//model.addAttribute("page", page);

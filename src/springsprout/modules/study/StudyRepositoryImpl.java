@@ -19,7 +19,7 @@ import springsprout.modules.study.support.StudySearchParam;
 import java.util.List;
 
 @Repository
-public class StudyRepositoryImpl extends HibernateGenericDao<Study> implements StudyRepository{
+public class StudyRepositoryImpl extends HibernateGenericDao<Study> implements StudyRepository {
 
     @SuppressWarnings("unchecked")    
     public List<Study> getStudyList() {
@@ -144,6 +144,13 @@ public class StudyRepositoryImpl extends HibernateGenericDao<Study> implements S
                 .setInteger("studyId", studyId)
                 .list();
     }
+    
+	public Meeting getRecentMeeting() {
+		return (Meeting) getCurrentSession().createCriteria(Meeting.class).addOrder(Order.desc("id")).setMaxResults(1).uniqueResult();
+	}
 
+	public List<Study> findStudies(String key) {
+		return getCriteria().add(Restrictions.like("studyName", key, MatchMode.ANYWHERE)).list();
+	}
 
 }

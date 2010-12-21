@@ -66,7 +66,7 @@ public class TextPostServiceImpl implements PostService<TextPost> {
 		return new PostPaging( Paging.DEFAULT_SIZE, start, repository.getRootPostCount());
 	}
 
-	public List<TextPost> getList( int start, int limit) {
-		return repository.getRootPostList(start * limit, limit);
+	public List<TextPost> getList( int start, int limit, int studyId) {
+		return repository.getRootPostList(start * limit, limit, studyId);
 	}
 }

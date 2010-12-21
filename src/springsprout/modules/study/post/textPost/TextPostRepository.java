@@ -19,7 +19,7 @@ public interface TextPostRepository extends GenericDao<TextPost> {
 	 * @param end
 	 * @return
 	 */
-	List<TextPost> getRootPostList(int start, int end);
+	List<TextPost> getRootPostList(int start, int end, int studyId);
 	
 	/**
 	 * 제목으로 검색하기, 일단 제목 만.

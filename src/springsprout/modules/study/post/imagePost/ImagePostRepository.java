@@ -12,5 +12,5 @@ import springsprout.domain.study.board.ImagePost;
  * Time: 오후 2:49:37
  */
 public interface ImagePostRepository extends GenericDao<ImagePost> {
-	List<ImagePost> getRootPostList(int start, int limit);
+	List<ImagePost> getRootPostList(int start, int limit, int studyId);
 }
