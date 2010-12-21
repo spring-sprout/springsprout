@@ -171,7 +171,7 @@ public class MeetingServiceImpl implements MeetingService {
 		
 		calendarService.createNewMeetingEvent(meeting);
 		calendarService.addToAccessControlList(study, currentMember);
-		
+
 
         notiService.sendMessage(new MeetingMailMessage(study, meeting, MeetingStatus.OPEN));
 	}
