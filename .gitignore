@@ -1,0 +1,24 @@
+# Eclipse Project Files #
+##########################
+.settings
+.classpath
+.project
+.springBeans
+
+# Maven Output #
+#################
+target
+
+# Intellij IDEA Project Files#
+##############################
+*.iml
+.idea
+Springsprout.iml
+atlassian-ide-plugin.xml
+
+# OS generated files #
+######################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
