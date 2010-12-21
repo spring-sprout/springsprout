@@ -3,6 +3,7 @@ package springsprout.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import springsprout.common.annotation.DomainInfo;
+import springsprout.common.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -72,6 +73,8 @@ public class Location implements Serializable {
 
     @Override
     public String toString(){
+        if(StringUtils.isEmpty(this.name))
+            return "미정";
         return name;
     }
 }
