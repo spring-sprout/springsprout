@@ -11,7 +11,7 @@
 	<div id="menu_bar">
 		<ul>
 			<%--<li><a class="menu_alinker <c:if test="${selected_menu == 'home'}"> menuselected</c:if>" href="<c:url value="/"/>">홈</a></li>--%>
-			<li><a class="menu_alinker <c:if test="${selected_menu == 'studies'}"> menuselected</c:if>" href="<c:url value="/study/index"/>">스터디</a></li>
+			<li><a class="menu_alinker <c:if test="${selected_menu == 'studies'}"> menuselected</c:if>" href="<c:url value="/study/"/>">스터디</a></li>
 			<%--<li><a class="menu_alinker <c:if test="${selected_menu == 'seminars'}"> menuselected</c:if>" href="<c:url value="/seminar/index"/>">세미나</a></li>--%>
 			<li><a class="menu_alinker <c:if test="${selected_menu == 'New Wiki'}"> menuselected</c:if>" href="http://wiki.springsprout.org/">위키</a></li>
 			<li><a class="menu_alinker <c:if test="${selected_menu == 'Programming Terms'}"> menuselected</c:if>" href="<c:url value="/term/index"/>">용어집</a></li>
