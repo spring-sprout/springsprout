@@ -74,7 +74,7 @@
 <div id="quicklinks">
     <ul class="operations menu-bar">
         <li class="menu-button">
-            <a class="add-meeting" href="<c:url value="/study/meeting?studyId=${study.id}"/>">
+            <a class="add-meeting" href="<c:url value="/study/${study.id}/meeting/form"/>">
                 <span>모임 추가</span>
             </a>
         </li>

@@ -14,6 +14,7 @@ import springsprout.common.enumeration.PersistentEnumUtil;
 import springsprout.common.propertyeditor.FormatDatePropertyEditor;
 import springsprout.common.util.BeanUtils;
 import springsprout.domain.*;
+import springsprout.domain.Resource;
 import springsprout.domain.enumeration.ResourceType;
 import springsprout.modules.study.StudyService;
 import springsprout.modules.study.exception.JoinMeetingException;
@@ -23,6 +24,7 @@ import springsprout.modules.study.meeting.support.CountInfoDTO;
 import springsprout.modules.study.meeting.support.MeetingValidator;
 import springsprout.service.security.SecurityService;
 
+import javax.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
@@ -38,14 +40,25 @@ public class MeetingController {
     private static final String MEETING_FORM = "study/meeting/form";
     private static final String MEETING_VIEW = "study/meeting/view";
 
-
     Logger log = LoggerFactory.getLogger(MeetingController.class);
 
-    @Autowired StudyService studyService;
+    @javax.annotation.Resource StudyService studyService;
     @Autowired MeetingService meetingService;
     @Autowired SecurityService securityService;
-
     @Autowired MeetingValidator meetingValidator;
+
+    @RequestMapping(value = "/study/{studyId}/meeting/form", method = RequestMethod.GET)
+    public String meetingAddForm(@PathVariable int studyId, Model model) {
+        model.addAttribute("study", studyService.getStudyById(studyId));
+        model.addAttribute("meeting", new Meeting());
+        return "/study/meeting/form";
+    }
+
+    @RequestMapping(value = "/study/{studyId}/meeting/form", method = RequestMethod.POST)
+    public String meetingAddFormSubmit(Meeting meeting, BindingResult result, Model model) {
+        // TODO 서브밋 처리
+        return null;
+    }
 
     @RequestMapping(value = "/study/{studyId}/meeting/{meetingId}", method = RequestMethod.GET)
     public String meetingView(@PathVariable int meetingId, Model model) {
@@ -197,11 +210,11 @@ public class MeetingController {
         return "/study/meeting/_meetingLocationView";
     }
     
-    @RequestMapping("/study/{studyId}/meeting/meetings")
-    public String viewMeeting( Model model) {
-    	return "/study/meeting/_meetings";
-    }
-    
+//    @RequestMapping("/study/{studyId}/meeting/meetings")
+//    public String viewMeeting( Model model) {
+//    	return "/study/meeting/_meetings";
+//    }
+
     @RequestMapping("/study/{studyId}/meeting/{meetingId}/viewMembers")
     public String viewMembers( @PathVariable int meetingId, Model model) {
     	 Meeting meeting = meetingService.getById(meetingId);
@@ -211,7 +224,7 @@ public class MeetingController {
          model.addAttribute("isManagerOrAdmin", securityService.isMeetingManagerOrAdmin(meeting));
     	return "/study/meeting/_members";
     }
-    
+
     @RequestMapping("/study/{studyId}/meeting/{meetingId}/viewPresentations")
     public String viewPresentation( @PathVariable int meetingId, Model model) {
     	 Meeting meeting = meetingService.getById(meetingId);

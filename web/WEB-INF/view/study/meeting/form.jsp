@@ -12,16 +12,10 @@ em.error, span.error { display: inline; }
 </style>
 <div id="content">
     <div class="standard_form standard_margin">
-       	스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/view/${meeting.study.id}"/>">${studyName}</a>
-        <c:if test="${ action == '수정' }">
-			<h1> > [${meeting.title}] 모임 수정</h1>
-		</c:if>
-       	<c:if test="${ action == '추가' }">
-       		<h1> > 스터디 모임 추가</h1>
-       	</c:if>
+        <a class="s_waitblock" href="<c:url value="/study/${study.id}"/>">${studyName}</a>
+        <h1> > 모임 추가</h1>
        	<hr class="clear" />
         <form:form commandName="meeting" method="post" id="meetingForm">
-        	<h2 class="summary"></h2>
 	        <p>
 	            <label>모임주제</label>
 	            <form:input path="title" cssClass="text" cssStyle="width: 400px;"/>
@@ -63,20 +57,11 @@ em.error, span.error { display: inline; }
 	        </p>
 	        <br/><hr/>
 	        <div class="buttonGroup" style="margin-top: 20px;" align="center">
-	        	<c:if test="${ action == '수정' }">
-		            <input type="submit" value="저장" />
-		            <a href="<c:url value="/study/${study.id}/meeting/${meetingId}"/>">
-		            	<input type="button" value="취소" />
-		            </a>
-				</c:if>
-	        	<c:if test="${ action == '추가' }">
-	        		<input type="submit" name="_eventId_proceed" value="다음" class="jButton"/>
-					<input type="submit" name="_eventId_submit" value="저장" class="jButton"/>
-					<input type="submit" name="_eventId_cancel" value="취소" class="jButton"/>
-	        	</c:if>
-	        <form:hidden id="location_latitude" path="location.latitude"/>
-	        <form:hidden id="location_longitude" path="location.longitude"/>
+                <input type="submit" value="저장" class="jButton"/>
+                <button class="jButton">취소</button>
 	        </div>
+            <form:hidden id="location_latitude" path="location.latitude"/>
+	        <form:hidden id="location_longitude" path="location.longitude"/>
         </form:form>
     </div>
 </div>
@@ -96,10 +81,6 @@ $( function(){
                 $('#location_name').val(meetingPacleName.replace(/<("[^"]*"|'[^']*'|[^'">])*>/gi, ""));
             }
         });
-        // 기존에 선택된 장소에 마커를 표시한다.
-        <c:if test="${ action == '수정' }">
-        springMAP.setCenterMarker("${meeting.location.name}", ${meeting.location.latitude}, ${meeting.location.longitude});
-        </c:if>
     }
 });
 
