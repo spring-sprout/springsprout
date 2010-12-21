@@ -194,9 +194,11 @@ ul.main.study {
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
 	<div id="content">
+		<sec:authorize ifAnyGranted="ROLE_MANAGER, ROLE_ADMIN">
 		<div class="buttons">
             <a id="btnRegist" class="confirmRequired" href="<c:url value="/study/form"/>">새 스터디 등록</a>
 		</div>
+		</sec:authorize>
 		<div class="studyBorder ui-corner-all studyList" style="width:60%; float: left; padding: 5px;">
 			<div class="studyDescr">
 				<h2>SpringSprout Study!!</h2>
