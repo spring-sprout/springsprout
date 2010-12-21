@@ -51,13 +51,17 @@ public class MeetingController {
     public String meetingAddForm(@PathVariable int studyId, Model model) {
         model.addAttribute("study", studyService.getStudyById(studyId));
         model.addAttribute("meeting", new Meeting());
-        return "/study/meeting/form";
+        return MEETING_FORM;
     }
 
     @RequestMapping(value = "/study/{studyId}/meeting/form", method = RequestMethod.POST)
-    public String meetingAddFormSubmit(Meeting meeting, BindingResult result, Model model) {
-        // TODO 서브밋 처리
-        return null;
+    public String meetingAddFormSubmit(@PathVariable int studyId, Meeting meeting, BindingResult result, SessionStatus status, Model model) {
+        meetingValidator.validate(meeting, result);
+        if(result.hasErrors())
+            return MEETING_FORM;
+        status.setComplete();
+        meetingService.addMeeting(studyId, meeting);
+        return "redirect:/study/" + studyId;
     }
 
     @RequestMapping(value = "/study/{studyId}/meeting/{meetingId}", method = RequestMethod.GET)

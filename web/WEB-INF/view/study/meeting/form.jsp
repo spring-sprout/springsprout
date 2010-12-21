@@ -2,6 +2,7 @@
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags/page"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags/study"%>
 
 <page:defaultpage selected_menu="studies">
 <!-- Load Google map API version 2-->
@@ -58,7 +59,7 @@ em.error, span.error { display: inline; }
 	        <br/><hr/>
 	        <div class="buttonGroup" style="margin-top: 20px;" align="center">
                 <input type="submit" value="저장" class="jButton"/>
-                <button class="jButton">취소</button>
+                <s:back-button url="/study/${study.id}" />
 	        </div>
             <form:hidden id="location_latitude" path="location.latitude"/>
 	        <form:hidden id="location_longitude" path="location.longitude"/>
