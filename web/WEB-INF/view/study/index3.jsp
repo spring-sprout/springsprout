@@ -201,13 +201,13 @@ ul.main.study {
 		</sec:authorize>
 		<div class="studyBorder ui-corner-all studyList" style="width:60%; float: left; padding: 5px;">
 			<div class="studyDescr">
-				<h2>SpringSprout Study!!</h2>
+				<h2>봄싹 스터디!</h2>
 				<h3 class="logoTitle">
-					Do something • Learn something<br/>Share something • Change something
+					• 도전하자 • 학습하자 • 나누자 • 즐기자
 				</h3>	
 			</div>
 			<div class="studyDescr" style="height: 300px;">
-				<h1>Recent Meeting!!</h1>		
+				<h1>다음 모임</h1>
 				<div style="padding: 2px;" >
 					<div class="studyBorder ui-corner-all">
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
@@ -253,7 +253,7 @@ ul.main.study {
 			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
-			<h1>Find Study Near for U!!</h1>
+			<h1>스터디 찾기</h1>
 			<hr class="horizontal-line">
 			<div align="center">
 				<input type="text" name="keyword" class="study-index-search">
@@ -261,10 +261,10 @@ ul.main.study {
 			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
-			<h1>Up Comming Studies!!</h1>
+			<h1>스터디 종합</h1>
 			<hr class="horizontal-line">
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${fn:length(activeStudies) } Studies right now</h2>
+				<h2 class="logoTitle">${fn:length(activeStudies) } 진행중인 스터디</h2>
 				<c:forEach items="${activeStudies}" var="study" varStatus="vs" begin="0" end="0">
 					<span>${study.studyName }</span><br/>
 					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
@@ -272,21 +272,21 @@ ul.main.study {
 				${fn:length(activeStudies) - displayStudyCount } more studies..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${studyIndexInfo.meetingCount} meetings right now</h2>
+				<h2 class="logoTitle">${studyIndexInfo.meetingCount} 지금까지 모임 정보</h2>
 				블라 블라<br/>
 				블라 블라<br/>
 				블라 블라<br/>
 				${studyIndexInfo.meetingMoreCount} more meetings..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${studyIndexInfo.presentationCount} presentations right now</h2>
+				<h2 class="logoTitle">${studyIndexInfo.presentationCount} 지금까지 발표 정보</h2>
 				블라 블라<br/>
 				블라 블라<br/>
 				블라 블라<br/>
 				${studyIndexInfo.presentationMoreCount} more presentations..<br/>
 			</div>
 			<div>
-				<h2 class="logoTitle">${studyIndexInfo.closedStudyCount} closed studies </h2>
+				<h2 class="logoTitle">${studyIndexInfo.closedStudyCount} 종료된 스터디 </h2>
 				<c:forEach items="${closedStudies}" var="study" varStatus="vs" begin="0" end="3">
 					<span>${study.studyName }</span><br/>
 					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
