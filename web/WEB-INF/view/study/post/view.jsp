@@ -17,10 +17,10 @@
 .post-summary-writer { float: right; width: 10%; text-align: right; }
 </style>
 
-<h2>Post Summary</h2>
+<h2>게시판</h2>
 
 <s2c:bottom-column>
-    <s2c:module name="Text" more="더보기" url="${study.id}/post/textPost/list/0">
+    <s2c:module name="일반" more="더보기" url="${study.id}/post/textPost/list/0">
         <ol class="item-details">
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
@@ -31,7 +31,6 @@
 			</s2c:portlet>
         </ol>
     </s2c:module>
-    
 </s2c:bottom-column>
 <s2c:bottom-column>
 	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
@@ -47,11 +46,13 @@
 							</div>
 							<!-- image details -->
 							<div class="details">
-								<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-								<c:if test="${currentUserName == image.writer.email}">
-									<button class="updateBtn" id="${image.id}">수정</button>
-									<button class="deleteBtn" id="${image.id}">삭제</button>
-								</c:if>
+                                <sec:authorize ifAnyGranted="ROLE_MEMBER">
+								    <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+                                    <c:if test="${currentUserName == image.writer.email}">
+                                        <button class="updateBtn" id="${image.id}">수정</button>
+                                        <button class="deleteBtn" id="${image.id}">삭제</button>
+                                    </c:if>
+                                </sec:authorize>
 								<h3 class="detail-title">${image.title}</h3>
 								<h4 class="detail-writer">${image.writer.name}</h4>
 								<p class="detail-content">${image.content}</p>

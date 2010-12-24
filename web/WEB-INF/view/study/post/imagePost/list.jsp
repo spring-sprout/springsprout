@@ -91,11 +91,13 @@ input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;
 							</div>
 							<!-- image details -->
 							<div class="details">
-								<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-								<c:if test="${currentUserName == post.writer.email}">
-									<button class="updateBtn" id="${post.id}">수정</button>
-									<button class="deleteBtn" id="${post.id}">삭제</button>
-								</c:if>
+                                <sec:authorize ifAnyGranted="ROLE_MEMBER">
+                                    <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+                                    <c:if test="${currentUserName == post.writer.email}">
+                                        <button class="updateBtn" id="${post.id}">수정</button>
+                                        <button class="deleteBtn" id="${post.id}">삭제</button>
+                                    </c:if>
+                                </sec:authorize>
 								<h3 class="detail-title">${post.title}</h3>
 								<h4 class="detail-writer">${post.writer.name}</h4>
 								<p class="detail-content">${post.content}</p>

@@ -7,7 +7,7 @@
 </style>
 <c:choose>
 	<c:when test="${empty target}">
-		<h3 class="noData">No Data Avaliable.</h3>
+		<div class="noData">데이터가 없습니다.</div>
   	</c:when>
 
    	<c:otherwise>
