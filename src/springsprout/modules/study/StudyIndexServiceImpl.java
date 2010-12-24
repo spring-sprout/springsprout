@@ -14,7 +14,7 @@ import springsprout.domain.Study;
 public class StudyIndexServiceImpl implements StudyIndexService {
 
 	@Autowired StudyRepository studyRepository;
-	final int studyViewCount = 4;
+	public static final int studyViewCount = 4;
 	
 	public Meeting getRecentMeeting() {
 		return studyRepository.getRecentMeeting();

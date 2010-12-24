@@ -36,13 +36,14 @@ public class StudyController {
 	@Resource StudyService advancedStudyService;
 	@Autowired SecurityService securityService;
     @Autowired StudyStatisticsService statisticsService;
+    @Autowired StudyIndexService indexService;
 
 	@RequestMapping
 	public String newIndex(@RequestParam(required = false) String type, Model model) {
 		model.addAttribute( "list", this.advancedStudyService.findActiveStudies());
         model.addAttribute( "minitab_active", "active");
-        model.addAttribute( advancedStudyService.findActiveStudies().get(0));
-        model.addAttribute( "activeStudies", advancedStudyService.findActiveStudies());
+        model.addAttribute( "recentMeeting", indexService.getRecentMeeting());
+        model.addAttribute( "activeStudies", indexService.getRecentStudies());
         model.addAttribute( "studyIndexInfo", advancedStudyService.makeStudyIndexInfo());
 		return "study/index3";
     }
@@ -183,6 +184,13 @@ public class StudyController {
 		advancedStudyService.removeCurrentMember(study);
 		setSession(session, study.getStudyName(), "스터디에서 탈퇴 하셨습니다.");
 		return redirectStudyView(id);
+	}
+	
+	@RequestMapping("/find/{key}")
+	public String find(@PathVariable String key, Model model) {
+		model.addAttribute("list", indexService.find(key));
+        model.addAttribute("minitab_active", "active");
+		return "study/index";
 	}
 	
 	private void setSession(HttpSession session, String studyName, String msg) {
