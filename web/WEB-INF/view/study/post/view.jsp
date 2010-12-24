@@ -35,8 +35,8 @@
 </s2c:bottom-column>
 <s2c:bottom-column>
 	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
-		<div id="thumbnailList" align="center" >
 		<s2c:portlet target="${images}">
+		<div id="thumbnailList" align="center" >
 			<c:forEach var="image" items="${images}">
 				<div class="thumbnail" style="float: left;" id="${image.id}">
 					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" rel="#${image.id}"/>
@@ -59,8 +59,8 @@
 						</div>
 				</div>
 			</c:forEach>
-		</s2c:portlet>
 		</div>
+		</s2c:portlet>
 	</s2c:module>
 </s2c:bottom-column>
 <script type="text/javascript" src="<c:url value="/resources/js/plugin/jqueryTools/jquery.tools.min.js"/>"></script>
