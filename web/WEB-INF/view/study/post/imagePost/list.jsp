@@ -74,7 +74,7 @@ input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;
 	</sec:authorize>
 	<button id="moveToListBtn" class="post-button">목록으로</button>
 </div>
-<s2c:module name="List of Image Post">
+<s2c:module name="이미지 게시판 목록">
 	<s2c:portlet target="${posts}">
 		<div class="post-image-container">
 			<div class="images">
@@ -108,13 +108,15 @@ input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;
 							${post.content}
 						</div>
 						<div class="comment-list">
-							<h3>Your Comment↓</h3>
-							<div id="commentFormDiv" class="comment-form">
-								<form:form id="commentForm" action="/study/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
-									<form:textarea path="comment" cssClass="comment" />
-									<input type="submit" class="comment-submit" value="보내기"/>
-								</form:form>
-							</div>
+							<sec:authorize ifAnyGranted="ROLE_MEMBER">
+								<h3>내 댓글↓</h3>
+								<div id="commentFormDiv" class="comment-form">
+									<form:form id="commentForm" action="/study/${study.id}/post/imagePost/${post.id}/comment/write" cssClass="commentForm" commandName="comment" method="post">
+										<form:textarea path="comment" cssClass="comment" />
+										<input type="submit" class="comment-submit" value="보내기"/>
+									</form:form>
+								</div>
+							</sec:authorize>
 							<c:forEach items="${post.comments}" var="comment">
 							<div class="comment-area">
 							<div class="post-comment-writer-info">
