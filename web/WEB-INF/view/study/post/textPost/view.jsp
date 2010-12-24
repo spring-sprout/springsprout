@@ -14,20 +14,42 @@
 }
 .reply-comment-list { padding-left: 2%; }
 .comment-list { padding-left: 5%; }
-.comment-header { border-bottom: 1px solid black; overflow:hidden; }
+.comment-header, #reply-header {
+    background-color: #F2F5FC;
+    border-top: 1px dotted #E0E2F6;
+    overflow:hidden;
+    padding: 2px 20px;
+}
+.comment-header h4, .comment-header h5 {
+    color: #999999;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
 .reply-comment-form { 
 	overflow: hidden;
 	display: none;
 	padding: 4px;
 }
-.post-root {  border-bottom: 2px solid #006400; padding: 10px 0; }
+.post-root {  padding: 10px 0; }
 .post-text-root, .post-text-reply { overflow: hidden; }
-.post-text-root-writer-info, .post-text-reply-writer-info { float: right; border: solid 1px #1E90FF; width: 200px; }
+.post-text-root-writer-info, .post-text-reply-writer-info {
+    float: right;
+    width: 180px;
+}
+.post-text-root-writer-info img, .post-text-reply-writer-info img {
+    margin-right: 5px;
+}
+
 .post-text-reply-writer-info { border: 0px; }
 .post-text-reply-writer-info { font-size: 0.9em; }
 .post-reply-list { padding-top: 10px;}
-.replyPost{ padding: 10px; margin: 5px; border: dashed 1px #6B8E23; }
-.replyPost:HOVER{ border: solid 1px #6B8E23;}
+.replyPost{
+    padding: 10px; margin: 5px;
+    border-bottom: 1px solid #CCCCCC;
+}
+/*.replyPost:HOVER{ border: solid 1px #6B8E23;}*/
 .reply-content, .text-post-content {
 	border:1px solid gray;
 	margin:2px 0;
@@ -36,12 +58,22 @@
 .reply-content { 
 	border: 0px;
 }
-.reply-title { font-weight: bold;}
+.reply-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
 .post-commentSubmitBtn { height: 50px; float: right; width: 10%; }
-.mod-content { padding: 10px; }
-.mod-header { margin: 0 5px;}
+.mod-content { padding: 10px; padding-top:0px; }
+.mod-header { margin: 0 5px; padding-bottom:0px;}
 .post-list-actions { float: right; padding: 10px 5px 0px 0px;}
 .writeReplyBtn { margin: 2px;}
+
+#rootPost {
+    margin-bottom: 20px;
+}
+.post-text-reply{
+    margin-bottom: 15px;
+}
 
 </style>
 <div class="post-list-actions">
@@ -54,27 +86,27 @@
 	</sec:authorize>
 	<button id="moveToListBtn" class="listBtn post-button">목록으로</button>
 </div>
-<s2c:module name="Text Post Detail">
+<s2c:module name="${textPost.title }">
 <div id="textPost-detail">
 	<div class="post-root">
-	<div id="post-list-header" class="post-text-list-header">
-		<h2>${textPost.title }</h2>
-	</div>
+	<%--<div id="post-list-header" class="post-text-list-header">--%>
+		<%--<h2>${textPost.title }</h2>--%>
+	<%--</div>--%>
 	<div id="rootPost" class="post-text-root">
 		<div class="text-post-content wysiwyg">
 			${textPost.content }
 		</div>
-		<div>
-			<div class="post-text-root-writer-info">
-				<img class="photo fn logoSmall" height="48" width="48" src="${textPost.writer.avatar}" alt="${textPost.writer.name}"/>
-				<strong>${textPost.writer.name}</strong><br/>
-				${textPost.createdAt}
-			</div>
-		</div>
+        <div class="post-text-root-writer-info">
+            <img class="photo fn logoSmall" height="48" width="48" src="${textPost.writer.avatar}" alt="${textPost.writer.name}"/>
+            <strong>${textPost.writer.name}</strong><br/>
+            <s:date value="${textPost.createdAt}"/>
+        </div>
 	</div>
 	<div id="reply-comment-list">
-		<div id="comment-header" class="comment-header">
-			<h4 style="float: left;"><span id="rootTextPost-CommentCount">${textPost.commentCount}</span> Comments</h4>
+		<div class="comment-header">
+			<h4>
+                <span id="rootTextPost-CommentCount">${textPost.commentCount}</span> 댓글
+            </h4>
 			<div style="float: right;">
 				<sec:authorize ifAnyGranted="ROLE_MEMBER">
 				<button class="writeReplyBtn post-button">댓글 작성</button>
@@ -118,7 +150,7 @@
 	</div>
 	<div id="replyList" class="post-reply-list">
 		<div id="reply-header">
-			<h3>${textPost.branchCount} Replys</h3>
+			<h3>${textPost.branchCount} 답글</h3>
 		</div>
 		<c:forEach items="${textPost.branchPosts}" var="reply">
 		<div class="replyPost">
@@ -129,13 +161,15 @@
 					<div class="post-text-reply-writer-info">
 						<img class="photo fn logoSmall" height="36" width="36" src="${reply.writer.avatar}" alt="${reply.writer.name}"/>
 						<strong>${reply.writer.name}</strong><br/>
-						${reply.createdAt}
+						<s:date value="${reply.createdAt}"/>
 					</div>
 				</div>
 			</div>
 			<div class="reply-comment-list">
-			<div id="comment-header" class="comment-header">
-				<h5 style="float: left;"><span class="comment-count">${reply.commentCount}</span> Comments</h5>
+			<div class="comment-header">
+				<h5>
+                    <span class="comment-count">${reply.commentCount}</span> 댓글
+                </h5>
 				<div style="float: right;">
 					<sec:authorize ifAnyGranted="ROLE_MEMBER">
 						<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
