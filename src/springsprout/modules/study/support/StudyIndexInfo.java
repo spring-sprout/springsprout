@@ -1,8 +1,10 @@
 package springsprout.modules.study.support;
 
 import springsprout.domain.Meeting;
+import springsprout.domain.Presentation;
 import springsprout.domain.Study;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,16 +29,19 @@ public class StudyIndexInfo {
 
 	private List<Study> activeStudies;
 	private List<Study> pastStudies;
+	private List<Meeting> meetings;
+	private List<Presentation> presentations;
 
 	public StudyIndexInfo() { }
 
 	public StudyIndexInfo(List<Study> activeStudies, List<Study> pastStudies) {
 		this.activeStudies = activeStudies;
-		this.pastStudies = pastStudies;
+		this.setPastStudies(pastStudies);
 		this.setStudyCountInfo();
 		this.setMeetingCountInfo();
 		this.setPresentationCountInfo();
 		this.setClosedCountInfo();
+		this.setMeetings();
 	}
 
 	public int getStudyCount() {
@@ -147,7 +152,7 @@ public class StudyIndexInfo {
 	}
 	
 	private void setClosedCountInfo() {
-		int count = pastStudies.size();
+		int count = getPastStudies().size();
 		int moreCount = 0;
 		
 		moreCount = compareCountAndSet(count, moreCount);
@@ -162,5 +167,39 @@ public class StudyIndexInfo {
 
 	public Study getHotStudy() {
 		return hotStudy;
+	}
+
+	public void setMeetings(List<Meeting> meetings) {
+		this.meetings = meetings;
+	}
+	
+	public void setMeetings() {
+		this.meetings = new ArrayList<Meeting>();
+		for(Study study : activeStudies) {
+			meetings.addAll(study.getMeetings());
+		}
+		for(Study study : getPastStudies()) {
+			meetings.addAll(study.getMeetings());
+		}
+	}
+
+	public List<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public void setPresentations(List<Presentation> presentations) {
+		this.presentations = presentations;
+	}
+
+	public List<Presentation> getPresentations() {
+		return presentations;
+	}
+
+	public void setPastStudies(List<Study> pastStudies) {
+		this.pastStudies = pastStudies;
+	}
+
+	public List<Study> getPastStudies() {
+		return pastStudies;
 	}
 }

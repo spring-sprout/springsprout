@@ -213,6 +213,9 @@ ul.main.study {
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
 					</div>
 					<s:content cssClass="main study" >
+						<h3>
+							<a href="/study/${recentMeeting.study.id}/meeting/${recentMeeting.id}">${recentMeeting.title}</a>
+						</h3>
 						<s:textrow title="모임장" value="${recentMeeting.owner.name}" />
 						<s:datetimerow title="모임시작일시" dateValue="${recentMeeting.openDate}" timeValue="${recentMeeting.openTime}" datePattern="yyyy-MM-dd" timePattern="HH:MM" />
 						<s:datetimerow title="모임종료일시" dateValue="${recentMeeting.closeDate}" timeValue="${recentMeeting.closeTime}" />
@@ -224,7 +227,7 @@ ul.main.study {
             				<li><span class="title">모임장소:</span>${recentMeeting.location} [<a class="_meetingLocation" title="모임장소는 ${recentMeeting.location} 입니다." href="<c:url value="/study/${recentMeeting.study.id}/meeting/${recentMeeting.id}/meetingLocation"/>">지도보기</a>]</li>
          				</c:if>
 					</s:content>
-					<s:descrrow value="${recentMeeting.contents}" mainCssClass="main mainDescr round"/>
+					<s:descrrow id="meetingContents" value="${recentMeeting.contents}" mainCssClass="main mainDescr round"/>
 				</div>
 			</div>
 			<div style="margin-bottom: 5px;">
@@ -268,32 +271,39 @@ ul.main.study {
 			<hr class="horizontal-line">
 			<div class="dotDiv-top">
 				<h2 class="logoTitle">${fn:length(activeStudies) } 진행중인 스터디</h2>
-				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="0">
-					<span><a href="/study/${study.id }">${study.studyName }</a></span><br/>
+				<c:set var="displayStudyCount" value="0"></c:set>
+				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="3">
+					<span><a class="totalTitle" href="/study/${study.id }">${study.studyName }</a></span><br/>
+					<c:set var="displayStudyCount" value="${status.count }"></c:set>
 				</c:forEach>
 				${fn:length(activeStudies) - displayStudyCount } more studies..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${studyIndexInfo.meetingCount} 지금까지 모임 정보</h2>
-				블라 블라<br/>
-				블라 블라<br/>
-				블라 블라<br/>
-				${studyIndexInfo.meetingMoreCount} more meetings..<br/>
+				<h2 class="logoTitle">${fn:length(studyIndexInfo.meetings)} 지금까지 모임 정보</h2>
+				<c:set var="displayStudyCount" value="0"></c:set>
+				<c:forEach items="${studyIndexInfo.meetings}" var="meeting" varStatus="status" begin="0" end="3">
+					<span><a class="totalTitle" href="/study/${meeting.study.id}/meeting/${meeting.id}">${meeting.title }</a></span><br/>
+					<c:set var="displayStudyCount" value="${status.count}"></c:set>
+				</c:forEach>
+				${fn:length(studyIndexInfo.meetings) - displayStudyCount } more meetings..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${studyIndexInfo.presentationCount} 지금까지 발표 정보</h2>
-				블라 블라<br/>
-				블라 블라<br/>
-				블라 블라<br/>
-				${studyIndexInfo.presentationMoreCount} more presentations..<br/>
+				<h2 class="logoTitle">${fn:length(studyIndexInfo.presentations)} 지금까지 발표 정보</h2>
+				<c:set var="displayStudyCount" value="0"></c:set>
+				<c:forEach items="${studyIndexInfo.presentations}" var="presentation" varStatus="status" begin="0" end="3">
+					<span><a class="totalTitle" href="/study/${presentation.meeting.study.id}">${presentation.title }</a></span><br/>
+					<c:set var="displayStudyCount" value="${status.count}"></c:set>
+				</c:forEach>
+				${fn:length(studyIndexInfo.presentations) - displayStudyCount } more presentations..<br/>
 			</div>
 			<div>
-				<h2 class="logoTitle">${studyIndexInfo.closedStudyCount} 종료된 스터디 </h2>
+				<h2 class="logoTitle">${fn:length(studyIndexInfo.pastStudies)} 종료된 스터디 </h2>
+				<c:set var="displayStudyCount" value="0"></c:set>
 				<c:forEach items="${closedStudies}" var="study" varStatus="vs" begin="0" end="3">
 					<span>${study.studyName }</span><br/>
 					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
 				</c:forEach>
-				${studyIndexInfo.closedStudyMoreCount} more closed studies..<br/>
+				${fn:length(studyIndexInfo.pastStudies) - displayStudyCount } more closed studies..<br/>
 			</div>
 		</div>
 	</div>
@@ -310,6 +320,8 @@ $(document).ready(function() {
 		return false;
 	});
     $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
+    SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);
+    SPROUT.common.util.cutStringUsingDot($('.totalTitle'), 20);
 });
 </script>
 </page:defaultpage>
