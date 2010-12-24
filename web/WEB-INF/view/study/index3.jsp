@@ -224,7 +224,7 @@ ul.main.study {
             				<li><span class="title">모임장소:</span>${recentMeeting.location} [<a class="_meetingLocation" title="모임장소는 ${recentMeeting.location} 입니다." href="<c:url value="/study/${recentMeeting.study.id}/meeting/${recentMeeting.id}/meetingLocation"/>">지도보기</a>]</li>
          				</c:if>
 					</s:content>
-					<s:descrrow value="${study.descr}" mainCssClass="main mainDescr round"/>
+					<s:descrrow value="${recentMeeting.contents}" mainCssClass="main mainDescr round"/>
 				</div>
 			</div>
 			<div style="margin-bottom: 5px;">
@@ -268,9 +268,8 @@ ul.main.study {
 			<hr class="horizontal-line">
 			<div class="dotDiv-top">
 				<h2 class="logoTitle">${fn:length(activeStudies) } 진행중인 스터디</h2>
-				<c:forEach items="${activeStudies}" var="study" varStatus="vs" begin="0" end="0">
-					<span>${study.studyName }</span><br/>
-					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
+				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="0">
+					<span><a href="/study/${study.id }">${study.studyName }</a></span><br/>
 				</c:forEach>
 				${fn:length(activeStudies) - displayStudyCount } more studies..<br/>
 			</div>
