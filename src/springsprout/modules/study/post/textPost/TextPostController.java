@@ -28,9 +28,9 @@ public class TextPostController {
 	@Autowired @Qualifier("textPostService") PostService<TextPost> service;
 	
 	@RequestMapping("/list/{page}")
-	public String getList(Model model, @ModelAttribute Study study, @PathVariable int studyId, @PathVariable int page) {
+	public String getList(Model model, @ModelAttribute Study study, @PathVariable int id, @PathVariable int page) {
 		model.addAttribute(new TextPost(study));
-		model.addAttribute(service.getList( page, Paging.DEFAULT_SIZE, studyId));
+		model.addAttribute(service.getList( page, Paging.DEFAULT_SIZE, id));
 		model.addAttribute("pagingInfo", service.initPaing( page));
 		return "study/post/textPost/list";
 	}
