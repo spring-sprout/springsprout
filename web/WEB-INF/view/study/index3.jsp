@@ -159,7 +159,7 @@ span.D_photoGroup_name:hover {
 }
 
 ul.main.study {
-	width: 30%;
+	width: 60%;
 }
 
 .main.mainDescr {
@@ -213,13 +213,16 @@ ul.main.study {
 						<img src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}" />" width="96" height="96"/>
 					</div>
 					<s:content cssClass="main study" >
-						<s:textrow title="관리자" value="${study.manager.name}" />
-						<s:textrow title="모임수" value="${study.meetingCount}" />
-						<s:textrow title="현재인원" value="${study.memberCount}" />
-						<s:textrow title="제한인원" value="${study.maximumCount}" />
-						<s:daterow title="시작일" value="${study.startDay}" />
-						<s:daterow title="종료일" value="${study.endDay}" />
-						<s:textrow title="현재상태" value="${study.status.descr}" />
+						<s:textrow title="모임장" value="${recentMeeting.owner.name}" />
+						<s:datetimerow title="모임시작일시" dateValue="${recentMeeting.openDate}" timeValue="${recentMeeting.openTime}" datePattern="yyyy-MM-dd" timePattern="HH:MM" />
+						<s:datetimerow title="모임종료일시" dateValue="${recentMeeting.closeDate}" timeValue="${recentMeeting.closeTime}" />
+						<s:textrow title="참석인원" value="${recentMeeting.attendedCount}" valueid="attendedCount"/>
+						<s:textrow title="신청인원" value="${recentMeeting.attendanceCount}" />
+						<s:textrow title="제한인원" value="${recentMeeting.maximum}" />
+						<s:textrow title="상태" value="${recentMeeting.status.descr}" />
+						<c:if test="${!empty recentMeeting.location}">
+            				<li><span class="title">모임장소:</span>${recentMeeting.location} [<a class="_meetingLocation" title="모임장소는 ${recentMeeting.location} 입니다." href="<c:url value="/study/${recentMeeting.study.id}/meeting/${recentMeeting.id}/meetingLocation"/>">지도보기</a>]</li>
+         				</c:if>
 					</s:content>
 					<s:descrrow value="${study.descr}" mainCssClass="main mainDescr round"/>
 				</div>
