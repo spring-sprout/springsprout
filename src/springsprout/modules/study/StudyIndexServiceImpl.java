@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springsprout.domain.Meeting;
 import springsprout.domain.Study;
+import springsprout.modules.study.support.StudyIndexInfo;
 
 @Service
 @Transactional
@@ -26,6 +27,10 @@ public class StudyIndexServiceImpl implements StudyIndexService {
 
 	public List<Study> find(String key) {
 		return studyRepository.findStudies(key);
+	}
+
+	public StudyIndexInfo makeStudyIndexInfo() {
+		return new StudyIndexInfo( studyRepository.findActiveStudies(), studyRepository.findPastStudies());
 	}
 
 }

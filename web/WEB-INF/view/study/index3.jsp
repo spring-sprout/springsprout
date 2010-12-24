@@ -159,7 +159,7 @@ span.D_photoGroup_name:hover {
 }
 
 ul.main.study {
-	width: 60%;
+	width: 75%;
 }
 
 .main.mainDescr {
@@ -224,7 +224,7 @@ ul.main.study {
 						<s:textrow title="제한인원" value="${recentMeeting.maximum}" />
 						<s:textrow title="상태" value="${recentMeeting.status.descr}" />
 						<c:if test="${!empty recentMeeting.location}">
-            				<li><span class="title">모임장소:</span>${recentMeeting.location} [<a class="_meetingLocation" title="모임장소는 ${recentMeeting.location} 입니다." href="<c:url value="/study/${recentMeeting.study.id}/meeting/${recentMeeting.id}/meetingLocation"/>">지도보기</a>]</li>
+            				<li><span class="title">모임장소:</span>${recentMeeting.location}</li>
          				</c:if>
 					</s:content>
 					<s:descrrow id="meetingContents" value="${recentMeeting.contents}" mainCssClass="main mainDescr round"/>
@@ -232,8 +232,8 @@ ul.main.study {
 			</div>
 			<div style="margin-bottom: 5px;">
 				<c:choose>
-				<c:when test="${!empty list}">
-					<c:forEach items="${list}" var="study" varStatus="vs">
+				<c:when test="${!empty activeStudies}">
+					<c:forEach items="${activeStudies}" var="study" varStatus="vs">
 					<div class="D_photoGroup" style="margin-left: 1.5em; background: url('<c:url value="${study.logo != null ? study.logo : '/resources/images/study/logos/default.png'}" />') no-repeat scroll center center #DCDCDC; width:45%; float: left;" >
 						<a class="D_photoGroup_link" href="/study/${study.id }">
 							<span class="D_photoGroup_bkg"></span>

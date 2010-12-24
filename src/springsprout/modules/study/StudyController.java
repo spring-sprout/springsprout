@@ -40,11 +40,9 @@ public class StudyController {
 
 	@RequestMapping
 	public String newIndex(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute( "list", this.advancedStudyService.findActiveStudies());
-        model.addAttribute( "minitab_active", "active");
         model.addAttribute( "recentMeeting", indexService.getRecentMeeting());
         model.addAttribute( "activeStudies", indexService.getRecentStudies());
-        model.addAttribute( "studyIndexInfo", advancedStudyService.makeStudyIndexInfo());
+        model.addAttribute( "studyIndexInfo", indexService.makeStudyIndexInfo());
 		return "study/index3";
     }
 
