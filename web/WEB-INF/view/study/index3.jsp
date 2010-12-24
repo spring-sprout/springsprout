@@ -262,8 +262,8 @@ ul.main.study {
 			<h1>스터디 찾기</h1>
 			<hr class="horizontal-line">
 			<div align="center">
-				<input type="text" name="keyword" class="study-index-search">
-				<button>find!</button>
+				<input type="text" name="keyword" class="study-index-search" id="keyword">
+				<button id="findStudy">찾기!!</button>
 			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
@@ -319,6 +319,14 @@ $(document).ready(function() {
 		dialogOpen( msg, actionUrl);
 		return false;
 	});
+    $("#findStudy").click( function(e) {
+    	var keyword = $("#keyword").val();
+    	if ( keyword.length <= 0) {
+    		alert("검색어를 입력하세요!");
+    		return false;
+    	}
+	    $(document).attr("location", "find/" + $("#keyword").val());
+    });
     $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
     SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);
     SPROUT.common.util.cutStringUsingDot($('.totalTitle'), 20);

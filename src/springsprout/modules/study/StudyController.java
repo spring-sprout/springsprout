@@ -186,6 +186,13 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 	
+	@RequestMapping("/find/{key}")
+	public String find(@PathVariable String key, Model model) {
+		model.addAttribute("list", indexService.find(key));
+        model.addAttribute("minitab_active", "active");
+		return "study/index";
+	}
+	
 	private void setSession(HttpSession session, String studyName, String msg) {
 		session.setAttribute("SESSION_FLASH_MSG", studyName + msg);
 	}
