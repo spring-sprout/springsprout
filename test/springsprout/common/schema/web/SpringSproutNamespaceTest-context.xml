@@ -5,6 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springsprout.org/schema/ssns http://www.springsprout.org/schema/ssns.xsd">
 
-    <ssns:jstl-view-resolver id="jstlViewResolver"/>
+    <ssns:jstl-view-resolver />
 
 </beans>

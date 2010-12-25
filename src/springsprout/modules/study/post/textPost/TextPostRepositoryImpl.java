@@ -36,8 +36,19 @@ public class TextPostRepositoryImpl extends HibernateGenericDao<TextPost> implem
 	}
 
 	public int getRootPostCount() {
-		return (Integer) getCriteria().setProjection(Projections.rowCount()).add(Restrictions.isNull("rootPost")).list().get(0);
+		return (Integer) getCriteria()
+                .setProjection(Projections.rowCount())
+                .add(Restrictions.isNull("rootPost")).list().get(0);
 	}
+
+    public int getRootPostCount(int studyId) {
+        return (Integer) getCriteria()
+                .setProjection(Projections.rowCount())
+                .add(Restrictions.isNull("rootPost"))
+                .add(Restrictions.eq("rootStudy.id", studyId))
+                .list().get(0);
+
+    }
 
 
 }

@@ -61,4 +61,8 @@ public class SurbeyPostServieImpl implements SurbeyPostService {
 		return null;
 	}
 
+    public PostPaging initPaing(int page, int studyId) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

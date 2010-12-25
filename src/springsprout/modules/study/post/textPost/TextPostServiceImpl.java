@@ -24,7 +24,10 @@ public class TextPostServiceImpl implements PostService<TextPost> {
 	@Autowired CommentRepository commentRepository;
 	
 	public void addPost(TextPost post) {
-		post.setWriter( securityService.getCurrentMember());
+        System.out.println("=======================");
+        System.out.println(post.getContent());
+        System.out.println("=======================");
+        post.setWriter( securityService.getCurrentMember());
 		post.setCreatedAt( new Date());
 		repository.add( post);
 	}
@@ -66,7 +69,11 @@ public class TextPostServiceImpl implements PostService<TextPost> {
 		return new PostPaging( Paging.DEFAULT_SIZE, start, repository.getRootPostCount());
 	}
 
-	public List<TextPost> getList( int start, int limit, int studyId) {
+    public PostPaging initPaing(int start, int studyId) {
+        return new PostPaging( Paging.DEFAULT_SIZE, start, repository.getRootPostCount(studyId));
+    }
+
+    public List<TextPost> getList( int start, int limit, int studyId) {
 		return repository.getRootPostList(start * limit, limit, studyId);
 	}
 }

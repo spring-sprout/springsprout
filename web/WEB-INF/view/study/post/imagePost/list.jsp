@@ -74,7 +74,7 @@ input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;
 	</sec:authorize>
 	<button id="moveToListBtn" class="post-button">목록으로</button>
 </div>
-<s2c:module name="이미지 게시판 목록">
+<s2c:module name="이미지 게시판">
 	<s2c:portlet target="${posts}">
 		<div class="post-image-container">
 			<div class="images">

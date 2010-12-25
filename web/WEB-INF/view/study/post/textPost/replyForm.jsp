@@ -16,7 +16,7 @@ textarea { width: 95%; border: 1px solid; }
 .parent-content { text-indent: 0.8em; }
 #hideParent { float:right; }
 </style>
-<s2c:module name="${title} Text Post">
+<s2c:module name="답글 ${title}">
 	<fieldset>
 		<legend>원본 글</legend>
 		<div>

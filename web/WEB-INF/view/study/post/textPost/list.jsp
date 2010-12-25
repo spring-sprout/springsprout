@@ -11,15 +11,15 @@
 	text-align: center;
 	float: left;
 	height: 45px;
-	width: 38px;
 	margin: 1px;
+    padding: 2px 5px;
 }
 
 .post-reply-count { background-color: #AFEEEE; }
 .post-comment-count{
 	background-color: #006400;
-	width: 60px;
 	color: white;
+    padding: 2px 5px;
 }
 
 .post-view-count { background-color: #E6E6FA; }
@@ -78,7 +78,7 @@
 	</sec:authorize>
 	<button id="moveToListBtn" class="post-button">목록으로</button>
 </div>
-<s2c:module name="List of Text Post">
+<s2c:module name="일반 게시판">
 	<s2c:portlet target="${textPostList}">
 		<div id="post-list">
 		<c:forEach items="${textPostList}" var="post">
@@ -87,11 +87,11 @@
 					<div class="post-text-summary-count"></div>
 						<div class="post-reply-count">
 							<div class="post-count">${post.branchCount}</div>
-							<div>reply</div>
+							<div>답글</div>
 						</div>
 						<div class="post-comment-count">
 							<div class="post-count">${post.commentCount}</div>
-							<div>comment</div>
+							<div>댓글</div>
 						</div>
 					<div class="post-text-summary">
 						<div class="post-text-title" id="${post.id}">
@@ -101,7 +101,7 @@
 							</span>
 							</h3>
 						</div>
-						<div class="post-text-createdAt" align="right">${post.createdAt} writed by ${post.writer.name }</div>
+						<div class="post-text-createdAt" align="right"><s:date value="${post.createdAt}"/> ${post.writer.name }</div>
 					</div>
 				</div>
 			</div>

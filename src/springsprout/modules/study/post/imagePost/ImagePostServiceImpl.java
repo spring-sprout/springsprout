@@ -90,5 +90,9 @@ public class ImagePostServiceImpl implements ImagePostService {
 	public PostPaging initPaing( int i) {
 		throw new UnsupportedOperationException("이미지 게시판에서는 페이징을 쓰지 않아요.");
 	}
-	
+
+    public PostPaging initPaing(int page, int studyId) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

@@ -25,7 +25,9 @@
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
 				<li class="post-summary">
-					<a href="#" class="post-summary-title" title="${text.title}" rel="${text.id}">${text.title}</a>${text.createdAt}<div class="post-summary-writer">${text.writer.name}</div>
+					<a href="#" class="post-summary-title" title="${text.title}" rel="${text.id}">${text.title}</a>
+					<s:date value="${text.createdAt}"/>
+                    <div class="post-summary-writer">${text.writer.name}</div>
 				</li>
 			</c:forEach>
 			</s2c:portlet>
@@ -33,7 +35,7 @@
     </s2c:module>
 </s2c:bottom-column>
 <s2c:bottom-column>
-	<s2c:module name="Image" more="더보기" url="${study.id}/post/imagePost/list/0">
+	<s2c:module name="이미지" more="더보기" url="${study.id}/post/imagePost/list/0">
 		<s2c:portlet target="${images}">
 		<div id="thumbnailList" align="center" >
 			<c:forEach var="image" items="${images}">

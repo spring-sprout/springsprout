@@ -39,4 +39,5 @@ public interface TextPostRepository extends GenericDao<TextPost> {
 	
 	int getRootPostCount();
 
+    int getRootPostCount(int studyId);
 }

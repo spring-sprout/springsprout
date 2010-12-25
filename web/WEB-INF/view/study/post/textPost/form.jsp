@@ -13,7 +13,7 @@ textarea { width: 95%; border: 1px solid; }
 .mod-header { margin: 5px;}
 .form-button { padding-top: 5px }
 </style>
-<s2c:module name="${title} Text Post">
+<s2c:module name="${title}">
 	<form:form id="postForm" commandName="textPost" method="${method}" action="${action}" enctype="multipart/form-data">
 		<form:hidden path="rootStudy.id"/>
 		<form:hidden path="id"/>

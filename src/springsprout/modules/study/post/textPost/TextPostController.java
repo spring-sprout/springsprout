@@ -31,7 +31,7 @@ public class TextPostController {
 	public String getList(Model model, @ModelAttribute Study study, @PathVariable int id, @PathVariable int page) {
 		model.addAttribute(new TextPost(study));
 		model.addAttribute(service.getList( page, Paging.DEFAULT_SIZE, id));
-		model.addAttribute("pagingInfo", service.initPaing( page));
+		model.addAttribute("pagingInfo", service.initPaing(page, id));
 		return "study/post/textPost/list";
 	}
 	
@@ -44,7 +44,7 @@ public class TextPostController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getForm(Model model, @ModelAttribute Study study, @PathVariable int id) {
 		model.addAttribute(new TextPost(study));
-		model.addAttribute("title", "Add New");
+		model.addAttribute("title", "새 글");
 		model.addAttribute("method", RequestMethod.POST.toString());
 		model.addAttribute("action", "/study/" + id + "/post/textPost");
 		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/list/0");
@@ -65,7 +65,7 @@ public class TextPostController {
 	@RequestMapping(value="/{postId}/update", method = RequestMethod.GET)
 	public String getUpdateForm(Model model, @PathVariable int id, @PathVariable int postId, @RequestParam int page) {
 		model.addAttribute("textPost", service.getPost(postId));
-		model.addAttribute("title", "Update");
+		model.addAttribute("title", "수정");
 		model.addAttribute("method", RequestMethod.PUT.toString());
 		String actionUrl = "/study/" + id + "/post/textPost/" + postId + "?page=" + page;
 		model.addAttribute("action", actionUrl);
@@ -79,7 +79,7 @@ public class TextPostController {
 		TextPost parent = service.getPost(postId);
 		model.addAttribute("parent", service.getPost(postId));
 		model.addAttribute("textPost", new TextPost( parent, study));
-		model.addAttribute("title", "Reply to");
+		model.addAttribute("title", "추가");
 		model.addAttribute("method", RequestMethod.POST.toString());
 		model.addAttribute("action", "/study/" + id + "/post/textPost/" + postId + "/reply?page=" + page);
 		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/" + postId + "?page=" + page);
@@ -91,7 +91,7 @@ public class TextPostController {
 			@PathVariable int id, @PathVariable int postId, @PathVariable int replyId, @RequestParam int page) {
 		model.addAttribute("parent", service.getPost(postId));
 		model.addAttribute("textPost", service.getPost(replyId));
-		model.addAttribute("title", "Update Reply to");
+		model.addAttribute("title", "수정");
 		model.addAttribute("method", RequestMethod.PUT.toString());
 		model.addAttribute("action", "/study/" + id + "/post/textPost/" + postId + "/replyUpdate?page=" + page);
 		model.addAttribute("cancelUrl", "/study/" + id + "/post/textPost/" + postId + "?page=" + page);

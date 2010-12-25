@@ -78,7 +78,7 @@
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
-		<button id="replyBtn" class="writeBtn post-button">답글</button>
+		<button class="replyBtn writeBtn post-button">답글</button>
 		<sec:authentication property="principal.username" var="currentUserName" scope="request"/>
 		<c:if test="${currentUserName == textPost.writer.email}">
 		<button id="updateBtn" class="updateBtn post-button" id="${textPost.id}">수정</button>
@@ -109,7 +109,7 @@
             </h4>
 			<div style="float: right;">
 				<sec:authorize ifAnyGranted="ROLE_MEMBER">
-				<button class="writeReplyBtn post-button">댓글 작성</button>
+				<button class="writeReplyBtn post-button">댓글</button>
 				</sec:authorize>
 			</div>
 		</div>
@@ -151,7 +151,7 @@
 	<div id="replyList" class="post-reply-list">
 		<div id="reply-header">
 			<h3>${textPost.branchCount} 답글</h3>
-		</div>
+        </div>
 		<c:forEach items="${textPost.branchPosts}" var="reply">
 		<div class="replyPost">
 			<div class="reply-data post-text-reply">
@@ -176,7 +176,7 @@
 						<c:if test="${currentUserName == reply.writer.email}">
 							<button class="updateReplyBtn post-button" id="${reply.id}">수정</button>
 						</c:if>
-						<button class="writeReplyBtn post-button">댓글 작성</button>
+						<button class="writeReplyBtn post-button">댓글</button>
 					</sec:authorize>
 				</div>
 			</div>
@@ -294,7 +294,7 @@ $(function(){
 });
 
 function initEvent() {
-	$('#replyBtn').click( function(e){ 
+	$('.replyBtn').click( function(e){ 
 		$actionArea.load('${study.id}/post/textPost/${textPost.id}/reply?page=${page}');
 	});
 	$('#updateBtn').click( function(e){

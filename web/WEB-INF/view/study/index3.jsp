@@ -190,6 +190,10 @@ ul.main.study {
     height: 30px;
 }
 .buttons a { float: right; padding: 3 3;margin : 0 20 10 0;}
+.num_cnt {
+    color: green;
+    font-weight: bold;
+}
 </style>
 
 <page:defaultpage selected_menu="studies" banner_name="" ajaxlogin_yn="Y">
@@ -219,10 +223,10 @@ ul.main.study {
 						<s:textrow title="모임장" value="${recentMeeting.owner.name}" />
 						<s:datetimerow title="모임시작일시" dateValue="${recentMeeting.openDate}" timeValue="${recentMeeting.openTime}" datePattern="yyyy-MM-dd" timePattern="HH:MM" />
 						<s:datetimerow title="모임종료일시" dateValue="${recentMeeting.closeDate}" timeValue="${recentMeeting.closeTime}" />
-						<s:textrow title="참석인원" value="${recentMeeting.attendedCount}" valueid="attendedCount"/>
-						<s:textrow title="신청인원" value="${recentMeeting.attendanceCount}" />
-						<s:textrow title="제한인원" value="${recentMeeting.maximum}" />
-						<s:textrow title="상태" value="${recentMeeting.status.descr}" />
+						<%--<s:textrow title="참석인원" value="${recentMeeting.attendedCount}" valueid="attendedCount"/>--%>
+						<%--<s:textrow title="신청인원" value="${recentMeeting.attendanceCount}" />--%>
+						<%--<s:textrow title="제한인원" value="${recentMeeting.maximum}" />--%>
+						<%--<s:textrow title="상태" value="${recentMeeting.status.descr}" />--%>
 						<c:if test="${!empty recentMeeting.location}">
             				<li><span class="title">모임장소:</span>${recentMeeting.location}</li>
          				</c:if>
@@ -267,10 +271,10 @@ ul.main.study {
 			</div>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
-			<h1>스터디 종합</h1>
+			<h1>스터디 현황</h1>
 			<hr class="horizontal-line">
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${fn:length(activeStudies) } 진행중인 스터디</h2>
+				<h2 class="logoTitle"><span class="num_cnt">${fn:length(activeStudies) }</span>개 스터디 진행중</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
 				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="3">
 					<span><a class="totalTitle" href="/study/${study.id }">${study.studyName }</a></span><br/>
@@ -279,7 +283,7 @@ ul.main.study {
 				${fn:length(activeStudies) - displayStudyCount } more studies..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${fn:length(studyIndexInfo.meetings)} 지금까지 모임 정보</h2>
+				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.meetings)}</span>번 모임</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
 				<c:forEach items="${studyIndexInfo.meetings}" var="meeting" varStatus="status" begin="0" end="3">
 					<span><a class="totalTitle" href="/study/${meeting.study.id}/meeting/${meeting.id}">${meeting.title }</a></span><br/>
@@ -288,7 +292,7 @@ ul.main.study {
 				${fn:length(studyIndexInfo.meetings) - displayStudyCount } more meetings..<br/>
 			</div>
 			<div class="dotDiv-top">
-				<h2 class="logoTitle">${fn:length(studyIndexInfo.presentations)} 지금까지 발표 정보</h2>
+				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.presentations)}</span>번 발표</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
 				<c:forEach items="${studyIndexInfo.presentations}" var="presentation" varStatus="status" begin="0" end="3">
 					<span><a class="totalTitle" href="/study/${presentation.meeting.study.id}">${presentation.title }</a></span><br/>
@@ -297,7 +301,7 @@ ul.main.study {
 				${fn:length(studyIndexInfo.presentations) - displayStudyCount } more presentations..<br/>
 			</div>
 			<div>
-				<h2 class="logoTitle">${fn:length(studyIndexInfo.pastStudies)} 종료된 스터디 </h2>
+				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.pastStudies)}</span>개 스터디 종료</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
 				<c:forEach items="${closedStudies}" var="study" varStatus="vs" begin="0" end="3">
 					<span>${study.studyName }</span><br/>

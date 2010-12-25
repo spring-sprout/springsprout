@@ -20,4 +20,5 @@ public interface PostService<T extends Post> {
 	public abstract void removeComment(int postId, int commentId);
 	public abstract PostPaging initPaing(int i);
 
+    public abstract PostPaging initPaing(int page, int studyId);
 }

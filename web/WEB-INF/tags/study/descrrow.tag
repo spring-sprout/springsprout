@@ -4,12 +4,13 @@
 <%@ attribute name="value" required="true" %>
 <%@ attribute name="mainCssClass" required="false" %>
 <%@ attribute name="subCssClass" required="false" %>
+<%@ attribute name="id" required="false" %>
 
 <c:set var="mainCssClass" value="${mainCssClass != null ? mainCssClass : 'mainDescr round collapse'}"/>
 <c:set var="subCssClass" value="${subCssClass != null ? subCssClass : 'mainDetails'}"/>
 
 
 <div class="${mainCssClass}">
-    <div class="${subCssClass}"><%= StringUtils.nl2br(value) %></div>
+    <div id="${id}" class="${subCssClass}"><%= StringUtils.nl2br(value) %></div>
     <jsp:doBody/>
 </div>
