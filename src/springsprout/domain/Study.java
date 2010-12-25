@@ -77,7 +77,8 @@ public class Study implements Serializable{
 	public Study() {
 		this.status = StudyStatus.OPEN;
 		this.meetingCount = 0;
-		this.memberCount = 0;
+        // 스터디 최초 생성시, 관리자가 참석자로 들어가므로 멤버 카운트는 1
+		this.memberCount = 1;
 	}
 
 	public Study(Member manager) {
