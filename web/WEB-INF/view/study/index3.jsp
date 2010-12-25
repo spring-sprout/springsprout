@@ -205,7 +205,7 @@ ul.main.study {
 		</sec:authorize>
 		<div class="studyBorder ui-corner-all studyList" style="width:60%; float: left; padding: 5px;">
 			<div class="studyDescr">
-				<h2>봄싹 스터디!</h2>
+				<h1>봄싹 스터디!</h1>
 				<h3 class="logoTitle">
 					• 도전하자 • 학습하자 • 나누자 • 즐기자
 				</h3>	
@@ -262,7 +262,8 @@ ul.main.study {
 				</c:choose>
 			</div>
 		</div>
-		<div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
+		<!--
+        <div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>스터디 찾기</h1>
 			<hr class="horizontal-line">
 			<div align="center">
@@ -270,6 +271,7 @@ ul.main.study {
 				<button id="findStudy">찾기!!</button>
 			</div>
 		</div>
+		-->
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
 			<h1>스터디 현황</h1>
 			<hr class="horizontal-line">
