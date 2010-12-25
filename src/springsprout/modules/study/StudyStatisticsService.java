@@ -23,5 +23,10 @@ public interface StudyStatisticsService {
 
     List<MeetingMemberData> getMeetingMemberStatisticsOf(Set<Meeting> meetings);
 
+    /**
+     * 전체 참석율
+     * @param study 전체 참석율 계산할 스터디
+     * @return
+     */
     List<StudyMemberData> getStudyMemberStatisticesOf(Study study);
 }

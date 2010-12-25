@@ -152,7 +152,7 @@ public class StudyStatisticsServiceImpl implements StudyStatisticsService {
         notAttendedDate.setCount(notAttdRateCnt);
         notAttendedDate.setPercentage((int)(notAttdRateCnt/total*100));
         dataList.add(notAttendedDate);
-        
+
         return dataList;
     }
 

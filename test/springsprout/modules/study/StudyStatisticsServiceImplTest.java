@@ -10,6 +10,7 @@ import springsprout.domain.Member;
 import springsprout.modules.study.support.MeetingDayOfWeekData;
 import springsprout.modules.study.support.MeetingMemberData;
 import springsprout.modules.study.support.MemberMeetingData;
+import springsprout.modules.study.support.StudyMemberData;
 
 import java.util.HashSet;
 import java.util.List;
@@ -80,5 +81,29 @@ public class StudyStatisticsServiceImplTest {
         assertThat(data.getAttendedCount(), is(1));
         assertThat(data.getRealCount(), is(1));
         assertThat(data.getPercentage(), is(100));
+    }
+
+    /**
+     * https://github.com/whiteship/springsprout/issues#issue/5
+     * 구성원 참석율 에러 100%가 나와야 하는데 Integer.MAX_VALUE가 나옴
+     */
+    @Test
+    public void getStudyMemberStatisticsOf(){
+        int total = 1;
+        int attdRateCnt = 0;
+        int notAttdRateCnt = 1;
+
+        StudyMemberData attendedData = new StudyMemberData();
+        attendedData.setTitle("참석자");
+        attendedData.setCount(attdRateCnt);
+        attendedData.setPercentage((int)(attdRateCnt/total*100));
+
+        StudyMemberData notAttendedDate = new StudyMemberData();
+        notAttendedDate.setTitle("불참자");
+        notAttendedDate.setCount(notAttdRateCnt);
+        notAttendedDate.setPercentage((int)(notAttdRateCnt/total*100));
+
+        assertThat(attendedData.getPercentage(), is(0));
+        assertThat(notAttendedDate.getPercentage(), is(100));
     }
 }

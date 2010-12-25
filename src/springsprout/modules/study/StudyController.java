@@ -148,7 +148,7 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 
-	@RequestMapping("/id}/join")
+	@RequestMapping("/{id}/join")
 	public String addCurrentMember(HttpSession session, @PathVariable int id) {
 		Study study = advancedStudyService.getStudyById(id);
 		try {
