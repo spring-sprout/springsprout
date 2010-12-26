@@ -15,9 +15,9 @@
     padding: 2px 5px;
 }
 
-.post-reply-count { background-color: #AFEEEE; }
+.post-reply-count { background-color: #D8E9D6; }
 .post-comment-count{
-	background-color: #006400;
+	background-color: #9DB4A8;
 	color: white;
     padding: 2px 5px;
 }
