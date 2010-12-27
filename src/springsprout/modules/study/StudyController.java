@@ -187,8 +187,8 @@ public class StudyController {
 	@RequestMapping("/find/{key}")
 	public String find(@PathVariable String key, Model model) {
 		model.addAttribute("list", indexService.find(key));
-        model.addAttribute("minitab_active", "active");
-		return "study/index";
+		model.addAttribute("key", key);
+		return "study/find";
 	}
 	
 	private void setSession(HttpSession session, String studyName, String msg) {

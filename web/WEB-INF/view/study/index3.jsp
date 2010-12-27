@@ -77,7 +77,6 @@
 				</c:choose>
 			</div>
 		</div>
-		<!--
         <div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>스터디 찾기</h1>
 			<hr class="horizontal-line">
@@ -86,7 +85,6 @@
 				<button id="findStudy">찾기!!</button>
 			</div>
 		</div>
-		-->
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
 			<h1>스터디 현황</h1>
 			<hr class="horizontal-line">
@@ -146,7 +144,7 @@ $(document).ready(function() {
     		alert("검색어를 입력하세요!");
     		return false;
     	}
-	    $(document).attr("location", "find/" + $("#keyword").val());
+	    $(document).attr("location", "/study/find/" + $("#keyword").val());
     });
     $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
     SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);
