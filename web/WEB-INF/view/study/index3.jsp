@@ -138,13 +138,12 @@ $(document).ready(function() {
 		dialogOpen( msg, actionUrl);
 		return false;
 	});
+    $('#keyword').keydown( function(e) {
+    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($(this).val());
+    });
     $("#findStudy").click( function(e) {
     	var keyword = $("#keyword").val();
-    	if ( keyword.length <= 0) {
-    		alert("검색어를 입력하세요!");
-    		return false;
-    	}
-	    $(document).attr("location", "/study/find/" + $("#keyword").val());
+    	SPROUT.study.find(key);
     });
     $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
     SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);

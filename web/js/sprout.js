@@ -8,6 +8,10 @@ SPROUT.common.util = {
             	$(this).text( targetText.substr(0, length) + '...');
             }
 		});
+	},
+	isEnterKey : function($event) {
+		if ( $event.keyCode == '13') return true;
+		else return false;
 	}
 };
 

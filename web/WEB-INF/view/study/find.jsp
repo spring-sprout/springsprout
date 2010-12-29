@@ -79,14 +79,13 @@ $(document).ready(function() {
 			$(el).next().flickrGetPhotoInfo('77f7a3eb07331902b582e1db782aeb57', src).show();
 		};
 	});
-	 $("#findStudy").click( function(e) {
-	    	var keyword = $("#keyword").val();
-	    	if ( keyword.length <= 0) {
-	    		alert("검색어를 입력하세요!");
-	    		return false;
-	    	}
-		    $(document).attr("location", "/study/find/" + $("#keyword").val());
-	    });
+	$('#keyword').keydown( function(e) {
+    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($(this).val());
+    });
+    $("#findStudy").click( function(e) {
+    	var keyword = $("#keyword").val();
+    	SPROUT.study.find(key);
+    });
 });
 </script>
 </page:defaultpage>
