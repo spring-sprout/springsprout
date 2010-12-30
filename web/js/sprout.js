@@ -15,3 +15,9 @@ SPROUT.common.util = {
 	}
 };
 
+SPROUT.common.ui = {
+	initJqueryBtn : function($selector) {
+		$selector.button().focusout( function() { $(this).removeClass('ui-state-focus'); });
+	}
+};
+
