@@ -9,8 +9,10 @@
 <page:defaultpage selected_menu="studies" banner_name="study-banner" ajaxlogin_yn="Y">
 <s2c:bottom-column>
 	<div align="right" style="margin-top: 10px;">
-		<input type="text" name="keyword" class="study-index-search" id="keyword" style="width: 40%" value="${key}">
+		<form id="findForm" action="/study/find" method="post">
+		<input type="text" name="keyword" class="study-index-search" id="keyword" style="width: 40%" value="${keyword}">
 		<button id="findStudy">찾기!!</button>
+		</form>
 	</div>
 	<s2c:module name="${fn:length(list)} 개의 검색 결과">
 	<c:choose>
@@ -80,11 +82,10 @@ $(document).ready(function() {
 		};
 	});
 	$('#keyword').keydown( function(e) {
-    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($(this).val());
+    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($('#findForm'));
     });
     $("#findStudy").click( function(e) {
-    	var keyword = $("#keyword").val();
-    	SPROUT.study.find(key);
+    	SPROUT.study.find($('#findForm'));
     });
 });
 </script>

@@ -79,11 +79,13 @@
 		</div>
         <div class="studyBorder ui-corner-all studySearch" style="width:33%; float: left;">
 			<h1>스터디 찾기</h1>
-			<hr class="horizontal-line">
-			<div align="center">
-				<input type="text" name="keyword" class="study-index-search" id="keyword">
-				<button id="findStudy">찾기!!</button>
-			</div>
+			<form id="findForm" action="/study/find" method="post">
+				<hr class="horizontal-line">
+				<div align="center">
+					<input type="text" name="keyword" class="study-index-search" id="keyword">
+					<button id="findStudy">찾기!!</button>
+				</div>
+			</form>
 		</div>
 		<div class="studyBorder ui-corner-all studyDetails" style="width:33%; float: left;">
 			<h1>스터디 현황</h1>
@@ -139,11 +141,10 @@ $(document).ready(function() {
 		return false;
 	});
     $('#keyword').keydown( function(e) {
-    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($(this).val());
+    	if ( SPROUT.common.util.isEnterKey(e)) SPROUT.study.find($('#findForm'));
     });
     $("#findStudy").click( function(e) {
-    	var keyword = $("#keyword").val();
-    	SPROUT.study.find(key);
+    	SPROUT.study.find($('#findForm'));
     });
     $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
     SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);

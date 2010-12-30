@@ -184,10 +184,10 @@ public class StudyController {
 		return redirectStudyView(id);
 	}
 	
-	@RequestMapping("/find/{key}")
-	public String find(@PathVariable String key, Model model) {
-		model.addAttribute("list", indexService.find(key));
-		model.addAttribute("key", key);
+	@RequestMapping("/find")
+	public String find(@RequestParam(required=false) String keyword, Model model) {
+		model.addAttribute("list", indexService.find(keyword));
+		model.addAttribute("keyword", keyword);
 		return "study/find";
 	}
 	
