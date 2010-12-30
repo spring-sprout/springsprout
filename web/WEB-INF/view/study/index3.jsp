@@ -97,7 +97,7 @@
 					<span><a class="totalTitle" href="/study/${study.id }">${study.studyName }</a></span><br/>
 					<c:set var="displayStudyCount" value="${status.count }"></c:set>
 				</c:forEach>
-				${fn:length(activeStudies) - displayStudyCount } more studies..<br/>
+				<a href="/study/index/active" class="studyDetails-link" title="진행중인 스터디 목록 보기">${fn:length(activeStudies) - displayStudyCount } more studies..</a><br/>
 			</div>
 			<div class="dotDiv-top">
 				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.meetings)}</span>번 모임</h2>
@@ -124,7 +124,7 @@
 					<span>${study.studyName }</span><br/>
 					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
 				</c:forEach>
-				${fn:length(studyIndexInfo.pastStudies) - displayStudyCount } more closed studies..<br/>
+				<a href="/study/index/past" class="studyDetails-link" title="종료된 스터디 목록 보기">${fn:length(studyIndexInfo.pastStudies) - displayStudyCount } more closed studies..</a><br/>
 			</div>
 		</div>
 	</div>
@@ -146,7 +146,7 @@ $(document).ready(function() {
     $("#findStudy").click( function(e) {
     	SPROUT.study.find($('#findForm'));
     });
-    $('button, #btnRegist').button().focusout( function() { $(this).removeClass('ui-state-focus'); });
+    SPROUT.common.ui.initJqueryBtn($('button, #btnRegist'));
     SPROUT.common.util.cutStringUsingDot($('#meetingContents'), 100);
     SPROUT.common.util.cutStringUsingDot($('.totalTitle'), 20);
 });

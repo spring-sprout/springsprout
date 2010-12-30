@@ -1,10 +1,16 @@
 package springsprout.modules.study;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 
 import springsprout.domain.Meeting;
 import springsprout.domain.Study;
@@ -13,9 +19,9 @@ import springsprout.modules.study.support.StudyIndexInfo;
 @Service
 @Transactional
 public class StudyIndexServiceImpl implements StudyIndexService {
-
-	@Autowired StudyRepository studyRepository;
 	public static final int studyViewCount = 4;
+	@Autowired StudyRepository studyRepository;
+	@Resource StudyService advancedStudyService;
 	
 	public Meeting getRecentMeeting() {
 		return studyRepository.getRecentMeeting();
@@ -31,6 +37,18 @@ public class StudyIndexServiceImpl implements StudyIndexService {
 
 	public StudyIndexInfo makeStudyIndexInfo() {
 		return new StudyIndexInfo( studyRepository.findActiveStudies(), studyRepository.findPastStudies());
+	}
+
+	public Map<String, Object> swichStudyView(String studyType) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		if ( studyType.equals("active")) {
+			model.put("list", advancedStudyService.findActiveStudies());
+			model.put("minitab_active", "active");
+		} else {
+			model.put("list", advancedStudyService.findPastStudies());
+			model.put("minitab_past", "active");
+		}
+		return model;
 	}
 
 }

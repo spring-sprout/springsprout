@@ -191,76 +191,13 @@ public class StudyController {
 		return "study/find";
 	}
 	
+	@RequestMapping("/index/{type}")
+	public String pastStudy(@PathVariable String type, Model model) {
+		model.addAllAttributes( indexService.swichStudyView(type));
+		return "study/typeView";
+	}
+	
 	private void setSession(HttpSession session, String studyName, String msg) {
 		session.setAttribute("SESSION_FLASH_MSG", studyName + msg);
 	}
-
-    //* ======================= *//
-    //*     지워야 할 것 들       *//
-    //* ======================= *//
-    @RequestMapping("/index")
-    @Deprecated
-	public String index(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
-        model.addAttribute("minitab_active", "active");
-		return "study/index";
-    }
-
-	@RequestMapping("/index2")
-    @Deprecated
-	public String index2(@RequestParam(required = false) String type, Model model) {
-		model.addAttribute("list", this.advancedStudyService.findActiveStudies());
-        model.addAttribute("minitab_active", "active");
-        model.addAttribute(advancedStudyService.getStudyById(5));
-		return "study/index2";
-    }
-
-    @RequestMapping("/index/past")
-    @Deprecated
-	public String index(Model model) {
-        model.addAttribute("list", this.advancedStudyService.findPastStudies());
-		model.addAttribute("minitab_past", "active");
-		return "study/index";
-	}
-
-    @RequestMapping("/view/{id}/meetings")
-    @Deprecated
-    public String viewMeeting( @PathVariable int id, Model model) {
-		model.addAttribute(advancedStudyService.getStudyById(id));
-		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
-    	return "/study/_meetings";
-    }
-
-    @RequestMapping("/view/{id}/meetingMembers")
-    @Deprecated
-    public String viewMeetingMembers( @PathVariable int id, Model model) {
-    	model.addAttribute(advancedStudyService.getStudyById(id));
-		model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
-		model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
-    	return "/study/_members";
-    }
-
-    @RequestMapping("/view/{id}/updateTabDataCounts")
-    @ResponseBody
-    @Deprecated
-    public CountInfoDTO updateTabDataCounts( @PathVariable int id) {
-    	return new CountInfoDTO(advancedStudyService.getStudyById(id));
-    }
-
-    @RequestMapping("/view/{id}/comments")
-    @Deprecated
-    public String viewComments( @PathVariable int id, Model model) {
-        Study study = advancedStudyService.getStudyById(id);
-    	model.addAttribute(study);
-    	return "/study/_comments";
-    }
-
-    @RequestMapping("/view/{id}")
-    @Deprecated
-	public String view(@PathVariable int id, Model model) {
-        model.addAttribute(advancedStudyService.getStudyById(id));
-        return "study/view_old";
-    }
-
 }

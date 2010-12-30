@@ -1,6 +1,7 @@
 package springsprout.modules.study;
 
 import java.util.List;
+import java.util.Map;
 
 import springsprout.domain.Meeting;
 import springsprout.domain.Study;
@@ -17,4 +18,5 @@ public interface StudyIndexService {
 	public List<Study> getRecentStudies();
 	public List<Study> find(String key);
 	public StudyIndexInfo makeStudyIndexInfo();
+	public Map<String, Object> swichStudyView(String studyType);
 }
