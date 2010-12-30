@@ -149,14 +149,14 @@
 			<b class="addOnItem">토비의 스프링 3</b>
 		</div>
 		<div id="addOn2" class="addOnList">
+			<a href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=4425736&idx=8502&ADON_TYPE=B&regs=b" target="_blank"><img src="http://image.yes24.com/goods/4425736/66x96" border="0" /></a>
+			<br/>
+			<b class="addOnItem">스프링 Security</b>
+		</div>
+		<div id="addOn3" class="addOnList">
 			<a href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=3892382&idx=7521&ADON_TYPE=B&regs=b" target="_blank"><img src="http://image.yes24.com/goods/3892382/66x96" border="0" /></a>
 			<br/>
 			<b class="addOnItem">하이버네이트 완벽 가이드</b>
-		</div>
-		<div id="addOn3" class="addOnList">
-			<a href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=3356619&idx=7522&ADON_TYPE=B&regs=b" target="_blank"><img src="http://image.yes24.com/goods/3356619/66x96" border="0" /></a>
-			<br/>
-			<b class="addOnItem">프로 스프링 2.5</b>
 		</div>		    
 	</div>
     
