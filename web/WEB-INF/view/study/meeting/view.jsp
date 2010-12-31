@@ -9,7 +9,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/springMap/jquery.springsproutDaumMap.js"/>"></script>
 <s:defaultpage>
 	<s:titlebar>
-    	스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/view/${meeting.study.id}"/>">${meeting.study.studyName}</a>
+    	스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/${meeting.study.id}"/>">${meeting.study.studyName}</a>
         <td class="title" align="left">
             > 모임 이름 : 
             <a href="<c:url value="/study/${meeting.study.id}/meeting/${meeting.id}"/>">${meeting.title}</a>
