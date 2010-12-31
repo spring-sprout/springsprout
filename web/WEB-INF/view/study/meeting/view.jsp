@@ -15,7 +15,7 @@
             <a href="<c:url value="/study/${meeting.study.id}/meeting/${meeting.id}"/>">${meeting.title}</a>
         </td>
         <td align="right" class="buttons">
-        	<a href="<c:url value="/study/view/${meeting.study.id}"/>" class="fg-button ui-widget ui-state-default ui-corner-all s_waitblock" style="float:right;">
+        	<a href="<c:url value="/study/${meeting.study.id}"/>" class="fg-button ui-widget ui-state-default ui-corner-all s_waitblock" style="float:right;">
 				뒤로
 			</a>
 			<c:if test="${meeting.status != 'ENDED' }">
