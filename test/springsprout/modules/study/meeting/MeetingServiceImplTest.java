@@ -54,7 +54,6 @@ public class MeetingServiceImplTest {
         service.resourceRepository = resourceRepository;
         service.notiService = notiService;
         service.locationRepository = locationRepository;
-        service.calendarService = googleCalendarService;
 	}
 
     @Test
