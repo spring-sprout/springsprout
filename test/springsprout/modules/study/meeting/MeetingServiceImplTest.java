@@ -41,7 +41,6 @@ public class MeetingServiceImplTest {
     @Mock ResourceRepository resourceRepository;
     @Mock UnifiedNotificationService notiService;
     @Mock LocationRepository locationRepository;
-    @Mock GoogleCalendarService googleCalendarService;
 
     @Before
 	public void setUp() throws Exception {
