@@ -345,7 +345,7 @@
         var centerHeight = $("#center").height();
         var rightHeight = $("#right").height();
 
-        var additionalPadding = 20;
+        var additionalPadding = 100;
 
         var highestHeight = leftHeight + additionalPadding;
         if(centerHeight > highestHeight)
