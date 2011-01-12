@@ -9,7 +9,7 @@
 <page:defaultpage selected_menu="studies" banner_name="study-banner" ajaxlogin_yn="Y">
     <div id="container-header">
         <img src="${study.logo}" alt="${study.studyName}" class="logo70">
-        <h1>${study.studyName}</h1>
+        <h1><a href="/study/${study.id}">${study.studyName}</a></h1>
     </div>
     <div id="main-content">
         <ul class="vertical tabs">
