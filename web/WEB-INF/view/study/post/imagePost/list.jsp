@@ -185,7 +185,7 @@ function initEvent() {
 		changePageToForm();
 	});
 	$('#moveToListBtn').click( function(e){
-		$actionArea.load('${study.id}/post');
+		$actionArea.load('/study/${study.id}/post');
 	});
 	$('.post-image-thumbnail').click( function(){
 		var $this = $(this), postId = '#post-' + $this.attr('rel'), 
@@ -200,7 +200,7 @@ function initEvent() {
 		});
 	}); 
 	$('#movePrev, #moveNext').click( function(){
-		Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost/list/' + $(this).text(), $actionArea);
+		Study.Post.blockUIAjaxReq( '/study/${study.id}/post/imagePost/list/' + $(this).text(), $actionArea);
 	});
 	$('.action.comment_delete').live( 'click', function() {
         var $this = $(this);
@@ -222,14 +222,14 @@ function initEvent() {
         		beforeSend : function(){
         			s_waitblock();
         		},success : function(html){
-        			Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost/list/0', $actionArea);
+        			Study.Post.blockUIAjaxReq( '/study/${study.id}/post/imagePost/list/0', $actionArea);
         		}
         	});
         }
         return false;
 	});
 	$('.updateBtn').live( 'click', function() {
-		$.get( '${study.id}/post/imagePost/' + $(this).attr('id'), function(html){
+		$.get( '/study/${study.id}/post/imagePost/' + $(this).attr('id'), function(html){
 			$actionArea.html(html);	
 		});
 		return false;
@@ -271,7 +271,7 @@ function initCommentForm() {
 }
 
 function changePageToForm() {
-	Study.Post.blockUIAjaxReq( '${study.id}/post/imagePost', $actionArea);
+	Study.Post.blockUIAjaxReq( '/study/${study.id}/post/imagePost', $actionArea);
 }
 
 function navigateImage( $targetEl) {
@@ -289,19 +289,4 @@ function navigateImage( $targetEl) {
 		});
 	});
 }
-
-var Study = {};
-Study.Post = {};
-Study.Post.blockUIAjaxReq = function( url, $target) {
-	$.ajax({
-		url : url,
-		beforeSend : function(){
-			s_waitblock();
-		},success : function(html){
-			$target.html(html);
-			$.unblockUI();
-		}
-	});
-};
-
 </script>

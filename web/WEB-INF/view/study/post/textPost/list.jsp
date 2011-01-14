@@ -116,14 +116,14 @@
 $(function(){ 
 	var $postForm = $('#postForm'), $actionArea = $('.active-area');
 	$('#writeBtn').click( function(e){
-		$actionArea.load('${study.id}/post/textPost');
+		$actionArea.load('/study/${study.id}/post/textPost');
 	});
 	$('#moveToListBtn').click( function(e){
-		$actionArea.load('${study.id}/post');
+		$actionArea.load('/study/${study.id}/post');
 	});
 	$('.post-text-title').click( function(event){
 		var postId = $(this).attr('id');
-		$actionArea.load('${study.id}/post/textPost/' + postId + '?page=${pagingInfo.now}');
+		$actionArea.load('/study/${study.id}/post/textPost/' + postId + '?page=${pagingInfo.now}');
 		return false;
 	});	
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })
