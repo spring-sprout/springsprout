@@ -20,7 +20,7 @@
 <h2>게시판</h2>
 
 <s2c:bottom-column>
-    <s2c:module name="일반" more="더보기" url="${study.id}/post/textPost/list/0">
+    <s2c:module name="일반" more="더보기" url="/study/${study.id}/post/textPost/list/0">
         <ol class="item-details">
             <s2c:portlet target="${texts}">
             <c:forEach var="text" items="${texts}">
@@ -35,13 +35,13 @@
     </s2c:module>
 </s2c:bottom-column>
 <s2c:bottom-column>
-	<s2c:module name="이미지" more="더보기" url="${study.id}/post/imagePost/list/0">
+	<s2c:module name="이미지" more="더보기" url="/study/${study.id}/post/imagePost/list/0">
 		<s2c:portlet target="${images}">
 		<div id="thumbnailList" align="center" >
 			<c:forEach var="image" items="${images}">
 				<div class="thumbnail" style="float: left;" id="${image.id}">
-					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" rel="#${image.id}"/>
-					<div class="simple_overlay" id="${image.id}">
+					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" rel="#overlay-${image.id}"/>
+					<div class="simple_overlay" id="overlay-${image.id}">
                         <!-- large image -->
                         <div style="width: 80%;">
                             <img style="max-width: 100%;" src="/images/userimage/${image.writer.email}/${image.imageFile.savedFileName}" />
