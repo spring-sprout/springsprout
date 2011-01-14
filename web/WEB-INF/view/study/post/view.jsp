@@ -42,23 +42,23 @@
 				<div class="thumbnail" style="float: left;" id="${image.id}">
 					<img class="post-image-thumbnail-default" src="/images/userimage/${image.writer.email}/${image.imageFile.thumbNailName}" alt="${image.title}" title="${image.title}" rel="#${image.id}"/>
 					<div class="simple_overlay" id="${image.id}">
-							<!-- large image -->
-							<div style="width: 80%;">
-								<img style="max-width: 100%;" src="/images/userimage/${image.writer.email}/${image.imageFile.savedFileName}" />
-							</div>
-							<!-- image details -->
-							<div class="details">
-                                <sec:authorize ifAnyGranted="ROLE_MEMBER">
-								    <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
-                                    <c:if test="${currentUserName == image.writer.email}">
-                                        <button class="updateBtn" id="${image.id}">수정</button>
-                                        <button class="deleteBtn" id="${image.id}">삭제</button>
-                                    </c:if>
-                                </sec:authorize>
-								<h3 class="detail-title">${image.title}</h3>
-								<h4 class="detail-writer">${image.writer.name}</h4>
-								<p class="detail-content">${image.content}</p>
-							</div>
+                        <!-- large image -->
+                        <div style="width: 80%;">
+                            <img style="max-width: 100%;" src="/images/userimage/${image.writer.email}/${image.imageFile.savedFileName}" />
+                        </div>
+                        <!-- image details -->
+                        <div class="details">
+                            <sec:authorize ifAnyGranted="ROLE_MEMBER">
+                                <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
+                                <c:if test="${currentUserName == image.writer.email}">
+                                    <button class="updateBtn" id="${image.id}">수정</button>
+                                    <button class="deleteBtn" id="${image.id}">삭제</button>
+                                </c:if>
+                            </sec:authorize>
+                            <h3 class="detail-title">${image.title}</h3>
+                            <h4 class="detail-writer">${image.writer.name}</h4>
+                            <p class="detail-content">${image.content}</p>
+                        </div>
 						</div>
 				</div>
 			</c:forEach>

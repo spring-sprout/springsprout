@@ -9,13 +9,13 @@
 <script type="text/javascript" src="<c:url value="/resources/js/springMap/jquery.springsproutDaumMap.js"/>"></script>
 <s:defaultpage>
 	<s:titlebar>
-    	스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/view/${meeting.study.id}"/>">${meeting.study.studyName}</a>
+    	스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/${meeting.study.id}"/>">${meeting.study.studyName}</a>
         <td class="title" align="left">
             > 모임 이름 : 
             <a href="<c:url value="/study/${meeting.study.id}/meeting/${meeting.id}"/>">${meeting.title}</a>
         </td>
         <td align="right" class="buttons">
-        	<a href="<c:url value="/study/view/${meeting.study.id}"/>" class="fg-button ui-widget ui-state-default ui-corner-all s_waitblock" style="float:right;">
+        	<a href="<c:url value="/study/${meeting.study.id}"/>" class="fg-button ui-widget ui-state-default ui-corner-all s_waitblock" style="float:right;">
 				뒤로
 			</a>
 			<c:if test="${meeting.status != 'ENDED' }">

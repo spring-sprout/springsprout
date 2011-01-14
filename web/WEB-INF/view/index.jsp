@@ -64,7 +64,7 @@
                 <div id="studies">
                     <h2>최근 스터디</h2>
                     <h3 class="btn_more">
-                        <a href="<c:url value="/study/index"/>">
+                        <a href="<c:url value="/study/"/>">
                             <span>더보기</span>
                         </a>
                     </h3>
