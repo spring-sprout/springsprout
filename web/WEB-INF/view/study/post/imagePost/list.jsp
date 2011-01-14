@@ -6,67 +6,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style type="text/css">
-.post-list-actions { float: right; padding: 10px 5px 0px 0px;}
-img:HOVER { cursor: pointer; }
-.post-image-detail-image {
-	max-width: 70%;
-	margin: 10px;
-	border: solid 1px gray;
-}
-.post-image-thumbnail img { margin: 5px;}
-.post-image-thumbnail-default {
-	opacity : 0.67;
-	opacity : 1;
-	border: solid 1px OliveDrab;
-}
-
-.post-image-thumbnail-selected {
-	opacity : 1;
-	border: solid 2px green;
-	width: 50%;
-}
-.post-image-container .images { overflow: hidden;}
-
-.detail {
-	float: left;
-	width: 76%;
-}
-.list {
-	float: left;
-	width: 24%;
-}
-
-.details {
-	position:absolute;
-	top:15px;
-	right:15px;
-	font-size:11px;
-	color:#fff;
-	width:15%;
-	text-align: left;
-}
-
-.details h3 {
-	color:#aba;
-	font-size:15px;
-}
-.detail-writer { text-align: right; }
-
-.comment-form { 
-	overflow: hidden;
-	padding: 4px;
-}
-.comment-list { border-top: solid gray 2px; }
-input.comment-submit { height: 55px; float: left; width: 9%; margin-left: 0.5em;}
-#movePrev:HOVER, #moveNext:HOVER { cursor: pointer; }
-.icon-arrow { width: 70px; }
-.icon-arrow:HOVER { width: 75px; }
-.icon-left { float:left; }
-.icon-right { float:right; }
-
-.mod-content { padding: 10px; }
-.mod-header { margin: 5px;}
-
 </style>
 <div class="post-list-actions">
 	<sec:authorize ifAnyGranted="ROLE_MEMBER">
