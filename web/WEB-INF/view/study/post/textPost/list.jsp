@@ -123,7 +123,8 @@ $(function(){
 	});
 	$('.post-text-title').click( function(event){
 		var postId = $(this).attr('id');
-		$actionArea.load('/study/${study.id}/post/textPost/' + postId + '?page=${pagingInfo.now}');
+        var url = '/study/${study.id}/post/textPost/article/' + postId;
+        $(document).attr("location", url);
 		return false;
 	});	
 	$('button').button().focusout( function() { $(this).removeClass('ui-state-focus'); })

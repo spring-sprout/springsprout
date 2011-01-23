@@ -77,7 +77,9 @@ $(function(){
 	});
 	$('.post-summary-title').click( function(){
 		var postId = $(this).attr('rel');
-		$actionArea.load('${study.id}/post/textPost/' + postId + '?page=1');
+		<%--$actionArea.load('${study.id}/post/textPost/' + postId + '?page=1');--%>
+        var url = '/study/${study.id}/post/textPost/article/' + postId;
+        $(document).attr("location", url);
 		return false;
 	});
 	
