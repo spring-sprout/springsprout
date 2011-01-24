@@ -84,8 +84,12 @@
         background-image: url("/images/tools_20.png");
     }
 
-    .menu-bar .menu-button a.add-meeting span {
-        background-image: url("/images/Add-Folder-24x24.png");
+    .menu-bar .menu-button a.join-btn span {
+        background-image: url("/images/big-smile-icon.png");
+    }
+
+    .menu-bar .menu-button a.out-btn span {
+        background-image: url("/images/electric-shock-icon.png");
     }
     /*.menu-bar .drop-down a.add-comment {*/
         /*background-image: url("../../../images/icons/comment_16.png");*/
@@ -101,6 +105,18 @@
 <div id="quicklinks">
     <c:if test="${isManagerOrAdmin}">
         <ul class="operations menu-bar">
+            <li class="menu-button">
+                <c:if test="${(study.isStarted || study.isOpened) && (!isAlreadyJoinMember)}">
+                    <a class="join-btn" href="<c:url value="/study/${study.id}/join"/>" title="스터디 가입">
+                        <span>가입</span>
+                    </a>
+                </c:if>
+                <c:if test="${(study.isStarted || study.isOpened) && (isAlreadyJoinMember)}">
+                    <a class="out-btn" href="<c:url value="/study/${study.id}/out"/>" title="스터디 탈퇴">
+                        <span>탈퇴</span>
+                    </a>
+                </c:if>
+            </li>
             <li class="menu-button">
                 <a class="no-icon" href="<c:url value="/study/${study.id}/notify"/>">
                     <span class="no-icon">스터디 알림</span>

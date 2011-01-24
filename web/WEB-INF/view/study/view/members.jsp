@@ -45,18 +45,26 @@
     .ops img {
         cursor: pointer;
     }
+
+    .menu-bar .menu-button a.join-btn span {
+        background-image: url("/images/big-smile-icon.png");
+    }
+
+    .menu-bar .menu-button a.out-btn span {
+        background-image: url("/images/electric-shock-icon.png");
+    }
 </style>
 <h2>구성원</h2>
 <div id="quicklinks">
     <ul class="operations menu-bar">
         <li class="menu-button">
             <c:if test="${(study.isStarted || study.isOpened) && (!isAlreadyJoinMember)}">
-                <a href="<c:url value="/study/${study.id}/join"/>" title="스터디 가입">
+                <a class="join-btn" href="<c:url value="/study/${study.id}/join"/>" title="스터디 가입">
                     <span>가입</span>
                 </a>
             </c:if>
             <c:if test="${(study.isStarted || study.isOpened) && (isAlreadyJoinMember)}">
-                <a href="<c:url value="/study/${study.id}/out"/>" title="스터디 탈퇴">
+                <a class="out-btn" href="<c:url value="/study/${study.id}/out"/>" title="스터디 탈퇴">
                     <span>탈퇴</span>
                 </a>
             </c:if>

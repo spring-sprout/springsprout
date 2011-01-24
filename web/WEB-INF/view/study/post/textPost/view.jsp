@@ -295,13 +295,13 @@ $(function(){
 
 function initEvent() {
 	$('.replyBtn').click( function(e){ 
-		$actionArea.load('${study.id}/post/textPost/${textPost.id}/reply?page=${page}');
+		$actionArea.load('/study/${study.id}/post/textPost/${textPost.id}/reply?page=${page}');
 	});
 	$('#updateBtn').click( function(e){
-		$actionArea.load('${study.id}/post/textPost/${textPost.id}/update?page=${page}');
+		$actionArea.load('/study/${study.id}/post/textPost/${textPost.id}/update?page=${page}');
 	});
 	$('.updateReplyBtn').click( function(e){ 
-		$actionArea.load('${study.id}/post/textPost/${textPost.id}/replyUpdate/'+$(this).attr('id')+'?page=${page}');
+		$actionArea.load('/study/${study.id}/post/textPost/${textPost.id}/replyUpdate/'+$(this).attr('id')+'?page=${page}');
 	});
 	
 	$('.writeReplyBtn').live( 'click', function() {
@@ -310,7 +310,7 @@ function initEvent() {
 		return false;
 	});
 	$('#moveToListBtn').click( function(){
-		$actionArea.load('${study.id}/post/textPost/list/' + '${page}');
+		$actionArea.load('/study/${study.id}/post/textPost/list/' + '${page}');
 	});
 }
 </script>

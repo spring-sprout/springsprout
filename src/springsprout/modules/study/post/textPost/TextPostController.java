@@ -119,6 +119,17 @@ public class TextPostController {
 		return "study/post/textPost/view";
 	}
 	
+	@RequestMapping("/article/{postId}")
+	public String readFromMailing(Model model,  @PathVariable int id, @PathVariable int postId, @RequestParam(required=false, defaultValue="0") int page, Study study) {
+		TextPost post = service.getPost(postId);
+		model.addAttribute( "branchPost", new TextPost( post, study));
+		model.addAttribute( "comment", new Comment());
+		model.addAttribute( "page", page - 1);
+		model.addAttribute( post);
+		model.addAttribute( "url", "/study/" + id + "/post/textPost/"+ postId + "?page=1");
+		return "study/post/view_article";
+	}
+	
 	@RequestMapping(value="/{postId}/comment", method = RequestMethod.POST)
 	public @ResponseBody Comment write(@PathVariable int postId, Comment comment) {
 		TextPost post = service.getPost(postId);

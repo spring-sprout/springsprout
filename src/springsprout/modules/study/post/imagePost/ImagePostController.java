@@ -31,12 +31,13 @@ public class ImagePostController {
 	@Autowired SecurityService securityService;
 	
 	@RequestMapping("/list/{page}")
-	public String getList(Model model, @ModelAttribute Study study, @PathVariable int page, SessionStatus status) {
+	public String getList(Model model, @ModelAttribute Study study, @PathVariable int id, @PathVariable int page, SessionStatus status) {
 		List<ImagePost> posts = service.getList( page, Paging.DEFAULT_SIZE, study.getId());
 		model.addAttribute(new ImagePost(study));
 		model.addAttribute("posts", posts.isEmpty() ? null : posts);
 		model.addAttribute("page", page);
 		model.addAttribute("comment", new Comment());
+		model.addAttribute("url", "/study/"+ id + "/post/imagePost/list/0");
 		return "study/post/imagePost/list";
 	}
 	

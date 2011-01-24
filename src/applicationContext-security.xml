@@ -9,6 +9,11 @@
 	
 
 	<http disable-url-rewriting="true">
+        <intercept-url pattern="/static/**" filters="none" />
+        <intercept-url pattern="/resources/**" filters="none" />
+        <intercept-url pattern="/images/**" filters="none" />
+        <intercept-url pattern="/css/**" filters="none" />
+        <intercept-url pattern="/js/**" filters="none" />
         <intercept-url pattern="/temp/role/*" access="ROLE_ADMIN,ROLE_DEVELOPER" />
         <intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
