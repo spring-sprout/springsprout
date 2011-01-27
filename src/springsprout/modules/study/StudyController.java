@@ -74,6 +74,7 @@ public class StudyController {
     @RequestMapping("/{id}/summary")
 	public String studySummary(@PathVariable int id, Model model) {
         model.addAttribute(advancedStudyService.getStudyById(id));
+        model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
         model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
         return "study/view/summary";
     }
