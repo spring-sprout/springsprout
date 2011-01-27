@@ -3,6 +3,7 @@ package springsprout.modules.study.meeting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,6 +48,8 @@ public class MeetingController {
     @Autowired SecurityService securityService;
     @Autowired MeetingValidator meetingValidator;
 
+    @Value("#{envProps['daum.map.key']}") String mapKey;
+
     @RequestMapping(value = "/study/{studyId}/meeting/form", method = RequestMethod.GET)
     public String meetingAddForm(@PathVariable int studyId, Model model) {
         model.addAttribute("study", studyService.getStudyById(studyId));
@@ -71,8 +74,8 @@ public class MeetingController {
         model.addAttribute("attendances", meeting.getSortedAttendances());
         model.addAttribute(new Comment());
         model.addAttribute("isAlreadyJoinMember", isAlreadyJoinMember(meeting));
-        model.addAttribute("isManagerOrAdmin", securityService
-                .isMeetingManagerOrAdmin(meeting));
+        model.addAttribute("isManagerOrAdmin", securityService.isMeetingManagerOrAdmin(meeting));
+        model.addAttribute("mapKey", mapKey);
         return MEETING_VIEW;
     }
 
