@@ -22,7 +22,6 @@
 	<!--  Properties                                                   -->
 	<!-- ============================================================= -->
     <context:property-placeholder location="classpath:*.properties" />
-
     <util:properties id="envProps" location="classpath:environment.properties"/>
 
 	<!-- ============================================================= -->
