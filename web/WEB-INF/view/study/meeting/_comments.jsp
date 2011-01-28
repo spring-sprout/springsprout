@@ -10,7 +10,7 @@
 		<button id="comment_add_btn">의견추가</button>
 		<div id="comment_add_form" style="display: none;">
 			<form:form id="commentForm" commandName="comment" method="post" action="${commentObj.id}/comment/add">
-			    <form:textarea id="comment_content" tabindex="1"
+			    <form:textarea id="comment_content" tabindex="1" 
                     accesskey="u" path="comment" rows="2" cols="80"
                     cssStyle="margin-top: 10px; border:1px solid #AAAAAA; padding:4px 2px; width:90%; height:60px;" cssClass="text"/>
 			   	<form:errors path="comment" />
@@ -84,15 +84,22 @@
 	var $commentContent = $("#comment_content"), $commentAddForm = $("#comment_add_form"),
 		$commentCount = $('#commentsCount'), $presentationId = $('#presentationId'),
 		$commentDiv = $('#commentDiv'), $commentOl = $('.statuses li:first'),
-		$commentList = $('#comment_list'), $commentForm = $('#commentForm');
+		$commentList = $('#comment_list'), $commentForm = $('#commentForm'),
+		isProcessing = false;
 	
 	$("#comment_add_btn").click(function () {
 		$commentAddForm.slideToggle("slow").children('form').children('textarea').focus();
 	});
 
 	$('#comment_add').click(function() {
-		$this = $(this);
-		$this.hide();
+		if ( isProcessing) return false;
+		isProcessing = true;
+		addReply($(this));
+	});
+	
+	function addReply(eventObj) {
+		var $this = eventObj, src = $this.attr('src');
+		$this.attr('src', '/images/study/ajax-loader.gif');
 		$.ajax({
 			type: 'POST',
 			url: '${commentObj.id}/comment/add',
@@ -127,11 +134,12 @@
 				$.growlUI('Notification', data.title+' 모임에 의견이 등록되었습니다.');
 			},
 			complete: function() {
-				$this.show();
+				$this.attr('src', src);
+				isProcessing = false;
 			},
 			dataType: 'json'
 		});
-	});
+	}
 
 	$(".actions .rt").live( 'click', function() {
 		if ($commentAddForm.is(":hidden")) {
