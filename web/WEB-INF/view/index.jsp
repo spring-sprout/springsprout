@@ -55,8 +55,7 @@
                 <div id="thanks">
                     <h2>봄싹에 도움주는 곳</h2>
                     <ul id="thanksList">
-                        <li><a href="http://www.hanbitedu.co.kr/index.do" target="_blank">한빛교육센터</a></li>
-                        <li><a href="http://www.developerfarm.com/" target="_blank">위키북스</a></li>
+                        <li><a href="http://cubrid.com/zbxe/developer"><img src="/images/cubrid-banner.jpg"/></a></li>
                     </ul>
                 </div>
             </div>

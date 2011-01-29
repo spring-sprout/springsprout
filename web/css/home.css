@@ -99,7 +99,7 @@ h3 {
     padding-left: 1.5em;
 }
 
-#guideList li, #linkList li, #thanksList li {
+#guideList li, #linkList li {
     background: url('/resources/images/bullet.gif') no-repeat left center transparent;
     padding-left: 1.5em;
 }
