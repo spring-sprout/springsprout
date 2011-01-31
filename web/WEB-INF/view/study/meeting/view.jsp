@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <page:defaultpage selected_menu="studies" banner_name="study-banner">
-<script type="text/javascript" src="http://apis.daum.net/maps/maps2.js?apikey=27a3f692f446be591ac627f5c6e499eddf255ad4"></script>
+<script type="text/javascript" src="http://apis.daum.net/maps/maps2.js?apikey=${mapKey}"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/springMap/jquery.springsproutDaumMap.js"/>"></script>
 <s:defaultpage>
 	<s:titlebar>

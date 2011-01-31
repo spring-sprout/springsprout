@@ -7,7 +7,7 @@
 <page:defaultpage selected_menu="studies" banner_name="study-banner">
 <s:defaultpage>
 	<s:titlebar>
-		스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/view/${study.id}"/>">${presentation.meeting.study.studyName}</a>
+		스터디 이름 : <a class="s_waitblock" href="<c:url value="/study/${study.id}"/>">${presentation.meeting.study.studyName}</a>
         > 
 		모임 이름 : <a class="s_waitblock" href="<c:url value="/study/${study.id}/meeting/${meeting.id}"/>">${presentation.meeting.title}</a>
         <td class="title" align="left">

@@ -210,7 +210,7 @@ function initCommentForm() {
 }
 
 function changePageToForm() {
-	Study.Post.blockUIAjaxReq( '/study/${study.id}/post/imagePost', $actionArea);
+	SPROUT.study.Post.blockUIAjaxReq( '/study/${study.id}/post/imagePost', $actionArea);
 }
 
 function navigateImage( $targetEl) {
