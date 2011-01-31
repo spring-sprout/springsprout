@@ -1,1 +1,0 @@
-SPROUT.study.post = {};

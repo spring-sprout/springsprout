@@ -8,5 +8,19 @@ SPROUT.study.find = function( $form){
 	$form.submit();
 };
 
+SPROUT.study.Post = {};
+SPROUT.study.Post.blockUIAjaxReq = function( url, $target) {
+	$.ajax({
+		url : url,
+		beforeSend : function(){
+			s_waitblock();
+		},success : function(html){
+			$target.html(html);
+			$.unblockUI();
+		}
+	});
+};
+
+
 
 
