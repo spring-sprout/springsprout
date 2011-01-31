@@ -198,6 +198,23 @@
             </c:forEach>
         </ul>
     </s2c:module>
+    <s2c:module name="최근 게시물">
+        <ul class="posts">
+            <c:forEach items="${postList}" var="post">
+                <li>
+                    <div style="clear:both;">
+                        <div style="float:left;">
+                            <a href="/study/${study.id}/post/textPost/article/${post.id}"><h4>${post.title}</h4></a>
+                        </div>
+                        <div style="float:right;">
+                            <s:date value="${post.createdAt}"/>
+                            <img src="${post.writer.avatar}" width="50" height="50"/>
+                        </div>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
+    </s2c:module>
 </s2c:left-column>
 <s2c:right-column>
     <s2c:module name="소개">

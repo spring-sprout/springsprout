@@ -3,6 +3,7 @@ package springsprout.modules.study;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import springsprout.domain.Study;
+import springsprout.domain.study.board.TextPost;
 import springsprout.modules.study.exception.StudyMaximumOverException;
 import springsprout.modules.study.meeting.support.CountInfoDTO;
+import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
 import javax.annotation.Resource;
@@ -34,9 +37,12 @@ public class StudyController {
 	private static final String REDIRECT_STUDY_INDEX = "redirect:/study/";
 	
 	@Resource StudyService advancedStudyService;
-	@Autowired SecurityService securityService;
+	@Resource PostService<TextPost> textPostService;
+
+    @Autowired SecurityService securityService;
     @Autowired StudyStatisticsService statisticsService;
     @Autowired StudyIndexService indexService;
+
 
 	@RequestMapping
 	public String newIndex(@RequestParam(required = false) String type, Model model) {
@@ -76,6 +82,7 @@ public class StudyController {
         model.addAttribute(advancedStudyService.getStudyById(id));
         model.addAttribute("isAlreadyJoinMember", advancedStudyService.isCurrentUserAlreadyJoinedIn(id));
         model.addAttribute("isManagerOrAdmin", advancedStudyService.isCurrentUserTheStudyManagerOrAdmin(id));
+        model.addAttribute("postList", textPostService.getList(0, 5, id));
         return "study/view/summary";
     }
 
