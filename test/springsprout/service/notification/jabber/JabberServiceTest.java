@@ -1,15 +1,15 @@
 package springsprout.service.notification.jabber;
 
-import static org.mockito.Mockito.*;
-
-import java.util.Collection;
-
 import org.jivesoftware.smack.XMPPConnection;
 import org.junit.Test;
-
 import springsprout.common.util.EmailExtractUtil;
 import springsprout.domain.Member;
 import springsprout.service.notification.message.SpringSproutMailMessage;
+
+import java.util.Collection;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class JabberServiceTest {
 	

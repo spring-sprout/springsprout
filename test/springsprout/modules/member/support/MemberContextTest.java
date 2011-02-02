@@ -1,14 +1,13 @@
 package springsprout.modules.member.support;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
-
 import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.common.web.support.StandardPaging;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class MemberContextTest {

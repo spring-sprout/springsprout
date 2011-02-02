@@ -1,10 +1,8 @@
 package springsprout.common.web;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import springsprout.common.web.URLBuilder;
+import static org.junit.Assert.assertEquals;
 
 
 public class URLBuilderTest {

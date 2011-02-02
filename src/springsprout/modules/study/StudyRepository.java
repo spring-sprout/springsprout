@@ -7,7 +7,6 @@ import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyContext;
 import springsprout.modules.study.support.StudyCriteria;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface StudyRepository extends GenericDao<Study>{

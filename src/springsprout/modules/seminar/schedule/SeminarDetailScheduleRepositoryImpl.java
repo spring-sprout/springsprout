@@ -5,7 +5,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.SeminarDetailSchedule;
-import springsprout.modules.seminar.schedule.SeminarDetailScheduleRepository;
 
 import java.util.List;
 

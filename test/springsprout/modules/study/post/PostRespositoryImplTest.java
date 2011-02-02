@@ -1,8 +1,5 @@
 package springsprout.modules.study.post;
 
-import java.util.List;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +8,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
 import springsprout.domain.study.board.Post;
-import springsprout.modules.study.post.PostResposiroty;
 import springsprout.modules.study.post.imagePost.ImagePostRepository;
 import springsprout.modules.study.post.textPost.TextPostRepository;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import java.util.List;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

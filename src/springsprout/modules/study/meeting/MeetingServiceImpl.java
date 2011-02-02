@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.domain.*;
 import springsprout.domain.enumeration.MeetingStatus;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.comment.CommentRepository;
 import springsprout.modules.location.LocationRepository;
 import springsprout.modules.study.StudyRepository;

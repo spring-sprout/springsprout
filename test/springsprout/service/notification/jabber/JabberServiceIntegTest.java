@@ -1,16 +1,15 @@
 package springsprout.service.notification.jabber;
 
-import java.util.Collection;
-
+import edu.emory.mathcs.backport.java.util.Arrays;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import springsprout.service.notification.message.SpringSproutMailMessage;
-import edu.emory.mathcs.backport.java.util.Arrays;
+
+import java.util.Collection;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/testContext.xml")

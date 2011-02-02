@@ -1,16 +1,15 @@
 package springsprout.service.notification.mail;
 
-import static org.mockito.Mockito.*;
-
-import javax.mail.internet.MimeMessage;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.mail.javamail.JavaMailSender;
-
 import springsprout.service.notification.message.SpringSproutMail;
+
+import javax.mail.internet.MimeMessage;
+
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SendMailServiceTest {

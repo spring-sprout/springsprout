@@ -1,16 +1,15 @@
 package springsprout.modules.seminar;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.Seminar;
 import springsprout.domain.SeminarComer;
 import springsprout.domain.enumeration.SeminarStatus;
+
+import java.util.List;
 
 @Repository
 public class SeminarRepositoryImpl extends HibernateGenericDao<Seminar> implements SeminarRepository{

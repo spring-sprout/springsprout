@@ -1,13 +1,12 @@
 package springsprout.service.notification.message;
 
-import java.util.Collection;
-
 import org.apache.commons.lang.time.DateFormatUtils;
-
 import springsprout.domain.Comment;
 import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Presentation;
+
+import java.util.Collection;
 
 /**
  * 모임 및 발표에 Comment가 등록되었을 경우 알림 메시지를 발송 한다.

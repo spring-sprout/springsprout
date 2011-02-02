@@ -1,7 +1,7 @@
 package springsprout.modules.seminar.enrollment;
 
-import springsprout.domain.SeminarComer;
 import springsprout.common.dao.GenericDao;
+import springsprout.domain.SeminarComer;
 
 import java.util.List;
 

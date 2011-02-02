@@ -1,10 +1,10 @@
 package springsprout.modules.seminar;
 
-import java.util.List;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.Seminar;
 import springsprout.domain.SeminarComer;
+
+import java.util.List;
 
 public interface SeminarRepository extends GenericDao<Seminar>{
 

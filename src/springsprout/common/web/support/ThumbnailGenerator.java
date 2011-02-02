@@ -1,11 +1,10 @@
 package springsprout.common.web.support;
 
+import org.springframework.stereotype.Service;
+import springsprout.common.util.ImageUtils;
+
 import java.io.File;
 import java.io.IOException;
-
-import org.springframework.stereotype.Service;
-
-import springsprout.common.util.ImageUtils;
 
 @Service
 public class ThumbnailGenerator {

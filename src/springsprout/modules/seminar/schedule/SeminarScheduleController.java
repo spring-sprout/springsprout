@@ -1,22 +1,17 @@
 package springsprout.modules.seminar.schedule;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
 import springsprout.common.propertyeditor.FormatDatePropertyEditor;
 import springsprout.domain.SeminarDetailSchedule;
 import springsprout.modules.seminar.schedule.support.SeminarScheduleValidator;
 import springsprout.modules.seminar.support.SeminarViewNames;
+
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.

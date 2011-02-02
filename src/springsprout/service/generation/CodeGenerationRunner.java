@@ -1,11 +1,8 @@
 package springsprout.service.generation;
 
-import java.io.IOException;
-
 import springsprout.domain.Location;
-import springsprout.domain.SeminarComer;
-import springsprout.domain.SeminarDetailSchedule;
-import springsprout.domain.WikiSpace;
+
+import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.

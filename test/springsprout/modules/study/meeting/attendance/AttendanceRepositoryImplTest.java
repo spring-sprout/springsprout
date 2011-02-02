@@ -1,16 +1,17 @@
 package springsprout.modules.study.meeting.attendance;
 
 import org.junit.Test;
-import static org.junit.Assert.assertThat;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.hamcrest.Matchers.is;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import springsprout.common.test.DBUnitSupport;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
-import springsprout.common.test.DBUnitSupport;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

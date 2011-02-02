@@ -1,9 +1,9 @@
 package springsprout.modules.study.post.textPost;
 
-import java.util.List;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.study.board.TextPost;
+
+import java.util.List;
 
 public interface TextPostRepository extends GenericDao<TextPost> {
 	

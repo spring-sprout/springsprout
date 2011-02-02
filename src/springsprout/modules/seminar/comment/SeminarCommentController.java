@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springsprout.domain.Comment;
-import springsprout.domain.Seminar;
 import springsprout.modules.seminar.SeminarService;
 import springsprout.modules.seminar.support.SeminarViewNames;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

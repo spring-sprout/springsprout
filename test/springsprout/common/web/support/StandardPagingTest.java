@@ -1,11 +1,9 @@
 package springsprout.common.web.support;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import springsprout.common.web.support.StandardPaging;
+import static org.junit.Assert.assertEquals;
 
 public class StandardPagingTest {
 

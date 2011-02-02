@@ -1,8 +1,8 @@
 package springsprout.common.web.support;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.bind.ServletRequestBindingException;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 public abstract class AbstractModulesContext {

@@ -1,18 +1,17 @@
 
 package springsprout.service.batch;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import springsprout.common.util.MathUtils;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.modules.member.MemberRepository;
 import springsprout.modules.study.meeting.attendance.AttendanceRepository;
+
+import java.util.Set;
 
 @Service
 @Transactional

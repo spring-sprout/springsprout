@@ -1,7 +1,6 @@
 package springsprout.modules.acl;
 
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.security.AclBbs;
 

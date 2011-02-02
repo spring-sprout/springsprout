@@ -1,19 +1,16 @@
 package springsprout.service.generation;
 
-import org.junit.Test;
-import org.junit.Before;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import org.springframework.core.io.FileSystemResource;
-
-import java.io.IOException;
-import java.io.File;
-
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.core.io.FileSystemResource;
 import springsprout.domain.Study;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by IntelliJ IDEA.

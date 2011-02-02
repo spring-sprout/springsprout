@@ -3,9 +3,7 @@ package springsprout.common.util;
 import org.junit.Test;
 import springsprout.common.enumeration.DayOfWeek;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

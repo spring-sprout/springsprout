@@ -2,19 +2,17 @@ package springsprout.domain;
 
 import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotEmpty;
-
 import springsprout.common.annotation.DomainInfo;
 import springsprout.common.convention.Convention;
 import springsprout.domain.enumeration.MemberStatus;
 import springsprout.domain.enumeration.StudyStatus;
 import springsprout.modules.study.exception.StudyMaximumOverException;
 
-import javax.persistence.*;
 import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.util.*;
 

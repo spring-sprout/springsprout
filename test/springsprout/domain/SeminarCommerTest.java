@@ -1,7 +1,6 @@
 package springsprout.domain;
 
 import org.junit.Test;
-import springsprout.domain.enumeration.SeminarComerStatus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;

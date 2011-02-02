@@ -7,11 +7,11 @@
  */
 package springsprout.common.conversion;
 
-import org.junit.*;
+import org.junit.Test;
 import springsprout.domain.Role;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class JsonStringToBeanTest {
 

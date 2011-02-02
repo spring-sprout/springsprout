@@ -3,8 +3,8 @@ package springsprout.modules.term.support;
 import springsprout.common.convention.Convention;
 import springsprout.common.util.StringUtils;
 import springsprout.domain.DevTerm;
-import springsprout.domain.Member;
 import springsprout.domain.KorTerm;
+import springsprout.domain.Member;
 import springsprout.service.notification.message.SpringSproutMailMessage;
 
 import java.util.Arrays;

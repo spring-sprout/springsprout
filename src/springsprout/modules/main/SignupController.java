@@ -1,7 +1,5 @@
 package springsprout.modules.main;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
-import static springsprout.common.SpringSprout2System.*;
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Member;
 import springsprout.modules.member.MemberService;
 import springsprout.modules.member.support.MemberValidator;
 import springsprout.service.notification.mail.SendMailService;
 import springsprout.service.notification.message.ConfirmMail;
+
+import javax.servlet.http.HttpSession;
+
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
 
 @Controller
 public class SignupController {

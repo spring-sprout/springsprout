@@ -1,9 +1,9 @@
 package springsprout.modules.tag;
 
-import org.springframework.stereotype.Repository;
 import org.hibernate.criterion.Restrictions;
-import springsprout.domain.Tag;
+import org.springframework.stereotype.Repository;
 import springsprout.common.dao.HibernateGenericDao;
+import springsprout.domain.Tag;
 
 
 /**

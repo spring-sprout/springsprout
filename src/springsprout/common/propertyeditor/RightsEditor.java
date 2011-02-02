@@ -1,15 +1,14 @@
 package springsprout.common.propertyeditor;
 
-import java.beans.PropertyEditorSupport;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Right;
 import springsprout.modules.right.RightService;
+
+import java.beans.PropertyEditorSupport;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class RightsEditor extends PropertyEditorSupport {

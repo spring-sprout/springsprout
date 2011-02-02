@@ -1,29 +1,25 @@
 package springsprout.modules.main;
 
-import static springsprout.common.SpringSprout2System.JSON_VIEW;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import org.apache.commons.lang.time.FastDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import springsprout.modules.notice.NoticeService;
 import springsprout.modules.study.StudyService;
 import springsprout.modules.study.meeting.MeetingService;
 import springsprout.service.security.SecurityService;
+
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
 
 @Controller
 public class MainController {

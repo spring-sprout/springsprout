@@ -1,17 +1,12 @@
 package springsprout.modules.study.post.textPost;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import springsprout.common.exception.ExceptionTemplate;
 import springsprout.common.exception.ExceptionalWork;
 import springsprout.common.web.support.Paging;
 import springsprout.common.web.support.PostPaging;
-import springsprout.domain.Attendance;
 import springsprout.domain.Comment;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
@@ -25,6 +20,9 @@ import springsprout.service.notification.NotificationService;
 import springsprout.service.security.SecurityService;
 
 import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 @Service("textPostService")
 @Transactional

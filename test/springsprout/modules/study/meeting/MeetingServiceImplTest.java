@@ -1,32 +1,25 @@
 package springsprout.modules.study.meeting;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import static org.mockito.Matchers.any;
-
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.matchers.JUnitMatchers.containsString;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import springsprout.domain.*;
-import springsprout.domain.Meeting;
-import springsprout.domain.Study;
-import springsprout.domain.Attendance;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.location.LocationRepository;
-import springsprout.service.notification.UnifiedNotificationService;
-import springsprout.service.security.SecurityService;
+import springsprout.modules.study.StudyRepository;
 import springsprout.modules.study.exception.JoinMeetingException;
 import springsprout.modules.study.exception.MeetingMaximumOverException;
 import springsprout.modules.study.meeting.attendance.AttendanceRepository;
-import springsprout.modules.study.meeting.MeetingService;
-import springsprout.modules.study.meeting.resource.ResourceRepository;
-import springsprout.modules.study.StudyRepository;
 import springsprout.modules.study.meeting.presentation.PresentationRepository;
+import springsprout.modules.study.meeting.resource.ResourceRepository;
+import springsprout.service.notification.UnifiedNotificationService;
+import springsprout.service.security.SecurityService;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
+import static org.junit.matchers.JUnitMatchers.containsString;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MeetingServiceImplTest {

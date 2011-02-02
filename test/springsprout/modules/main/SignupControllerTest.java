@@ -1,8 +1,8 @@
 package springsprout.modules.main;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class SignupControllerTest {

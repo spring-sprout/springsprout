@@ -1,11 +1,10 @@
 package springsprout.modules.acl;
 
-import java.io.Serializable;
-
 import org.springframework.security.access.annotation.Secured;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.security.AclBbs;
+
+import java.io.Serializable;
 
 public interface AclBbsRepository extends GenericDao<AclBbs>{
 

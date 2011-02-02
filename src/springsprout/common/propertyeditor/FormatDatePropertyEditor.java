@@ -1,12 +1,12 @@
 package springsprout.common.propertyeditor;
 
+import springsprout.common.util.DateUtils;
+import springsprout.common.util.StringUtils;
+
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import springsprout.common.util.DateUtils;
-import springsprout.common.util.StringUtils;
 
 
 public class FormatDatePropertyEditor extends PropertyEditorSupport {

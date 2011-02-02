@@ -3,8 +3,6 @@ package springsprout.domain;
 import org.junit.Test;
 import springsprout.common.util.DateUtils;
 
-import java.util.Date;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

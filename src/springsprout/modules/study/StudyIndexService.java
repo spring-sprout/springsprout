@@ -1,11 +1,11 @@
 package springsprout.modules.study;
 
-import java.util.List;
-import java.util.Map;
-
 import springsprout.domain.Meeting;
 import springsprout.domain.Study;
 import springsprout.modules.study.support.StudyIndexInfo;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 스터디 인덱스 화면을 위한 서비스

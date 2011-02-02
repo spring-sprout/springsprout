@@ -15,7 +15,6 @@ import springsprout.common.enumeration.PersistentEnumUtil;
 import springsprout.common.propertyeditor.FormatDatePropertyEditor;
 import springsprout.common.util.BeanUtils;
 import springsprout.domain.*;
-import springsprout.domain.Resource;
 import springsprout.domain.enumeration.ResourceType;
 import springsprout.modules.study.StudyService;
 import springsprout.modules.study.exception.JoinMeetingException;
@@ -25,7 +24,6 @@ import springsprout.modules.study.meeting.support.CountInfoDTO;
 import springsprout.modules.study.meeting.support.MeetingValidator;
 import springsprout.service.security.SecurityService;
 
-import javax.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;

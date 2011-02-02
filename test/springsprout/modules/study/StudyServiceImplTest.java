@@ -1,23 +1,21 @@
 package springsprout.modules.study;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.member.MemberRepository;
 import springsprout.modules.study.exception.StudyMaximumOverException;
 import springsprout.service.notification.UnifiedNotificationService;
 import springsprout.service.security.SecurityService;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StudyServiceImplTest {
@@ -27,8 +25,7 @@ public class StudyServiceImplTest {
 	@Mock StudyRepositoryImpl repository;
     @Mock UnifiedNotificationService notiService;
     @Mock MemberRepository memberRepository;
-    @Mock GoogleCalendarService googleCalendarService;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		service = new StudyServiceImpl();

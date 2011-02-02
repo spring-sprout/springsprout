@@ -1,19 +1,20 @@
 package springsprout.modules.term;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
-import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.CenterPositionPaging;
-import springsprout.modules.term.support.DevTermSearchParam;
+import springsprout.common.web.support.OrderParam;
 import springsprout.modules.term.support.DevTermContext;
+import springsprout.modules.term.support.DevTermSearchParam;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

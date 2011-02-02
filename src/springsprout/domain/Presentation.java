@@ -2,7 +2,6 @@ package springsprout.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import springsprout.common.annotation.DomainInfo;
@@ -10,7 +9,6 @@ import springsprout.domain.enumeration.PresentationStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

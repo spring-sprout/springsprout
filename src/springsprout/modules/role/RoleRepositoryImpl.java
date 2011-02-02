@@ -1,14 +1,13 @@
 package springsprout.modules.role;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.Role;
+
+import java.util.List;
 
 @Repository
 public class RoleRepositoryImpl extends HibernateGenericDao<Role> implements RoleRepository{

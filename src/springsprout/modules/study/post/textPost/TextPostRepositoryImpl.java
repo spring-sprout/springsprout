@@ -1,14 +1,13 @@
 package springsprout.modules.study.post.textPost;
 
-import java.util.List;
-
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.study.board.TextPost;
+
+import java.util.List;
 
 @Repository
 public class TextPostRepositoryImpl extends HibernateGenericDao<TextPost> implements TextPostRepository {

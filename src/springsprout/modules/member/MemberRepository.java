@@ -1,16 +1,14 @@
 package springsprout.modules.member;
 
-import java.util.List;
-import java.util.Map;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Member;
-import springsprout.domain.Study;
+import springsprout.modules.ajax.support.AutoCompleteParams;
 import springsprout.modules.member.support.MemberContext;
 import springsprout.modules.member.support.MemberSearchParam;
-import springsprout.modules.ajax.support.AutoCompleteParams;
+
+import java.util.List;
 
 public interface MemberRepository extends GenericDao<Member> {
 

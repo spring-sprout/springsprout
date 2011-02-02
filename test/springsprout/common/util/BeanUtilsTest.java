@@ -7,7 +7,6 @@
  */
 package springsprout.common.util;
 
-import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +16,8 @@ import springsprout.modules.admin.support.MemberMgtDTO;
 import springsprout.modules.main.support.NoticeDTO;
 
 import java.util.Date;
+
+import static org.hamcrest.Matchers.is;
 
 public class BeanUtilsTest {
 

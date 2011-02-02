@@ -1,18 +1,17 @@
 package springsprout.modules.feed.support;
 
+import com.sun.syndication.feed.rss.Channel;
+import com.sun.syndication.feed.rss.Description;
+import com.sun.syndication.feed.rss.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.feed.AbstractRssFeedView;
+import springsprout.domain.Notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import com.sun.syndication.feed.rss.Item;
-import com.sun.syndication.feed.rss.Description;
-import com.sun.syndication.feed.rss.Channel;
-import springsprout.domain.Notice;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,15 +1,14 @@
 package springsprout.modules.member.support;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
-
 import springsprout.common.web.support.AbstractModulesContext;
 import springsprout.common.web.support.CenterPositionPaging;
 import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class MemberContext extends AbstractModulesContext {

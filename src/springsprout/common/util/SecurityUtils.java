@@ -2,7 +2,6 @@ package springsprout.common.util;
 
 
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import springsprout.domain.Member;
 import springsprout.service.security.SpringSproutUserDetail;
 

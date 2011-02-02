@@ -3,7 +3,6 @@ package springsprout.common.conversion;
 import org.springframework.binding.convert.converters.StringToDate;
 import org.springframework.binding.convert.service.DefaultConversionService;
 import org.springframework.stereotype.Component;
-
 import springsprout.common.util.DateUtils;
 
 @Component("applicationConversionService")

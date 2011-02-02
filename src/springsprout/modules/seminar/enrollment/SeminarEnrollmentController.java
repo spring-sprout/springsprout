@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springsprout.domain.Seminar;
 import springsprout.domain.SeminarComer;
-import springsprout.modules.seminar.SeminarService;
 import springsprout.modules.seminar.enrollment.support.SeminarEnrollmentValidator;
 import springsprout.modules.seminar.support.SeminarViewNames;
 import springsprout.service.security.SecurityService;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

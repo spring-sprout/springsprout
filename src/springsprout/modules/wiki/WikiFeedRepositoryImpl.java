@@ -1,13 +1,12 @@
 package springsprout.modules.wiki;
 
-import java.util.List;
-
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.WikiFeed;
+
+import java.util.List;
 
 @Repository
 public class WikiFeedRepositoryImpl extends HibernateGenericDao<WikiFeed> implements WikiFeedRepository {

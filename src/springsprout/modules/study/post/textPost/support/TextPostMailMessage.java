@@ -3,7 +3,6 @@ package springsprout.modules.study.post.textPost.support;
 import springsprout.common.convention.Convention;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
-import springsprout.domain.study.board.Post;
 import springsprout.domain.study.board.TextPost;
 import springsprout.service.notification.message.SpringSproutMail;
 import springsprout.service.notification.message.SpringSproutMailMessage;

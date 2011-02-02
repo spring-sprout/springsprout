@@ -1,6 +1,5 @@
 package springsprout.modules.study;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import springsprout.modules.member.MemberRepositoryImpl;
 import springsprout.modules.study.support.StudyCriteria;
 
 import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;

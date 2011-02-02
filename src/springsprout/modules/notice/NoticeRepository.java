@@ -1,10 +1,10 @@
 package springsprout.modules.notice;
 
-import java.util.List;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.Notice;
 import springsprout.modules.notice.support.NoticeCriteria;
+
+import java.util.List;
 
 
 public interface NoticeRepository extends GenericDao<Notice> {

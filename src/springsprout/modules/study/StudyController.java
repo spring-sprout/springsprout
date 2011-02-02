@@ -3,7 +3,6 @@ package springsprout.modules.study;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import springsprout.domain.Study;
 import springsprout.domain.study.board.TextPost;
 import springsprout.modules.study.exception.StudyMaximumOverException;
-import springsprout.modules.study.meeting.support.CountInfoDTO;
 import springsprout.modules.study.post.PostService;
 import springsprout.service.security.SecurityService;
 
