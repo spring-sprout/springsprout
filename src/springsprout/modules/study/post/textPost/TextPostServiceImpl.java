@@ -1,19 +1,30 @@
 package springsprout.modules.study.post.textPost;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import springsprout.common.exception.ExceptionTemplate;
+import springsprout.common.exception.ExceptionalWork;
 import springsprout.common.web.support.Paging;
 import springsprout.common.web.support.PostPaging;
+import springsprout.domain.Attendance;
 import springsprout.domain.Comment;
+import springsprout.domain.Member;
+import springsprout.domain.Study;
 import springsprout.domain.study.board.TextPost;
 import springsprout.modules.comment.CommentRepository;
+import springsprout.modules.member.MemberRepository;
+import springsprout.modules.study.StudyService;
 import springsprout.modules.study.post.PostService;
+import springsprout.modules.study.post.textPost.support.TextPostMailMessage;
+import springsprout.service.notification.NotificationService;
 import springsprout.service.security.SecurityService;
+
+import javax.annotation.Resource;
 
 @Service("textPostService")
 @Transactional
@@ -22,14 +33,25 @@ public class TextPostServiceImpl implements PostService<TextPost> {
 	@Autowired TextPostRepository repository;
 	@Autowired SecurityService securityService;
 	@Autowired CommentRepository commentRepository;
-	
-	public void addPost(TextPost post) {
-        System.out.println("=======================");
-        System.out.println(post.getContent());
-        System.out.println("=======================");
+    @Autowired MemberRepository memberRepository;
+    @Resource StudyService studyService;
+
+    @Autowired ExceptionTemplate exceptionTemplate;
+    @Resource NotificationService unifiedNotificationService;
+
+	public void addPost(final TextPost post) {
         post.setWriter( securityService.getCurrentMember());
 		post.setCreatedAt( new Date());
 		repository.add( post);
+
+
+        final Study study = post.getRootStudy();
+        final Collection<Member> members = studyService.getMembersOf(study);
+        exceptionTemplate.catchAll(new ExceptionalWork() {
+            public void run() throws Exception {
+                unifiedNotificationService.sendMessage(new TextPostMailMessage(study, post, members));
+            }
+        });
 	}
 
 	public void removePost(TextPost post) {

@@ -5,6 +5,7 @@ import springsprout.domain.Member;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 public abstract class SpringSproutMail implements SpringSproutMessage {
 	
@@ -50,4 +51,7 @@ public abstract class SpringSproutMail implements SpringSproutMessage {
 		throw new UnsupportedOperationException();
 	}
 
+    public Map getModelObject() {
+        return null;
+    }
 }

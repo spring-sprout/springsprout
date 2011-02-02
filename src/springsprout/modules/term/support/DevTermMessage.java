@@ -5,6 +5,7 @@ import springsprout.domain.DevTerm;
 import springsprout.service.notification.message.SpringSproutMessage;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -62,5 +63,9 @@ public class DevTermMessage implements SpringSproutMessage {
 
     public boolean isHTML() {
         return false;
+    }
+
+    public Map getModelObject() {
+        return null;
     }
 }

@@ -245,7 +245,7 @@ public class Study implements Serializable{
 	}
 
 	public String getLink() {
-		return Convention.HOME_URL + "study/view/" + this.id + "";
+		return Convention.HOME_URL + "study/" + this.id + "";
 	}
 
 	public String getMaximumCount() {
