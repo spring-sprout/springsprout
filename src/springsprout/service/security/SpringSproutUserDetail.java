@@ -1,18 +1,17 @@
 package springsprout.service.security;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import springsprout.common.util.ValidationUtils;
 import springsprout.domain.Member;
 import springsprout.domain.Right;
 import springsprout.domain.Role;
 import springsprout.domain.enumeration.MemberStatus;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class SpringSproutUserDetail implements UserDetails {

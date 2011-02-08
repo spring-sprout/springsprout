@@ -7,12 +7,12 @@
  */
 package springsprout.common.util;
 
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
-import static org.hamcrest.Matchers.is;
 import springsprout.common.SpringSprout2System;
-import springsprout.common.util.JsonUtils;
+
+import static org.hamcrest.Matchers.is;
 
 public class JsonUtilsTest {
     @Test

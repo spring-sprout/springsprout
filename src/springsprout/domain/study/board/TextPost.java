@@ -1,17 +1,15 @@
 package springsprout.domain.study.board;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import springsprout.common.annotation.DomainInfo;
 import springsprout.domain.Comment;
 import springsprout.domain.Study;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @DomainInfo("일반글")

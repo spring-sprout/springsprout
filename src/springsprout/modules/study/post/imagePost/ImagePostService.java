@@ -1,9 +1,9 @@
 package springsprout.modules.study.post.imagePost;
 
-import java.util.List;
-
 import springsprout.domain.study.board.ImagePost;
 import springsprout.modules.study.post.PostService;
+
+import java.util.List;
 
 public interface ImagePostService extends PostService<ImagePost> {
 

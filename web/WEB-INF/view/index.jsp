@@ -10,7 +10,8 @@
 <%--style sheet for this page is home.css witch is assigned at css_selected.tag--%>
     <div id="content">
         <div id="index_header">
-            <h1>2011년 새로운 스터디가 열립니다. 기대해 주세요!</h1>
+            <h1>2011년 새해 복 많이 받으시고, 모두 행복하세요.</h1>
+
         </div>
         <div id="index_body">
             <div id="left">

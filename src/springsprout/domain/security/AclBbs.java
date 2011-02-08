@@ -1,10 +1,9 @@
 package springsprout.domain.security;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 /**
  * Acl 테스트 도메인 클래스

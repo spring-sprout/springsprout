@@ -1,11 +1,10 @@
 package springsprout.service.notification.message;
 
-import static org.junit.Assert.assertThat;
-import static springsprout.service.notification.message.MailMatcher.*;
-
 import org.junit.Test;
-
 import springsprout.domain.Member;
+
+import static org.junit.Assert.assertThat;
+import static springsprout.service.notification.message.MailMatcher.isAbout;
 
 public class ConfirmMailTest {
 

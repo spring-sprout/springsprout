@@ -1,13 +1,9 @@
 package springsprout.domain.study.board;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import springsprout.common.annotation.DomainInfo;
 import springsprout.domain.Member;
+
+import javax.persistence.*;
 
 @Entity
 @DomainInfo("설문응답결과")

@@ -1,21 +1,18 @@
 package springsprout.domain.study.board;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
+import springsprout.common.annotation.DomainInfo;
+import springsprout.domain.Study;
+import springsprout.domain.enumeration.SurbeyStatus;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-
-import springsprout.common.annotation.DomainInfo;
-import springsprout.domain.Study;
-import springsprout.domain.enumeration.SurbeyStatus;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 설문기간 동안에 포함된 설문만 설문에 응할 수 있도록 하고, 

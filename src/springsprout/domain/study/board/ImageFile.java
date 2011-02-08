@@ -1,12 +1,12 @@
 package springsprout.domain.study.board;
 
+import springsprout.common.annotation.DomainInfo;
+import springsprout.domain.UploadFile;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-
-import springsprout.common.annotation.DomainInfo;
-import springsprout.domain.UploadFile;
 
 @SuppressWarnings("serial")
 @Entity

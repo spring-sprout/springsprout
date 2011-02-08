@@ -1,11 +1,10 @@
 package springsprout.service.notification.message;
 
-import java.util.Arrays;
-
 import org.hamcrest.Matcher;
 import org.mockito.ArgumentMatcher;
-
 import springsprout.domain.Member;
+
+import java.util.Arrays;
 
 public class MailMatcher extends ArgumentMatcher<SpringSproutMail> {
 

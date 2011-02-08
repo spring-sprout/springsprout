@@ -1,19 +1,18 @@
 package springsprout.common.binding;
 
-import java.util.Date;
-
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.stereotype.Component;
-
 import springsprout.common.propertyeditor.FormatDatePropertyEditor;
 import springsprout.common.propertyeditor.GenericEnumPropertyEditor;
 import springsprout.common.propertyeditor.GenericFakePropertyEditor;
+import springsprout.domain.Member;
 import springsprout.domain.Role;
 import springsprout.domain.enumeration.MemberStatus;
 import springsprout.domain.enumeration.ResourceType;
 import springsprout.domain.enumeration.StudyStatus;
-import springsprout.domain.Member;
+
+import java.util.Date;
 
 @Component
 public class SpringSproutBindingInitializer implements PropertyEditorRegistrar{

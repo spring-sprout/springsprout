@@ -1,15 +1,15 @@
 package springsprout.common.util;
 
 import org.junit.Test;
-import static org.junit.Assert.assertThat;
-import springsprout.common.util.EmailExtractUtil;
 import springsprout.domain.Member;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 
 
 /**

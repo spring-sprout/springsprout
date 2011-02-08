@@ -1,8 +1,8 @@
 package springsprout.common.util;
 
-import static springsprout.common.SpringSprout2System.CLEAN_KEY;
-
 import org.springframework.ui.Model;
+
+import static springsprout.common.SpringSprout2System.CLEAN_KEY;
 
 public class JsonUtils {
 	

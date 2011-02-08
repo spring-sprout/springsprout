@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.domain.*;
 import springsprout.domain.enumeration.MeetingStatus;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.comment.CommentRepository;
 import springsprout.modules.location.LocationRepository;
 import springsprout.modules.study.StudyRepository;
@@ -41,7 +40,6 @@ public class MeetingServiceImpl implements MeetingService {
     @Autowired CommentRepository commentRepository;
     @Autowired @Qualifier("unifiedNotificationService") NotificationService notiService;
     @Autowired @Qualifier("sendMailService") NotificationService commentNotiService;
-    @Autowired GoogleCalendarService calendarService;
 
 	public void addComment(Meeting meeting, Comment comment) {
 		Member currentMember = securityService.getCurrentMember();
@@ -112,21 +110,12 @@ public class MeetingServiceImpl implements MeetingService {
 			throw new JoinMeetingException(currentMember.getName() + "님은 " + meeting.getStudy().getStudyName() + " 스터디에 참가 신청하지 않으셨습니다.");
 		Attendance attendance = currentMember.applyAttendance(meeting);
 		attendanceRepository.add(attendance);
-		calendarService.addToAccessControlList(meeting.getStudy(), currentMember);
 	}
 
 	public void updateMeeting(Integer studyId, Integer meetingId, Meeting newMeeting, Boolean isGoingToBeNotified) {
         locationRepository.save(newMeeting.getLocation());
         Meeting oldMeeting = meetingRepository.getById(meetingId);
-        
-        Study study = oldMeeting.getStudy();
-        calendarService.synchronizeForLegacy(study);
-		String oldMeetingTitle = oldMeeting.getTitle();
-		calendarService.synchronizeForLegacy(study.getMeetings(), oldMeetingTitle);
-		calendarService.addToAccessControlList(study, study.getManager());
-        calendarService.deleteMeetingEvent(oldMeeting);
-		oldMeeting.update(newMeeting);
-		calendarService.createNewMeetingEvent(oldMeeting);
+        oldMeeting.update(newMeeting);
 
         if (isGoingToBeNotified) {
             notiService.sendMessage(
@@ -137,7 +126,6 @@ public class MeetingServiceImpl implements MeetingService {
 	@PreAuthorize("(#meeting.owner.email == principal.Username) or (#meeting.study.manager.email == principal.Username) or hasRole('ROLE_ADMIN')")
 	public void deleteMeeting(Meeting meeting) {
         meeting.delete();
-		calendarService.deleteMeetingEvent(meeting);
     }
 
 	public void deleteResourceFromMeeting(int meetingId, int resourceId) {
@@ -163,15 +151,6 @@ public class MeetingServiceImpl implements MeetingService {
 		
 		studyRepository.update(study);
 		studyRepository.flush();
-		
-		if (study.getCalendarId() == null) {
-			calendarService.createNewStudyCalendar(study);
-			studyRepository.update(study);
-		}
-		
-		calendarService.createNewMeetingEvent(meeting);
-		calendarService.addToAccessControlList(study, currentMember);
-
 
         notiService.sendMessage(new MeetingMailMessage(study, meeting, MeetingStatus.OPEN));
 	}

@@ -1,9 +1,5 @@
 package springsprout.common.test;
 
-import java.io.InputStream;
-
-import javax.sql.DataSource;
-
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
@@ -12,6 +8,9 @@ import org.dbunit.operation.DatabaseOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+
+import javax.sql.DataSource;
+import java.io.InputStream;
 
 public class DBUnitSupport {
 	

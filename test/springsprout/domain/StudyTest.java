@@ -1,16 +1,12 @@
 package springsprout.domain;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import springsprout.domain.enumeration.StudyStatus;
-import springsprout.domain.Study;
 import springsprout.modules.study.exception.StudyMaximumOverException;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 
 public class StudyTest {
 	

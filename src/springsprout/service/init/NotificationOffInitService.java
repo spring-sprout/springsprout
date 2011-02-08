@@ -3,7 +3,6 @@ package springsprout.service.init;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import springsprout.domain.Member;
 import springsprout.modules.member.MemberRepository;
 

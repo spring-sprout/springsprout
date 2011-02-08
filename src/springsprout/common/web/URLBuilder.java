@@ -1,14 +1,13 @@
 package springsprout.common.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import springsprout.common.SpringSprout2System;
 import springsprout.common.util.ValidationUtils;
 import springsprout.common.web.exception.EncodingException;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 
 public class URLBuilder {

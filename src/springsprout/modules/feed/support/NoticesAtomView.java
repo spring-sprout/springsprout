@@ -1,19 +1,18 @@
 package springsprout.modules.feed.support;
 
+import com.sun.syndication.feed.atom.Content;
+import com.sun.syndication.feed.atom.Entry;
+import com.sun.syndication.feed.atom.Feed;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.feed.AbstractAtomFeedView;
+import springsprout.domain.Notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
-
-import com.sun.syndication.feed.atom.Entry;
-import com.sun.syndication.feed.atom.Content;
-import com.sun.syndication.feed.atom.Feed;
-import springsprout.domain.Notice;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.

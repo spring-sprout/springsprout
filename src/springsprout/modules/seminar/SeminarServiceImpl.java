@@ -1,13 +1,12 @@
 package springsprout.modules.seminar;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import springsprout.domain.Comment;
 import springsprout.domain.Seminar;
+
+import java.util.List;
 
 @Service
 @Transactional

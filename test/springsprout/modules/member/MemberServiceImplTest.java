@@ -15,12 +15,12 @@ import springsprout.domain.enumeration.MemberStatus;
 import springsprout.modules.role.RoleRepository;
 import springsprout.modules.study.StudyRepository;
 import springsprout.service.notification.mail.SendMailService;
-import springsprout.service.notification.message.ConfirmMail;
 import springsprout.service.notification.message.SpringSproutMessage;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MemberServiceImplTest {

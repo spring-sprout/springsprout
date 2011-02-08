@@ -1,5 +1,11 @@
 package springsprout.common.enumeration.usertype;
 
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.usertype.UserType;
+import springsprout.common.enumeration.PersistentEnum;
+import springsprout.common.enumeration.PersistentEnumUtil;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -7,13 +13,6 @@ import java.lang.reflect.Type;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.usertype.UserType;
-
-import springsprout.common.enumeration.PersistentEnum;
-import springsprout.common.enumeration.PersistentEnumUtil;
 
 public class GenericEnumUserType<E extends PersistentEnum> implements UserType {
 

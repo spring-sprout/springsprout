@@ -1,7 +1,6 @@
 package springsprout.common.conversion;
 
 import org.springframework.binding.convert.converters.StringToObject;
-
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Member;
 

@@ -1,17 +1,18 @@
 package springsprout.modules.ajax;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import springsprout.common.util.JsonUtils;
+import springsprout.domain.Member;
 import springsprout.modules.ajax.support.AutoCompleteParams;
 import springsprout.modules.member.MemberService;
-import springsprout.domain.Member;
-import static springsprout.common.SpringSprout2System.JSON_VIEW;
-import springsprout.common.util.JsonUtils;
 
 import java.util.List;
+
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
 
 /**
  * Created by IntelliJ IDEA.

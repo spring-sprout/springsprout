@@ -1,7 +1,5 @@
 package springsprout.modules.study.post;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,11 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import springsprout.domain.Study;
 import springsprout.domain.study.board.ImagePost;
 import springsprout.domain.study.board.TextPost;
 import springsprout.modules.study.post.imagePost.ImagePostService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/study/{id}")

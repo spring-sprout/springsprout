@@ -3,7 +3,6 @@ package springsprout.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import springsprout.common.convention.Convention;
 import springsprout.domain.enumeration.ResourceType;
 
 import javax.persistence.*;

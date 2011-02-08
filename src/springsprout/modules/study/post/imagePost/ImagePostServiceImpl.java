@@ -1,18 +1,17 @@
 package springsprout.modules.study.post.imagePost;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import springsprout.common.web.support.PostPaging;
 import springsprout.domain.Comment;
 import springsprout.domain.study.board.ImageFile;
 import springsprout.domain.study.board.ImagePost;
 import springsprout.modules.file.FileService;
 import springsprout.service.security.SecurityService;
+
+import java.util.List;
 
 @Service("imagePostService")
 @Transactional

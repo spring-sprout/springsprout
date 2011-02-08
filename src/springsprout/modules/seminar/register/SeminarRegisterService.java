@@ -3,7 +3,8 @@ package springsprout.modules.seminar.register;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import springsprout.domain.Member;
 import springsprout.domain.Seminar;
 import springsprout.domain.SeminarComer;
@@ -12,8 +13,6 @@ import springsprout.modules.seminar.register.exception.SeminarAlreadyRegistratio
 import springsprout.modules.seminar.register.exception.SeminarRegistrationAuthException;
 import springsprout.modules.seminar.register.exception.SeminarRegistrationDoesNotExistException;
 import springsprout.service.security.SecurityService;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 
 @Service
 @Transactional

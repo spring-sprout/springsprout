@@ -7,11 +7,11 @@
  */
 package springsprout.modules.main.support;
 
-import java.util.Date;
-
 import springsprout.common.annotation.CustomTransfer;
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Notice;
+
+import java.util.Date;
 
 public class NoticeDTO {
 

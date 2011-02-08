@@ -1,7 +1,6 @@
 package springsprout.modules.term.support;
 
 import org.springframework.context.ApplicationContext;
-
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Tag;
 import springsprout.modules.tag.TagRepository;

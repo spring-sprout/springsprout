@@ -171,12 +171,13 @@
 
     <!-- ============================================================= -->
     <!--  Google Calendar Service                                      -->
-    <!-- ============================================================= -->
+    <!-- =============================================================
     <bean id="googleCalendarService" class="springsprout.modules.calendar.GoogleCalendarServiceImpl">
         <property name="title" value="${calendar.title}"/>
         <property name="username" value="${calendar.username}"/>
         <property name="password" value="${calendar.password}"/>
     </bean>
+    -->
 
     <!-- ============================================================= -->
     <!--  Exception Template Service                                   -->
@@ -186,4 +187,11 @@
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
+    <!-- ============================================================= -->
+    <!--  FreemarkerConfiguration for E-Mail Template                  -->
+    <!-- ============================================================= -->
+    <bean class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
 </beans>

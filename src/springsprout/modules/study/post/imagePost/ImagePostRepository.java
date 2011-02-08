@@ -1,9 +1,9 @@
 package springsprout.modules.study.post.imagePost;
 
-import java.util.List;
-
 import springsprout.common.dao.GenericDao;
 import springsprout.domain.study.board.ImagePost;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

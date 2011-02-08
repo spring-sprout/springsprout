@@ -1,8 +1,8 @@
 package springsprout.modules.link;
 
-import java.util.List;
-
 import springsprout.domain.Link;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

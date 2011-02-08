@@ -9,7 +9,6 @@ import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
-import springsprout.modules.calendar.GoogleCalendarService;
 import springsprout.modules.member.MemberRepository;
 import springsprout.modules.study.support.StudyContainer;
 import springsprout.modules.study.support.StudyCriteria;

@@ -33,7 +33,7 @@ public class StudyMailMessage extends SpringSproutMailMessage {
 			msg.append(" 스터디가 종료되었습니다.\n");
 			break;
 		}
-		msg.append(Convention.HOME_URL + "study/view/" + study.getId() + "");
+		msg.append(Convention.HOME_URL + "study/" + study.getId() + "");
 		return msg.toString();
 	}
 

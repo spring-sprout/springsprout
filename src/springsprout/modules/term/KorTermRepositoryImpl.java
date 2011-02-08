@@ -1,10 +1,10 @@
 package springsprout.modules.term;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.MatchMode;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import springsprout.common.dao.HibernateGenericDao;

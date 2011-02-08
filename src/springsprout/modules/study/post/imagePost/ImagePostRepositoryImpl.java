@@ -1,13 +1,12 @@
 package springsprout.modules.study.post.imagePost;
 
-import java.util.List;
-
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.domain.study.board.ImagePost;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,13 +1,12 @@
 package springsprout.common.propertyeditor;
 
-import java.beans.PropertyEditorSupport;
-import java.lang.reflect.Field;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import springsprout.common.util.ReflectionUtils;
 import springsprout.common.util.StringUtils;
+
+import java.beans.PropertyEditorSupport;
+import java.lang.reflect.Field;
 
 public class GenericFakePropertyEditor<T> extends PropertyEditorSupport {
 

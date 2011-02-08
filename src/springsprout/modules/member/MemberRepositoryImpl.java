@@ -1,24 +1,20 @@
 package springsprout.modules.member;
 
-import java.util.List;
-import java.util.Map;
-
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-
 import springsprout.common.dao.HibernateGenericDao;
 import springsprout.common.web.support.OrderParam;
 import springsprout.common.web.support.Paging;
 import springsprout.domain.Member;
-import springsprout.domain.Study;
 import springsprout.domain.enumeration.MemberStatus;
+import springsprout.modules.ajax.support.AutoCompleteParams;
 import springsprout.modules.member.exception.MemberNotFoundException;
 import springsprout.modules.member.support.MemberContext;
 import springsprout.modules.member.support.MemberSearchParam;
-import springsprout.modules.ajax.support.AutoCompleteParams;
+
+import java.util.List;
 
 @Repository
 public class MemberRepositoryImpl extends HibernateGenericDao<Member> implements MemberRepository {

@@ -1,11 +1,11 @@
 package springsprout.service.notification.message;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
-
 import org.junit.Test;
-
 import springsprout.domain.Member;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 
 public class PasswordMailTest {

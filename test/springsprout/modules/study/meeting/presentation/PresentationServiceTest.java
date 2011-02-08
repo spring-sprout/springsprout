@@ -1,20 +1,20 @@
 package springsprout.modules.study.meeting.presentation;
 
-import org.junit.Test;
 import org.junit.Before;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.is;
-
-import springsprout.domain.Presentation;
-import springsprout.domain.Member;
+import org.mockito.runners.MockitoJUnitRunner;
 import springsprout.domain.Comment;
+import springsprout.domain.Member;
+import springsprout.domain.Presentation;
 import springsprout.service.security.SecurityService;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by IntelliJ IDEA.

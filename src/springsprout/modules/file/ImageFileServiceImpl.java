@@ -1,12 +1,5 @@
 package springsprout.modules.file;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +7,17 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
-
 import springsprout.common.web.support.ThumbnailGenerator;
 import springsprout.domain.UploadFile;
 import springsprout.domain.study.board.ImageFile;
 import springsprout.service.security.SecurityService;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Service("imageFileService")
 @Transactional

@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
 import springsprout.domain.Notice;
 
-import javax.annotation.security.RunAs;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,23 +1,19 @@
 package springsprout.modules.seminar.register;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
 import springsprout.domain.Seminar;
 import springsprout.modules.seminar.SeminarService;
 import springsprout.modules.seminar.register.exception.SeminarAlreadyRegistrationException;
 import springsprout.modules.seminar.register.exception.SeminarRegistrationAuthException;
 import springsprout.modules.seminar.register.exception.SeminarRegistrationDoesNotExistException;
+
+import javax.servlet.http.HttpSession;
 
 @Deprecated
 public class SeminarRegisterController {

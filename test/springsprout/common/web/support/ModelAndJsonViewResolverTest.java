@@ -7,7 +7,6 @@
  */
 package springsprout.common.web.support;
 
-import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +14,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import static org.hamcrest.Matchers.is;
 import static org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver.UNRESOLVED;
 import static springsprout.common.SpringSprout2System.JSON_VIEW;
 

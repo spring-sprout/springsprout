@@ -1,8 +1,8 @@
 package springsprout.modules.notice.support;
 
-import java.util.List;
-
 import springsprout.domain.Notice;
+
+import java.util.List;
 
 public class NoticeContainer {
     private List<Notice> list;

@@ -1,10 +1,10 @@
 package springsprout.modules.study.post;
 
-import java.util.List;
-
 import springsprout.common.web.support.PostPaging;
 import springsprout.domain.Comment;
 import springsprout.domain.study.board.Post;
+
+import java.util.List;
 
 
 public interface PostService<T extends Post> {

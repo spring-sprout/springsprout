@@ -1,7 +1,5 @@
 package springsprout.domain;
 
-import springsprout.domain.enumeration.StatisticsColumnType;
-
 /**
  * Created by IntelliJ IDEA.
  * User: whiteship

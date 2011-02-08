@@ -1,7 +1,6 @@
 package springsprout.common.conversion.formatter;
 
 import org.springframework.format.Formatter;
-
 import springsprout.common.util.DateUtils;
 
 import java.text.DateFormat;

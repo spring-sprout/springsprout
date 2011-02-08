@@ -1,21 +1,11 @@
 package springsprout.modules.study.post.surbeyPost;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-
-import springsprout.common.web.support.Paging;
-import springsprout.domain.Comment;
 import springsprout.domain.Study;
-import springsprout.domain.study.board.ImagePost;
 import springsprout.domain.study.board.SurbeyPost;
 
 @Controller
