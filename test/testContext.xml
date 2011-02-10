@@ -208,4 +208,17 @@
     <bean class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
         <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
     </bean>
+    
+    <!-- ============================================================= -->
+    <!--  Velocity for E-Mail Template                  -->
+    <!-- ============================================================= -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    	<property name="velocityProperties">
+    		<value>
+    			resource.loader=file
+            	file.resource.loader.class = org.apache.velocity.runtime.resource.loader.FileResourceLoader
+    		</value>
+    	</property>
+    	<property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>
+    </bean>
 </beans>
