@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>봄싹 의견 알림 메일</title>
+</head>
+<style type="text/css">
+</style>
+<body style="font-size: 1.0em;">
+<div class="header" style="background-color: green; color: white">
+	<h2 style="text-indent: 10px; margin: 0; padding: 1px">봄싹 - Spring sprout!</h2>
+</div>
+<div style="border: 1px solid green; padding: 5px">
+	<p>
+		안녕하세요, ${user}님!
+	</p>
+	<p>
+		${author}님이 ${contents}에 댓글을 남겼습니다.
+	</p>
+	<p style="border: 1px lightgray solid">
+		${author}님의 글<br>
+		<span style="text-indent: 10px">${message}</span>
+	</p>
+	<p>
+		${link} 의견 컨텐츠 보기
+	</p>"web/WEB-INF/velocity/commentNotifyMail.html"
+	<p>
+		여기에 의견 회신하기<br>
+		어떻게? 보안은 어떻게 해야 하지? 어떤 url로? 인증은 어떻게?
+	<p>
+	<p style="text-align: right;">
+		감사합니다.
+		봄싹.
+	</p>
+</div>
+<div style="font-size: 0.95em; color: gray;">
+	<span>봄싹으로부터 메시지가 전송되었습니다.</span>
+	<span style="float: right">| http://www.springsprout.org | 봄싹 |</span> 
+</div>
+</body>
+</html>
