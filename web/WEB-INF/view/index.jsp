@@ -9,11 +9,8 @@
 <page:defaultpage banner_name="main-banner" selected_menu="home" ajaxlogin_yn="Y">
 <%--style sheet for this page is home.css witch is assigned at css_selected.tag--%>
     <div id="content">
-        <div id="index_header">
-            <a href="http://www.springsprout.org/study/4494/meeting/4716"><h1>봄싹 스웨거 2월 모임!!</h1></a>
-            <a href="http://nodejs.org/"><img src="http://nodejs.org/logo.png" style="background-color:#22252A"/></a>
-            <a href="http://www.mongodb.org/"><img src="http://media.mongodb.org/logo-mongodb.png" style="background-color:#402817"/></a>
-            <a href="http://static.springsource.org/spring-security/site/"><img src="http://wikimain.cafe24.com:8499/wiki/images/wikiimg/SpringSecurity_220.jpg"/></a>
+        <div id="index_header" style="float:left">
+            <jsp:include page="index_swagger.jsp" />
         </div>
         <div id="index_body">
             <div id="left">
