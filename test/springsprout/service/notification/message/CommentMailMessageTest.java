@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import springsprout.domain.Comment;
@@ -24,10 +23,6 @@ public class CommentMailMessageTest extends SpringSproutMailMessage {
 	private Comment comment;
 	private Meeting meeting;
 	private Presentation presentation;
-	
-	public CommentMailMessageTest() {
-		
-	}
 	
 	public CommentMailMessageTest( Comment comment, Meeting meeting, Presentation presentation, Collection<Member> members) {
 		super(members);
