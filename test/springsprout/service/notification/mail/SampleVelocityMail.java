@@ -31,11 +31,11 @@ public class SampleVelocityMail extends SpringSproutMail {
 	
 	private String makeContents() {
 		Map<String, String> model = new HashMap<String, String>();
-		model.put("user", "June.");
 		model.put("author", "김제준");
-		model.put("contents", "블바블라 스터디");
-		model.put("message", "아아. 이메일 템플릿 이정도 비스무레 하게 하면 맘에 드십니까?");
-		model.put("link", "http://www.springsprout.org/study/5");
+		model.put("studyName", "테스트 스터디");
+		model.put("message", "러브라인도 좋지만 멋진 캐릭터를 훅 가게 만들었다");
+		model.put("studyLink", "http://www.springsprout.org/study/" + 5);
+		model.put("meetingLink", "http://www.springsprout.org/study/" + 5 + "/meeting/" + 3);
 		return VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "/web/WEB-INF/velocity/commentNotifyMail.html", "UTF-8", model);
 	}
 
