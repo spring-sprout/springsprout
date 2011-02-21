@@ -10,11 +10,15 @@ import springsprout.modules.member.MemberService;
 import springsprout.modules.study.meeting.resource.ResourceRepository;
 import springsprout.service.notification.NotificationService;
 import springsprout.service.notification.message.CommentMailMessage;
+import springsprout.service.notification.message.CommentMailMessageTest;
 import springsprout.service.security.SecurityService;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,6 +36,7 @@ public class PresentationService {
     @Autowired CommentRepository commentRepository;
     @Autowired MemberService memberService;
     @Autowired @Qualifier("sendMailService") NotificationService notiService;
+    @Inject Provider<CommentMailMessage> commentMail;
 
     public Presentation getById(int presentationId) {
         return repository.getById(presentationId);
@@ -121,6 +126,8 @@ public class PresentationService {
 		Iterator<Attendance> Iter = presentation.getMeeting().getAttendances().iterator();
         Collection<Member> members = new ArrayList<Member>();
 		while (Iter.hasNext()) members.add(((Attendance) Iter.next()).getMember());
-		notiService.sendMessage( new CommentMailMessage( comment, presentation.getMeeting(), presentation, members));
+		CommentMailMessage mail = commentMail.get();
+		mail.setDatas(comment, presentation.getMeeting(), presentation, members);
+		notiService.sendMessage( mail);
 	}
 }

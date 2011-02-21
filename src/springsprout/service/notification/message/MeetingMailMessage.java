@@ -13,12 +13,12 @@ public class MeetingMailMessage extends SpringSproutMailMessage {
 	private MeetingStatus status;
 
 	public MeetingMailMessage(Study study, Meeting meeting, MeetingStatus status) {
-		this.members = study.getCurrentMembers();
+		this.setMembers(study.getCurrentMembers());
 		this.study = study;
 		this.meeting = meeting;
 		this.status = status;
 		
-		System.out.println("메일 수신자 수:" + members.size());
+		System.out.println("메일 수신자 수:" + getMembers().size());
 	}
 
 	public MeetingMailMessage(Meeting meeting, MeetingStatus status) {

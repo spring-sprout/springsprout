@@ -6,7 +6,6 @@
 <script type="text/javascript" src="<c:url value="/js/main.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/sprout.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/study/study.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/study/post.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/framework/jquery.validate.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/framework/jquery.blockUI.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/framework/css.js"/>"></script>

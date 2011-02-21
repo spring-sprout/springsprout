@@ -15,7 +15,7 @@ public abstract class SpringSproutMailMessage extends SpringSproutMail {
 	}
 	
 	public Collection<String> getMessageReceivers() {
-		return EmailExtractUtil.extractMessageAllowedEmailCollectionFrom(members);
+		return EmailExtractUtil.extractMessageAllowedEmailCollectionFrom(getMembers());
 	}
 
 	public abstract String getMessage();

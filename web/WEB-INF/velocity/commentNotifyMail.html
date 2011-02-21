@@ -10,24 +10,21 @@
 <div class="header" style="background-color: green; color: white">
 	<h2 style="text-indent: 10px; margin: 0; padding: 1px">봄싹 - Spring sprout!</h2>
 </div>
-<div style="border: 1px solid green; padding: 5px">
+<div style="border: 1px solid green; padding: 10px">
 	<p>
-		안녕하세요, ${user}님!
+		안녕하세요! 봄싹 서비스 입니다.
 	</p>
 	<p>
-		${author}님이 ${contents}에 댓글을 남겼습니다.
+		${author}님이 <a href="${studyLink}" target="_blank">${studyName}</a>에 댓글을 남겼습니다.
 	</p>
-	<p style="border: 1px lightgray solid">
+	<p style="border: 1px lightgray solid; padding 3px;">
 		${author}님의 글<br>
-		<span style="text-indent: 10px">${message}</span>
+		<span style="padding-left: 10px">${message}</span><br>
+		<span style="float:right">등록일 : ${createdAt}</span>
 	</p>
 	<p>
-		${link} 의견 컨텐츠 보기
-	</p>"web/WEB-INF/velocity/commentNotifyMail.html"
-	<p>
-		여기에 의견 회신하기<br>
-		어떻게? 보안은 어떻게 해야 하지? 어떤 url로? 인증은 어떻게?
-	<p>
+		<a href="${meetingLink}">${contentType} 보기</a>
+	</p>
 	<p style="text-align: right;">
 		감사합니다.
 		봄싹.

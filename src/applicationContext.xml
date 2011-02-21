@@ -194,4 +194,11 @@
         <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
+    
+    <!-- ============================================================= -->
+    <!--  VelocityConfiguration for E-Mail Template                  -->
+    <!-- ============================================================= -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    	<property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>
+    </bean>
 </beans>

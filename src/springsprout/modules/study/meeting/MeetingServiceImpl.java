@@ -1,12 +1,28 @@
 package springsprout.modules.study.meeting;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import springsprout.domain.*;
+
+import springsprout.domain.Attendance;
+import springsprout.domain.Comment;
+import springsprout.domain.Meeting;
+import springsprout.domain.Member;
+import springsprout.domain.Presentation;
+import springsprout.domain.Resource;
+import springsprout.domain.Study;
+import springsprout.domain.UploadFile;
 import springsprout.domain.enumeration.MeetingStatus;
 import springsprout.modules.comment.CommentRepository;
 import springsprout.modules.location.LocationRepository;
@@ -18,13 +34,9 @@ import springsprout.modules.study.meeting.presentation.PresentationRepository;
 import springsprout.modules.study.meeting.resource.ResourceRepository;
 import springsprout.service.notification.NotificationService;
 import springsprout.service.notification.message.CommentMailMessage;
+import springsprout.service.notification.message.CommentMailMessageTest;
 import springsprout.service.notification.message.MeetingMailMessage;
 import springsprout.service.security.SecurityService;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 
 @Service
 @Transactional
@@ -40,6 +52,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Autowired CommentRepository commentRepository;
     @Autowired @Qualifier("unifiedNotificationService") NotificationService notiService;
     @Autowired @Qualifier("sendMailService") NotificationService commentNotiService;
+    @Inject Provider<CommentMailMessage> commentMail;
 
 	public void addComment(Meeting meeting, Comment comment) {
 		Member currentMember = securityService.getCurrentMember();
@@ -179,10 +192,13 @@ public class MeetingServiceImpl implements MeetingService {
 		Iterator<Attendance> Iter = meeting.getAttendances().iterator();
         Collection<Member> members = new ArrayList<Member>();
 		while (Iter.hasNext()) members.add(((Attendance) Iter.next()).getMember());
-		commentNotiService.sendMessage( new CommentMailMessage( comment, meeting, null, members));
+		CommentMailMessage mail = commentMail.get();
+		mail.setDatas(comment, meeting, null, members);
+		commentNotiService.sendMessage( mail);
 	}
 
     public List<Meeting> findActiveMeetings(int count) {
         return meetingRepository.findActiveMeetings(count);
     }
+    
 }

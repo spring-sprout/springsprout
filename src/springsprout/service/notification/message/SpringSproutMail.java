@@ -12,18 +12,18 @@ public abstract class SpringSproutMail implements SpringSproutMessage {
 	public static final String SUBJECT_PREFIX = "[봄싹]";
 	public static final String SENDER_MAIL = "s2cmailer@gmail.com";
 	
-	protected Collection<Member> members;
+	private Collection<Member> members;
 
 	public SpringSproutMail() {
 	}
 	
 	public SpringSproutMail(Collection<Member> members) {
-		this.members = members;
+		this.setMembers(members);
 	}
 
     public SpringSproutMail(Member member) {
-        this.members = new ArrayList<Member>();
-        this.members.add(member);
+        this.setMembers(new ArrayList<Member>());
+        this.getMembers().add(member);
     }
     
 	
@@ -32,7 +32,7 @@ public abstract class SpringSproutMail implements SpringSproutMessage {
 	}
 	
 	public String[] getMailReceivers() {
-		return EmailExtractUtil.extractMailAllowedEmailFrom(members);
+		return EmailExtractUtil.extractMailAllowedEmailFrom(getMembers());
 	}
 
 	public boolean isHTML() {
@@ -54,4 +54,12 @@ public abstract class SpringSproutMail implements SpringSproutMessage {
     public Map getModelObject() {
         return null;
     }
+
+	public void setMembers(Collection<Member> members) {
+		this.members = members;
+	}
+
+	public Collection<Member> getMembers() {
+		return members;
+	}
 }
