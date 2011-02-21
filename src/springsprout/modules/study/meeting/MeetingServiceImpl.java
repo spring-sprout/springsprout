@@ -34,7 +34,6 @@ import springsprout.modules.study.meeting.presentation.PresentationRepository;
 import springsprout.modules.study.meeting.resource.ResourceRepository;
 import springsprout.service.notification.NotificationService;
 import springsprout.service.notification.message.CommentMailMessage;
-import springsprout.service.notification.message.CommentMailMessageTest;
 import springsprout.service.notification.message.MeetingMailMessage;
 import springsprout.service.security.SecurityService;
 

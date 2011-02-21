@@ -1,24 +1,30 @@
 package springsprout.modules.study.meeting.presentation;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import springsprout.domain.*;
-import springsprout.modules.comment.CommentRepository;
-import springsprout.modules.member.MemberService;
-import springsprout.modules.study.meeting.resource.ResourceRepository;
-import springsprout.service.notification.NotificationService;
-import springsprout.service.notification.message.CommentMailMessage;
-import springsprout.service.notification.message.CommentMailMessageTest;
-import springsprout.service.security.SecurityService;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import springsprout.domain.Attendance;
+import springsprout.domain.Comment;
+import springsprout.domain.Meeting;
+import springsprout.domain.Member;
+import springsprout.domain.Presentation;
+import springsprout.domain.Resource;
+import springsprout.domain.UploadFile;
+import springsprout.modules.comment.CommentRepository;
+import springsprout.modules.member.MemberService;
+import springsprout.modules.study.meeting.resource.ResourceRepository;
+import springsprout.service.notification.NotificationService;
+import springsprout.service.notification.message.CommentMailMessage;
+import springsprout.service.security.SecurityService;
 
 /**
  * Created by IntelliJ IDEA.
