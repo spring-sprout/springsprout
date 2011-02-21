@@ -3,6 +3,7 @@ package springsprout.service.notification.mail;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class CommentMailTest {
 	@Inject Provider<SampleVelocityMail> sampleMailProvider;
 	
 	@Test
+	@Ignore("메일 테스트는 로컬에서만 진행 합시다.")
 	public void sendMail() throws Exception {
 		sendMailService = new SendMailService(mailSender);
 		SampleVelocityMail mail = sampleMailProvider.get();

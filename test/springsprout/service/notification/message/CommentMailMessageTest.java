@@ -19,7 +19,6 @@ import springsprout.domain.Presentation;
  * @author JUNE
  *
  */
-@Service
 public class CommentMailMessageTest extends SpringSproutMailMessage {
 	@Autowired VelocityEngine velocityEngine;
 	private Comment comment;
