@@ -56,6 +56,7 @@
                     <h2>봄싹에 도움주는 곳</h2>
                     <ul id="thanksList">
                         <li><a href="http://cubrid.com/zbxe/developer"><img src="/images/cubrid-banner.jpg"/></a></li>
+                        <li><a href="http://home.ucloud.com/"><img width="280" height="80" src="/images/ucloud_160x50_01.gif"/></a></li>
                     </ul>
                 </div>
             </div>
