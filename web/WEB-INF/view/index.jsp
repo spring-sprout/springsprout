@@ -9,7 +9,7 @@
 <page:defaultpage banner_name="main-banner" selected_menu="home" ajaxlogin_yn="Y">
 <%--style sheet for this page is home.css witch is assigned at css_selected.tag--%>
     <div id="content">
-        <div id="index_header" style="float:left">
+        <div id="index_header">
             <jsp:include page="index_swagger.jsp" />
         </div>
         <div id="index_body">
