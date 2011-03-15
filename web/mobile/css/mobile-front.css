@@ -1,0 +1,91 @@
+body, div, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote {
+	font: 12px/1.4 helvetica,arial,clean,sans-serif;
+	font-family: 'arial', 'FreeSans', 'Helvetica', 'Malgun Gothic','verdana';
+	font-size: small;
+}
+.ss-ui-li-icon { 
+	width: 35px; 
+	height: 30px; 
+	left: 10px; 
+	top: .2em; 
+}
+.ss-ui-li-icon-text {
+	min-height: 20px;
+	padding-left: 40px;
+	float:left;
+}
+#meetingList ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+#meetingList li {
+	height: 80px;
+	padding: 5px;
+	border: 1px solid #B3B3B3;
+	background: #E9EAEB;
+}
+.date {
+	-moz-border-radius: 0 0 8px 0;
+	background: none repeat scroll 0 0 green;
+	display: block;
+	margin: 0 auto;
+	padding: 0.25em 3px 3px;
+}
+.month {
+	color: white;
+	display: block;
+	font-family: arial,sans-serif;
+	font-size: 1.1em;
+	line-height: 1em;
+	padding: 0 0 0.25em;
+}
+.openDate {
+	float: left;
+	width: 70px;
+	text-align: center;
+	font-weight: bold;
+}
+.day {
+	-moz-border-radius: 0 0 3px 0;
+	background: none repeat scroll 0 0 white;
+	color: #333;
+	display: block;
+	font-family: arial,sans-serif;
+	font-size: 2.46em;
+	line-height: 1em;
+	padding: 0.15em 0;
+}
+.dayOfWeek {
+	display: block;
+	font-size: 0.9em;
+	margin-top: 0.25em;
+}
+#meetingList li .descr {
+	margin:0px;
+	padding: 0px;
+	width: 220px;
+	float: left;
+	padding-left: 5px;
+}
+h3 {
+	margin:0px;
+	padding: 0px;
+	color: steelBlue;
+}
+.nowrap {
+	white-space: normal;
+}
+.dueTime {
+	font-weight: bold;
+}
+#spacehr {
+	height: 20px;
+	width: 100%;
+	background: #E6E6E6;
+	left: 0px;
+}
+#buttonmenu {
+	height: 20px;
+	padding-top: 1px;
+}
