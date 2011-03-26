@@ -105,7 +105,7 @@
                                         </span>
                                     </div>
                                     <div class="descr">
-                                        <h3>${meeting.title}</h3>
+                                        <h3 class="nowrap">${meeting.title}</h3>
                                        	<div class="nowrap">${meeting.location}</div>
 										<span class="dueTime"><fmt:formatDate value="${meeting.openTime}" pattern="a h시 mm분"/></span> ~
                                         <span class="dueTime"><fmt:formatDate value="${meeting.closeTime}" pattern="a h시 mm분"/></span>
