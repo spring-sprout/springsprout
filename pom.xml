@@ -21,6 +21,12 @@
     <dependencies>
         <!-- Google Data APIs -->
         <dependency>
+		    <groupId>org.springframework.mobile</groupId>
+		    <artifactId>spring-mobile-device</artifactId>
+		    <version>1.0.0.M3</version>
+		</dependency>
+        
+        <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata.core</artifactId>
             <version>1.41.4</version>
