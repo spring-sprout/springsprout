@@ -35,7 +35,7 @@
 			<div data-role="header" data-position="inline" data-theme="c">
 			<a style="display:none;"></a> 
 			<h1>스터디</h1>
-			<a href="study/list.html" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
+			<a href="study/list.jsp" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
 			</div>
 			<fieldset class="ui-grid-a" style="text-align:center;">
 				<div class="ui-block-a">
