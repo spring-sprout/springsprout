@@ -19,7 +19,11 @@
     </properties>
 
     <dependencies>
-        <!-- Google Data APIs -->
+		<dependency>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
+			<version>1.0.0.M3</version>
+		</dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata.core</artifactId>
@@ -567,6 +571,14 @@
             <id>springsprout thirdparty</id>
             <name>SpringSprout Nexus thirdparty</name>
             <url>http://dev.springsprout.org/nexus/content/repositories/thirdparty</url>
+        </repository>
+        <repository>
+            <id>org.springframework.maven.milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 

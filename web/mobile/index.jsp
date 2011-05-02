@@ -1,3 +1,4 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -8,16 +9,17 @@
 	<link rel="stylesheet" href="css/mobile-front.css" />  
 	<script type="text/javascript" src="ext/js/jquery-1.5.min.js"></script> 
 	<script type="text/javascript" src="ext/js/jquery.mobile-1.0a3.min.js"></script>
+	<script type="text/javascript" src="ext/js/meeting.js"></script>
 </head>
 <body onload="">
 <div data-role="page" data-theme="b" >
-	
+
 	<div id="jqm-homeheader"> 
 		<h1 id="jqm-logo"><img src="images/logo_beta.png" alt="jQuery Mobile Framework" width="235" height="61" /></h1> 
 		<p>2011년 새해 복 많이 받으시고, 모두 행복하세요.</p> 
 		<p id="jqm-version">Alpha Release</p> 
 	</div>  
-	
+
 	<div data-role="content"> 
 		<div data-role="collapsible" data-collapsed="true">
 			<h3>공지사항</h3>
@@ -28,12 +30,12 @@
 			<li><a href="http://springsprout.org" data-transition="pop">2010 한국 자바 개발자 페스티벌</a></li>  
 			</ul> 
 		</div>
-		
+
 		<div class="ui-body ui-body-c"> 
 			<div data-role="header" data-position="inline" data-theme="c">
 			<a style="display:none;"></a> 
 			<h1>스터디</h1>
-			<a href="study/list.html" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
+			<a href="study/list.jsp" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
 			</div>
 			<fieldset class="ui-grid-a" style="text-align:center;">
 				<div class="ui-block-a">
@@ -51,11 +53,11 @@
 					</div>
 				</div>	   
 			</fieldset>
-			
+
 			<div data-role="header" data-position="inline" data-theme="c">
 				<a style="display:none;"></a> 
 				<h1>최근 모임</h1>
-				<a href="index.html" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
+				<a href="meeting/list.html" data-icon="arrow-r" data-iconpos="right" data-theme="d">더보기</a> 
 			</div>
 			<div id="meetingList">
 				<ul style="list-style:none;">
