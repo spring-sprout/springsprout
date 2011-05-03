@@ -12,7 +12,7 @@
         margin: 0;
         padding: 0;
         vertical-align: top;
-        width: 100%;
+        width: 383px;
     }
     /*Meetings */
     ul.meetings li {
@@ -64,7 +64,7 @@
     ul.meetings li .meeting-descr {
         float: left;
         padding-left: 10px;
-        width: 320px;
+        width: 319px;
     }
     ul.meetings li .meeting-descr h4 {
         font-weight: 200;
