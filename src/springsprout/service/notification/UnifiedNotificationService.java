@@ -44,12 +44,13 @@ public class UnifiedNotificationService implements NotificationService {
     }
 
     /**
-     * TODO : noti 시twitterService 때문에 에러남.
+     * TODO : noti 시 twitterService 때문에 에러남.
+     * TODO : noti 시 jabberService 때문에 에러남.
      */
     public void sendMessage(SpringSproutMessage ssm) {
     	try {
             sendMailService.sendMessage(ssm);
-            jabberService.sendMessage(ssm);
+//            jabberService.sendMessage(ssm);
             //twitterService.sendMessage(ssm);
         } catch (NotificationException e) {
             sendMailService.sendMessage(new NotificationExceptionMail(e));        
