@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags/page"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<h1><a href="http://www.springsprout.org/study/4494/meeting/5255">4월에는 청소좀 해볼까?!</a></h1>
+<h1><a href="http://www.springsprout.org/study/4494/meeting/5563"><strong>아차</strong>!! 스터디 장소를 못 잡았구나... 에잇.. <strong>산</strong>이나 가자!!</a></h1>
 <div align="center">
-    <a href="http://www.tuning-java.com/"><img src="/images/garbageCollector.jpg" alt="Java GC"/></a>
+    <a href="http://www.gwangjin.go.kr/achasan/"><img src="/images/achasan.jpg" alt="아차산"/></a>
 </div>
