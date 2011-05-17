@@ -55,7 +55,7 @@
                 <div id="thanks">
                     <h2>봄싹에 도움주는 곳</h2>
                     <ul id="thanksList">
-                        <li><a href="http://www.sdec.kr/home"><img src="/images/SDEC_Banner_box.png"/></a></li>
+                        <li><a href="http://www.sdec.kr/home"><img src="/images/SDEC_Banner03.png"/></a></li>
                         <li><a href="http://cubrid.com/zbxe/developer"><img src="/images/cubrid-banner.jpg"/></a></li>
                         <li><a href="http://cs.ucloud.com"><img width="280" height="80" src="/images/ucloud_280x80_01.gif"/></a></li>
                     </ul>
