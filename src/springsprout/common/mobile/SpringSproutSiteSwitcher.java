@@ -1,4 +1,4 @@
-package springsprout.common;
+package springsprout.common.mobile;
 
 import org.springframework.mobile.device.site.CookieSitePreferenceRepository;
 import org.springframework.mobile.device.site.SitePreferenceHandler;

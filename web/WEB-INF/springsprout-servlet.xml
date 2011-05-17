@@ -48,10 +48,8 @@
 				<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor" >
 					<constructor-arg ref="conversionService"/>
 				</bean>
-				<!-- On pre-handle, resolve the device that originated the web request -->
 			    <bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
-			    <!-- On pre-handle, redirects mobile users to "myapp.mobi" (declare after DeviceResolverHandlerInterceptor) -->
-			    <bean class="springsprout.common.SpringSproutSiteSwitcher" factory-method="slashM">
+			    <bean class="springsprout.common.mobile.SpringSproutSiteSwitcher" factory-method="slashM">
 			        <constructor-arg value="springsprout.org" />
 			    </bean>
 			</list>
@@ -68,6 +66,11 @@
 	<!-- ============================================================= -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" p:cacheSeconds="0">
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="org.springframework.mobile.device.DeviceWebArgumentResolver"/>
+            </list>
+        </property>
         <property name="webBindingInitializer">
 	        <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
                 <property name="validator">

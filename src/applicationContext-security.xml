@@ -9,6 +9,8 @@
 	
 
 	<http disable-url-rewriting="true">
+        <intercept-url pattern="/m/**" filters="none" />
+
         <intercept-url pattern="/static/**" filters="none" />
         <intercept-url pattern="/resources/**" filters="none" />
         <intercept-url pattern="/images/**" filters="none" />
