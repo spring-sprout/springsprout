@@ -14,7 +14,7 @@
 </head>
 <body onload="">
 <div data-role="page" data-theme="b" >
-    Site: <a class="redirect_link" href="<c:url value="/index?site_preference=normal"/>">Normal</a> | <a class="redirect_link" href="<c:url value="/index?site_preference=mobile"/>">Mobile</a>
+    Site: <a class="redirect_link" href="<c:url value="/index?site_preference=normal"/>">Normal</a> | <a class="redirect_link" href="<c:url value="/m?site_preference=mobile"/>">Mobile</a>
 
 	<div id="jqm-homeheader">
 		<h1 id="jqm-logo"><img src="/images/logo_beta.png" alt="jQuery Mobile Framework" width="235" height="61" /></h1>
