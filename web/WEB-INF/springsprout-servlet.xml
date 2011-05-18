@@ -52,6 +52,7 @@
 			    <bean class="springsprout.common.mobile.SpringSproutSiteSwitcher" factory-method="slashM">
 			        <constructor-arg value="springsprout.org" />
 			    </bean>
+                <bean class="org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor" />
 			</list>
 		</property>
 	</bean>

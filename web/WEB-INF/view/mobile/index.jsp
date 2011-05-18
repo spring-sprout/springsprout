@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -13,8 +14,9 @@
 </head>
 <body onload="">
 <div data-role="page" data-theme="b" >
+    Site: <a class="redirect_link" href="<c:url value="/index?site_preference=normal"/>">Normal</a> | <a class="redirect_link" href="<c:url value="/index?site_preference=mobile"/>">Mobile</a>
 
-	<div id="jqm-homeheader"> 
+	<div id="jqm-homeheader">
 		<h1 id="jqm-logo"><img src="/images/logo_beta.png" alt="jQuery Mobile Framework" width="235" height="61" /></h1>
 		<p>2011년 새해 복 많이 받으시고, 모두 행복하세요.</p> 
 		<p id="jqm-version">Alpha Release</p> 
@@ -95,6 +97,13 @@
 			</ul>
 		</div><!-- /themed container --> 
 	</div> 
-</div> 
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".redirect_link").click(function(){
+        window.location = $(this).attr("href");
+    });
+});
+</script>
 </body> 
 </html>
