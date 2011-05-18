@@ -4,6 +4,9 @@
 <%@ attribute name="ajaxlogin_yn" required="false"%>
 
 <div id="spacehr">
+    <div class="left">
+    Site: <a class="redirect_link" href="<c:url value="/index?site_preference=normal"/>">Normal</a> | <a class="redirect_link" href="<c:url value="/index?site_preference=mobile"/>">Mobile</a>
+    </div>
     <div id="buttonmenu">
     <sec:authorize ifNotGranted="ROLE_MEMBER, ROLE_ADMIN">
         <a id="loginbtn" href="<c:url value="/loginpopup"  />">
