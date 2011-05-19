@@ -2,6 +2,8 @@ package springsprout.modules.main;
 
 import org.apache.commons.lang.time.FastDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.site.SitePreference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,10 +35,14 @@ public class MainController {
 	private FastDateFormat graffitiLoadDateTimeFormat = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+09:00"), Locale.KOREA);
 
     @RequestMapping("/index")
-    public void index(Model model){
+    public String index(SitePreference sitePreference, Device device, Model model){
+        if(device.isMobile() && (sitePreference == SitePreference.MOBILE)) {
+            return "redirect:/m";
+        }
         model.addAttribute("studyList", studyService.findActiveStudies(4));
         model.addAttribute("meetingList", meetingService.findActiveMeetings(2));
         model.addAttribute("currentUser", securityService.getCurrentMember());
+        return "index";
     }
 
     @RequestMapping("/developers")
