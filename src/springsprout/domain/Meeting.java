@@ -1,5 +1,6 @@
 package springsprout.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -144,6 +145,7 @@ public class Meeting implements Serializable {
 		this.id = id;
 	}
 
+    @JsonIgnore
 	public Study getStudy() {
 		return study;
 	}
@@ -192,6 +194,7 @@ public class Meeting implements Serializable {
 		this.contents = contents;
 	}
 
+    @JsonIgnore
 	public Set<Attendance> getAttendances() {
 		if (this.attendances == null)
 			this.attendances = new HashSet<Attendance>();
@@ -202,6 +205,7 @@ public class Meeting implements Serializable {
 		this.attendances = attendances;
 	}
 
+    @JsonIgnore
 	public Set<Comment> getComments() {
 		if (this.comments == null) {
 			this.comments = new HashSet<Comment>();
@@ -213,6 +217,7 @@ public class Meeting implements Serializable {
 		this.comments = comments;
 	}
 
+    @JsonIgnore
 	public Set<Resource> getResources() {
         if(this.resources == null)
             this.resources = new HashSet<Resource>();
@@ -270,7 +275,8 @@ public class Meeting implements Serializable {
 	public void addComment(Comment comment) {
 		getComments().add(comment);
 	}
-	
+
+    @JsonIgnore
 	public Attendance getAttendanceByMember(Member member) {
 		Attendance returnAttendance = null;
 		for (Attendance attendance : getAttendances()) {
@@ -333,6 +339,7 @@ public class Meeting implements Serializable {
 		this.presentations = presentations;
 	}
 
+    @JsonIgnore
 	public Set<Presentation> getPresentations() {
 		if(this.presentations == null)
 			this.presentations = new HashSet<Presentation>();
@@ -391,6 +398,7 @@ public class Meeting implements Serializable {
         this.maximum = newMeeting.maximum;
     }
 
+    @JsonIgnore
     public Set<Attendance> getSortedAttendances() {
         TreeSet<Attendance> attds = new TreeSet<Attendance>(new AttendanceComparator());
         attds.addAll(getAttendances());

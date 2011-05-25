@@ -1,5 +1,6 @@
 package springsprout.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -100,6 +101,7 @@ public class Presentation implements Serializable{
 	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
 	}
+    @JsonIgnore
 	public Meeting getMeeting() {
 		return meeting;
 	}
@@ -118,6 +120,7 @@ public class Presentation implements Serializable{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+    @JsonIgnore
 	public List<Comment> getComments() {
         if(this.comments == null)
             this.comments = new ArrayList<Comment>();
@@ -126,6 +129,7 @@ public class Presentation implements Serializable{
 	public void setResources(List<Resource> resources) {
 		this.resources = resources;
 	}
+    @JsonIgnore
 	public List<Resource> getResources() {
 		return resources;
 	}

@@ -118,6 +118,17 @@ public class Member implements Serializable {
         this.id = id;
     }
 
+    public Member() {
+        this.status = MemberStatus.JOIN_WAIT;
+        this.authCode = makeAuthCode();
+    }
+
+    public Member(String email) {
+        this();
+        this.email = email;
+    }
+
+    @JsonIgnore
     public Date getOutDate() {
 		return outDate;
 	}
@@ -126,22 +137,13 @@ public class Member implements Serializable {
 		this.outDate = outDate;
 	}
 
+    @JsonIgnore
 	public String getOutReason() {
 		return outReason;
 	}
 
 	public void setOutReason(String outReason) {
 		this.outReason = outReason;
-	}
-
-	public Member() {
-		this.status = MemberStatus.JOIN_WAIT;
-		this.authCode = makeAuthCode();
-	}
-
-	public Member(String email) {
-		this();
-		this.email = email;
 	}
 
 	public Integer getId() {
@@ -152,6 +154,7 @@ public class Member implements Serializable {
 		this.id = id;
 	}
 
+    @JsonIgnore
 	public String getEmail() {
 		return email;
 	}
@@ -192,6 +195,7 @@ public class Member implements Serializable {
 		return (this.id == null);
 	}
 
+    @JsonIgnore
 	public MemberStatus getStatus() {
 		return status;
 	}
@@ -367,6 +371,7 @@ public class Member implements Serializable {
 		this.totalAttendanceRate = totalAttendanceRate;
 	}
 
+    @JsonIgnore
 	public Integer getTotalAttendanceRate() {
 		return totalAttendanceRate;
 	}
@@ -375,6 +380,7 @@ public class Member implements Serializable {
 		this.totalTrustRate = totalTrustRate;
 	}
 
+    @JsonIgnore
 	public Integer getTotalTrustRate() {
 		return totalTrustRate;
 	}
@@ -427,6 +433,7 @@ public class Member implements Serializable {
 		this.isAllowedGoogleTalk = isAllowedGoogleTalk;
 	}
 
+    @JsonIgnore
 	public Boolean getIsAllowedGoogleTalk() {
 		if(isAllowedGoogleTalk == null)
 			isAllowedGoogleTalk = false;
@@ -437,6 +444,7 @@ public class Member implements Serializable {
 		this.currentPassword = currentPassword;
 	}
 
+    @JsonIgnore
 	public String getCurrentPassword() {
 		return currentPassword;
 	}
@@ -445,6 +453,7 @@ public class Member implements Serializable {
 		this.newPassword = newPassword;
 	}
 
+    @JsonIgnore
 	public String getNewPassword() {
 		return newPassword;
 	}
@@ -453,6 +462,7 @@ public class Member implements Serializable {
 		this.newPasswordConfirm = newPasswordConfirm;
 	}
 
+    @JsonIgnore
 	public String getNewPasswordConfirm() {
 		return newPasswordConfirm;
 	}

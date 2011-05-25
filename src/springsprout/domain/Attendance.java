@@ -1,5 +1,6 @@
 package springsprout.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -46,6 +47,7 @@ public class Attendance implements Serializable {
 		this.id = id;
 	}
 
+    @JsonIgnore
 	public Meeting getMeeting() {
 		return meeting;
 	}
@@ -54,7 +56,7 @@ public class Attendance implements Serializable {
 		this.meeting = meeting;
 	}
 
-	public Member getMember() {
+    public Member getMember() {
 		return member;
 	}
 

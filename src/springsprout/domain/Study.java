@@ -1,5 +1,6 @@
 package springsprout.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotEmpty;
 import springsprout.common.annotation.DomainInfo;
@@ -108,6 +109,7 @@ public class Study implements Serializable{
 		this.manager = manager;
 	}
 
+    @JsonIgnore
 	public Set<Meeting> getMeetings() {
 		if(this.meetings == null)
 			this.meetings = new HashSet<Meeting>();
@@ -160,6 +162,7 @@ public class Study implements Serializable{
 		return maximum;
 	}
 
+    @JsonIgnore
 	public Set<Member> getMembers() {
 		if(members == null)
 			members = new HashSet<Member>();
@@ -211,7 +214,8 @@ public class Study implements Serializable{
 	public boolean getIsEnded(){
 		return this.status == StudyStatus.ENDED;
 	}
-	
+
+    @JsonIgnore
 	public Set<Member> getCurrentMembers(){
 		Set<Member> result = new HashSet<Member>();
 		for(Member member : getMembers())
@@ -270,6 +274,7 @@ public class Study implements Serializable{
 
     }
 
+    @JsonIgnore
     public Map<Meeting, Integer> getMeetingAttendenceRates() {
         return meetingAttendenceRates;
     }
