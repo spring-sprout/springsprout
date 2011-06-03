@@ -16,5 +16,6 @@ public interface NoticeRepository extends GenericDao<Notice> {
     int getTotalRowsCount(NoticeCriteria cri);
 
     Notice getTheLastedOne();
-    
+
+    List<Notice> findRecentNotice(int size);
 }

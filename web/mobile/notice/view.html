@@ -1,17 +1,33 @@
 <!DOCTYPE html> 
 <html> 
-	<head> 
+<head>
 	<meta charset="utf-8" /> 
-	<title>공지 사항</title> 
-	<link rel="stylesheet" href="../ext/css/jquery.mobile-1.0a3.css" /> 
-	<script src="../ext/js/jquery-1.5.min.js"></script> 
-	<script src="../ext/js/jquery.mobile-1.0a3.min.js"></script> 
+	<title>봄싹-모바일</title>
+	<link rel="stylesheet"  href="/js/mobile/jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.css" />
+	<link rel="stylesheet" href="/css/mobile/mobile-front.css" />
+	<link rel="stylesheet" href="/mobile/ext/css/jqm-docs.css" />
+	<script type="text/javascript" src="/module/ext/js/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="/js/mobile/jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+    <!--<script type="text/javascript">-->
+        <!--$(document).ready(function(){-->
+            <!--$('#notice_title').live('pagebeforecreate', function(event) {-->
+
+
+                <!--//Ajax 데이타는 이런식으로 뿌리면...-->
+                <!--if (!$("#subject_list").html())-->
+                    <!--for (var i = 0; i < 5; i++) {-->
+                        <!--var txt = '<li><div class="openDate" style="width:60px">&nbsp;<img style="margin:5px;height:60px;float:left" src="http://www.gravatar.com/avatar/ab06ea90f8ab5dc71114fc46001814cf?r=X&amp;s=50"></div><div style="margin-left:60px"><h3>NoSql with MongoDB Part1</h3><p>발표자: 이용혁, 주제: MongoDB, 댓글갯수:2, 자료갯수: 2, 뷰: 75, 상태: 종</p></div></li>';-->
+                        <!--$("#subject_list").append(txt);-->
+                    <!--}-->
+            <!--});-->
+        <!--});-->
+    <!--</script>-->
 </head> 
 <body> 
  
 <div data-role="page"> 
- 	<div data-role="header"> 
-		<h1>12월 25일 개편 안내 (예제!)</h1> 
+ 	<div data-role="header">
+		<h1 id="notice_title"></h1>
 	</div><!-- /header --> 
  
 	<div data-role="content">	

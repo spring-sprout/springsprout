@@ -35,6 +35,10 @@ public class NoticeRepositoryImpl  extends HibernateGenericDao<Notice> implement
                 .uniqueResult();
     }
 
+    public List<Notice> findRecentNotice(int size) {
+        return getCriteria().addOrder(Order.desc("modified")).setMaxResults(size).list();
+    }
+
     @SuppressWarnings("unchecked")
     public List<Notice> getListSorted(NoticeCriteria cri) {
         Criteria c = getCurrentSession().createCriteria(Notice.class);

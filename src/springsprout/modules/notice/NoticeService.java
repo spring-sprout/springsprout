@@ -82,4 +82,8 @@ public class NoticeService {
     public Notice getTheLastetOne() {
         return noticeRepository.getTheLastedOne();
     }
+
+    public List<Notice> findRecentNotice(int size) {
+        return noticeRepository.findRecentNotice(size);
+    }
 }
