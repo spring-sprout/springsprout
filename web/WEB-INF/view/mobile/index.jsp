@@ -12,14 +12,14 @@
 	<script type="text/javascript" src="/js/mobile/jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 </head>
 <body onload="">
-<div data-role="page" data-theme="b" >
+<div data-role="page" data-theme="b">
     Site: <a class="redirect_link" href="<c:url value="/index?site_preference=normal"/>">Normal</a> | <a class="redirect_link" href="<c:url value="/m?site_preference=mobile"/>">Mobile</a>
 
 	<div data-role="content">
         <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<li data-role="list-divider">공지사항</li>
             <c:forEach items="${noticeList}" var="notice">
-                <li><a href="mobile/notice/view.html?id=${notice.id}">${notice.title}</a></li>
+                <li><a href="/mobile/notice/${notice.id}">${notice.title}</a></li>
             </c:forEach>
 		</ul>
 
@@ -35,9 +35,8 @@
     <div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="view_member.html" data-icon="grid" class="ui-btn-active">홈</a></li>
 				<li><a href="view_subject.html" data-icon="star">낙서장</a></li>
-				<li><a href="view_home.html" data-icon="home">스터디</a></li>
+				<li><a href="/mobile/study" data-icon="home">스터디</a></li>
 				<li><a href="view_resources.html" data-icon="gear">모임</a></li>
 				<li><a href="view_talk.html" data-icon="info">MyPage</a></li>
 			</ul>

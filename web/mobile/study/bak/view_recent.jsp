@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+<link rel="stylesheet" href="../ext/css/jqm-docs.css" />
+<link rel="stylesheet" href="../css/mobile-front.css" />
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.5.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
 <title>최근 게시물</title>
-<link rel="stylesheet" href="/mobile/ext/css/jquery.mobile-1.0a3.css" />
-<link rel="stylesheet" href="/mobile/ext/css/jqm-docs.css" />
-<link rel="stylesheet" href="/mobile/css/mobile-front.css" />
-<script type="text/javascript" src="/mobile/ext/js/jquery-1.5.min.js"></script>
-<script type="text/javascript" src="/mobile/ext/js/jquery.mobile-1.0a3.min.js"></script>
 </head>
 <body>
 	<div data-role="page" id="meeting_talk">
