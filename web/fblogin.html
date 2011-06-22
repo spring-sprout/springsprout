@@ -1,0 +1,16 @@
+ <html>
+    <head>
+      <title>My Facebook Login Page</title>
+    </head>
+    <body>
+      <div id="fb-root"></div>
+      <script src="http://connect.facebook.net/en_US/all.js"></script>
+      <script>
+         FB.init({ 
+            appId:'184457874941829', cookie:true, 
+            status:true, xfbml:true, redirect_url:'http://springsprout.org/fblogin/success'
+         });
+      </script>
+      <fb:login-button show-faces='true'>Login with Facebook</fb:login-button>
+    </body>
+ </html>
