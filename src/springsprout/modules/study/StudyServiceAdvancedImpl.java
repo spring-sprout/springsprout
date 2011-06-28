@@ -69,7 +69,7 @@ public class StudyServiceAdvancedImpl implements StudyService {
     }
 
     public List<Study> findPastStudies() {
-        return studyService.findActiveStudies();
+        return studyService.findPastStudies();
     }
 
     public StudyContainer findStudies(StudyCriteria cri) {
