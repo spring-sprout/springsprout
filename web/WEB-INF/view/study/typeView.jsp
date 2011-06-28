@@ -71,7 +71,7 @@ $(document).ready(function() {
 	});
 	*/
 	$(".studyInfo").click( function() {
-		var url = '<c:url value="/study/view/"/>' + $(this).parent().children().first().text();
+		var url = '<c:url value="/study/"/>' + $(this).parent().children().first().text();
 		$(document).attr("location", url);
 	});
 	
