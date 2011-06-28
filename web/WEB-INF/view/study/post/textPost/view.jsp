@@ -262,7 +262,12 @@ $(function(){
         clearForm: true
 	};
 	
-	$('.commentForm').live( 'submit', function() { 
+	$('.commentForm').live( 'submit', function() {
+		var comment = $(this).find('textarea');
+		if ( comment.val().length > 255) {
+			alert('웁스. comment 내용이 너무 기네요. 255 이하로 해주세요. ^^');
+			return false;
+		}
 		$(this).ajaxSubmit(commentOptions); 
 		return false;
 	});
