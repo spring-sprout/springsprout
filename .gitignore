@@ -21,3 +21,5 @@ Springsprout.iml
 ehthumbs.db
 Icon?
 Thumbs.db
+/web/WEB-INF/classes/
+/web/WEB-INF/lib/
