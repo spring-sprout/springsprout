@@ -12,7 +12,7 @@ $(document).ready(function(){
 <div id="content">
     <c:if test="${param.loginFail == 'true'}">
 		<script type="text/javascript">
-			$.growlUI('infomation', 'Your login attempt was not successful, try again.');
+			$.growlUI('infomation', '로그인 정보가 정확하지 않습니다. 다시입력해주세요.');
 		</script>
     </c:if>            
     <div id="login" class="standard_form">

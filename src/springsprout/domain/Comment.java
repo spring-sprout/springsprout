@@ -6,6 +6,8 @@ import springsprout.common.util.DateUtils;
 import springsprout.common.util.StringUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import java.util.Date;
 
 @Entity
@@ -18,6 +20,7 @@ public class Comment {
 	
 	@Column
     @springsprout.common.validation.constraints.NotEmpty(message="의견을 입력하세요!")
+    @Size(min = 1, max = 255)
 	private String comment;
 	
 	@ManyToOne

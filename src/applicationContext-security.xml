@@ -91,7 +91,7 @@
 
 	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
 		<beans:property name="useForward" value="true"/>
-		<beans:property name="defaultFailureUrl" value="/app/loginFailProcess"/>
+		<beans:property name="defaultFailureUrl" value="/loginFailProcess"/>
 	</beans:bean>
 
     <beans:bean id="popupLoginSucessHandler" class="springsprout.service.security.PopupLoginSucessHandler"/>
