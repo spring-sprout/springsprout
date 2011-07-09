@@ -45,5 +45,11 @@ public class MobileWebController {
         return "mobile/study/list";
     }
 
+    @RequestMapping("/mobile/meeting/{id}")
+    public String studyView(@PathVariable int id, Model model) {
+        model.addAttribute("meeting", meetingService.getById(id));
+        return "mobile/study/meeting/view_home";
+    }
+
 
 }

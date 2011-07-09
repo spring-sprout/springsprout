@@ -26,7 +26,7 @@
         <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<li data-role="list-divider">모임</li>
             <c:forEach items="${meetingList}" var="meeting">
-                <li><a href="docs/about/intro.html">${meeting.title}</a></li>
+                <li><a href="/mobile/meeting/${meeting.id}">${meeting.title}</a></li>
             </c:forEach>
 		</ul>
 
