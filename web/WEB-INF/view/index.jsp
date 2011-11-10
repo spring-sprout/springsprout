@@ -55,8 +55,8 @@
                 <div id="thanks">
                     <h2>봄싹에 도움주는 곳</h2>
                     <ul id="thanksList">
-                        <li><a href="http://www.sdec.kr/home"><img src="/images/SDEC_Banner03.png"/></a></li>
-                        <li><a href="http://cs.ucloud.com"><img src="/images/ucloud_280x80_01.gif"/></a></li>
+                        <li><a href="http://spirngsource.org">Spring</a></li>
+                        <li><a href="http://www.hibernate.org/">Hibernate</a></li>
                     </ul>
                 </div>
             </div>
