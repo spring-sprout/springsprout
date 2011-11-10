@@ -80,7 +80,7 @@ h3 {
     margin-top: 10px;
 }
 
-#noticeList, #guideList, #linkList, #thanksList, #studyList, #meetingList{
+#noticeList, #guideList, #linkList, #thanksList, #studyList, #meetingList, #thanksList{
     clear: both;
     list-style: none outside none;
     padding-bottom: 20px;
