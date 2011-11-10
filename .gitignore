@@ -23,3 +23,9 @@ Icon?
 Thumbs.db
 /web/WEB-INF/classes/
 /web/WEB-INF/lib/
+
+# ETC #
+######################
+deploy.sh
+deploy-without-test.sh
+src/system.properties
