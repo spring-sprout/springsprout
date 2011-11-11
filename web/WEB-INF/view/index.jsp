@@ -55,7 +55,7 @@
                 <div id="thanks">
                     <h2>봄싹에 도움주는 곳</h2>
                     <ul id="thanksList">
-                        <li><a href="http://spirngsource.org">Spring</a></li>
+                        <li><a href="http://springsource.org">Spring</a></li>
                         <li><a href="http://www.hibernate.org/">Hibernate</a></li>
                     </ul>
                 </div>
