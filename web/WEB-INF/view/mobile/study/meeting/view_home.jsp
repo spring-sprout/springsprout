@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/mobile/ext/css/jqm-docs.css" />
 	<script type="text/javascript" src="/module/ext/js/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript" src="/js/mobile/jquery.mobile-1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+    <script type="text/javascript" src="/module/ext/js/meeting.js"></script>
 </head>
 <body>
 <div data-role="page" data-theme="b">
@@ -25,7 +26,7 @@
 			제한인원:${meeting.maximum}
 		</h3>
 		모임장소:${meeting.location.name}
-		<a href="view_home_map.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop" data-icon="grid">지도보기</a>
+		<a href="/mobile/map?longitude=${meeting.location.longitude}&latitude=${meeting.location.latitude}" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop" data-icon="grid">지도보기</a>
 		<div class="ui-body ui-body-c">
 		${meeting.contents}
 		</div>
@@ -33,10 +34,10 @@
     <div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="view_subject.html" data-icon="star">낙서장</a></li>
-				<li><a href="/mobile/study" data-icon="home" class="ui-btn-active">스터디</a></li>
-				<li><a href="view_resources.html" data-icon="gear">모임</a></li>
-				<li><a href="view_talk.html" data-icon="info">MyPage</a></li>
+				<li><a href="view_subject.html" data-icon="home" class="ui-btn-active">모임홈</a></li>
+				<li><a href="/mobile/study" data-icon="star" >의견</a></li>
+				<li><a href="view_resources.html" data-icon="gear">자료</a></li>
+				<li><a href="view_talk.html" data-icon="info">발표</a></li>
 			</ul>
 		</div>
 	</div>

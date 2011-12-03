@@ -51,5 +51,12 @@ public class MobileWebController {
         return "mobile/study/meeting/view_home";
     }
 
+    @RequestMapping("/mobile/map")
+    public String viewMap(String longitude, String latitude, Model model) {
+        model.addAttribute(longitude);
+        model.addAttribute(latitude);
+        return "mobile/study/meeting/view_map";
+    }
+
 
 }

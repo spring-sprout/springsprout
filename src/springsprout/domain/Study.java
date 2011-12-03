@@ -2,6 +2,7 @@ package springsprout.domain;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.NotEmpty;
 import springsprout.common.annotation.DomainInfo;
 import springsprout.common.convention.Convention;
