@@ -8,7 +8,7 @@
 
     <properties>
         <java.version>1.5</java.version>
-        <spring.version>3.1.0.RC2</spring.version>
+        <spring.version>3.1.0.RELEASE</spring.version>
         <spring.security.version>3.0.3.RELEASE</spring.security.version>
         <swf.version>2.0.8.RELEASE</swf.version>
         <aspectj.version>1.6.11</aspectj.version>
@@ -120,16 +120,32 @@
         </dependency>
 
         <!-- Hiberate: https://repository.jboss.org/nexus -->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-core</artifactId>-->
+            <!--<version>3..5.Final</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-entitymanager</artifactId>-->
+            <!--<version>3.6.5.Final</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>3.6.5.Final</version>
+            <artifactId>com.springsource.org.hibernate</artifactId>
+            <version>3.2.6.ga</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.6.5.Final</version>
+            <artifactId>com.springsource.org.hibernate.annotations</artifactId>
+            <version>3.3.1.ga</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>com.springsource.org.hibernate.ejb</artifactId>
+            <version>3.3.2.GA</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -346,16 +362,74 @@
             <groupId>org.springframework.webflow</groupId>
             <artifactId>org.springframework.js</artifactId>
             <version>${swf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.web.servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>org.springframework.webflow</artifactId>
             <version>${swf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.web.servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>org.springframework.binding</artifactId>
             <version>${swf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>org.springframework.core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.ognl</groupId>
@@ -376,10 +450,15 @@
             <scope>provided</scope>
         </dependency>
         <!-- Validation -->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-validator</artifactId>-->
+            <!--<version>4.2.0.Final</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>4.2.0.Final</version>
+            <artifactId>com.springsource.org.hibernate.validator</artifactId>
+            <version>4.0.0.GA</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -406,9 +485,8 @@
         <!-- OAuth-->
         <dependency>
             <groupId>oauth.signpost</groupId>
-            <artifactId>oauth-signpost</artifactId>
-            <version>1.2.1.1</version>
-            <type>pom</type>
+            <artifactId>signpost-core</artifactId>
+            <version>1.2</version>
         </dependency>
         <!-- Joda Time -->
         <dependency>
@@ -578,6 +656,16 @@
         <repository>
             <id>Spring Snapshot</id>
             <url>http://maven.springframework.org/snapshot</url>
+        </repository>
+        <repository>
+            <id>signpost-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/signpost-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.support.ResourcePatternUtils;
+import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.test.context.support.AbstractContextLoader;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
@@ -142,4 +143,7 @@ public class AnnotationContextLoader extends AbstractContextLoader {
 	protected void customizeContext(GenericApplicationContext context) {
 	}
 
+    public ApplicationContext loadContext(MergedContextConfiguration mergedConfig) throws Exception {
+        return null;
+    }
 }

@@ -20,7 +20,7 @@
     </s2c:head>
     <s2c:body analytics_yn="${analytics_yn}">
         <s2c:topbar ajaxlogin_yn="${ajaxlogin_yn}"/>
-	    <s2c:header selected_menu="${selected_menu}"ajaxlogin_yn="${ajaxlogin_yn}" />
+	    <s2c:header selected_menu="${selected_menu}" ajaxlogin_yn="${ajaxlogin_yn}" />
         <s2c:main>           
           	<%--<s2c:banner banner_name="${banner_name}" banner_text="${banner_text}" />--%>
             <jsp:doBody/>

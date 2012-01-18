@@ -24,7 +24,7 @@ public class SpringSproutClientHttpRequestFactory implements ClientHttpRequestFa
 		Assert.isInstanceOf(HttpURLConnection.class, urlConnection);
 		HttpURLConnection connection = (HttpURLConnection) urlConnection;
 		prepareConnection(connection, httpMethod.name());
-		return new StringSproutClientHttpRequest(connection);
+		return new SpringSproutClientHttpRequest(connection);
 	}
 
 	/**
