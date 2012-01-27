@@ -27,6 +27,7 @@ import springsprout.domain.enumeration.MeetingStatus;
 import springsprout.modules.comment.CommentRepository;
 import springsprout.modules.location.LocationRepository;
 import springsprout.modules.study.StudyRepository;
+import springsprout.modules.study.StudyService;
 import springsprout.modules.study.exception.JoinMeetingException;
 import springsprout.modules.study.exception.MeetingMaximumOverException;
 import springsprout.modules.study.meeting.attendance.AttendanceRepository;
@@ -52,6 +53,7 @@ public class MeetingServiceImpl implements MeetingService {
     @Autowired @Qualifier("unifiedNotificationService") NotificationService notiService;
     @Autowired @Qualifier("sendMailService") NotificationService commentNotiService;
     @Inject Provider<CommentMailMessage> commentMail;
+    @javax.annotation.Resource StudyService studyService;
 
 	public void addComment(Meeting meeting, Comment comment) {
 		Member currentMember = securityService.getCurrentMember();
@@ -118,8 +120,12 @@ public class MeetingServiceImpl implements MeetingService {
 		if(meeting.getMaximum() <= meeting.getAttendances().size())
 			throw new MeetingMaximumOverException(meeting.getMaximum() + " 제한 인원을 확인하세요.");
 		Member currentMember = securityService.getPersistentMember();
-		if(!meeting.isJoinable(currentMember))
-			throw new JoinMeetingException(currentMember.getName() + "님은 " + meeting.getStudy().getStudyName() + " 스터디에 참가 신청하지 않으셨습니다.");
+
+        // 스터디에 가입하지 않았을 때는, 스터디에 자동 가입!
+        if(!meeting.isJoinable(currentMember)) {
+            studyService.addCurrentMember(meeting.getStudy());
+        }
+
 		Attendance attendance = currentMember.applyAttendance(meeting);
 		attendanceRepository.add(attendance);
 	}

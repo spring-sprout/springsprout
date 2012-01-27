@@ -171,12 +171,7 @@ public class MeetingController {
         try {
             meetingService.joinMeetingMember(meeting);
         } catch (MeetingMaximumOverException e) {
-            session.setAttribute("SESSION_FLASH_MSG", meeting.getTitle()
-                    + " 모임 제한 인원을 확인하세요.");
-        } catch (JoinMeetingException e) {
-            session.setAttribute("SESSION_FLASH_MSG", meeting.getStudy()
-                    .getStudyName()
-                    + " 스터디에 참가 신청을 하세요.");
+            session.setAttribute("SESSION_FLASH_MSG", meeting.getTitle() + " 모임 제한 인원을 확인하세요.");
         }
         return redirectMeetingView(studyId, meetingId);
     }
