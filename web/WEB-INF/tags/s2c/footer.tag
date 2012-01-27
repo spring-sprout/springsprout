@@ -4,11 +4,10 @@
 
 <div id="footer">
 	<div class="footer">
-			봄싹 is Rock!! 2009-2011 | Introduction | <a href="<c:url value="/developers"/>">Developers</a> |
+			Powered by 봄싹! 2009-2012 |
+        <a href="<c:url value="/developers"/>">Developers</a> |
 	    <a href="http://s2c.pe.kr" target="_blank">Blog</a> |
-	    <a href="http://groups.google.co.kr/group/springsprout" target="_blank">Group</a> |
-	    <a href="http://dev.springsprout.org/code/browse/SpringSprout" target="_blank">Code Viewer</a> |
-	    <a href="http://dev.springsprout.org/jira/browse/SSD" target="_blank">Issue Tracker</a>
+	    <a href="http://groups.google.co.kr/group/springsprout" target="_blank">Group</a>
 	</div>
 </div>
 <script type="text/javascript">

@@ -6,7 +6,7 @@
 </c:if>
 <div id="topheader">
 	<div id="mainlogo" class="left">
-          <a href="<c:url value="/"/>"><img src="<c:url value="/images/logo_beta.png"/>" alt="springsprout" /></a>
+          <a href="<c:url value="/"/>"><img height="60px" src="<c:url value="/images/logo-yoon.png"/>" alt="springsprout" /></a>
     </div>
 	<div id="menu_bar">
 		<ul>

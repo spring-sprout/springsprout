@@ -34,6 +34,16 @@
 			<li>하고 싶은 말: 저도 코더랍니다... :-)</li>
 		</ul>
 	</div>
+    <h3><a href="#">김제준</a></h3>
+    <div>
+        <img src="http://www.gravatar.com/avatar/0b325419680b3e9d600611121f1ab0df" class="left"/>
+        <ul class="left">
+            <li>닉넴/아이디: 제준/June</li>
+            <li>블로그: </li>
+            <li>취미: 보드, 와우</li>
+            <li>하고 싶은 말: </li>
+        </ul>
+    </div>
 	<h3><a href="#">김재진</a></h3>
 	<div>
 		<img src="http://www.gravatar.com/avatar/489150bfe7f0c1e002c239f4fdc51c94" class="left"/>
