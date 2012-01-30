@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class StudyIndexInfo {
 
-	private static final int previewCount = 3;
+	private static final int PREVIEW_COUNT = 3;
 	private int studyCount;
 	private int studyMoreCount;
 	private int meetingCount;
@@ -36,7 +36,7 @@ public class StudyIndexInfo {
 
 	public StudyIndexInfo(List<Study> activeStudies, List<Study> pastStudies) {
 		this.activeStudies = activeStudies;
-		this.setPastStudies(pastStudies);
+		this.pastStudies = pastStudies;
 		this.setStudyCountInfo();
 		this.setMeetingCountInfo();
 		this.setPresentationCountInfo();
@@ -110,19 +110,16 @@ public class StudyIndexInfo {
 
 	private void setStudyCountInfo() {
 		int count = activeStudies.size();
-		int moreCount = 0;
 
-		moreCount = compareCountAndSet(count, moreCount);
-		
+		int moreCount = compareCountAndSet(count, 0);
 		this.studyCount = count;
 		this.studyMoreCount = moreCount;
 
 	}
 
 	private int compareCountAndSet(int count, int moreCount) {
-		if (count > previewCount) moreCount = count - previewCount;
-		else if (count <= previewCount) moreCount = count;
-		
+		if (count > PREVIEW_COUNT) moreCount = count - PREVIEW_COUNT;
+		else if (count <= PREVIEW_COUNT) moreCount = count;
 		return moreCount;
 	}
 	
@@ -153,10 +150,7 @@ public class StudyIndexInfo {
 	
 	private void setClosedCountInfo() {
 		int count = getPastStudies().size();
-		int moreCount = 0;
-		
-		moreCount = compareCountAndSet(count, moreCount);
-		
+		int moreCount = compareCountAndSet(count, 0);
 		this.closedStudyCount = count;
 		this.closedStudyMoreCount = moreCount;
 	}

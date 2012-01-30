@@ -36,7 +36,7 @@
 						<div class="count">
 							${vs.count}
 						</div>
-						<div class="detail round" style="width:90%">
+						<div class="detail round" style="width:92%">
 							관리자: ${study.manager.name} | 상태: ${study.status.descr} | 모임수: ${study.meetingCount} | 
 							현재인원: ${study.memberCount} | 제한인원: ${study.maximumCount} <br/>
 							<fmt:formatDate value="${study.startDay}" pattern="yyyy년 M월 d일" /> 부터 ~

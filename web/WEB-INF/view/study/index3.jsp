@@ -20,10 +20,7 @@
 		</sec:authorize>
 		<div class="studyBorder ui-corner-all studyList" style="width:60%; float: left; padding: 5px;">
 			<div class="studyDescr">
-				<h1>봄싹 스터디!</h1>
-				<h3 class="logoTitle">
-					• 도전하자 • 학습하자 • 나누자 • 즐기자
-				</h3>	
+				<h1 class="logoTitle">• 도전하자 • 학습하자 • 나누자 • 즐기자 •</h1>
 			</div>
 			<div class="studyDescr" style="height: 300px;">
 				<h1>다음 모임</h1>
@@ -93,16 +90,29 @@
 			<div class="dotDiv-top">
 				<h2 class="logoTitle"><span class="num_cnt">${fn:length(activeStudies) }</span>개 스터디 진행중</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
-				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="3">
+				<c:forEach items="${activeStudies}" var="study" varStatus="status" begin="0" end="4">
 					<span><a class="totalTitle" href="/study/${study.id }">${study.studyName }</a></span><br/>
 					<c:set var="displayStudyCount" value="${status.count }"></c:set>
 				</c:forEach>
-				<a href="/study/index/active" class="studyDetails-link" title="진행중인 스터디 목록 보기">${fn:length(activeStudies) - displayStudyCount } more studies..</a><br/>
+				<a href="/study/index/active" class="studyDetails-link" title="진행중인 스터디 목록 보기">
+				    ${fn:length(activeStudies) - displayStudyCount } more studies..
+                </a><br/>
 			</div>
+            <div>
+                <h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.pastStudies)}</span>개 스터디 종료</h2>
+                <c:set var="displayStudyCount" value="0"></c:set>
+                <c:forEach items="${studyIndexInfo.pastStudies}" var="study" varStatus="status" begin="0" end="4">
+                    <span><a class="totalTitle" href="/study/${study.id }">${study.studyName }</a></span><br/>
+                    <c:set var="displayStudyCount" value="${status.count }"></c:set>
+                </c:forEach>
+                <a href="/study/index/past" class="studyDetails-link" title="종료된 스터디 목록 보기">
+                    ${fn:length(studyIndexInfo.pastStudies) - displayStudyCount } more closed studies..
+                </a><br/>
+            </div>
 			<div class="dotDiv-top">
 				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.meetings)}</span>번 모임</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
-				<c:forEach items="${studyIndexInfo.meetings}" var="meeting" varStatus="status" begin="0" end="3">
+				<c:forEach items="${studyIndexInfo.meetings}" var="meeting" varStatus="status" begin="0" end="4">
 					<span><a class="totalTitle" href="/study/${meeting.study.id}/meeting/${meeting.id}">${meeting.title }</a></span><br/>
 					<c:set var="displayStudyCount" value="${status.count}"></c:set>
 				</c:forEach>
@@ -111,20 +121,11 @@
 			<div class="dotDiv-top">
 				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.presentations)}</span>번 발표</h2>
 				<c:set var="displayStudyCount" value="0"></c:set>
-				<c:forEach items="${studyIndexInfo.presentations}" var="presentation" varStatus="status" begin="0" end="3">
+				<c:forEach items="${studyIndexInfo.presentations}" var="presentation" varStatus="status" begin="0" end="4">
 					<span><a class="totalTitle" href="/study/${presentation.meeting.study.id}">${presentation.title }</a></span><br/>
 					<c:set var="displayStudyCount" value="${status.count}"></c:set>
 				</c:forEach>
 				${fn:length(studyIndexInfo.presentations) - displayStudyCount } more presentations..<br/>
-			</div>
-			<div>
-				<h2 class="logoTitle"><span class="num_cnt">${fn:length(studyIndexInfo.pastStudies)}</span>개 스터디 종료</h2>
-				<c:set var="displayStudyCount" value="0"></c:set>
-				<c:forEach items="${closedStudies}" var="study" varStatus="vs" begin="0" end="3">
-					<span>${study.studyName }</span><br/>
-					<c:set var="displayStudyCount" value="${vs.count }"></c:set>
-				</c:forEach>
-				<a href="/study/index/past" class="studyDetails-link" title="종료된 스터디 목록 보기">${fn:length(studyIndexInfo.pastStudies) - displayStudyCount } more closed studies..</a><br/>
 			</div>
 		</div>
 	</div>
