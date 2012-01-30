@@ -2,6 +2,7 @@ package springsprout.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import springsprout.common.util.DateUtils;
 import springsprout.common.util.StringUtils;
 
@@ -19,6 +20,7 @@ public class Comment {
 	private int id;
 	
 	@Column
+    @Type(type = "text")
     @springsprout.common.validation.constraints.NotEmpty(message="의견을 입력하세요!")
     @Size(min = 1, max = 255)
 	private String comment;
