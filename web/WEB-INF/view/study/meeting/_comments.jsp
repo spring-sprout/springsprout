@@ -38,6 +38,7 @@
 								</a>
 								<span>from SpringSprout</span>
 							</span>
+                            <sec:authorize ifAnyGranted="ROLE_MEMBER">
 							<span class="actions">
 								<img class="rt" src="<c:url value="/images/icon_reply.gif"/>" alt="RT ${comment.writer.name}" writer="${comment.writer.name}" class="action" />
                                 <sec:authentication property="principal.username" var="currentUserName" scope="request"/>
@@ -46,6 +47,7 @@
                                          href="${commentObj.id}/comment/${comment.id}/delete"/>
                                 </c:if>
                             </span>
+                            </sec:authorize>
 						</span>
 			 		</li>
 		 		</c:forEach>

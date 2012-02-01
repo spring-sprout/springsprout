@@ -42,6 +42,8 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	public void addCurrentMember(final Study study) {
+
+
 		final Member currentMember = securityService.getPersistentMember();
 		study.addMember(currentMember);
 	}

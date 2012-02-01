@@ -34,7 +34,9 @@
 		<intercept-url pattern="/study/*/delete" access="ROLE_ADMIN" />
 		<intercept-url pattern="/study/*/notify" access="ROLE_ADMIN" />
 
-        <intercept-url pattern="/study/**/meeting/**" access="ROLE_MEMBER" />
+        <intercept-url pattern="/study/*/meeting/join/*" access="ROLE_MEMBER" />
+        <intercept-url pattern="/study/*/meeting/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
 
         <intercept-url pattern="/study/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 

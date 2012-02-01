@@ -70,10 +70,13 @@ public class MeetingController {
         Meeting meeting = meetingService.getById(meetingId);
         model.addAttribute(meeting);
         model.addAttribute("attendances", meeting.getSortedAttendances());
+        model.addAttribute("mapKey", mapKey);
         model.addAttribute(new Comment());
+        if(!securityService.hasLoggedInUser()) {
+            return "study/meeting/openview";
+        }
         model.addAttribute("isAlreadyJoinMember", isAlreadyJoinMember(meeting));
         model.addAttribute("isManagerOrAdmin", securityService.isMeetingManagerOrAdmin(meeting));
-        model.addAttribute("mapKey", mapKey);
         return MEETING_VIEW;
     }
 
