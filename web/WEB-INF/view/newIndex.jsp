@@ -42,7 +42,7 @@
                             <li><a href="http://wiki.springsprout.org">Wiki</a></li>
                         </ul>
                         <sec:authorize ifAnyGranted="ROLE_MEMBER">
-                            <p class="navbar-text pull-right">Logged in as <a href="#">${currentUser.name}</a></p>
+                            <p class="navbar-text pull-right">Logged in as <a href="/mypage/index">${currentUser.name}</a></p>
                         </sec:authorize>
                         <sec:authorize ifNotGranted="ROLE_MEMBER">
                             <p class="navbar-text pull-right"><a href="/login">Login</a></p>
