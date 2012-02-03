@@ -34,6 +34,14 @@ public class MainController {
 
 	private FastDateFormat graffitiLoadDateTimeFormat = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+09:00"), Locale.KOREA);
 
+    @RequestMapping("/index/new")
+    public String newIndex(Model model) {
+        model.addAttribute("studyList", studyService.findActiveStudies(4));
+        model.addAttribute("meetingList", meetingService.findActiveMeetings(2));
+        model.addAttribute("currentUser", securityService.getCurrentMember());
+        return "newIndex";
+    }
+    
     @RequestMapping("/index")
     public String index(SitePreference sitePreference, Device device, Model model){
         if(device.isMobile() && (sitePreference == SitePreference.MOBILE)) {
