@@ -18,7 +18,8 @@
                 padding-bottom: 40px;
             }
             .navbar .logo {
-                height: 80px;
+                height: 25px;
+                padding:7px 20px 8px;
             }
         </style>
         <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -33,7 +34,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/index/new">SpringSprout</a>
+                    <a class="brand logo" href="/index/new">
+                        <img src="/resources/images/logo-2012.png" alt="springsprout" width="155" height="25">
+                    </a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="active"><a href="/index/new">Home</a></li>
