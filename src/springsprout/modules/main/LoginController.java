@@ -26,8 +26,15 @@ public class LoginController {
 
 	@Autowired MemberService memberService;
 
+	@RequestMapping("/door")
+	public String door(Model model) {
+		model.addAttribute("member", new Member());
+		return "door";
+	}
+
     @RequestMapping("/login")
-    public void login(){
+    public void login(Model model){
+		model.addAttribute("member", new Member());
     }
     
     @RequestMapping("/loginpopup")

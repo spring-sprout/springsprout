@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="page" tagdir="/WEB-INF/tags/page"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="shortcut icon" href="<c:url value="/images/favicon.ico"/>" type="image/x-icon"/>
+
         <title>봄싹 @2012</title>
 
         <!-- Style -->
@@ -49,9 +50,9 @@
                                 <li id="fat-menu" class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">${currentUser.name}<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/mypage/index">MyPage</a></li>
+                                        <li><a href="/mypage/index">My Page</a></li>
                                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                                            <li><a href="/admin/index">봄싹 Admin</a></li>
+                                            <li><a href="/admin/index">Admin</a></li>
                                         </sec:authorize>
                                         <li class="divider"></li>
                                         <li><a href="/j_spring_security_logout">Logout</a></li>
@@ -61,7 +62,7 @@
                             <%--<p class="navbar-text pull-right">Logged in as <a href="/mypage/index">${currentUser.name}</a></p>--%>
                         </sec:authorize>
                         <sec:authorize ifNotGranted="ROLE_MEMBER">
-                            <p class="navbar-text pull-right"><a href="/login">Login</a></p>
+                            <p class="navbar-text pull-right"><a href="/door">Login</a></p>
                         </sec:authorize>
 
                     </div><!--/.nav-collapse -->
