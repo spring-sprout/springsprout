@@ -8,7 +8,7 @@
     <div class="span4">
         <form class="form-horizontal" action="<c:url value='j_spring_security_check'/>" method="POST">
             <fieldset>
-                <legend>봄싹 들어가기 <a href="<c:url value="/signup"/>">(Signup)</a></legend>
+                <legend>봄싹 들어가기();</legend>
                 <div class="control-group">
                     <label class="control-label" for="login_field">Email</label>
                     <div class="controls">
@@ -45,7 +45,7 @@
     <div class="span6 pull-right">
         <form:form cssClass="form-horizontal" id="signupform" commandName="member" method="post" action="/signup">
             <fieldset>
-                <legend>봄싹 가입하기</legend>
+                <legend>봄싹 가입하기();</legend>
                 <div class="control-group">
                     <label for="email" class="control-label">Email</label>
                     <div class="controls">
@@ -84,6 +84,7 @@
                             <form:checkbox title="구글토크 메시지 수신" path="isAllowedGoogleTalk" value="true"/>
                             구글토크 메시지 수신
                         </label>
+                        <p class="help-block">나중에 My Page에서 변경하실 수 있습니다.</p>
                     </div>
                 </div>
                 <div class="form-actions">
