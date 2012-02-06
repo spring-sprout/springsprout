@@ -5,7 +5,7 @@ body {
   background-color: #FCFCFC;
 }
 .container{
-  width: 1170px;
+  margin-bottom: 30px;
 }
 .page-wrap{
   margin-top:-18px;
@@ -21,7 +21,7 @@ body {
 }
 .home-header h1{
   font-weight:normal;
-  font-size:56px;
+  font-size:54px;
   margin-bottom: 20px;
   line-height:1.5;
 }
@@ -47,6 +47,21 @@ hr.soften{
   height: 1px;
   margin: 27px 0;
 }
+.content-section{
+  margin-left:20px;
+  width:610px;
+  float:left;
+}
+.side-section{
+  margin-left:650px;
+  width:310px;
+}
+.sec-title{
+  color:#444;
+  line-height:1.5;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
 .footer-outer{
   background-color: #FCFCFC;
   border-top: 1px solid #DDDDDD;
@@ -61,14 +76,13 @@ footer.main-footer .linkBox{
   margin-bottom: 20px;
 }
 footer.main-footer .linkBox ul{
-  list-style: none;
   margin-left:5px;
 }
 footer.main-footer .linkBox ul a{
   font-size:12px;
 }
 footer.main-footer h4{
-  color: #636363;
+  color: #666;
   border-bottom: thin solid #E1E1E1;
   margin-bottom: 5px;
   padding-bottom: 5px;
