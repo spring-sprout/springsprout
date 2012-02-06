@@ -5,7 +5,7 @@
 
 <bootstrap:container>
 <div class="row">
-    <div class="span4">
+    <div class="span6">
         <form class="form-horizontal" action="<c:url value='j_spring_security_check'/>" method="POST">
             <fieldset>
                 <legend>봄싹 들어가기();</legend>
