@@ -35,9 +35,9 @@
                 <div id="guides">
                     <h2>봄싹 이용 가이드</h2>
                     <ul id="guideList">
-                        <li><a href="http://wiki.springsprout.org/Home" target="_blank">봄싹은?</a></li>
-                        <li><a href="http://wiki.springsprout.org/Home" target="_blank">봄싹의 목적은?</a></li>
-                        <li><a href="http://wiki.springsprout.org/Home" target="_blank">봄싹 스터디에 참여하려면?</a></li>
+                        <li><a href="http://wiki.springsprout.org/display/META/Home" target="_blank">봄싹은?</a></li>
+                        <li><a href="http://wiki.springsprout.org/display/META/Home" target="_blank">봄싹의 목적은?</a></li>
+                        <li><a href="http://wiki.springsprout.org/display/META/Home" target="_blank">봄싹 스터디에 참여하려면?</a></li>
                     </ul>
                 </div>
                 <div id="links">
