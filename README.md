@@ -10,3 +10,6 @@
 ## 관련링크
 * [Wiki](http://wiki.springsprout.org/display/SSD/Home)
 * [이슈트래커](http://jira.springsprout.org)
+
+## 2012 개편 작업중 ~.~
+참여 하고 싶은 사람은 포크 꼽으세용!
