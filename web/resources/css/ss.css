@@ -17,16 +17,16 @@ body {
 }
 .home-header{
   margin:30px 0;
-  text-align: center;
+  text-align: left;
 }
 .home-header h1{
   font-weight:normal;
-  font-size:54px;
+  font-size:35px;
   margin-bottom: 20px;
   line-height:1.5;
 }
 .home-header p{
-  font-size:30px;
+  font-size:20px;
   line-height:1.5;
 }
 span.kd{

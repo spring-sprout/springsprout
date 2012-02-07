@@ -57,12 +57,21 @@
         <div class="page-wrap">
             <div class="container">
                 <header class="home-header">
-                    <h1><span class="kd">var</span> springsprout = <span class="string">'spring'</span> + <span class="string">'sprout'</span>;</h1>
-                    <p>Let's
-                        <a href="#" class="btn btn-danger" rel="popover" data-content="관심있는 주제의 스터디에 참여하여 여러 개발자를 만나보세요."
-                           data-original-title="The Study">Study</a>,
-                        develope,
-                        share and have fun!</p>
+                    <h1><span class="kd">var</span> springSprout =
+                        <a href="#" rel="popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
+                           data-original-title="spring(...);"><span class="string">'spring'</span></a> +
+                        <a href="#" rel="popover" data-content="새싹이 돋아나겠죠."
+                           data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
+                    </h1>
+                    <p>우리는
+                        <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요."
+                           data-original-title="we.study(...);">학습하고</a>
+                        <a href="#" rel="popover" data-content="학습한 기술을 적용해볼 곳이 없다구요? 봄싹에서 여러 개발자와 같이 사용해 보세요."
+                           data-original-title="we.develope(...);">개발하고</a>
+                        <a href="#" rel="popover" data-content="발표, 번역, 저술 등 여러 방법으로 학습하고 적용해본 경험을 다른 개발자와 나눠보세요."
+                           data-original-title="we.share(...);">나누고</a>
+                        <a href="#" rel="popover" data-content="이 모든게 즐겁다면 여러분은 이미 봄싹 개발자입니다."
+                           data-original-title="we.enjoy(...);">즐깁니다.</a>
                 </header>
                 <div class="row ">
                     <section class="content-section">
@@ -130,11 +139,15 @@
                 </footer>
             </div>
         </div>
-        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="/static/jquery/jquery.min.js"></script>
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
-                $(".home-header p").popover('show');
+                $("a[rel=popover]")
+                    .popover()
+                    .click(function(e) {
+                        e.preventDefault()
+                    });
             });
         </script>
     </body>
