@@ -58,7 +58,11 @@
             <div class="container">
                 <header class="home-header">
                     <h1><span class="kd">var</span> springsprout = <span class="string">'spring'</span> + <span class="string">'sprout'</span>;</h1>
-                    <p>Let's challenge, evolute, share and have fun!</p>
+                    <p>Let's
+                        <a href="#" class="btn btn-danger" rel="popover" data-content="관심있는 주제의 스터디에 참여하여 여러 개발자를 만나보세요."
+                           data-original-title="The Study">Study</a>,
+                        develope,
+                        share and have fun!</p>
                 </header>
                 <div class="row ">
                     <section class="content-section">
@@ -83,7 +87,7 @@
                 <footer class="main-footer">
                     <div class="row linkBox">
                         <div class="span3">
-                            <h4>How to enjoy SpringSprout</h4>
+                            <h4>FAQ</h4>
                             <ul class="unstyled">
                                 <li><a target="_blank" href="http://wiki.springsprout.org/Home">봄싹은?</a></li>
                                 <li><a target="_blank" href="http://wiki.springsprout.org/Home">봄싹의 목적은?</a></li>
@@ -91,7 +95,7 @@
                             </ul>
                         </div>
                         <div class="span3">
-                            <h4>SpringSprout family sites</h4>
+                            <h4>Family Sites</h4>
                             <ul class="unstyled">
                                 <li><a target="_blank" href="http://twitter.com/springsprout">봄싹 트위터</a></li>
                                 <li><a target="_blank" href="http://groups.google.com/group/springsprout">봄싹 구글 그룹스</a></li>
@@ -102,14 +106,20 @@
                             </ul>
                         </div>
                         <div class="span3">
-                            <h4>SpringSprout Aces</h4>
+                            <h4>Developers</h4>
                             <ul class="unstyled">
-                                <li><a target="_blank" href="http://whiteship.me">백기선</a></li>
-                                <li><a target="_blank" href="http://blog.outsider.ne.kr">Outsider</a></li>
+                                <li><a target="_blank" href="https://github.com/helols">김성윤</a></li>
+                                <li><a target="_blank" href="https://github.com/miracle0k">김정우</a></li>
+                                <li><a target="_blank" href="https://github.com/KimJejun">김제준</a></li>
+                                <li><a target="_blank" href="https://github.com/arawn">박용권</a></li>
+                                <li><a target="_blank" href="https://github.com/outsideris">변정훈</a></li>
+                                <li><a target="_blank" href="https://github.com/keesun">백기선</a></li>
+                                <li><a target="_blank" href="https://github.com/seosh81">서승호</a></li>
+                                <li><a target="_blank" href="https://github.com/miracle0k">석종일</a></li>
                             </ul>
                         </div>
                         <div class="span3">
-                            <h4>Play with????? 임시...</h4>
+                            <h4>Thanks To</h4>
                             <ul class="unstyled">
                                 <li><a target="_blank" href="http://springsource.org">Spring</a></li>
                                 <li><a target="_blank" href="http://www.hibernate.org/">Hibernate</a></li>
@@ -122,5 +132,10 @@
         </div>
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".home-header p").popover('show');
+            });
+        </script>
     </body>
 </html>
