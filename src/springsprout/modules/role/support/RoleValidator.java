@@ -19,8 +19,8 @@ public class RoleValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Role role = (Role)target;
 		Set<Right> rights = role.getRights();
-		for(Right r : rights)
-			System.out.println(r.getId());
+//		for(Right r : rights)
+//			System.out.println(r.getId());
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required", "required");
 	}
 

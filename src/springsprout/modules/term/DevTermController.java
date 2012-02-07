@@ -128,7 +128,6 @@ public class DevTermController {
     @RequestMapping(value = "addsubmt", method = RequestMethod.POST)
     public String addSubmit(@ModelAttribute("term") TermAddDTO term, BindingResult result,
 			SessionStatus status, HttpSession session){
-        System.out.println("ddksjdlfkjsldfkjlkj");
         validator.validate(term, result);
 		if (result.hasErrors())
 			return TERM_FORM;

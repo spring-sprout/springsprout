@@ -1,5 +1,7 @@
 package springsprout.service.notification.message;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import springsprout.common.convention.Convention;
 import springsprout.common.util.StringUtils;
 import springsprout.domain.Meeting;
@@ -7,6 +9,8 @@ import springsprout.domain.Study;
 import springsprout.domain.enumeration.MeetingStatus;
 
 public class MeetingMailMessage extends SpringSproutMailMessage {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private Study study;
 	private Meeting meeting;
@@ -17,8 +21,8 @@ public class MeetingMailMessage extends SpringSproutMailMessage {
 		this.study = study;
 		this.meeting = meeting;
 		this.status = status;
-		
-		System.out.println("메일 수신자 수:" + getMembers().size());
+
+		logger.info("메일 수신자 수: {}", getMembers().size());
 	}
 
 	public MeetingMailMessage(Meeting meeting, MeetingStatus status) {

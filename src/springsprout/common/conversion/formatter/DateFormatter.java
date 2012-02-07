@@ -21,12 +21,10 @@ public class DateFormatter implements Formatter<Date> {
     DateFormat dateFormat = new SimpleDateFormat(DateUtils.yyyyMMdd_SLASH);
 
     public Date parse(String text, Locale locale) throws ParseException {
-        System.out.println("Formatter win!!!!!!!!!!!!!!!!!!!");
         return dateFormat.parse(text);
     }
 
     public String print(Date date, Locale locale) {
-        System.out.println("Formatter win!!!!!!!!!!!!!!!!!!!");
         return dateFormat.format(date);
     }
 }

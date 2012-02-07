@@ -1,5 +1,7 @@
 package springsprout.service.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +15,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class PopupLoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
     @Override
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response) {
         String s = request.getParameter("_to");
-        System.out.println(s);
+		logger.debug("_to page param is {}", s);
+		System.out.println(s);
         if(s != null)
             return s;
         else
