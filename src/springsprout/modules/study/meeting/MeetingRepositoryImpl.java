@@ -43,7 +43,8 @@ public class MeetingRepositoryImpl extends HibernateGenericDao<Meeting> implemen
     }
 
     public List<Meeting> findActiveMeetings(int count) {
-        return getCurrentSession().createCriteria(Meeting.class)
+		return getCurrentSession().createCriteria(Meeting.class)
+			.setCacheable(true)
 			.add(Restrictions.eq("status", MeetingStatus.OPEN))
             .addOrder(Order.desc("id"))
             .setMaxResults(count)
