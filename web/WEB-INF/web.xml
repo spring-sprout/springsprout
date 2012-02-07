@@ -7,17 +7,9 @@
 
     <!-- Context param 설정 -->
 	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:log4j.properties</param-value>
-	</context-param>
-	<context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>springsprout.root</param-value>
     </context-param>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext*.xml</param-value>
-	</context-param>
     
 	<!-- 인코딩 필터 -->
 	<filter>
@@ -65,15 +57,20 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-    <!-- Log4J 설정 리스너 -->
+    <!-- Log4J 설정 리스너
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
+    -->
 
-    <!--  -->
+    <!-- Root WebApplicationContext 설정 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext*.xml</param-value>
+    </context-param>
 
 	<!--
 		<listener> <listener-class>
