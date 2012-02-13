@@ -22,7 +22,8 @@
         }
     </style>
     <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -38,15 +39,18 @@
             </a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="active"><a href="/index/new">Home</a></li>
-                    <li><a href="/study">Study</a></li>
-                    <li><a href="/statistics/index">Statistics</a></li>
-                    <li><a href="http://wiki.springsprout.org">Wiki</a></li>
+                    <li class="active"><a href="/index/new"><i class="icon-home"></i>홈</a></li>
+                    <li><a href="/study">스터디</a></li>
+                    <li><a href="/chat">채팅</a></li>
+                    <li><a href="/statistics/index">통계</a></li>
+                    <li><a href="http://wiki.springsprout.org">위키</a></li>
                 </ul>
                 <sec:authorize ifAnyGranted="ROLE_MEMBER">
                     <ul class="nav pull-right">
                         <li id="fat-menu" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">${currentUser.name}<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <sec:authentication property="principal.username"/><b class="caret"></b>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/mypage/index">My Page</a></li>
                                 <sec:authorize ifAnyGranted="ROLE_ADMIN">
@@ -79,9 +83,5 @@
     </footer>
 
 </div>
-
-
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
