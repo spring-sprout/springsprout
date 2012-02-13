@@ -7,6 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="스터디하고 책쓰고 발표하며 성장하는 봄싹 커뮤니티" />
         <meta name="language" content="en" />
         <title>봄싹 @2012</title>
         <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -26,22 +27,25 @@
                     </a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="/index/new">Home</a></li>
-                            <li><a href="/study">Study</a></li>
-                            <li><a href="/statistics/index">Statistics</a></li>
-                            <li><a href="http://wiki.springsprout.org">Wiki</a></li>
+                            <li class="active"><a href="/index/new"><i class="icon-home icon-white"></i> 홈</a></li>
+                            <li><a href="/study"><i class="icon-star icon-white"></i> 스터디</a></li>
+                            <li><a href="/chat"><i class="icon-comment icon-white"></i> 채팅</a></li>
+                            <li><a href="/statistics/index"><i class="icon-signal icon-white"></i> 통계</a></li>
+                            <li><a href="http://wiki.springsprout.org"><i class="icon-book icon-white"></i> 위키</a></li>
                         </ul>
                         <sec:authorize ifAnyGranted="ROLE_MEMBER">
                             <ul class="nav pull-right">
                                 <li id="fat-menu" class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">${currentUser.name}<b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <sec:authentication property="principal.username"/><b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/mypage/index">My Page</a></li>
+                                        <li><a href="/mypage/index"><i class="icon-user"></i> My Page</a></li>
                                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                                            <li><a href="/admin/index">Admin</a></li>
+                                            <li><a href="/admin/index"><i class="icon-cog"></i> Admin</a></li>
                                         </sec:authorize>
                                         <li class="divider"></li>
-                                        <li><a href="/j_spring_security_logout">Logout</a></li>
+                                        <li><a href="/j_spring_security_logout"><i class="icon-off"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
