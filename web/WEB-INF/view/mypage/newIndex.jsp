@@ -28,7 +28,7 @@
                     </a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="/index/new"><i class="icon-home icon-white"></i> 홈</a></li>
+                            <li><a href="/index/new"><i class="icon-home icon-white"></i> 홈</a></li>
                             <li><a href="/study"><i class="icon-star icon-white"></i> 스터디</a></li>
                             <li><a href="/chat"><i class="icon-comment icon-white"></i> 채팅</a></li>
                             <li><a href="/statistics/index"><i class="icon-signal icon-white"></i> 통계</a></li>
