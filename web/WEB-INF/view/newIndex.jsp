@@ -172,7 +172,7 @@
         <script>
             $(document).ready(function(){
                 $("a[rel=popover]")
-                    .popover()
+                    .popover({placement:'bottom'})
                     .click(function(e) {
                         e.preventDefault()
                     });
