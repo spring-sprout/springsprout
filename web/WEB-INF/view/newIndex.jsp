@@ -60,14 +60,15 @@
         </div>
         <div class="page-wrap">
             <div class="container">
-                <header class="home-header">
-                    <h1><span class="kd">var</span> springSprout =
+                <header class="slogan">
+                    <h1>
+                        <span class="kd">var</span> springSprout =
                         <a href="#" rel="popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
                            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
                         <a href="#" rel="popover" data-content="새싹이 돋아나겠죠."
                            data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
                     </h1>
-                    <p>우리는
+                    <p class="sub-slogan">우리는
                         <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요."
                            data-original-title="we.study(...);">학습하고</a>
                         <a href="#" rel="popover" data-content="학습한 기술을 적용해볼 곳이 없다구요? 봄싹에서 여러 개발자와 같이 사용해 보세요."
@@ -76,25 +77,48 @@
                            data-original-title="we.share(...);">나누고</a>
                         <a href="#" rel="popover" data-content="이 모든게 즐겁다면 여러분은 이미 봄싹 개발자입니다."
                            data-original-title="we.enjoy(...);">즐깁니다.</a>
+                    </p>
                 </header>
-                <div class="row ">
-                    <section class="content-section">
-                        <article class="studies">
-                            <h4 class="sec-title">Studies</h4>
-                        </article>
-                        <aside class="banners">
-                            <h4 class="sec-title">Banners</h4>
-                        </aside>
-                    </section>
-                    <section class="side-section">
-                        <article class="notices">
-                            <h4>Notices</h4>
-                        </article>
-                        <article class="chatting">
-                            <h4>Let's talk</h4>
-                        </article>
-                    </section>
-                </div>
+                <section class="content-sec">
+                    <header class="sec-header">
+                        <h2>Studies <small>학습하고...</small></h2>
+                    </header>
+                    <ul class="studies thumbnails">
+                        <li class="study first-child">
+                            <a class="thumbnail" href="#">
+                                <img alt="" src="http://placehold.it/360x268">
+                            </a>
+                        </li>
+                        <li class="study">
+                            <a class="thumbnail" href="#">
+                                <img alt="" src="http://placehold.it/160x120">
+                            </a>
+                        </li>
+                        <li class="study">
+                            <a class="thumbnail" href="#">
+                                <img alt="" src="http://placehold.it/160x120">
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="side-sec">
+                    <article>
+                        <div>
+                            <img src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=50" />
+                        </div>
+                    </article>
+                    <article class="notice-box">
+                        <div class="notice-header">
+                            <h4 class="sec-title">공지사항</h4>
+                        </div>
+                        <div class="notice-body">
+                            <ul class="notices">
+                                <li><a href="#">text</a></li>
+                                <li class="hide">text2</li>
+                            </ul>
+                        </div>
+                    </article>
+                </section>
             </div>
             <div class="footer-outer">
                 <footer class="main-footer">
