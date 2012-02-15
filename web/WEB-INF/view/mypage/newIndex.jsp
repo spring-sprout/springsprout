@@ -11,13 +11,14 @@
         <meta name="description" content="스터디하고 책쓰고 발표하며 성장하는 봄싹 커뮤니티" />
         <meta name="language" content="en" />
         <title>봄싹 @2012</title>
+        <link rel="shortcut icon" href="<c:url value="/images/favicon.ico"/>" type="image/x-icon"/>
         <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="/static/css/ss.css" rel="stylesheet">
     </head>
     <body>
-    	<div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
+    	<nav class="navbar navbar-fixed-top">
+            <section class="navbar-inner">
+                <section class="container-fluid">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -26,7 +27,7 @@
                     <a class="brand logo" href="/index/new">
                         <img src="/resources/images/logo-2012.png" alt="springsprout" width="155" height="25">
                     </a>
-                    <div class="nav-collapse">
+                    <section class="nav-collapse">
                         <ul class="nav">
                             <li><a href="/index/new"><i class="icon-home icon-white"></i> 홈</a></li>
                             <li><a href="/study"><i class="icon-star icon-white"></i> 스터디</a></li>
@@ -41,7 +42,7 @@
                                         <sec:authentication property="principal.username"/><b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/mypage/index"><i class="icon-user"></i> My Page</a></li>
+                                        <li><a href="/mypage/index/new"><i class="icon-user"></i> My Page</a></li>
                                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
                                             <li><a href="/admin/index"><i class="icon-cog"></i> Admin</a></li>
                                         </sec:authorize>
@@ -55,107 +56,111 @@
                         <sec:authorize ifNotGranted="ROLE_MEMBER">
                             <p class="navbar-text pull-right"><a href="/door">Login</a></p>
                         </sec:authorize>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-    	<div id="content">
-			<div id="profile">
-				<div class="title">
-					<table width="100%">
-						<tr>
-							<td><h3>개인 정보</h3></td>
-							<td style="float:right"><a href="<c:url value="/member/update/${member.id}"/>">정보수정 </a> |
-								<a href="<c:url value="/member/out/${member.id}"/>">탈퇴</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div>
-					<table class="profiletable">
-						<tr>
-							<td rowspan="10" class="avatar"><img src="${member.avatar}&s=120"/></td>
-						</tr>
-						<tr>
-							<td><b>이메일</b></td>
-							<td>${member.email}</td>
-						</tr>
-						<tr>
-							<td><b>이름</b></td>
-						 	<td>${member.name}</td>
-						 </tr>
-						 <tr>
-						 	<td><b>가입일</b></td>
-						 	<td>${member.joined}</td>
-						 </tr>
-						 <tr>
-						 	<td><b>블로그</b></td>
-						 	<td>${member.blog}</td>
-						 </tr>
-						 <tr>
-						 	<td><b>참석률(실제참석횟수/전체모임횟수)</b></td>
-						 	<td>${member.totalAttendanceRate}%</td>
-						 </tr>
-						 <tr>
-						 	<td><b>신뢰도(실제참석횟수/전체참석신청횟수)</b></td>
-						 	<td>${member.totalTrustRate}%</td>
-						 </tr>
-						 <tr>
-						 	<td><b>이메일 수신 여부</b></td>
-						 	<td>${member.isAllowedEmail}</td>
-						 </tr>
-						 <tr>
-						 	<td><b>구글 토크 메시지 수신 여부</b></td>
-						 	<td>${member.isAllowedGoogleTalk}</td>
-						 </tr>
-					</table>
-				</div>
-			</div>
-			<div class="margin20"></div>
-			<div class="tap_myPage">			
-				<ul> 
-					<li class="taptype1_on"><a href="#">스터디정보</a></li>
-					<li class="taptype2"><a href="#">위키정보</a></li>
-					<li class="taptype3"><a href="#">용어정보</a></li>
-					<li class="taptype4"><a href="#">내가 쓴 글</a></li>			
-				</ul> 
-			</div>
-			<div class="margin20"></div>
-			<div id="studylist">
-				<div class="title"><h3>스터디 정보</h3></div>
-				<div class="margin20"></div>
-				<div id="studyinfo">
-					<c:choose>
-					 	<c:when test="${empty member.studies}">
-					    	 참석한 스터디가 없습니다.
-					 	</c:when>
-					 	<c:otherwise>
-							<c:forEach var="study" items="${member.studies}">
-								<c:set var="studyObject" value="${study}"/>
-								<h3><a href="#">${study.studyName}</a></h3>
-								<div>
-									<div class="list">
-									<span class="study_go" onclick="goStudy(${study.id})">스터디 보러가기</span>	
-									<ul> 
-										<li><span>담당자명</span><strong>${study.manager.name}</strong> <span>시작일</span><strong><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></strong></li> 
-										<li><span>진행현황</span><strong>${study.status.descr}</strong> <span>참석률</span><strong>${member.studyAttendanceRates[studyObject]}%</strong></li> 
-										<li><span>신뢰도</span><strong>${member.studyTrustRates[studyObject]}%</strong></li> 
-									</ul>
-								</div>
-								</div>
-							</c:forEach>
-					 	</c:otherwise>
-				 	</c:choose>
-				</div>
-			</div>
-		</div>
+                    </section><!--/.nav-collapse -->
+                </section>
+            </section>
+        </nav>
+        
+    	<section class="container">
+			<section id="profile">
+				<header class="row">
+					<h2 class="span2">개인 정보</h2>
+					<section class="span2 offset8">
+						<a href="<c:url value="/member/update/${member.id}"/>" class="btn btn-info">정보수정 </a>
+						<a href="<c:url value="/member/out/${member.id}"/>" class="btn btn-warning">탈퇴</a>
+					</section>
+				</header>
+				<article>
+					<ul class="thumbnails pull-left">
+						<li class="span2">
+							<a class="thumbnail" href="http://ko.gravatar.com/" target="gravatar">
+								<img alt="your avatar" src="${member.avatar}&s=120"/>
+							</a>
+						</li>
+					</ul>
+					<section>
+						<dl class="row">
+							<dt class="span2"><i class="icon-envelope"></i> 이메일</dt>
+							<dd class="span8">${member.email}</dd>
+							<dt class="span2"><i class="icon-user"></i> 이름</dt>
+							<dd class="span8">${member.name}</dd>
+							<dt class="span2"><i class="icon-calendar"></i> 가입일</dt>
+							<dd class="span8">${member.joined}</dd>
+							<dt class="span2"><i class="icon-pencil"></i> 블로그</dt>
+							<dd class="span8">${member.blog == null ? '등록해 주세요!' : member.blog}</dd>
+							<dt class="span2"><a rel="popover" href="#" data-content="실제참석횟수 / 전체모임횟수" data-title="참석률?"><i class="icon-flag"></i> 참석률</a></dt>
+							<dd class="span8">${member.totalAttendanceRate == null ? '0' : member.totalAttendanceRate}%</dd>
+							<dt class="span2"><a rel="popover" href="#" data-content="실제참석횟수 / 전체참석신청횟수" data-title="신뢰도?"><i class="icon-ok"></i> 신뢰도</a></dt>
+							<dd class="span8">${member.totalTrustRate == null ? '0' : member.totalTrustRate}%</dd>
+							<dt class="span2"><i class="icon-inbox"></i> 이메일 수신</dt>
+							<dd class="span8">${member.isAllowedEmail == true ? "수신" : "거부"}</dd>
+							<dt class="span2"><i class="icon-comment"></i> 구글톡 수신</dt>
+							<dd class="span8">${member.isAllowedGoogleTalk == true ? '수신' : '거부'}</dd>
+						</dl>
+					</section>
+				</article>
+			</section>
+			
+			<nav class="tabbable">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#1" data-toggle="tab">스터디정보</a></li>
+					<li><a href="#2" data-toggle="tab">위키정보</a></li>
+					<li><a href="#3" data-toggle="tab">용어정보</a></li>
+					<li><a href="#4" data-toggle="tab">내가 쓴 글</a></li>			
+				</ul>
+				
+				<section class="tab-content">
+					<section class="tab-pane active" id="1">
+						<header>
+							<h2>스터디 정보</h2>
+						</header>
+						<article>
+							<c:choose>
+							 	<c:when test="${empty member.studies}">
+							    	 참석한 스터디가 없습니다.
+							 	</c:when>
+							 	<c:otherwise>
+									<c:forEach var="study" items="${member.studies}">
+										<c:set var="studyObject" value="${study}"/>
+										<h3><a href="#">${study.studyName}</a></h3>
+										<section>
+											<article class="list">
+												<span class="study_go" onclick="goStudy(${study.id})">스터디 보러가기</span>	
+												<ul> 
+													<li><span>담당자명</span><strong>${study.manager.name}</strong> <span>시작일</span><strong><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></strong></li> 
+													<li><span>진행현황</span><strong>${study.status.descr}</strong> <span>참석률</span><strong>${member.studyAttendanceRates[studyObject]}%</strong></li> 
+													<li><span>신뢰도</span><strong>${member.studyTrustRates[studyObject]}%</strong></li> 
+												</ul>
+											</article>
+										</section>
+									</c:forEach>
+							 	</c:otherwise>
+						 	</c:choose>
+						</article>
+					</section>
+					<section class="tab-pane" id="2">
+						<p>준비 중입니다.</p>
+					</section>
+					<section class="tab-pane" id="3">
+						<p>준비 중입니다.</p>
+					</section>
+					<section class="tab-pane" id="4">
+						<p>준비 중입니다.</p>
+					</section>
+				</section>
+			</nav>
+		</section>
+		<footer>
+			<p class="copyright">&copy; SpringSprout rocks! 2012</p>
+		</footer>
 		<script src="/static/jquery/jquery.min.js"></script>
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
                 $("a[rel=popover]")
-                    .popover()
-                    .click(function(e) {
+                    .popover({
+                    	placement: 'top'
+                    }).click(function(e) {
                         e.preventDefault()
                     });
             });
