@@ -41,8 +41,8 @@
 	<!--  DataAccess                                                   -->
 	<!-- ============================================================= -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		p:driverClass="${db.driver}" p:jdbcUrl="${db.url}" p:user="${db.username}"
-		p:password="${db.password}" />
+		p:driverClass="org.postgresql.Driver" p:jdbcUrl="jdbc:postgresql://localhost/springsprout" p:user="springsprout"
+		p:password="springsprout" />
 
 	<!-- ============================================================= -->
 	<!--  Transaction                                                  -->

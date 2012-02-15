@@ -29,3 +29,5 @@ Thumbs.db
 deploy.sh
 deploy-without-test.sh
 src/system.properties
+
+src/rebel.xml
