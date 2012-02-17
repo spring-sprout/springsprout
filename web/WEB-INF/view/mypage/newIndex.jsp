@@ -114,28 +114,32 @@
 						<header>
 							<h2>스터디 정보</h2>
 						</header>
-						<article>
+						<article id="studyinfo" class="accordion">
 							<c:choose>
-							 	<c:when test="${empty member.studies}">
-							    	 참석한 스터디가 없습니다.
+								<c:when test="${empty member.studies}">
+							    	 <p>참석한 스터디가 없습니다.</p>
 							 	</c:when>
 							 	<c:otherwise>
-									<c:forEach var="study" items="${member.studies}">
-										<c:set var="studyObject" value="${study}"/>
-										<h3><a href="#">${study.studyName}</a></h3>
-										<section>
-											<article class="list">
-												<span class="study_go" onclick="goStudy(${study.id})">스터디 보러가기</span>	
-												<ul> 
-													<li><span>담당자명</span><strong>${study.manager.name}</strong> <span>시작일</span><strong><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></strong></li> 
-													<li><span>진행현황</span><strong>${study.status.descr}</strong> <span>참석률</span><strong>${member.studyAttendanceRates[studyObject]}%</strong></li> 
-													<li><span>신뢰도</span><strong>${member.studyTrustRates[studyObject]}%</strong></li> 
-												</ul>
+							 		<c:forEach var="study" items="${member.studies}">
+							 			<c:set var="studyObject" value="${study}"/>
+										<section class="accordion-group">
+											<header class="accordion-heading">
+												<a href="#study${study.id}" data-parent="#studyinfo" data-target="#study${study.id}" data-toggle="collapse" class="accordion-toggle">나들이 갑시다</a>
+											</header>
+											<article id="#study${study.id}" class="accordion-body collapse in">
+												<section class="accordion-inner">
+													<span onclick="goStudy(${study.id})">스터디 보러가기</span>	
+													<ul> 
+														<li><span>담당자명</span><strong>${study.manager.name}</strong> <span>시작일</span><strong><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></strong></li> 
+														<li><span>진행현황</span><strong>${study.status.descr}</strong> <span>참석률</span><strong>${member.studyAttendanceRates[studyObject]}%</strong></li> 
+														<li><span>신뢰도</span><strong>${member.studyTrustRates[studyObject]}%</strong></li> 
+													</ul>
+												</section>
 											</article>
 										</section>
 									</c:forEach>
-							 	</c:otherwise>
-						 	</c:choose>
+								</c:otherwise>
+							</c:choose>
 						</article>
 					</section>
 					<section class="tab-pane" id="2">
@@ -150,7 +154,7 @@
 				</section>
 			</nav>
 		</section>
-		<footer>
+		<footer class="footer-outer">
 			<p class="copyright">&copy; SpringSprout rocks! 2012</p>
 		</footer>
 		<script src="/static/jquery/jquery.min.js"></script>
