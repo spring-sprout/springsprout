@@ -47,6 +47,9 @@ span.kd{
 span.string{
   color:#0088CC;
 }
+.link-title{
+  color: #0088CC;
+}
 hr.soften{
   background-color: #FFF;
   background-image: -webkit-linear-gradient(left center , transparent, rgba(0, 0, 0, 0.1), transparent);
@@ -64,18 +67,56 @@ hr.soften{
   padding-bottom: 10px;
 }
 .content-sec{
-  width:600px;
+  width:620px;
   float:left;
 }
-.content-sec .studies > li.first-child{
-  width:370px;
+.content-sec .studies{
+  list-style: none outside none;
+  margin-left: 0;
 }
 .content-sec .studies > .study{
-  width:170px;
+  width:610px;
+  padding:10px 5px;
+  margin:5px 0;
+  overflow:hidden;
+  border-bottom: 1px solid #EEEEEE;
+}
+.content-sec .studies > .study > .thumb{
+  width:100px;
+  float:left;
+}
+.content-sec .studies > .study > .thumb img{
+  width:100px;
+  height:100px;
+}
+.content-sec .studies > .study > .infos{
+  float:left;
+  margin:0 15px;
+  width: 290px;
+}
+.content-sec .studies > .study > .meeting{
+  margin-left:420px;
+}
+.attenders{
+  margin:0;
+  overflow:hidden;
+}
+.attender{
+  float:left;
+  margin-right:3px;
+}
+.attender img{
+  border: 1px solid #CCCCCC;
+  height: 24px;
+  width: 24px;
+}
+.desc{
+  color:#444;
+  margin:5px 0;
 }
 .side-sec{
-  margin-left:620px;
-  width:320px;
+  margin-left:640px;
+  width:300px;
 }
 .notice-box{
   overflow: hidden;
