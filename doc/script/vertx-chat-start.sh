@@ -1,0 +1,1 @@
+vertx run -main springsprout.modules.realtime.ChatService -cp classes
