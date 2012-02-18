@@ -133,7 +133,7 @@
        var sock;
 
        function init() {
-           sock = new SockJS('http://springsprout:8888/chat');
+           sock = new SockJS('http://www.springsprout.org:8888/chat');
            sock.onopen = function() {
                console.log('open');
            };
