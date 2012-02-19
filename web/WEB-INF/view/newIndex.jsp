@@ -81,7 +81,7 @@
                 </header>
                 <section class="content-sec">
                     <header class="sec-header">
-                        <h2>스터디 <small>학습하고...</small></h2>
+                        <h2>스터디&nbsp;<small>학습하고 개발하고...</small></h2>
                     </header>
                     <ul class="studies">
                         <li class="study">
@@ -91,9 +91,9 @@
                                 </a>
                             </div>
                             <div class="infos">
-                                <a href="http://www.springsprout.org/study/5485">
-                                    <h3 class="link-title">나는 프로그래머다나는 프로그래머다</h3>
-                                </a>
+                                <h3>
+                                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
+                                </h3>
                                 <p class="desc">
                                     흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
                                     개발을 할 줄 몰라도 상관없습니다.
@@ -101,10 +101,9 @@
                                 </p>
                             </div>
                             <div class="meeting">
-                                <p>07월 09일 PM 2:00 @ <a href="">탐앤탐스 강남본점</a></p>
-                                <a href="http://www.springsprout.org/study/5485/meeting/5765">
-                                    <h4 class="link-title">볼링 퀴즈</h4>
-                                </a>
+                                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
+                                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
+                                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
                                 <p class="desc">
                                     스터디 재등록 가능 여부와
                                     참여 의사를 파악하기 위해 등록된 모임입니다.
@@ -126,7 +125,7 @@
                                         <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
                                     </li>
                                 </ul>
-                                <span>15명 참석자</span>
+                                <span class="attender-count">15명 참석자</span>
                             </div>
                         </li>
                         <li class="study">
@@ -136,9 +135,9 @@
                                 </a>
                             </div>
                             <div class="infos">
-                                <a href="http://www.springsprout.org/study/5485">
-                                    <h3 class="link-title">나는 프로그래머다나는 프로그래머다</h3>
-                                </a>
+                                <h3>
+                                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
+                                </h3>
                                 <p class="desc">
                                     흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
                                     개발을 할 줄 몰라도 상관없습니다.
@@ -146,10 +145,9 @@
                                 </p>
                             </div>
                             <div class="meeting">
-                                <p>07월 09일 PM 2:00 @ <a href="">탐앤탐스 강남본점</a></p>
-                                <a href="http://www.springsprout.org/study/5485/meeting/5765">
-                                    <h4 class="link-title">볼링 퀴즈</h4>
-                                </a>
+                                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
+                                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
+                                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
                                 <p class="desc">
                                     스터디 재등록 가능 여부와
                                     참여 의사를 파악하기 위해 등록된 모임입니다.
@@ -171,7 +169,7 @@
                                         <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
                                     </li>
                                 </ul>
-                                <span>15명 참석자</span>
+                                <span class="attender-count">15명 참석자</span>
                             </div>
                         </li>
                         <li class="study">
@@ -181,9 +179,9 @@
                                 </a>
                             </div>
                             <div class="infos">
-                                <a href="http://www.springsprout.org/study/5485">
-                                    <h3 class="link-title">나는 프로그래머다나는 프로그래머다</h3>
-                                </a>
+                                <h3>
+                                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
+                                </h3>
                                 <p class="desc">
                                     흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
                                     개발을 할 줄 몰라도 상관없습니다.
@@ -191,10 +189,9 @@
                                 </p>
                             </div>
                             <div class="meeting">
-                                <p>07월 09일 PM 2:00 @ <a href="">탐앤탐스 강남본점</a></p>
-                                <a href="http://www.springsprout.org/study/5485/meeting/5765">
-                                    <h4 class="link-title">볼링 퀴즈</h4>
-                                </a>
+                                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
+                                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
+                                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
                                 <p class="desc">
                                     스터디 재등록 가능 여부와
                                     참여 의사를 파악하기 위해 등록된 모임입니다.
@@ -216,16 +213,170 @@
                                         <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
                                     </li>
                                 </ul>
-                                <span>15명 참석자</span>
+                                <span class="attender-count">15명 참석자</span>
                             </div>
+                        </li>
+                    </ul>
+                    <p class="more-link"><a href="/study">스터디 더보기 &raquo;</a></p>
+                    <header class="sec-header">
+                        <h2>책&nbsp;<small>읽고 공부하고...</small></h2>
+                    </header>
+                    <ul class="books thumbnails">
+                        <li class="book">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4744444&amp;idx=10351&amp;ADON_TYPE=B&amp;regs=b">
+                                <img src="http://image.yes24.com/momo/TopCate108/MidCate01/10704373.jpg">
+                                <p class="title">
+                                    스프링3 레시피
+                                </p>
+                            </a>
+                        </li>
+                        <li class="book">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=4020006&idx=7386&ADON_TYPE=B&regs=b">
+                                <img src="http://image.yes24.com/momo/TopCate87/MidCate10/8691328.jpg">
+                                <p class="title">
+                                        토비의 스프링 3
+                                </p>
+                            </a>
+                        </li>
+                        <li class="book">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=4425736&idx=8502&ADON_TYPE=B&regs=b">
+                                <img src="http://image.yes24.com/momo/TopCate97/MidCate09/9686817.jpg">
+                                <p class="title">
+                                        스프링 시큐리티 3
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </section>
                 <section class="side-sec">
+                    <header class="sec-header">
+                        <h2>낙서장&nbsp;<small>나누고 즐깁니다...</small></h2>
+                    </header>
                     <article>
-                        <div>
-                            <img src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=50" />
+                        <div class="graffiti-writer">
+                            <div class="writer-thumb-wrap">
+                                <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                            </div>
+                            <div class="writer-text holder">
+                                <input type="text" class="span3" placeholder="나누고 즐겨보아요!!">
+                            </div>
+                            <div class="writer-text wrap hide">
+                                <textarea rows="3" id="textarea" class="input-xlarge"></textarea>
+                                <a href="/main/graffitiWrite" class="btn btn-primary">수다</a>
+                            </div>
                         </div>
+                        <ul class="stream-items">
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </article>
                     <article class="notice-box">
                         <div class="notice-header">
@@ -265,7 +416,6 @@
                         <div class="span3">
                             <h4>Developers</h4>
                             <ul class="unstyled">
-                                <li><a target="_blank" href="https://github.com/helols">김성윤</a></li>
                                 <li><a target="_blank" href="https://github.com/miracle0k">김정우</a></li>
                                 <li><a target="_blank" href="https://github.com/KimJejun">김제준</a></li>
                                 <li><a target="_blank" href="https://github.com/arawn">박용권</a></li>
@@ -273,6 +423,7 @@
                                 <li><a target="_blank" href="https://github.com/keesun">백기선</a></li>
                                 <li><a target="_blank" href="https://github.com/seosh81">서승호</a></li>
                                 <li><a target="_blank" href="https://github.com/miracle0k">석종일</a></li>
+                                <li><a target="_blank" href="https://github.com/isyoon">김성윤</a></li>
                             </ul>
                         </div>
                         <div class="span3">
