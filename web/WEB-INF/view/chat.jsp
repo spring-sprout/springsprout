@@ -12,7 +12,7 @@
     <title>봄싹 @2012</title>
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/ss.css" rel="stylesheet">
-    <script src="http://cdn.sockjs.org/sockjs-0.1.min.js"></script>
+    <script src="/static/sockjs/sockjs-0.1.min.js"></script>
     <script src="/static/jquery/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -39,7 +39,7 @@
                 <sec:authorize ifAnyGranted="ROLE_MEMBER">
                     <ul class="nav pull-right">
                         <li id="fat-menu" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="userEmail">
                                 <sec:authentication property="principal.username"/><b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -52,26 +52,31 @@
                             </ul>
                         </li>
                     </ul>
-                    <%--<p class="navbar-text pull-right">Logged in as <a href="/mypage/index">${currentUser.name}</a></p>--%>
                 </sec:authorize>
                 <sec:authorize ifNotGranted="ROLE_MEMBER">
                     <p class="navbar-text pull-right"><a href="/door">Login</a></p>
                 </sec:authorize>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </div>
 </div>
 <div class="page-wrap">
     <div class="container">
         <div class="row">
-            <div class="panel span5">
+            <div class="panel span6">
                 <form id="messageForm" class="form-inline">
-                    <input id="message" type="text" name="message" value="Hello, 봄싹!"/>
-                    <button id="sendBtn" type="submit" class="btn-success">> send</button>
-                    <button id="clearBtn" class="btn-danger">> clear</button>
+                    <fieldset>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input id="message" class="input-xlarge" type="text" name="message" value="Hello, 봄싹!" ${chatUrl}/>
+                            </div>
+                        </div>
+                        <button id="sendBtn" type="submit" class="btn-success">> send</button>
+                        <button id="clearBtn" class="btn-danger">> clear</button>
+                    </fieldset>
                 </form>
             </div>
-            <div class="chatBody span7">
+            <div class="chatBody span6">
                 <div id="messages"></div>
             </div>
         </div>
@@ -128,7 +133,7 @@
        var sock;
 
        function init() {
-           sock = new SockJS('http://localhost:8888/chat');
+           sock = new SockJS('http://www.springsprout.org:8888/chat');
            sock.onopen = function() {
                console.log('open');
            };
@@ -149,10 +154,13 @@
        });
 
        $("#messageForm").submit(function(e){
-           var msg = $("#message");
-           sock.send(msg.val());
-           msg.val("");
-           msg.focus();
+           var msgDiv = $("#message");
+           var msg = msgDiv.val();
+           if(msg != null && msg.trim().length > 1) {
+               sock.send(msg);
+               msgDiv.val("");
+               msgDiv.focus();
+           }
            e.preventDefault();
        });
 
@@ -160,6 +168,8 @@
            $("#messages").empty();
            e.preventDefault();
        });
+
+
    });
 </script>
 </body>
