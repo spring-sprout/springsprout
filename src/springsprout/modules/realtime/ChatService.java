@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class ChatService implements VertxApp {
 
-	private final static String CHAT_OUT_URL = "http://localhost:8080/chat/out?sock=";
+	private final static String CHAT_OUT_URL = "http://springsprout.org/chat/out?sock=";
 
 	HttpServer server;
 	RestTemplate restTemplate;

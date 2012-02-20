@@ -143,7 +143,7 @@
        var sock;
 
        function init() {
-           sock = new SockJS('http://localhost:8888/chat');
+           sock = new SockJS('http://springsprout.org:8888/chat');
 
            sock.onopen = function() {
                console.log('open');
