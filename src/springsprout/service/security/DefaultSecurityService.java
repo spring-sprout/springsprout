@@ -70,10 +70,12 @@ public class DefaultSecurityService implements SecurityService {
 	}
 	
 	@SuppressWarnings("serial")
-	class NullMember extends Member {
+	static public class NullMember extends Member {
 		public NullMember() {
 			setId(-1);
 			setName("anonymous");
+			setAvatar("http://www.gravatar.com/avatar/who?r=X");
+			setEmail("anony@mous.mail");
 		}
 		
 		public boolean isAnonymous() {
