@@ -50,7 +50,7 @@ public class ChatService implements VertxApp {
 						// close session
 						if (data.toString().startsWith("CLOSE")) {
 							conns.remove(sock);
-							String result = restTemplate.getForObject(CHAT_OUT_URL + sock, null, String.class);
+							String result = restTemplate.getForObject(CHAT_OUT_URL + sock, String.class);
 							System.out.println(result);
 							return;
 						}
