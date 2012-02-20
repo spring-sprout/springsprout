@@ -33,7 +33,7 @@ public class ChatController {
 		return "chat";
 	}
 	
-	@RequestMapping(value = "/chat/in", method = RequestMethod.POST)
+	@RequestMapping(value = "/chat/in", method = RequestMethod.GET)
 	public @ResponseBody String newChatter(ChatSession chatSession) {
 		if(chatSession.getEmail().equals("anony@mous.mail")) {
 			chatSession.setMember(new DefaultSecurityService.NullMember());
@@ -44,7 +44,7 @@ public class ChatController {
 		return chatSession + " inserted!";
 	}
 
-	@RequestMapping(value = "/chat/out", method = RequestMethod.POST)
+	@RequestMapping(value = "/chat/out", method = RequestMethod.GET)
 	public @ResponseBody String deleteChatter(ChatSession chatSession) {
 		chatSessionRepository.remove(chatSession);
 		return chatSession + " deleted!";

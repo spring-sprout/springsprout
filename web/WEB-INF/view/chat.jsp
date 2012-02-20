@@ -154,7 +154,7 @@
 
                if(e.data.lastIndexOf("sockId:", 0) === 0) {
                    sockId = e.data.substring(7);
-                   $.post("/chat/in", {'sock': sockId, 'email': '${user.email}'}, function(data){
+                   $.get("/chat/in", {'sock': sockId, 'email': '${user.email}'}, function(data){
                        console.log(data);
                    });
 
