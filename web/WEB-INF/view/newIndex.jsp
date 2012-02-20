@@ -231,7 +231,7 @@
                             </a>
                         </li>
                         <li class="book">
-                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=4020006&idx=7386&ADON_TYPE=B&regs=b">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4020006&amp;idx=7386&amp;ADON_TYPE=B&amp;regs=b">
                                 <img src="http://image.yes24.com/momo/TopCate87/MidCate10/8691328.jpg">
                                 <p class="title">
                                         토비의 스프링 3
@@ -239,10 +239,26 @@
                             </a>
                         </li>
                         <li class="book">
-                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&goodsno=4425736&idx=8502&ADON_TYPE=B&regs=b">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4425736&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
                                 <img src="http://image.yes24.com/momo/TopCate97/MidCate09/9686817.jpg">
                                 <p class="title">
                                         스프링 시큐리티 3
+                                </p>
+                            </a>
+                        </li>
+                        <li class="book">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=3908398&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
+                                <img src="http://image.yes24.com/momo/TopCate85/MidCate04/8436972.jpg">
+                                <p class="title">
+                                    테스트 주도 개발
+                                </p>
+                            </a>
+                        </li>
+                        <li class="book">
+                            <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=6271069&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
+                                <img src="http://image.yes24.com/momo/TopCate168/MidCate04/16738746.jpg">
+                                <p class="title">
+                                    Node.js 프로그래밍
                                 </p>
                             </a>
                         </li>
@@ -376,18 +392,40 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="stream-item">
+                                <div class="writer-thumb-wrap">
+                                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                                </div>
+                                <div class="writer-text">
+                                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
+                                    <div class="item-content">
+                                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                    </article>
-                    <article class="notice-box">
-                        <div class="notice-header">
-                            <h4 class="sec-title">공지사항</h4>
-                        </div>
-                        <div class="notice-body">
-                            <ul class="notices">
-                                <li><a href="#">text</a></li>
-                                <li class="hide">text2</li>
-                            </ul>
-                        </div>
                     </article>
                 </section>
             </div>
