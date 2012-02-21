@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
@@ -67,14 +68,22 @@
                 <form id="messageForm" class="form-inline">
                     <fieldset>
                         <div class="control-group">
-                            <div class="controls">
-                                <input id="message" class="input-xlarge" type="text" name="message" value="Hello, 봄싹!" ${chatUrl}/>
+                            <div class="controls row">
+                                <div class="span0.5">
+                                    <img src="${user.avatar}&amp;s=30"/>
+                                </div>
+                                <div class="span5">
+                                    <input id="message" class="input-xlarge" type="text" name="message" value="Hello, 봄싹!" />
+                                </div>
                             </div>
                         </div>
                         <button id="sendBtn" type="submit" class="btn-success">> send</button>
                         <button id="clearBtn" class="btn-danger">> clear</button>
                     </fieldset>
                 </form>
+                <ul class="attenders" id="chatSessions">
+                    <%--// filled by JavaScript--%>
+                </ul>
             </div>
             <div class="chatBody span6">
                 <div id="messages"></div>
@@ -129,18 +138,39 @@
     </div>
 </div>
 <script type="text/javascript">
+   var sockId;
    $(document).ready(function(){
        var sock;
 
        function init() {
-           sock = new SockJS('http://www.springsprout.org:8888/chat');
+           sock = new SockJS('http://springsprout.org:8888/chat');
+
            sock.onopen = function() {
                console.log('open');
            };
+
            sock.onmessage = function(e) {
                console.log('message', e.data);
+
+               if(e.data.lastIndexOf("sockId:", 0) === 0) {
+                   sockId = e.data.substring(7);
+                   $.get("/chat/in", {'sock': sockId, 'email': '${user.email}'}, function(data){
+                       console.log(data);
+                   });
+
+                   //update other chatter's chatSession
+                   sock.send("UPDATE SESSIONS");
+                   return;
+               }
+
+               if(e.data.lastIndexOf("UPDATE SESSIONS", 0) === 0) {
+                   fillChatSessions();
+                   return;
+               }
+
                $("#messages").append("<p>" + e.data + "</p>")
            };
+
            sock.onclose = function() {
                console.log('close');
            };
@@ -157,7 +187,9 @@
            var msgDiv = $("#message");
            var msg = msgDiv.val();
            if(msg != null && msg.trim().length > 1) {
-               sock.send(msg);
+               var time = new Date();
+               var chatMsg = "{name: ${user.name}, avatar: ${user.avatar}, email: ${user.email}, time: " + time + ", msg: " + msg + "}";
+               sock.send(chatMsg);
                msgDiv.val("");
                msgDiv.focus();
            }
@@ -169,6 +201,24 @@
            e.preventDefault();
        });
 
+       // fill the chatSessions
+       function fillChatSessions() {
+           $.get("/chat/sessions", function(data){
+               var chatSessionsDiv = $("#chatSessions");
+               chatSessionsDiv.empty();
+               $.each(data, function(i, item){
+                   var chatSessionLi = "<li class='attender'><img src='" + item.member.avatar + "'/> </li>"
+                   console.log(chatSessionLi);
+                   chatSessionsDiv.append(chatSessionLi);
+               });
+
+               console.log(data.length);
+               var chatSessionCntDiv = "<span>참석자 " + data.length + "명</span>";
+               chatSessionsDiv.append(chatSessionCntDiv);
+           });
+       };
+
+       fillChatSessions();
 
    });
 </script>
