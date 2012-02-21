@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
+import springsprout.modules.realtime.chat.ChatController;
 import springsprout.service.security.SecurityService;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -23,7 +24,8 @@ import static org.junit.Assert.assertThat;
 public class ChatControllerTest {
 
 	@Value("${vertx.chat}") String url;
-	@Autowired ChatController chatController;
+	@Autowired
+	ChatController chatController;
 
 	@Test
 	public void di(){

@@ -1,6 +1,5 @@
-package springsprout.modules.realtime;
+package springsprout.modules.realtime.chat;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

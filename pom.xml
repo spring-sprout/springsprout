@@ -19,81 +19,12 @@
     </properties>
 
     <dependencies>
-        <!-- Vert.x -->
-        <dependency>
-            <groupId>hazelcast-all</groupId>
-            <artifactId>hazelcast-all</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/hazelcast-all-1.9.4.4.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>high-scale-lib</groupId>
-            <artifactId>high-scale-lib</artifactId>
-            <scope>system</scope>
-            <version>1.0</version>
-            <systemPath>${project.basedir}/lib/high-scale-lib.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>js</groupId>
-            <artifactId>js</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/js.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>netty</groupId>
-            <artifactId>netty</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/netty.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>vert.x</groupId>
-            <artifactId>vert.x</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/vert.x.jar</systemPath>
-        </dependency>
-
         <!-- Spring Mobile -->
         <dependency>
             <groupId>org.springframework.mobile</groupId>
             <artifactId>spring-mobile-device</artifactId>
             <version>1.0.0.M3</version>
         </dependency>
-
-        <!--<dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>gdata.core</artifactId>
-            <version>1.41.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>gdata.client.meta</artifactId>
-            <version>1.41.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>gdata.client</artifactId>
-            <version>1.41.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>gdata.calendar.meta</artifactId>
-            <version>1.41.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>gdata.calendar</artifactId>
-            <version>1.41.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>google.collect</artifactId>
-            <version>1.0</version>
-            <classifier>rc1</classifier>
-        </dependency>-->
 
         <dependency>
             <groupId>javax.inject</groupId>

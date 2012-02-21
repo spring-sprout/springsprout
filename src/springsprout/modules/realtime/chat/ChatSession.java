@@ -1,4 +1,4 @@
-package springsprout.modules.realtime;
+package springsprout.modules.realtime.chat;
 
 import springsprout.domain.Member;
 
