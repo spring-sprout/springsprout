@@ -1,5 +1,6 @@
-package springsprout.modules.realtime;
+package springsprout.modules.realtime.chat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ import static org.junit.Assert.assertThat;
 public class ChatControllerTest {
 
 	@Value("${vertx.chat}") String url;
-	@Autowired
-	ChatController chatController;
+	@Autowired ChatController chatController;
 
 	@Test
+	@Ignore
 	public void di(){
 		String url = "http://localhost:8888/chat";
 		assertThat(this.url, is(url));
