@@ -14,13 +14,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by IntelliJ IDEA.
- * User: whiteship
- * Date: 2010. 4. 21
- * Time: 오후 11:35:27
+ * @since 2010.04.21
+ * @author whiteship
+ * @author arawn
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/testContext.xml")
+@ContextConfiguration({"/*-context.xml"})
 @Transactional
 public class DefaultRoleSetupServiceTest {
 
@@ -31,6 +30,7 @@ public class DefaultRoleSetupServiceTest {
     @Test
     public void testAddDefaultRoles() throws Exception {
         service.addDefaultRoles();
+        
         assertThat(roleRepository.getMemberRole(), is(notNullValue()));
         assertThat(roleRepository.getAdminRole(), is(notNullValue()));
     }
@@ -38,7 +38,9 @@ public class DefaultRoleSetupServiceTest {
     @Test
     public void testAddDefaultUsers() throws Exception {
         service.addDefaultUsers();
+        
         assertThat(memberRepository.findByEmail(DefaultRoleSetupService.DEFAULT_ADMIN_EMAIL), is(notNullValue()));
         assertThat(memberRepository.findByEmail(DefaultRoleSetupService.DEFAULT_MEMBER_EMAIL), is(notNullValue()));
     }
+    
 }

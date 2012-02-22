@@ -2,7 +2,6 @@ package springsprout.service.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +15,12 @@ import springsprout.modules.member.MemberRepository;
 import springsprout.modules.role.RoleRepository;
 
 /**
- * Created by IntelliJ IDEA.
- * User: whiteship
- * Date: 2010. 4. 21
- * Time: 오후 11:19:43
+ * 애플리케이션 기본 데이터 등록 처리 서비스
+ * 
+ * @since 2010.04.21
+ * @author whiteship
+ * @author arawn
  */
-@Service
 @Transactional
 public class DefaultRoleSetupService {
 

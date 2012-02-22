@@ -5,13 +5,12 @@ import java.util.Map;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import springsprout.service.notification.message.SpringSproutMail;
 
-@Service
 public class SampleVelocityMail extends SpringSproutMail {
+	
 	@Autowired VelocityEngine velocityEngine;
 	
 	@Override

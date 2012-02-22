@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- ============================================================= -->
+	<!--  Properties                                                   -->
+	<!-- ============================================================= -->
+	<bean name="appProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:/test-config.xml</value>             <!-- 기본 설정값 -->
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="localOverride" value="true"/>
+    </bean>
+    
+        
+	<!-- ============================================================= -->
+	<!--  Component Scan And Service                                   -->
+	<!-- ============================================================= -->
+	<context:component-scan base-package="springsprout" />
+	<bean class="springsprout.service.init.DefaultRoleSetupService" />
+	    
+	
+	<!-- ============================================================= -->
+	<!--  AOP                                                          -->
+	<!-- ============================================================= -->
+	<aop:aspectj-autoproxy />
+	
+	
+	<!-- ============================================================= -->
+	<!--  Security                                                     -->
+	<!-- ============================================================= -->
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <constructor-arg value="256" />
+    </bean>
+
+
+	<!-- ============================================================= -->
+	<!--  WebApplicationContext                                        -->
+	<!-- ============================================================= -->
+    <bean class="org.springframework.web.context.support.GenericWebApplicationContext" />
+    
+     <!-- 리소스 번들 -->
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	      <list>
+	          <value>springsprout.common.messages.messages_study</value>              
+	      </list>
+	    </property>
+	</bean>
+	
+	<!-- 리소스 번들 엑세서 -->
+    <bean id="messageSourceAccessor"
+    	class="org.springframework.context.support.MessageSourceAccessor">
+    	<constructor-arg ref="messageSource"/>
+    </bean>
+
+
+    <!-- ============================================================= -->
+    <!--  Spring 3.0 @Task @Async                                      -->
+    <!-- ============================================================= -->
+    <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+
+    <task:executor id="myExecutor" pool-size="10" />
+
+    <task:scheduler id="myScheduler" pool-size="10" />
+
+    <!-- ============================================================= -->
+    <!--  Exception Template Service                                   -->
+    <!-- ============================================================= -->
+    <bean id="exceptionTemplate" class="springsprout.common.exception.AsyncExceptionTemplate">
+        <property name="asyncTaskExecutor" ref="myExecutor"/>
+    </bean>
+
+</beans>

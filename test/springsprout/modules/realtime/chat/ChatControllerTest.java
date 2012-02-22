@@ -1,21 +1,20 @@
 package springsprout.modules.realtime.chat;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import springsprout.domain.Meeting;
 import springsprout.domain.Member;
 import springsprout.domain.Study;
-import springsprout.modules.realtime.chat.ChatController;
 import springsprout.service.security.SecurityService;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 /**
  * @author Keesun Baik
@@ -35,8 +34,7 @@ public class ChatControllerTest {
 		assertThat(chatController.chatUrl, is(url));
 	}
 
-	@Service
-	static class SecurityServiceDummy implements SecurityService {
+	public static class SecurityServiceDummy implements SecurityService {
 
 		@Override
 		public Member getCurrentMember() {
