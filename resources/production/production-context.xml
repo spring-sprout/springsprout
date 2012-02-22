@@ -14,13 +14,10 @@
             <list>
                 <value>classpath:/config.xml</value>                  <!-- 기본 설정값 -->
                 <value>classpath:/environment-config.xml</value>      <!-- 빌드 환경에 따른 설정값 -->
-                <value>classpath:/private-config.xml</value>          <!-- 개인화 설정값 -->
             </list>
         </property>
-        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreResourceNotFound" value="false"/>
         <property name="localOverride" value="true"/>
     </bean>
-    
-	<bean class="springsprout.service.init.DefaultRoleSetupService" init-method="setup" />
 
 </beans>
