@@ -10,7 +10,7 @@
 <bootstrap:container>
 <header class="slogan">
     <h1>
-        <span class="kd">var</span> springSprout1 =
+        <span class="kd">var</span> springSprout =
         <a href="#" rel="popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
         <a href="#" rel="popover" data-content="새싹이 돋아나겠죠."
