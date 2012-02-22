@@ -7,10 +7,10 @@
   		</encoder>    
     </appender>
    
-    <logger name="springsprout" level="INFO"/>
-    <logger name="org.springframework" level="WARN"/>
-    <logger name="org.springframework.security" level="WARN"/>
-    <logger name="org.hibernate" level="WARN"/>
+    <logger name="springsprout" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.security" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
     
     <root level="WARN">
         <appender-ref ref="STDOUT" />

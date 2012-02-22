@@ -1,7 +1,14 @@
 package springsprout.service.security;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.io.IOException;
+import java.lang.reflect.Method;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AbstractAuthenticationTargetUrlRequestHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -11,15 +18,9 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.lang.reflect.Method;
-
 public class AuthenticationSuccessSupportAJAXHandler extends AbstractAuthenticationTargetUrlRequestHandler implements AuthenticationSuccessHandler {
 
-	protected final Log logger = LogFactory.getLog(this.getClass());
+	protected final Logger logger = LoggerFactory.getLogger(AuthenticationSuccessSupportAJAXHandler.class);
 
     private RequestCache requestCache = new HttpSessionRequestCache();
     private String ajaxHeaderName;

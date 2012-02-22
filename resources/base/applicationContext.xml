@@ -17,9 +17,17 @@
 	<!-- ============================================================= -->
 	<!--  Properties                                                   -->
 	<!-- ============================================================= -->
-    <context:property-placeholder location="classpath*:*.properties" />
-    <util:properties id="envProps" location="classpath:environment.properties"/>
-
+	<bean id="appProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:/config.xml</value>                  <!-- 기본 설정값 -->
+                <value>classpath:/environment-config.xml</value>      <!-- 빌드 환경에 따른 설정값 -->
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="localOverride" value="true"/>
+    </bean>
+    
 	<!-- ============================================================= -->
 	<!--  AOP                                                          -->
 	<!-- ============================================================= -->                      
@@ -37,18 +45,12 @@
 	<!--  DataAccess                                                   -->
 	<!-- ============================================================= -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		p:driverClass="${db.driver}" p:jdbcUrl="${db.url}" p:user="${db.username}"
-		p:password="${db.password}" />
-
-	<!-- ============================================================= -->
-	<!--  Transaction                                                  -->
-	<!-- ============================================================= -->
-	<tx:annotation-driven />
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-		p:sessionFactory-ref="sessionFactory" />
-
+		p:driverClass="#{appProperties['db.driver']}" 
+		p:jdbcUrl="#{appProperties['db.url']}" 
+		p:user="#{appProperties['db.username']}" 
+		p:password="#{appProperties['db.password']}"
+		destroy-method="close" />
+		
 	<!-- ============================================================= -->
 	<!--  Hibernate                                                    -->
 	<!-- ============================================================= -->
@@ -58,17 +60,27 @@
 		<property name="packagesToScan" value="springsprout.domain" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show.sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.generate_statistics">true</prop>
-				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<prop key="hibernate.dialect">#{appProperties['hibernate.dialect']}</prop>
+				<prop key="hibernate.show_sql">#{appProperties['hibernate.show_sql']}</prop>
+				<prop key="hibernate.format_sql">#{appProperties['hibernate.format_sql']}</prop>
+				<prop key="hibernate.hbm2ddl.auto">#{appProperties['hibernate.hbm2ddl.auto']}</prop>
+				<prop key="hibernate.generate_statistics">#{appProperties['hibernate.generate_statistics']}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">#{appProperties['hibernate.cache.use_second_level_cache']}</prop>
+				<prop key="hibernate.cache.use_query_cache">#{appProperties['hibernate.cache.use_query_cache']}</prop>
+				<prop key="hibernate.cache.provider_class">#{appProperties['hibernate.cache.provider_class']}</prop>
 			</props>
 		</property>
-	</bean>
-	
+	</bean>		
+
+	<!-- ============================================================= -->
+	<!--  Transaction                                                  -->
+	<!-- ============================================================= -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+			
+	<tx:annotation-driven />
+
 	<!-- ============================================================= -->
 	<!--  Email                                                        -->
 	<!-- ============================================================= -->
@@ -78,8 +90,8 @@
 
 	<bean id="mainMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="mail.springsprout.org" />
-		<property name="username" value="${mail.username}" />
-		<property name="password" value="${mail.password}" />
+		<property name="username" value="#{appProperties['mail.username']}" />
+		<property name="password" value="#{appProperties['mail.password']}" />
 		<property name="protocol" value="smtp" />
 		<property name="port" value="25" />
 	</bean>
@@ -88,9 +100,9 @@
 	<!--  Messanger                                                    -->
 	<!-- ============================================================= -->
 	<bean id="jabberService" class="springsprout.service.notification.jabber.JabberService">
-		<constructor-arg name="username" value="${gmail.username}"/>
-		<constructor-arg name="password" value="${gmail.password}"/>
-		<constructor-arg name="runOnStart" value="${jabber.runOnStart}"/>
+		<constructor-arg name="username" value="#{appProperties['gmail.username']}"/>
+		<constructor-arg name="password" value="#{appProperties['gmail.password']}"/>
+		<constructor-arg name="runOnStart" value="#{appProperties['jabber.runOnStart']}"/>
 	</bean>
 	
 	<bean id="gTalkConfiguration" class="org.jivesoftware.smack.ConnectionConfiguration">
@@ -119,8 +131,8 @@
     </bean>
 
 	<bean id="mainTwitter" class="twitter4j.Twitter">
-		<constructor-arg name="screenName" value="${twitter.username}" />
-		<constructor-arg name="password" value="${twitter.password}" />
+		<constructor-arg name="screenName" value="#{appProperties['twitter.username']}" />
+        <constructor-arg name="password" value="#{appProperties['twitter.password']}" />
 	</bean>
 
     <bean id="devTermTwitterService" class="springsprout.service.notification.twitter.TwitterService">
@@ -128,8 +140,8 @@
     </bean>
 
     <bean id="devTermTwitter" class="twitter4j.Twitter">
-		<constructor-arg name="screenName" value="${devterm.twitter.username}" />
-		<constructor-arg name="password" value="${devterm.twitter.password}" />
+		<constructor-arg name="screenName" value="#{appProperties['devterm.twitter.username']}" />
+        <constructor-arg name="password" value="#{appProperties['devterm.twitter.password']}" />
 	</bean>
     
     <!-- ============================================================= -->

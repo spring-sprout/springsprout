@@ -1,20 +1,19 @@
 package springsprout.common.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ReflectionUtils {
 
 	private ReflectionUtils() {}
 	
-	protected static Log logger = LogFactory
-			.getLog(ReflectionUtils.class);
+	protected static Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);
 
 	public static Field getField(Class<?> clazz, String fieldName) {
 		return getField(clazz, fieldName, false);
