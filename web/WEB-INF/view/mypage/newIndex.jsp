@@ -14,6 +14,9 @@
         <link rel="shortcut icon" href="<c:url value="/images/favicon.ico"/>" type="image/x-icon"/>
         <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="/static/css/ss.css" rel="stylesheet">
+        <style type="text/css">
+        	img.gravatar {width: 120px; height:120px;}
+        </style>
     </head>
     <body>
     	<nav class="navbar navbar-fixed-top">
@@ -74,7 +77,7 @@
 					<ul class="thumbnails pull-left">
 						<li class="span2">
 							<a class="thumbnail" href="http://ko.gravatar.com/" target="gravatar">
-								<img alt="your avatar" src="${member.avatar}&s=120"/>
+								<img class="gravatar" alt="your avatar" src="${member.avatar}&s=120"/>
 							</a>
 						</li>
 					</ul>
@@ -126,7 +129,7 @@
 											<header class="accordion-heading">
 												<a href="#study${study.id}" data-parent="#studyinfo" data-target="#study${study.id}" data-toggle="collapse" class="accordion-toggle">나들이 갑시다</a>
 											</header>
-											<article id="#study${study.id}" class="accordion-body collapse in">
+											<article id="study${study.id}" class="accordion-body collapse in">
 												<section class="accordion-inner">
 													<span onclick="goStudy(${study.id})">스터디 보러가기</span>	
 													<ul> 
