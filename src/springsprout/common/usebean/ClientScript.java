@@ -31,6 +31,8 @@ public class ClientScript {
 	 */
 	public static final String POS_READY = "READY";
 	
+	private static final String FILE_PREFIX = "_FILE_";
+	
 	private String scriptTagFormat = "<script type=\"text/javascript\">\n" +
 								     "/*<![CDATA[*/\n"+
 								     "%s\n"+
@@ -40,8 +42,8 @@ public class ClientScript {
 									     "%s\n"+
 			                             "});";
 
+	private String scriptFileTagFormat = "<script src=\"%s\"></script>";
 	private Map<String,ArrayList<String>> scriptStore = new HashMap<String,ArrayList<String>>();
-
 
 	public void setHeadScript(String script){
 		setScript(POS_HEAD,script);
@@ -58,7 +60,15 @@ public class ClientScript {
 	public void setReadyScript(String script){
 		setScript(POS_READY,script);
 	}
+
+	public void setRegisterScriptFileAtHead(String src){
+		registerScriptFile(POS_HEAD,src);
+	}
 	
+	public void setRegisterScriptFileAtEnd(String src){
+		registerScriptFile(POS_END,src);
+	}
+
 	public String getHeadScript(){
 		return makeScriptTag(POS_HEAD);
 	}
@@ -73,6 +83,14 @@ public class ClientScript {
 	
 	public String getReadyScript(){
 		return makeScriptTag(POS_READY);
+	}
+	
+	public String getHeadScriptFile(){
+		return makeScriptFileTag(POS_HEAD);
+	}
+
+	public String getEndScriptFile(){
+		return makeScriptFileTag(POS_END);
 	}
 
 	private void setScript(String pos, String script){
@@ -100,5 +118,20 @@ public class ClientScript {
 							scriptBuilder.toString()));
 		}
 		return scriptTag;
+	}
+	
+	private String makeScriptFileTag(String pos){
+		ArrayList<String> scriptSrcs = scriptStore.get(FILE_PREFIX+pos);
+		StringBuilder scriptSrcBuilder = new StringBuilder("");
+		if(scriptSrcs != null){
+			for(String _scriptSrc : scriptSrcs){
+				scriptSrcBuilder.append(String.format(scriptFileTagFormat,_scriptSrc)+"\n");
+			}
+		}
+		return scriptSrcBuilder.toString();
+	}
+
+	private void registerScriptFile(String pos, String src){
+		setScript(FILE_PREFIX+pos,src);
 	}
 }
