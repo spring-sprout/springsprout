@@ -6,7 +6,6 @@
        xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean class="springsprout.service.init.DefaultRoleSetupService" 
-		  init-method="setup" />
+	<bean class="springsprout.service.init.DefaultRoleSetupService" init-method="setup" />
 
 </beans>
