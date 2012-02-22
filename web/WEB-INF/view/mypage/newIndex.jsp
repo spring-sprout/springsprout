@@ -16,6 +16,7 @@
         <link href="/static/css/ss.css" rel="stylesheet">
         <style type="text/css">
         	img.gravatar {width: 120px; height:120px;}
+        	a.go-study {margin-top: 8px; margin-right: 15px;}
         </style>
     </head>
     <body>
@@ -64,14 +65,14 @@
             </section>
         </nav>
         
-    	<section class="container">
+    	<div class="container">
 			<section id="profile">
 				<header class="row">
 					<h2 class="span2">개인 정보</h2>
-					<section class="span2 offset8">
+					<div class="span2 offset8">
 						<a href="<c:url value="/member/update/${member.id}"/>" class="btn btn-info">정보수정 </a>
 						<a href="<c:url value="/member/out/${member.id}"/>" class="btn btn-warning">탈퇴</a>
-					</section>
+					</div>
 				</header>
 				<article>
 					<ul class="thumbnails pull-left">
@@ -81,42 +82,39 @@
 							</a>
 						</li>
 					</ul>
-					<section>
+					<div>
 						<dl class="row">
 							<dt class="span2"><i class="icon-envelope"></i> 이메일</dt>
-							<dd class="span8">${member.email}</dd>
+								<dd class="span8">${member.email}</dd>
 							<dt class="span2"><i class="icon-user"></i> 이름</dt>
-							<dd class="span8">${member.name}</dd>
+								<dd class="span8">${member.name}</dd>
 							<dt class="span2"><i class="icon-calendar"></i> 가입일</dt>
-							<dd class="span8">${member.joined}</dd>
+								<dd class="span8">${member.joined}</dd>
 							<dt class="span2"><i class="icon-pencil"></i> 블로그</dt>
-							<dd class="span8">${member.blog == null ? '등록해 주세요!' : member.blog}</dd>
-							<dt class="span2"><a rel="popover" href="#" data-content="실제참석횟수 / 전체모임횟수" data-title="참석률?"><i class="icon-flag"></i> 참석률</a></dt>
-							<dd class="span8">${member.totalAttendanceRate == null ? '0' : member.totalAttendanceRate}%</dd>
-							<dt class="span2"><a rel="popover" href="#" data-content="실제참석횟수 / 전체참석신청횟수" data-title="신뢰도?"><i class="icon-ok"></i> 신뢰도</a></dt>
-							<dd class="span8">${member.totalTrustRate == null ? '0' : member.totalTrustRate}%</dd>
+								<dd class="span8">${member.blog == null ? '등록해 주세요!' : member.blog}</dd>
+							<dt class="span2"><a rel="tooltip" href="#" title="실제참석횟수 &divide; 전체모임횟수"><i class="icon-flag"></i> 참석률</a></dt>
+								<dd class="span8">${member.totalAttendanceRate == null ? '0' : member.totalAttendanceRate}%</dd>
+							<dt class="span2"><a rel="tooltip" href="#" title="실제참석횟수 &divide; 전체참석신청횟수"><i class="icon-ok"></i> 신뢰도</a></dt>
+								<dd class="span8">${member.totalTrustRate == null ? '0' : member.totalTrustRate}%</dd>
 							<dt class="span2"><i class="icon-inbox"></i> 이메일 수신</dt>
-							<dd class="span8">${member.isAllowedEmail == true ? "수신" : "거부"}</dd>
+								<dd class="span8">${member.isAllowedEmail == true ? "수신" : "거부"}</dd>
 							<dt class="span2"><i class="icon-comment"></i> 구글톡 수신</dt>
-							<dd class="span8">${member.isAllowedGoogleTalk == true ? '수신' : '거부'}</dd>
+								<dd class="span8">${member.isAllowedGoogleTalk == true ? '수신' : '거부'}</dd>
 						</dl>
-					</section>
+					</div>
 				</article>
 			</section>
 			
 			<nav class="tabbable">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#1" data-toggle="tab">스터디정보</a></li>
-					<li><a href="#2" data-toggle="tab">위키정보</a></li>
-					<li><a href="#3" data-toggle="tab">용어정보</a></li>
-					<li><a href="#4" data-toggle="tab">내가 쓴 글</a></li>			
+					<li class="active"><a href="#study_section" data-toggle="tab">스터디정보</a></li>
+					<li><a href="#wiki_section" data-toggle="tab">위키정보</a></li>
+					<li><a href="#term_section" data-toggle="tab">용어정보</a></li>
+					<li><a href="#written_section" data-toggle="tab">내가 쓴 글</a></li>			
 				</ul>
 				
-				<section class="tab-content">
-					<section class="tab-pane active" id="1">
-						<header>
-							<h2>스터디 정보</h2>
-						</header>
+				<div class="tab-content">
+					<section class="tab-pane active" id="study_section">
 						<article id="studyinfo" class="accordion">
 							<c:choose>
 								<c:when test="${empty member.studies}">
@@ -127,17 +125,26 @@
 							 			<c:set var="studyObject" value="${study}"/>
 										<section class="accordion-group">
 											<header class="accordion-heading">
-												<a href="#study${study.id}" data-parent="#studyinfo" data-target="#study${study.id}" data-toggle="collapse" class="accordion-toggle">나들이 갑시다</a>
+												<h3>
+													<a href="<c:url value="/study/${study.id}"/>" class="btn btn-info pull-right go-study"><i class="icon-home"></i> 스터디 보러가기</a>
+													<a href="#study${study.id}" data-parent="#studyinfo" data-target="#study${study.id}" data-toggle="collapse" class="accordion-toggle">${study.studyName}</a>
+												</h3>
 											</header>
-											<article id="study${study.id}" class="accordion-body collapse in">
-												<section class="accordion-inner">
-													<span onclick="goStudy(${study.id})">스터디 보러가기</span>	
-													<ul> 
-														<li><span>담당자명</span><strong>${study.manager.name}</strong> <span>시작일</span><strong><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></strong></li> 
-														<li><span>진행현황</span><strong>${study.status.descr}</strong> <span>참석률</span><strong>${member.studyAttendanceRates[studyObject]}%</strong></li> 
-														<li><span>신뢰도</span><strong>${member.studyTrustRates[studyObject]}%</strong></li> 
-													</ul>
-												</section>
+											<article id="study${study.id}" class="accordion-body collapse">
+												<div class="accordion-inner">
+													<dl class="row">
+														<dt class="span2"><i class="icon-user"></i> 담당자명</dt>
+															<dd class="span9">${study.manager.name}</dd>
+														<dt class="span2"><i class="icon-calendar"></i> 시작일</dt>
+															<dd class="span9"><fmt:formatDate pattern="yyyy.MM.dd" value="${study.startDay}" /></dd>
+														<dt class="span2"><i class="icon-road"></i> 진행현황</dt>
+															<dd class="span9">${study.status.descr}</dd>
+														<dt class="span2"><i class="icon-flag"></i> 참석률</dt>
+															<dd class="span9">${member.studyAttendanceRates[studyObject] eq null ? 0 : member.studyAttendanceRates[studyObject]}%</dd> 
+														<dt class="span2"><i class="icon-ok"></i> 신뢰도</dt>
+															<dd class="span9">${member.studyTrustRates[studyObject] eq null ? 0 : member.studyTrustRates[studyObject]}%</dd> 
+													</dl>
+												</div>
 											</article>
 										</section>
 									</c:forEach>
@@ -145,18 +152,18 @@
 							</c:choose>
 						</article>
 					</section>
-					<section class="tab-pane" id="2">
+					<section class="tab-pane" id="wiki_section">
 						<p>준비 중입니다.</p>
 					</section>
-					<section class="tab-pane" id="3">
+					<section class="tab-pane" id="term_section">
 						<p>준비 중입니다.</p>
 					</section>
-					<section class="tab-pane" id="4">
+					<section class="tab-pane" id="written_section">
 						<p>준비 중입니다.</p>
 					</section>
-				</section>
+				</div>
 			</nav>
-		</section>
+		</div>
 		<footer class="footer-outer">
 			<p class="copyright">&copy; SpringSprout rocks! 2012</p>
 		</footer>
@@ -164,17 +171,9 @@
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
-                $("a[rel=popover]")
-                    .popover({
-                    	placement: 'top'
-                    }).click(function(e) {
-                        e.preventDefault()
-                    });
+                $("a[rel=tooltip]").tooltip();
+                $("#studyinfo article").eq(0).addClass("in");
             });
-            
-            function goStudy(id) {
-				location.href="../study/view/" + id;	
-			}
         </script>
     </body>
 </html>
