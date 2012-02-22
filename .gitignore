@@ -4,6 +4,7 @@
 .classpath
 .project
 .springBeans
+.externalToolBuilders
 
 # Maven Output #
 #################
@@ -29,4 +30,4 @@ Thumbs.db
 deploy.sh
 deploy-without-test.sh
 src/system.properties
-.externalToolBuilders
+src/rebel.xml

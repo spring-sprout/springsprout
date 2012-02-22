@@ -25,4 +25,12 @@ public class MypageController {
 		member.makeAvatar();
 		model.addAttribute(member);
     }
+	
+	@RequestMapping("/index/new")
+	public String newIndex(Model model) throws ServletRequestBindingException {
+		Member member = securityService.getPersistentMember();
+		member.makeAvatar();
+		model.addAttribute(member);
+		return "mypage/newIndex";
+	}
 }
