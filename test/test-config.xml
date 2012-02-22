@@ -16,18 +16,12 @@
 	<entry key="devterm.twitter.username">s2ctest</entry>
 	<entry key="devterm.twitter.password">s2cxptmxj</entry>
     
-    <!-- dataSource config -->
-    <entry key="db.driver">org.h2.Driver</entry>
-    <entry key="db.url">jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</entry>
-    <entry key="db.username">sa</entry>
-    <entry key="db.password"></entry>
-    
-    <!-- hibernate config -->
-	<entry key="hibernate.dialect">org.hibernate.dialect.H2Dialect</entry>
-	
 	<!-- google calendar config  -->
 	<entry key="calendar.title">SpringSprout Calendar</entry>
 	<entry key="calendar.username">springsprout.cal.test@gmail.com</entry>
 	<entry key="calendar.password">googlecal</entry>
+	
+	<!-- daum map api key -->
+	<entry key="daum.map.key">test</entry>
 	
 </properties>
