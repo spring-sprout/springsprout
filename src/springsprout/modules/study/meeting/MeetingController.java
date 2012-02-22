@@ -1,36 +1,49 @@
 package springsprout.modules.study.meeting;
 
+import static springsprout.common.SpringSprout2System.JSON_VIEW;
+import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectMeetingView;
+import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectStudyView;
+
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
 import springsprout.common.enumeration.PersistentEnumUtil;
 import springsprout.common.propertyeditor.FormatDatePropertyEditor;
 import springsprout.common.util.BeanUtils;
-import springsprout.domain.*;
+import springsprout.domain.Attendance;
+import springsprout.domain.Comment;
+import springsprout.domain.Meeting;
+import springsprout.domain.Member;
+import springsprout.domain.Resource;
+import springsprout.domain.Study;
 import springsprout.domain.enumeration.ResourceType;
 import springsprout.modules.study.StudyService;
-import springsprout.modules.study.exception.JoinMeetingException;
 import springsprout.modules.study.exception.MeetingMaximumOverException;
 import springsprout.modules.study.meeting.support.CommentDTO;
 import springsprout.modules.study.meeting.support.CountInfoDTO;
 import springsprout.modules.study.meeting.support.MeetingValidator;
 import springsprout.service.security.SecurityService;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.util.Date;
-
-import static springsprout.common.SpringSprout2System.JSON_VIEW;
-import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectMeetingView;
-import static springsprout.modules.study.support.StudyURLRedirectionUtils.redirectStudyView;
 
 @Controller
 @SessionAttributes("meeting, presentation")
@@ -39,14 +52,21 @@ public class MeetingController {
     private static final String MEETING_FORM = "study/meeting/form";
     private static final String MEETING_VIEW = "study/meeting/view";
 
-    Logger log = LoggerFactory.getLogger(MeetingController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MeetingController.class);
 
     @javax.annotation.Resource StudyService studyService;
     @Autowired MeetingService meetingService;
     @Autowired SecurityService securityService;
     @Autowired MeetingValidator meetingValidator;
 
-    @Value("#{envProps['daum.map.key']}") String mapKey;
+    @Value("#{appProperties['daum.map.key']}") 
+    private String mapKey;
+    
+    @PostConstruct
+    public void init() {
+    	Assert.hasText(mapKey, "daum.map.key의 설정 정보가 없습니다.");
+    }
+
 
     @RequestMapping(value = "/study/{studyId}/meeting/form", method = RequestMethod.GET)
     public String meetingAddForm(@PathVariable int studyId, Model model) {

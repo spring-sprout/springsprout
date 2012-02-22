@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    
+    <comment>애플리케이션 테스트 설정</comment>
+    
+	<entry key="vertx.chat">http://localhost:8888/chat</entry>
+	<entry key="url">http://localhost:8080/</entry>
+	<entry key="mail.username">s2ctester@gmail.com</entry>
+	<entry key="mail.password">s2cxptmxj</entry>
+	<entry key="gmail.username">s2ctester@gmail.com</entry>
+	<entry key="gmail.password">s2cxptmxj</entry>
+	<entry key="twitter.username">s2ctest</entry>
+	<entry key="twitter.password">s2cxptmxj</entry>
+	<entry key="jabber.runOnStart">false</entry>
+	<entry key="devterm.twitter.username">s2ctest</entry>
+	<entry key="devterm.twitter.password">s2cxptmxj</entry>
+    
+    <!-- dataSource config -->
+    <entry key="db.driver">org.h2.Driver</entry>
+    <entry key="db.url">jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</entry>
+    <entry key="db.username">sa</entry>
+    <entry key="db.password"></entry>
+    
+    <!-- hibernate config -->
+	<entry key="hibernate.dialect">org.hibernate.dialect.H2Dialect</entry>
+	
+	<!-- google calendar config  -->
+	<entry key="calendar.title">SpringSprout Calendar</entry>
+	<entry key="calendar.username">springsprout.cal.test@gmail.com</entry>
+	<entry key="calendar.password">googlecal</entry>
+	
+</properties>

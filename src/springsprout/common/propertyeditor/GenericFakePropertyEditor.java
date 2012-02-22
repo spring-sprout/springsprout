@@ -1,16 +1,17 @@
 package springsprout.common.propertyeditor;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import springsprout.common.util.ReflectionUtils;
-import springsprout.common.util.StringUtils;
-
 import java.beans.PropertyEditorSupport;
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import springsprout.common.util.ReflectionUtils;
+import springsprout.common.util.StringUtils;
+
 public class GenericFakePropertyEditor<T> extends PropertyEditorSupport {
 
-	protected Log logger = LogFactory.getLog(getClass());
+	protected Logger logger = LoggerFactory.getLogger(GenericFakePropertyEditor.class);
 
 	protected Class<T> entityClass;
 	
