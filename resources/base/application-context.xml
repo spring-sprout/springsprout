@@ -14,20 +14,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- ============================================================= -->
-	<!--  Properties                                                   -->
-	<!-- ============================================================= -->
-	<bean id="appProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath:/config.xml</value>                  <!-- 기본 설정값 -->
-                <value>classpath:/environment-config.xml</value>      <!-- 빌드 환경에 따른 설정값 -->
-            </list>
-        </property>
-        <property name="ignoreResourceNotFound" value="true"/>
-        <property name="localOverride" value="true"/>
-    </bean>
-    
-	<!-- ============================================================= -->
 	<!--  AOP                                                          -->
 	<!-- ============================================================= -->                      
 	<aop:aspectj-autoproxy />
