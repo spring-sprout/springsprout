@@ -7,22 +7,16 @@
  */
 package sandbox.restful.oauth;
 
-import oauth.signpost.OAuth;
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.basic.DefaultOAuthConsumer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.AbstractClientHttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Map;
 
 public class SpringSproutClientHttpRequest extends AbstractClientHttpRequest {
 

@@ -3,16 +3,12 @@ package sandbox.freemarker;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
-import java.io.OutputStreamWriter;
-import java.util.Map;
-import java.util.HashMap;
-
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
+
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.

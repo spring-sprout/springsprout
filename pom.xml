@@ -217,6 +217,11 @@
             <artifactId>spring-security-acl</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>com.springsource.javax.annotation</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         
         <!-- spring webflow -->
         <dependency>

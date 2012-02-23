@@ -22,7 +22,14 @@ public class DevTermSearchParam extends SearchParam {
     private String howRU;
     private Member favMember;
 
-    public String getKeyword() {
+	public DevTermSearchParam() {
+	}
+
+	public DevTermSearchParam(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getKeyword() {
         return keyword;
     }
 

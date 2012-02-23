@@ -1,12 +1,12 @@
 package sandbox.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpringJsonVIewTest {
 	

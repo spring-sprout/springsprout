@@ -1,18 +1,11 @@
 package sandbox.dispatcher;
 
 import org.junit.Test;
-import org.springframework.beans.BeansException;
-import org.springframework.mock.web.MockServletConfig;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.web.context.support.StaticWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.mock.web.MockServletConfig;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.servlet.SimpleDispatcherServlet;
-import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-import javax.servlet.ServletException;
 
 /**
  * Created by IntelliJ IDEA.

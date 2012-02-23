@@ -1,8 +1,5 @@
 package sandbox.config;
 
-import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.Bean;
-
 /**
  * Created by IntelliJ IDEA.
  * User: whiteship
