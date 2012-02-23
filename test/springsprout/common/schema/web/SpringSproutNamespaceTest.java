@@ -1,5 +1,7 @@
 package springsprout.common.schema.web;
 
+import org.junit.Test;
+
 /**
  * Created by IntelliJ IDEA.
  * User: whiteship2000
@@ -9,6 +11,11 @@ package springsprout.common.schema.web;
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration
 public class SpringSproutNamespaceTest {
+
+	@Test
+	public void mockTest(){
+
+	}
 
 //    @Autowired ViewResolver viewResolver;
 //    @Autowired ApplicationContext applicationContext;
