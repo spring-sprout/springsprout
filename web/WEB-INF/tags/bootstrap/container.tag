@@ -11,8 +11,11 @@
     <title>봄싹 @2012</title>
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/ss.css" rel="stylesheet">
+    <jsp:getProperty name="clientScript" property="headScriptFile"/>
+    <jsp:getProperty name="clientScript" property="headScript"/>
 </head>
 <body>
+<jsp:getProperty name="clientScript" property="beginScript"/>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -110,6 +113,7 @@
 </div>
 <script src="/static/jquery/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<jsp:getProperty name="clientScript" property="endScriptFile"/>
 <script>
     if(document.location.host === 'www.springsprout.org'){
         var _gaq = _gaq || [];
@@ -125,6 +129,7 @@
         })();
     }
 </script>
+
 <jsp:getProperty name="clientScript" property="endScript"/>
 <jsp:getProperty name="clientScript" property="readyScript" />
 </body>

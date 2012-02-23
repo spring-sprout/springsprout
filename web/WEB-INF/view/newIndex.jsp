@@ -374,6 +374,6 @@
                 </div>
             </li>
         </ul>
-    </article>
 </section>
+</article>
 </bootstrap:container>
