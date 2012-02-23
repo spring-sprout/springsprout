@@ -1,8 +1,8 @@
 package sandbox.propertyPlaceHolder;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -17,10 +17,10 @@ public class AppConfig {
         return new BeanSP();
     }
 
-//    @Bean PropertyPlaceholderConfigurer databasePropertyPlaceHolder(){
-//        PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
-//        configurer.setLocation(new ClassPathResource("./test.database.properties", getClass()));
-//        return configurer;
-//    }
+    @Bean PropertyPlaceholderConfigurer databasePropertyPlaceHolder(){
+        PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
+        configurer.setLocation(new ClassPathResource("test.sample.properties", getClass()));
+        return configurer;
+    }
 
 }

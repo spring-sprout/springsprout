@@ -1,8 +1,8 @@
 package sandbox.propertyPlaceHolder;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.stereotype.Component;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,7 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 public class DatabasePropertyPlaceHolder extends PropertyPlaceholderConfigurer {
 
     public DatabasePropertyPlaceHolder() {
-        this.setLocation(new ClassPathResource("/test.database.properties", getClass()));
+        this.setLocation(new ClassPathResource("test.sample.properties", getClass()));
     }
 
 }

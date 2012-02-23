@@ -3,11 +3,9 @@ package sandbox.decimal;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

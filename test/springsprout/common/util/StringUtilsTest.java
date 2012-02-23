@@ -1,6 +1,5 @@
 package springsprout.common.util;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -15,7 +14,6 @@ import static org.junit.Assert.assertThat;
 public class StringUtilsTest {
 
     @Test
-    @Ignore
     public void testCutBytes() throws Exception {
         String result = StringUtils.cutBytes("The emergence of the XML-based Simple Object Access Protocol (SOAP) as a widely accepted, platform-agnostic standard for RMI, and widespread support for web services.", 150);
         assertThat(result.getBytes().length, is(150));

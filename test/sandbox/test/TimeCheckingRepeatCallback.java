@@ -3,9 +3,6 @@ package sandbox.test;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * User: Whiteship
  * Date: 11. 1. 6

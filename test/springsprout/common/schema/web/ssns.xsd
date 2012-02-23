@@ -2,7 +2,6 @@
 
 <xsd:schema xmlns="http://www.springsprout.org/schema/ssns"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:beans="http://www.springframework.org/schema/beans"
             targetNamespace="http://www.springsprout.org/schema/ssns"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified">

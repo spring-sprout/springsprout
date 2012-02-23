@@ -3,8 +3,8 @@ package sandbox.md5;
 import org.junit.Test;
 import org.springframework.util.DigestUtils;
 
-import java.util.Random;
 import java.io.UnsupportedEncodingException;
+import java.util.Random;
 
 /**
  * Created by IntelliJ IDEA.

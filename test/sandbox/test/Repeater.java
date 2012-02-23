@@ -4,8 +4,6 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import java.io.PrintStream;
-
 /**
  * User: Whiteship
  * Date: 11. 1. 6

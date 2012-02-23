@@ -27,7 +27,7 @@ import static org.junit.Assert.assertThat;
  * Time: 오후 8:02:35
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/testContext.xml", "/testContext-security.xml"})
+@ContextConfiguration(locations = {"/testContext.xml", "/testSecurity-Context.xml"})
 @Transactional
 public class MethodSecurityTest extends DBUnitSupport{
 

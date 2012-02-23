@@ -1,16 +1,15 @@
 package sandbox.proxy;
 
-import org.junit.Test;
-import org.junit.Before;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactoryBean;
-import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * Created by IntelliJ IDEA.

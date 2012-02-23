@@ -1,6 +1,7 @@
 package sandbox.config;
 
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by IntelliJ IDEA.

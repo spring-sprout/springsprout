@@ -1,24 +1,17 @@
 package sandbox.jdbc;
 
 import org.junit.Test;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.object.SqlUpdate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
-import org.springframework.jdbc.object.SqlUpdate;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 import springsprout.common.test.DBUnitSupport;
-import springsprout.modules.member.MemberRepository;
 import springsprout.domain.Member;
+import springsprout.modules.member.MemberRepository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 /**

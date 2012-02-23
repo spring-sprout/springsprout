@@ -1,12 +1,13 @@
 package sandbox.beans;
 
 import com.mchange.v2.beans.BeansUtils;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import java.beans.IntrospectionException;
 import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.
