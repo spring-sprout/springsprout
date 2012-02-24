@@ -9,12 +9,12 @@
 <header class="slogan">
     <h1>
         <span class="kd">var</span> springSprout =
-        <a href="#" rel=popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
+        <a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에"
            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
-        <a href="#" rel="popover" data-content="새싹이 돋아나겠죠."
+        <a href="#" rel="popover" data-content="돋아나는 새싹같은 커뮤니티."
            data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
     </h1>
-    <p class="sub-slogan">우리는
+    <p class="sub-slogan">
         <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요."
            data-original-title="we.study(...);">학습하고</a>
         <a href="#" rel="popover" data-content="학습한 기술을 적용해볼 곳이 없다구요? 봄싹에서 여러 개발자와 같이 사용해 보세요."
@@ -22,12 +22,12 @@
         <a href="#" rel="popover" data-content="발표, 번역, 저술 등 여러 방법으로 학습하고 적용해본 경험을 다른 개발자와 나눠보세요."
            data-original-title="we.share(...);">나누고</a>
         <a href="#" rel="popover" data-content="이 모든게 즐겁다면 여러분은 이미 봄싹 개발자입니다."
-           data-original-title="we.enjoy(...);">즐깁니다.</a>
+           data-original-title="we.enjoy(...);">즐깁시다.</a>
     </p>
 </header>
 <section class="content-sec">
     <header class="sec-header">
-        <h2>스터디&nbsp;<small>학습하고 개발하고...</small></h2>
+        <h2>스터디&nbsp;<small>학습하고 개발하고</small></h2>
     </header>
     <ul class="studies">
         <c:choose>
@@ -72,7 +72,8 @@
                                             </li>
                                         </c:forEach>
                                     </ul>
-                                    <span class="attender-count"><fmt:formatNumber value="${meeting.attendanceCount}" pattern="#,###"/>명 참석</span>
+                                    <span class="attender-count">총 <fmt:formatNumber value="${meeting.attendanceCount}" pattern="#,###"/>명 참석</span>
+                                    <p><a href="#" class="btn btn-primary">참석 신청</a></p>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -86,7 +87,7 @@
     </ul>
     <p class="more-link"><a href="/study">스터디 더보기 &raquo;</a></p>
     <header class="sec-header">
-        <h2>책&nbsp;<small>읽고 공부하고...</small></h2>
+        <h2>책&nbsp;<small>읽고 공부하고</small></h2>
     </header>
     <ul class="books thumbnails">
         <li class="book">
@@ -123,7 +124,7 @@
 </section>
 <section class="side-sec">
     <header class="sec-header">
-        <h2>낙서장&nbsp;<small>나누고 즐깁니다...</small></h2>
+        <h2>낙서장&nbsp;<small>나누고 즐깁시다</small></h2>
     </header>
     <article>
         <div class="graffiti-writer">
