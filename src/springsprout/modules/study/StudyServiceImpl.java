@@ -9,6 +9,7 @@ import springsprout.domain.Member;
 import springsprout.domain.Study;
 import springsprout.domain.enumeration.StudyStatus;
 import springsprout.modules.member.MemberRepository;
+import springsprout.modules.study.meeting.MeetingService;
 import springsprout.modules.study.support.StudyContainer;
 import springsprout.modules.study.support.StudyCriteria;
 import springsprout.modules.study.support.StudyIndexInfo;
@@ -28,6 +29,8 @@ public class StudyServiceImpl implements StudyService {
 	@Autowired StudyRepository repository;
 	@Autowired SecurityService securityService;
     @Autowired MemberRepository memberRepository;
+	@Autowired MeetingService meetingService;
+
     @Resource NotificationService unifiedNotificationService;
     
 	public void addStudy(final Study study) {
@@ -73,7 +76,11 @@ public class StudyServiceImpl implements StudyService {
 	}
 
     public List<Study> findActiveStudies(int rows) {
-        return repository.findActiveStudies(rows);
+		List<Study> studies = repository.findActiveStudies(rows);
+		for(Study study : studies){
+			study.setRecentMeeting(meetingService.findRecentMeeting(study.getId()));
+		}
+		return studies;
     }
 
 	public List<Study> findPastStudies() {

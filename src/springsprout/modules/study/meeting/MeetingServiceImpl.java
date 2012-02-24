@@ -205,5 +205,10 @@ public class MeetingServiceImpl implements MeetingService {
     public List<Meeting> findActiveMeetings(int count) {
         return meetingRepository.findActiveMeetings(count);
     }
-    
+
+	@Override
+	public Meeting findRecentMeeting(int studyId) {
+		return meetingRepository.findRecntMeeting(studyId);
+	}
+
 }

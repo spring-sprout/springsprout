@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.NotEmpty;
 import springsprout.common.annotation.DomainInfo;
 import springsprout.common.convention.Convention;
+import springsprout.common.util.StringUtils;
 import springsprout.domain.enumeration.MemberStatus;
 import springsprout.domain.enumeration.StudyStatus;
 import springsprout.modules.study.exception.StudyMaximumOverException;
@@ -73,7 +74,10 @@ public class Study implements Serializable{
 	@Column(length = 50)
 	@DomainInfo("구글 캘린더 ID")
 	private String calendarId;
-	
+
+	@Transient
+	private Meeting recentMeeting;
+
 	public Study() {
 		this.status = StudyStatus.OPEN;
 		this.meetingCount = 0;
@@ -138,6 +142,9 @@ public class Study implements Serializable{
 		this.descr = descr;
 	}
 
+	public String getDescrText(){
+		return StringUtils.cutBytes(StringUtils.stripHTML(this.descr), 400);
+	}
 
 	public Date getStartDay() {
 		return startDay;
@@ -304,4 +311,12 @@ public class Study implements Serializable{
         this.getMeetings().remove(meeting);
         this.setMeetingCount(getMeetings().size());
     }
+
+	public Meeting getRecentMeeting() {
+		return recentMeeting;
+	}
+
+	public void setRecentMeeting(Meeting recentMeeting) {
+		this.recentMeeting = recentMeeting;
+	}
 }

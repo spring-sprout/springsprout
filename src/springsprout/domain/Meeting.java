@@ -455,4 +455,8 @@ public class Meeting implements Serializable {
     public String getShortTitle() {
         return StringUtils.cutBytes(this.getTitle(), 20);   
     }
+	
+	public String getContentsText(){
+		return StringUtils.cutBytes(StringUtils.stripHTML(this.contents),200);
+	}
 }

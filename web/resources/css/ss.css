@@ -105,7 +105,7 @@ hr.soften{
   margin-top:10px;
 }
 .attenders{
-  margin:0;
+  margin:15px 0 0;
   overflow:hidden;
 }
 .attender{
@@ -114,6 +114,8 @@ hr.soften{
 }
 .attender img{
   border: 1px solid #CCCCCC;
+  max-height:24px;
+  min-width:24px;
   height: 24px;
   width: 24px;
 }
@@ -151,6 +153,8 @@ hr.soften{
 .books .book .title{
   margin: 9px 0 4px;
   font-size:12px;
+  line-height:1.5;
+  display:inline-block;
 }
 .side-sec{
   overflow:hidden;
@@ -165,6 +169,8 @@ hr.soften{
 .writer-thumb{
   width:28px;
   height:28px;
+  max-height:28px;
+  max-width: 28px;
   border: 1px solid #CCCCCC;
   vertical-align:top;
 }

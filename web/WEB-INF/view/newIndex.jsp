@@ -5,13 +5,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
 <jsp:useBean id="clientScript" scope="request" class="springsprout.common.usebean.ClientScript"/>
-<jsp:setProperty name="clientScript" property="readyScript" value="console.log('test');"/>
-<% clientScript.setEndScript("console.log('setEndScript');");%>
 <bootstrap:container>
 <header class="slogan">
     <h1>
         <span class="kd">var</span> springSprout =
-        <a href="#" rel="popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
+        <a href="#" rel=popover" data-content="추운 겨울을 지나 꽃피는 봄이오면"
            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
         <a href="#" rel="popover" data-content="새싹이 돋아나겠죠."
            data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
@@ -32,138 +30,59 @@
         <h2>스터디&nbsp;<small>학습하고 개발하고...</small></h2>
     </header>
     <ul class="studies">
-        <li class="study">
-            <div class="thumb">
-                <a href="http://www.springsprout.org/study/5485">
-                    <img alt="" src="http://farm6.static.flickr.com/5132/5471555620_b24a5ff6c5_m.jpg">
-                </a>
-            </div>
-            <div class="infos">
-                <h3>
-                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
-                </h3>
-                <p class="desc">
-                    흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
-                    개발을 할 줄 몰라도 상관없습니다.
-                    대부분의 문제가 영어로 되어있어 이를 해석하는 능력도 필요합니다....
-                </p>
-            </div>
-            <div class="meeting">
-                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
-                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
-                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
-                <p class="desc">
-                    스터디 재등록 가능 여부와
-                    참여 의사를 파악하기 위해 등록된 모임입니다.
-                </p>
-                <ul class="attenders">
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
+        <c:choose>
+            <c:when test="${studyList != null}">
+                <c:forEach items="${studyList}" var="study">
+                    <li class="study">
+                        <div class="thumb">
+                            <a href="<c:url value="/study/${study.id}"/>">
+                                <img alt="스터디 로고" src="<c:url value="${study.logo != null ? study.logo : '/images/study/logos/default.png'}"/>">
+                            </a>
+                        </div>
+                        <div class="infos">
+                            <h3>
+                                <a href="<c:url value="/study/${study.id}"/>">${study.studyName}</a>
+                            </h3>
+                            <p class="desc">
+                                ${study.descrText}
+                            </p>
+                        </div>
+                        <div class="meeting">
+                            <c:choose>
+                                <c:when test="${empty study.recentMeeting}">
+                                    <p>진행중인 모임이 없습니다.</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="meeting" value="${study.recentMeeting}"></c:set>
+                                    <p><i class="icon-calendar"></i>
+                                        <fmt:formatDate value="${meeting.openDate}" pattern="MM월 dd일 (E)"/>&nbsp;
+                                        <fmt:formatDate value="${meeting.openTime}" pattern="H:mm"/>
+                                    </p>
+                                    <p><i class="icon-map-marker"></i> <a href="<c:url value="/study/${study.id}/meeting/${meeting.id}/meetingLocation"/>">${meeting.location}</a></p>
+                                    <h4 class="meeting-title"><a href="<c:url value="/study/${study.id}/meeting/${meeting.id}"/>">${meeting.title}</a></h4>
+                                    <p class="desc">
+                                        ${meeting.contentsText}
+                                    </p>
+                                    <ul class="attenders unstyled">
+                                        <c:forEach items="${meeting.attendances}" var="attendance" end="5">
+                                            <li class="attender">
+                                                <a href="<c:url value="/member/${attendance.member.id}"/>">
+                                                    <img src="${attendance.member.avatar}&s=24" alt="${attendance.member.name}">
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                    <span class="attender-count"><fmt:formatNumber value="${meeting.attendanceCount}" pattern="#,###"/>명 참석</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                </ul>
-                <span class="attender-count">15명 참석자</span>
-            </div>
-        </li>
-        <li class="study">
-            <div class="thumb">
-                <a href="http://www.springsprout.org/study/5485">
-                    <img alt="" src="http://farm6.static.flickr.com/5132/5471555620_b24a5ff6c5_m.jpg">
-                </a>
-            </div>
-            <div class="infos">
-                <h3>
-                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
-                </h3>
-                <p class="desc">
-                    흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
-                    개발을 할 줄 몰라도 상관없습니다.
-                    대부분의 문제가 영어로 되어있어 이를 해석하는 능력도 필요합니다....
-                </p>
-            </div>
-            <div class="meeting">
-                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
-                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
-                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
-                <p class="desc">
-                    스터디 재등록 가능 여부와
-                    참여 의사를 파악하기 위해 등록된 모임입니다.
-                </p>
-                <ul class="attenders">
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                </ul>
-                <span class="attender-count">15명 참석자</span>
-            </div>
-        </li>
-        <li class="study">
-            <div class="thumb">
-                <a href="http://www.springsprout.org/study/5485">
-                    <img alt="" src="http://farm6.static.flickr.com/5132/5471555620_b24a5ff6c5_m.jpg">
-                </a>
-            </div>
-            <div class="infos">
-                <h3>
-                    <a href="http://www.springsprout.org/study/5485">나는 프로그래머다나는 프로그래머다</a>
-                </h3>
-                <p class="desc">
-                    흥미로운 주제를 가지고 함께 문제를 풀어보고 자신의 해법을 공유하는 스터디 입니다.
-                    개발을 할 줄 몰라도 상관없습니다.
-                    대부분의 문제가 영어로 되어있어 이를 해석하는 능력도 필요합니다....
-                </p>
-            </div>
-            <div class="meeting">
-                <p><i class="icon-calendar"></i> 07월 09일 (토) 14:00</p>
-                <p><i class="icon-map-marker"></i> <a href="#">탐앤탐스</a></p>
-                <h4 class="meeting-title"><a href="http://www.springsprout.org/study/5485/meeting/5765">볼링 퀴즈</a></h4>
-                <p class="desc">
-                    스터디 재등록 가능 여부와
-                    참여 의사를 파악하기 위해 등록된 모임입니다.
-                </p>
-                <ul class="attenders">
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                    <li class="attender">
-                        <img src="http://www.gravatar.com/avatar/c8bb023d6f1160a126088cd83740a4ed?r=X&s=20">
-                    </li>
-                </ul>
-                <span class="attender-count">15명 참석자</span>
-            </div>
-        </li>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <li class="no-study">진행중인 스터디가 없습니다.</li>
+            </c:otherwise>
+        </c:choose>
     </ul>
     <p class="more-link"><a href="/study">스터디 더보기 &raquo;</a></p>
     <header class="sec-header">
@@ -172,42 +91,32 @@
     <ul class="books thumbnails">
         <li class="book">
             <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4744444&amp;idx=10351&amp;ADON_TYPE=B&amp;regs=b">
-                <img src="http://image.yes24.com/momo/TopCate108/MidCate01/10704373.jpg">
-                <p class="title">
-                    스프링3 레시피
-                </p>
+                <img src="http://image.yes24.com/momo/TopCate108/MidCate01/10704373.jpg" alt="스프링3 레시피" />
+                <span class="title">스프링3 레시피</span>
             </a>
         </li>
         <li class="book">
             <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4020006&amp;idx=7386&amp;ADON_TYPE=B&amp;regs=b">
-                <img src="http://image.yes24.com/momo/TopCate87/MidCate10/8691328.jpg">
-                <p class="title">
-                        토비의 스프링 3
-                </p>
+                <img src="http://image.yes24.com/momo/TopCate87/MidCate10/8691328.jpg" alt="토비의 스프링 3" />
+                <span class="title">토비의 스프링 3</span>
             </a>
         </li>
         <li class="book">
             <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=4425736&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
-                <img src="http://image.yes24.com/momo/TopCate97/MidCate09/9686817.jpg">
-                <p class="title">
-                        스프링 시큐리티 3
-                </p>
+                <img src="http://image.yes24.com/momo/TopCate97/MidCate09/9686817.jpg" alt="스프링 시큐리티 3" /`>
+                <span class="title">스프링 시큐리티 3</span>
             </a>
         </li>
         <li class="book">
             <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=3908398&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
-                <img src="http://image.yes24.com/momo/TopCate85/MidCate04/8436972.jpg">
-                <p class="title">
-                    테스트 주도 개발
-                </p>
+                <img src="http://image.yes24.com/momo/TopCate85/MidCate04/8436972.jpg" alt="테스트 주도 개발" />
+                <span class="title">테스트 주도 개발</span>
             </a>
         </li>
         <li class="book">
             <a class="thumbnail" target="_blank" href="http://blog.yes24.com/lib/adon/View.aspx?blogid=1423718&amp;goodsno=6271069&amp;idx=8502&ADON_TYPE=B&amp;regs=b">
-                <img src="http://image.yes24.com/momo/TopCate168/MidCate04/16738746.jpg">
-                <p class="title">
-                    Node.js 프로그래밍
-                </p>
+                <img src="http://image.yes24.com/momo/TopCate168/MidCate04/16738746.jpg" alt="Node.js 프로그래밍" />
+                <span class="title">Node.js 프로그래밍</span>
             </a>
         </li>
     </ul>

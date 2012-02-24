@@ -50,4 +50,13 @@ public class MeetingRepositoryImpl extends HibernateGenericDao<Meeting> implemen
             .setMaxResults(count)
             .list();
     }
+
+	@Override
+	public Meeting findRecntMeeting(int studyId) {
+		return (Meeting) getCurrentSession().createCriteria(Meeting.class)
+				.setCacheable(true)
+				.add(Restrictions.eq("study.id", studyId))
+				.addOrder(Order.desc("id"))
+				.setMaxResults(1).uniqueResult();
+	}
 }

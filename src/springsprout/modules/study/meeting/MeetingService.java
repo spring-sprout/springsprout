@@ -58,4 +58,6 @@ public interface MeetingService {
 	void notifyCommentAdded(Meeting meeting, Comment comment);
 
     List<Meeting> findActiveMeetings(int count);
+
+	Meeting findRecentMeeting(int studyId);
 }

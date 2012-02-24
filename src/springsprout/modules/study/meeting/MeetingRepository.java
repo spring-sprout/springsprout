@@ -18,4 +18,6 @@ public interface MeetingRepository extends GenericDao<Meeting>{
     List<Meeting> getMeetingListByStudyId(int studyId, int rows);
 
     List<Meeting> findActiveMeetings(int count);
+
+	Meeting findRecntMeeting(int studyId);
 }

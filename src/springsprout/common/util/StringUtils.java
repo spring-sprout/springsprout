@@ -64,4 +64,12 @@ public class StringUtils {
         return strSource.substring(0, strIndex) + strPostfix;
     }
 
+	
+	public static String stripHTML(String txt){
+		if(txt == null){
+			return "";
+		}
+		return txt.replaceAll("<([^>]+)>"," ");
+
+	}
 }
