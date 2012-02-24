@@ -11,7 +11,7 @@
         <span class="kd">var</span> springSprout =
         <a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에"
            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
-        <a href="#" rel="popover" data-content="돋아나는 새싹같은 커뮤니티."
+        <a href="#" rel="popover" data-content="피어나는 새싹같은 커뮤니티."
            data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
     </h1>
     <p class="sub-slogan">
