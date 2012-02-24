@@ -1,12 +1,7 @@
 package sandbox.test;
 
-import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * User: Whiteship

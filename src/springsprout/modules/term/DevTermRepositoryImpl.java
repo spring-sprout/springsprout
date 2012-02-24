@@ -45,7 +45,7 @@ public class DevTermRepositoryImpl extends HibernateGenericDao<DevTerm> implemen
 		else
 			c.addOrder(Order.asc(field).ignoreCase());
 
-        if(!orderParam.getField().equals("created"))
+        if(orderParam.getField() != null && !orderParam.getField().equals("created"))
             c.addOrder(Order.desc("created"));
 	}
 

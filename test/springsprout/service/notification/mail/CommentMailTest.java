@@ -1,8 +1,5 @@
 package springsprout.service.notification.mail;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import springsprout.service.notification.NotificationService;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/testContext.xml")

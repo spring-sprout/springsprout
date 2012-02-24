@@ -1,14 +1,15 @@
 package sandbox.propertyPlaceHolder;
 
-import org.junit.runner.RunWith;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.ContextConfiguration;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import sandbox.springtest.AnnotationContextLoader;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +17,7 @@ import sandbox.springtest.AnnotationContextLoader;
  * Date: 2009. 12. 24
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationContextLoader.class, locations = "./")
+@ContextConfiguration(classes = AppConfig.class)
 public class BeanSPTest {
 
     @Autowired ApplicationContext ac;
@@ -26,7 +27,7 @@ public class BeanSPTest {
     public void di(){
         assertThat(ac, is(notNullValue()));
         assertThat(beanSP.name, is(notNullValue()));
-        assertThat(beanSP.username, is("sa"));
+        assertThat(beanSP.username, is("whiteship"));
     }
 
 }

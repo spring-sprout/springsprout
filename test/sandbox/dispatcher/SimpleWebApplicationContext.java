@@ -1,13 +1,12 @@
 package sandbox.dispatcher;
 
-import org.springframework.web.context.support.StaticWebApplicationContext;
-import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.beans.BeansException;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.BeansException;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.context.support.StaticWebApplicationContext;
+import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
 import springsprout.domain.Member;
 
 /**

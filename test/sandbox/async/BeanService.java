@@ -1,8 +1,8 @@
 package sandbox.async;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
-import org.springframework.scheduling.annotation.Async;
 
 import java.util.concurrent.Future;
 

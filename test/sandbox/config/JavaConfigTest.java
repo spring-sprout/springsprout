@@ -1,13 +1,11 @@
 package sandbox.config;
 
-import org.junit.runner.RunWith;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertThat;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by IntelliJ IDEA.

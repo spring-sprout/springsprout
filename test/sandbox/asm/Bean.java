@@ -1,7 +1,7 @@
 package sandbox.asm;
 
-import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by IntelliJ IDEA.

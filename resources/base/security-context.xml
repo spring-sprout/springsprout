@@ -24,6 +24,8 @@
 		<intercept-url pattern="/mypage/index" access="ROLE_MEMBER,ROLE_ADMIN" />
 		<intercept-url pattern="/wiki/*/delete" access="ROLE_ADMIN" />
 
+        <intercept-url pattern="/member/info" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
 		<intercept-url pattern="/study/meeting" access="ROLE_ADMIN" />
 		<intercept-url pattern="/study/index" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/study/index/past" access="IS_AUTHENTICATED_ANONYMOUSLY" />

@@ -3,9 +3,8 @@
 <properties version="1.0">
     
     <comment>애플리케이션 테스트 설정</comment>
-    
-	<entry key="vertx.chat">http://localhost:8888/chat</entry>
-	<entry key="url">http://localhost:8080/</entry>
+
+    <entry key="url">http://localhost:8080/</entry>
 	<entry key="mail.username">s2ctester@gmail.com</entry>
 	<entry key="mail.password">s2cxptmxj</entry>
 	<entry key="gmail.username">s2ctester@gmail.com</entry>

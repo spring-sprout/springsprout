@@ -20,14 +20,12 @@ import java.util.List;
 public class ChatController {
 
 	@Autowired SecurityService securityService;
-	@Value("${vertx.chat}") String chatUrl;
 	@Autowired ChatService chatService;
 	@Autowired MemberService memberService;
 
 	@RequestMapping(value = "/chat", method = RequestMethod.GET)
 	public String chatView(Model model){
 		model.addAttribute("user", securityService.getCurrentMember());
-		model.addAttribute("chatUrl", chatUrl);
 		model.addAttribute("chatSessions", chatService.getAll());
 		return "chat";
 	}

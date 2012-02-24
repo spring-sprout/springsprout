@@ -1,8 +1,7 @@
 package sandbox.config;
 
-import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by IntelliJ IDEA.

@@ -25,6 +25,13 @@ public class MemberController {
 	@Autowired SecurityService securityService;
 	@Autowired PasswordEncoder encoder;
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String info(@PathVariable int id, Model model) {
+		model.addAttribute("member", service.getMemberById(id));
+		return "member/info";
+	}
+
+
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable int id, Model model)
 			throws ServletRequestBindingException {

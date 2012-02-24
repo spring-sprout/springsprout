@@ -1,13 +1,12 @@
 package springsprout.service.notification.mail;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.velocity.VelocityEngineUtils;
-
 import springsprout.service.notification.message.SpringSproutMail;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SampleVelocityMail extends SpringSproutMail {
 	

@@ -1,7 +1,7 @@
 package sandbox.provider;
 
-import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,5 +9,7 @@ import org.springframework.context.annotation.Scope;
  * Date: 2010. 1. 12
  * Time: 오후 9:45:52
  */
+@Component
+@Scope("prototype")
 public class Ship {
 }

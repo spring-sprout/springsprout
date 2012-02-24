@@ -4,12 +4,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import springsprout.common.test.DBUnitSupport;
-import springsprout.common.web.support.CenterPositionPaging;
-import springsprout.common.web.support.OrderParam;
 import springsprout.modules.term.support.DevTermContext;
 import springsprout.modules.term.support.DevTermSearchParam;
 
@@ -37,16 +36,23 @@ public class DevTermRepositoryImplTest extends DBUnitSupport{
     }
 
     @Test
-    @Ignore
-    public void testSearchByContext() throws Exception {
+	@Ignore
+	public void testSearchByContext() throws Exception {
         insertXmlData("testData.xml");
-        DevTermSearchParam searchParam = new DevTermSearchParam();
-        searchParam.setKeyword("j");
+		assertThat(devTermRepository.getTotalRowsCount(new DevTermSearchParam()), is(3));
 
+		// searching
         DevTermContext context = new DevTermContext();
-        context.setSearchParam(searchParam);
-        context.setOrderParam(new OrderParam());
-        context.setPaging(new CenterPositionPaging());
+		MockHttpServletRequest req = new MockHttpServletRequest();
+		// orderParams
+		req.setParameter("o_direction", "desc");
+		req.setParameter("o_field", "created");
+		// searchParam
+		req.setParameter("s_keyword", "jpa");
+		// pagingParams
+		req.setParameter("p_size", "10");
+		req.setParameter("p_page", "1");
+		context.bindParams(req);
 
         assertThat(devTermRepository.searchByContext(context).size(), is(2));
     }

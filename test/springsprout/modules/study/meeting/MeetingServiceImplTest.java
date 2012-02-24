@@ -8,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import springsprout.domain.*;
 import springsprout.modules.location.LocationRepository;
 import springsprout.modules.study.StudyRepository;
-import springsprout.modules.study.exception.JoinMeetingException;
+import springsprout.modules.study.StudyService;
 import springsprout.modules.study.exception.MeetingMaximumOverException;
 import springsprout.modules.study.meeting.attendance.AttendanceRepository;
 import springsprout.modules.study.meeting.presentation.PresentationRepository;
@@ -34,6 +34,7 @@ public class MeetingServiceImplTest {
     @Mock ResourceRepository resourceRepository;
     @Mock UnifiedNotificationService notiService;
     @Mock LocationRepository locationRepository;
+	@Mock StudyService studyService;
 
     @Before
 	public void setUp() throws Exception {
@@ -46,6 +47,7 @@ public class MeetingServiceImplTest {
         service.resourceRepository = resourceRepository;
         service.notiService = notiService;
         service.locationRepository = locationRepository;
+		service.studyService = studyService;
 	}
 
     @Test
@@ -158,7 +160,7 @@ public class MeetingServiceImplTest {
 		Study study = new Study();
 		study.addMember(currentMember);
 		meeting.setStudy(study);
-		meeting.setMaximum(2);
+		meeting.setMaximum(3);
 
 		when(securityService.getPersistentMember()).thenReturn(currentMember);
 		service.joinMeetingMember(meeting);
@@ -167,20 +169,17 @@ public class MeetingServiceImplTest {
 		service.joinMeetingMember(meeting);
 		assertThat(meeting.getAttendances().size(), is(1));
 
-		try {
-			currentMember = new Member("nije2@email.com");
-			when(securityService.getPersistentMember()).thenReturn(currentMember);
-			service.joinMeetingMember(meeting);
-			fail();
-		} catch (JoinMeetingException e) {
-			assertThat(e.getMessage(), containsString(currentMember.getName() + "님은 " + study.getStudyName() + " 스터디에 참가 신청하지 않으셨습니다."));
-		}
+		// automatically join the user to the study
+		currentMember = new Member("nije2@email.com");
+		when(securityService.getPersistentMember()).thenReturn(currentMember);
+		service.joinMeetingMember(meeting);
+		assertThat(meeting.getAttendances().size(), is(2));
 
 		currentMember = new Member("keesun@email.com");
 		study.addMember(currentMember);
 		when(securityService.getPersistentMember()).thenReturn(currentMember);
 		service.joinMeetingMember(meeting);
-		assertThat(meeting.getAttendances().size(), is(2));
+		assertThat(meeting.getAttendances().size(), is(3));
 
 
 		try {
@@ -189,7 +188,7 @@ public class MeetingServiceImplTest {
 			service.joinMeetingMember(meeting);
 			fail();
 		} catch (MeetingMaximumOverException e) {
-			assertThat(e.getMessage(), containsString("2 제한 인원을 확인하세요"));
+			assertThat(e.getMessage(), containsString("3 제한 인원을 확인하세요"));
 		}
 	}
 

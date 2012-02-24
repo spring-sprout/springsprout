@@ -87,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
         return repository.getTotalRowsCount(searchParam);
     }
 
-    @PostAuthorize("(returnObject.email == principal.Username) or hasRole('ROLE_ADMIN')")
+//    @PostAuthorize("(returnObject.email == principal.Username) or hasRole('ROLE_ADMIN')")
 	public Member getMemberById(int id) {
 		return repository.getById(id);
 	}

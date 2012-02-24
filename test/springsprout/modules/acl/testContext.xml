@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:lang="http://www.springframework.org/schema/lang"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+
+
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	
-	<context:annotation-config/>
-	<mvc:annotation-driven/>	
-	<!-- ============================================================= -->
-	<!--  Resources                                                    -->
-	<!-- ============================================================= -->
-	<context:property-placeholder location="classpath:test.database.properties" />
+	<mvc:annotation-driven/>
 
 	<!-- ============================================================= -->
 	<!--  Component Scan                                               -->
@@ -43,8 +34,8 @@
 	<!--  DataAccess                                                   -->
 	<!-- ============================================================= -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		p:driverClass="${db.driver}" p:jdbcUrl="${db.url}" p:user="${db.username}"
-		p:password="${db.password}" />
+		p:driverClass="org.h2.Driver" p:jdbcUrl="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE" p:user="sa"
+		p:password="" />
 
 	<!-- ============================================================= -->
 	<!--  Transaction                                                  -->
@@ -64,7 +55,7 @@
 		<property name="packagesToScan" value="springsprout.domain" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
@@ -99,9 +90,9 @@
     </bean>
 
 	<!--  HSQL 테이블 만들어 씁시다. -->
-	<jdbc:initialize-database data-source="dataSource" enabled="${acl.data.source.init}" ignore-failures="DROPS">
-		<jdbc:script location="${acl.drop.script}"/>
-		<jdbc:script location="${acl.schema.script}"/>
+	<jdbc:initialize-database data-source="dataSource" enabled="true" ignore-failures="DROPS">
+		<jdbc:script location="classpath*:/springsprout/modules/acl/schema-drop-hsqldb.sql"/>
+		<jdbc:script location="classpath*:/springsprout/modules/acl/schema-hsqldb.sql"/>
 		<!-->jdbc:script location="${acl.business.schema.script}"/-->
 	</jdbc:initialize-database>
 </beans>
