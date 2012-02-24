@@ -117,13 +117,13 @@
 						</executions>
 					</plugin>
 				</plugins>
-			</build>					
-        </profile>		
+			</build>
+        </profile>
 	</profiles>
 	
     <properties>
         <!-- dependency config -->
-        <spring.version>3.1.0.RELEASE</spring.version>
+        <spring.version>3.1.1.RELEASE</spring.version>
         <spring.security.version>3.0.3.RELEASE</spring.security.version>
         <swf.version>2.0.8.RELEASE</swf.version>
         <aspectj.version>1.6.11</aspectj.version>

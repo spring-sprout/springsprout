@@ -56,7 +56,7 @@
                                         <sec:authentication property="principal.username"/><b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/mypage/index/new"><i class="icon-user"></i> My Page</a></li>
+                                        <li><a href="/mypage/index"><i class="icon-user"></i> My Page</a></li>
                                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
                                             <li><a href="/admin/index"><i class="icon-cog"></i> Admin</a></li>
                                         </sec:authorize>
