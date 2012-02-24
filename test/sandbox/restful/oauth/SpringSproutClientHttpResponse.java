@@ -29,7 +29,12 @@ public class SpringSproutClientHttpResponse implements ClientHttpResponse {
         return HttpStatus.valueOf(this.connection.getResponseCode());
     }
 
-    public String getStatusText() throws IOException {
+	@Override
+	public int getRawStatusCode() throws IOException {
+		return HttpStatus.OK.value();
+	}
+
+	public String getStatusText() throws IOException {
         return this.connection.getResponseMessage();
     }
 
