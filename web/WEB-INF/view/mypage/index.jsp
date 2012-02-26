@@ -81,17 +81,17 @@
 					<h2 class="span2">개인 정보</h2>
 					<div class="span2 offset8">
 						<a href="<c:url value="/member/update/${member.id}"/>" class="btn btn-info">정보수정 </a>
-						<a href="#memberOutModal" class="btn btn-warning" data-toggle="modal">탈퇴</a>
+						<a href="#memberOutModal" class="btn btn-danger" data-toggle="modal">탈퇴</a>
 					</div>
 					<section id="memberOutModal" class="modal hide fade" style="display:none;">
 						<header class="modal-header">
 							<h3>정말로 탈퇴하시겠습니까?</h3>
 						</header>
 						<article class="modal-body">
-							<p>회원 탈퇴시 개인 정보는 사라집니다.</p>
+							<p><b>확인</b> 버튼을 누르면 탈퇴 페이지로 이동합니다.</p>
 						</article>
 						<footer class="modal-footer">
-							<a href="<c:url value="/member/out/${member.id}"/>" class="btn btn-danger">탈퇴</a>
+							<a href="<c:url value="/member/out/${member.id}"/>" class="btn btn-primary">확인</a>
 							<a href="#" class="btn" data-dismiss="modal">취소</a>
 						</footer>
 					</section>
