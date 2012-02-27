@@ -127,6 +127,7 @@
         <h2>낙서장&nbsp;<small>나누고 즐깁시다</small></h2>
     </header>
     <article>
+        <sec:authorize ifAnyGranted="ROLE_MEMBER">
         <div class="graffiti-writer">
             <div class="writer-thumb-wrap">
                 <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
@@ -139,150 +140,23 @@
                 <a href="/main/graffitiWrite" class="btn btn-primary">수다</a>
             </div>
         </div>
+        </sec:authorize>
         <ul class="stream-items">
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+            <c:forEach items="${graffitiList}" var="graffiti">
+                <li class="stream-item">
+                    <div class="writer-thumb-wrap">
+                        <img class="writer-thumb" src="${graffiti.writerAvatar}" alt="${graffiti.writerName}"/>
                     </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
+                    <div class="writer-text">
+                        <div class="item-header"><strong>${graffiti.writerName}</strong> <small class="item-time">on ${graffiti.writtenDate}</small></div>
+                        <div class="item-content">
+                            <spring:htmlEscape defaultHtmlEscape="true">
+                                ${graffiti.contents}
+                            </spring:htmlEscape>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
-            <li class="stream-item">
-                <div class="writer-thumb-wrap">
-                    <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
-                </div>
-                <div class="writer-text">
-                    <div class="item-header"><strong>백기선</strong> <small class="item-time">on 02/18 22:52:56</small></div>
-                    <div class="item-content">
-                        아웃사이더님도 ㅋ. 봄싹분을 거기서 보니 더 반가웠어요 ~
-                    </div>
-                </div>
-            </li>
+                </li>
+            </c:forEach>
         </ul>
     </article>
 </section>

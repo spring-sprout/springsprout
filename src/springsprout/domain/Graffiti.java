@@ -16,7 +16,7 @@ public class Graffiti implements Serializable{
 	@ManyToOne
 	private Member member;
 	
-	@Column(length = 50)
+	@Column(length = 300)
 	private String contents;
 	
 	@Temporal(TemporalType.TIMESTAMP)

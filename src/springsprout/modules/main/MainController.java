@@ -37,8 +37,8 @@ public class MainController {
     @RequestMapping("/index/new")
     public String newIndex(Model model) {
         model.addAttribute("studyList", studyService.findActiveStudies(4));
-        model.addAttribute("meetingList", meetingService.findActiveMeetings(2));
         model.addAttribute("currentUser", securityService.getCurrentMember());
+		model.addAttribute("graffitiList", graffitiService.getGraffitiList());
         return "newIndex";
     }
     

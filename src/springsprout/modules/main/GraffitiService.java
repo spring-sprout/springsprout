@@ -23,7 +23,7 @@ public class GraffitiService {
 	@Autowired SecurityService securityService;
 	
 	SimpleDateFormat writeDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	SimpleDateFormat formatedDateFormat = new SimpleDateFormat("MM/dd HH:mm:ss");
+	SimpleDateFormat formattedDateFormat = new SimpleDateFormat("MM/dd HH:mm:ss");
 
     @PreAuthorize("hasRole('ROLE_MEMBER')")
 	public boolean write(String contents) {
@@ -48,6 +48,7 @@ public class GraffitiService {
 	 * 검색기준 일시를 받아서 검색하되 만약 검색기준 일시가 비어있다면 전체 목록을 반환한다.
 	 * @param writeDate 검색기준일시
 	 * @return
+	 * @deprecated
 	 */
 	public List<GraffitiDTO> getGraffitiList(String writeDate) {
 		if(StringUtils.hasText(writeDate)){
@@ -66,10 +67,19 @@ public class GraffitiService {
 		return formatWrittenDate(graffitiRepository.getListByID( lastGraffitiID));
 	}
 
+	/**
+	 * @deprecated
+	 * @param graffitiDTOList
+	 * @return
+	 */
     public List<GraffitiDTO> formatWrittenDate(List<GraffitiDTO> graffitiDTOList) {
-        for(GraffitiDTO graffitiDTO : graffitiDTOList){
-            graffitiDTO.setFormatedDate(formatedDateFormat.format(graffitiDTO.getWrittenDate()));
-        }
+//        for(GraffitiDTO graffitiDTO : graffitiDTOList){
+//            //graffitiDTO.setFormatedDate(formatedDateFormat.format(graffitiDTO.getWrittenDate()));
+//        }
         return graffitiDTOList;
     }
+
+	public List<GraffitiDTO> getGraffitiList() {
+		return graffitiRepository.getAllContents();
+	}
 }

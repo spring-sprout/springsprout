@@ -9,14 +9,9 @@ public class GraffitiDTO {
 	private String writerAvatar;	// 낙서쓴사람아바타
     private String contents;		// 낙서내용
     private Date writtenDate;    //낙시 쓴 일자.
-    private String formatedDate;    //view 낙시 쓴 일자.
 
     public String getFormatedDate() {
-        return formatedDate;
-    }
-
-    public void setFormatedDate(String formatedDate) {
-        this.formatedDate = formatedDate;
+        return writtenDate.toString();
     }
 
     public Date getWrittenDate() {
