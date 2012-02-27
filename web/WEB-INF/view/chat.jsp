@@ -21,7 +21,7 @@
 <body>
 <bootstrap:main>
     <div id="chatWindow" class="row">
-        <div class="span10">
+        <div id="chats" class="span10">
             <ul>
                 <li>백기선> Hi?</li>
                 <li>백기선> Hi?</li>
@@ -29,6 +29,45 @@
                 <li>김성윤> How RU?</li>
                 <li>김성윤> How RU?</li>
                 <li>김성윤> 잘 살고 있는가???</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
+                <li>백기선> 그렇다네...</li>
                 <li>백기선> 그렇다네...</li>
             </ul>
         </div>
@@ -40,16 +79,21 @@
         </div>
     </div>
     <div id="chatConsole" class="row">
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="control-group">
-                    <label class="control-label" for="focusedInput">백기선@봄싹 /chat > </label>
-                    <div class="controls">
-                        <input class="input-xlarge focused" id="focusedInput" type="text" value="">
+        <div class="span10">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="chatMessage">백기선@봄싹 /chat <i class="icon-chevron-right icon-white"></i> </label>
+                        <div class="controls">
+                            <input class="input-xlarge focused" id="chatMessage" type="text" value="">
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
+        <div class="span2">
+            <i class="icon-question-sign icon-white"></i>
+        </div>
     </div>
 </bootstrap:main>
 <script type="text/javascript">
