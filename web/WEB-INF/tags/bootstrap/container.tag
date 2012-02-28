@@ -25,8 +25,9 @@
     </div>
     <bootstrap:footer/>
 </div>
-<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/js/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/springsprout.js"></script>
 <jsp:getProperty name="clientScript" property="endScriptFile"/>
 <script>
     if(document.location.host === 'www.springsprout.org'){
