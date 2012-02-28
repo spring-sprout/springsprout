@@ -9,19 +9,19 @@
 <header class="slogan">
     <h1>
         <span class="kd">var</span> springSprout =
-        <a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에"
+        <a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에" data-placement="bottom"
            data-original-title="spring(...);"><span class="string">'spring'</span></a> +
-        <a href="#" rel="popover" data-content="피어나는 새싹같은 커뮤니티."
+        <a href="#" rel="popover" data-content="피어나는 새싹같은 커뮤니티." data-placement="bottom"
            data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
     </h1>
     <p class="sub-slogan">
-        <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요."
+        <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요." data-placement="bottom"
            data-original-title="we.study(...);">학습하고</a>
-        <a href="#" rel="popover" data-content="학습한 기술을 적용해볼 곳이 없다구요? 봄싹에서 여러 개발자와 같이 사용해 보세요."
+        <a href="#" rel="popover" data-content="학습한 기술을 적용해볼 곳이 없다구요? 봄싹에서 여러 개발자와 같이 사용해 보세요." data-placement="bottom"
            data-original-title="we.develope(...);">개발하고</a>
-        <a href="#" rel="popover" data-content="발표, 번역, 저술 등 여러 방법으로 학습하고 적용해본 경험을 다른 개발자와 나눠보세요."
+        <a href="#" rel="popover" data-content="발표, 번역, 저술 등 여러 방법으로 학습하고 적용해본 경험을 다른 개발자와 나눠보세요." data-placement="bottom"
            data-original-title="we.share(...);">나누고</a>
-        <a href="#" rel="popover" data-content="이 모든게 즐겁다면 여러분은 이미 봄싹 개발자입니다."
+        <a href="#" rel="popover" data-content="이 모든게 즐겁다면 여러분은 이미 봄싹 개발자입니다." data-placement="bottom"
            data-original-title="we.enjoy(...);">즐깁시다.</a>
     </p>
 </header>
