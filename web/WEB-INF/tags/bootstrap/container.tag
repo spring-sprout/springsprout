@@ -12,6 +12,7 @@
     <title>봄싹 @2012</title>
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/ss.css" rel="stylesheet">
+    <!--[if lte IE 6]><script src="/static/js/ie6-warning.js"></script><script>window.onload=function(){e("/static/images/ie6/")}</script><![endif]-->
     <jsp:getProperty name="clientScript" property="headScriptFile"/>
     <jsp:getProperty name="clientScript" property="headScript"/>
 </head>
