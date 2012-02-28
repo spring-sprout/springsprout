@@ -6,16 +6,22 @@ body, .page-wrap {
 #chatWindow {
     height: 500px;
     background-color: #111;
-    color: #f5f5f5;
-    padding-top: 10px;
-
+    color: #999;
+    padding-top: 26px;
+}
+#chats {
+    height: 500px;
+    overflow: scroll;
 }
 #chatConsole {
-    color: #f5f5f5;
+    background-color: #111;
+    color: #999;
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
 .control-label {
-    color: #f5f5f5;
+    color: #999;
+}
+#chatMessage {
+    width: 100%;
 }
