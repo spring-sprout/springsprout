@@ -57,10 +57,11 @@ public class GraffitiRepositoryImpl extends HibernateGenericDao<Graffiti> implem
 	public List<GraffitiDTO> getAllContents() {
 		Criteria c = getCurrentSession().createCriteria(Graffiti.class)
 			.createAlias("member", "member")
-			.addOrder(Order.asc("writeDate"))
+			.addOrder(Order.desc("writeDate"))
 			.setProjection(
 				Projections.projectionList()
 				.add(Property.forName("id").as("id"))
+				.add(Property.forName("member.id").as("writerId"))
 				.add(Property.forName("member.name").as("writerName"))
 				.add(Property.forName("member.avatar").as("writerAvatar"))
 				.add(Property.forName("contents").as("contents"))

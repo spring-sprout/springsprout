@@ -73,7 +73,7 @@
                                         </c:forEach>
                                     </ul>
                                     <span class="attender-count">총 <fmt:formatNumber value="${meeting.attendanceCount}" pattern="#,###"/>명 참석</span>
-                                    <p><a href="#" class="btn btn-primary">참석 신청</a></p>
+                                    <div class="rsvp-btn-wrap"><a href="<c:url value="/study/${study.id}/meeting/${meeting.id}"/>" class="btn btn-small btn-primary">참석 신청</a></div>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -126,7 +126,7 @@
     <header class="sec-header">
         <h2>낙서장&nbsp;<small>나누고 즐깁시다</small></h2>
     </header>
-    <article>
+    <article class="graffities">
         <sec:authorize ifAnyGranted="ROLE_MEMBER">
         <div class="graffiti-writer">
             <div class="writer-thumb-wrap">
@@ -145,10 +145,12 @@
             <c:forEach items="${graffitiList}" var="graffiti">
                 <li class="stream-item">
                     <div class="writer-thumb-wrap">
-                        <img class="writer-thumb" src="${graffiti.writerAvatar}" alt="${graffiti.writerName}"/>
+                        <a href="<c:url value="/member/${graffiti.writerId}"/>">
+                            <img class="writer-thumb" src="${graffiti.writerAvatar}" alt="${graffiti.writerName}"/>
+                        </a>
                     </div>
                     <div class="writer-text">
-                        <div class="item-header"><strong>${graffiti.writerName}</strong> <small class="item-time">on ${graffiti.writtenDate}</small></div>
+                        <div class="item-header"><strong>${graffiti.writerName}</strong> <small class="item-time" title="${graffiti.formattedDate}">on ${graffiti.writtenDateString}</small></div>
                         <div class="item-content">
                             <spring:htmlEscape defaultHtmlEscape="true">
                                 ${graffiti.contents}

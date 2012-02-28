@@ -96,8 +96,8 @@ public class GraffitiServiceTest {
         gdtoList.add(gdto);
         gdtoList.add(gdto1);
         gdtoList = graffitiService.formatWrittenDate(gdtoList);
-        assertThat(gdtoList.get(0).getFormatedDate() , is("11/25 01:24:55"));
-        assertThat(gdtoList.get(1).getFormatedDate() , is("11/25 23:24:55"));        
+        assertThat(gdtoList.get(0).getFormattedDate() , is("2009.11.25 01:24:55"));
+        assertThat(gdtoList.get(1).getFormattedDate() , is("2009.11.25 23:24:55"));
 	}
 
 }

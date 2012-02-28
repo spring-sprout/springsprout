@@ -1,6 +1,10 @@
 package springsprout.common.util;
 
+import org.hamcrest.Matcher;
 import org.junit.Test;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -27,4 +31,13 @@ public class StringUtilsTest {
         result = StringUtils.cutBytes("sss", 150);
         assertThat(result.getBytes().length, is(3));
     }
+
+	@Test
+	public void testConvertDate2String() throws Exception{
+		Calendar cal = Calendar.getInstance();
+		cal.set(2012,Calendar.FEBRUARY,10,0,0,0);
+		assertThat(StringUtils.convertDate2String(cal.getTime()), is("02.10 00:00:00"));
+		cal.set(2011,Calendar.FEBRUARY,10,0,0,0);
+		assertThat(StringUtils.convertDate2String(cal.getTime()), is("2011.02.10 00:00:00"));
+	}
 }

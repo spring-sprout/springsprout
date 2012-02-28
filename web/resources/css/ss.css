@@ -127,6 +127,9 @@ hr.soften{
   color:#555;
   margin:5px 0;
 }
+.rsvp-btn-wrap{
+  margin-top:5px;
+}
 .more-link{
   text-align: right;
   padding-right:10px;
@@ -165,6 +168,7 @@ hr.soften{
   overflow: hidden;
   padding:0 5px 5px;
   border-bottom: 1px dotted #DDD;
+  margin-bottom: 3px;
 }
 .writer-thumb{
   width:28px;
@@ -193,7 +197,10 @@ hr.soften{
   margin:0 0 15px;
   list-style:none;
   overflow-y:scroll;
-  max-height:1200px;
+  max-height:1300px;
+  -webkit-box-shadow: 0 2px 3px rgba(102, 102, 102, 0.25);
+  -moz-box-shadow: 0 2px 3px rgba(102, 102, 102, 0.25);
+  box-shadow: 0 2px 3px rgba(102, 102, 102, 0.25);
 }
 .stream-item{
   padding:9px 5px;
