@@ -128,6 +128,8 @@ public class ClientScript {
 				scriptSrcBuilder.append(String.format(scriptFileTagFormat,_scriptSrc)+"\n");
 			}
 		}
+		scriptSrcs.clear();
+		scriptStore.remove(pos);
 		return scriptSrcBuilder.toString();
 	}
 
