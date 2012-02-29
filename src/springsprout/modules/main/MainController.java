@@ -76,7 +76,7 @@ public class MainController {
     	}
     	return new ModelAndView(JSON_VIEW).addObject("writeResult", writeResult).addObject( "graffitiList", graffitiService.getRecentGraffitiList( lastGraffitiID));
     }
-    
+
     @RequestMapping("/main/_topbarbtn")
     public void _topbarbtn(@RequestParam(defaultValue="N")String ajaxlogin_yn, ModelMap map){
         map.addAttribute("ajaxlogin_yn",ajaxlogin_yn);

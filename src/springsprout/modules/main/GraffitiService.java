@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import springsprout.domain.Graffiti;
 import springsprout.modules.main.support.GraffitiDTO;
+import springsprout.modules.main.support.SudaMessage;
+import springsprout.modules.member.MemberService;
 import springsprout.service.security.SecurityService;
 
 import java.text.ParseException;
@@ -21,6 +23,7 @@ public class GraffitiService {
 	
 	@Autowired GraffitiRepository graffitiRepository;
 	@Autowired SecurityService securityService;
+	@Autowired MemberService memberService;
 	
 	SimpleDateFormat writeDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	SimpleDateFormat formattedDateFormat = new SimpleDateFormat("MM/dd HH:mm:ss");
@@ -81,5 +84,13 @@ public class GraffitiService {
 
 	public List<GraffitiDTO> getGraffitiList() {
 		return graffitiRepository.getAllContents();
+	}
+
+	public void add(SudaMessage sudaMessage) {
+		while (graffitiRepository.getTotalRowCount() >= GRAFFITI_LIMIT_COUNT) {
+			graffitiRepository.deleteFirstGraffiti();
+		}
+		Graffiti graffiti = new Graffiti(sudaMessage.getMessage(), memberService.getMemberById(sudaMessage.getUserId()));
+		graffitiRepository.add(graffiti);
 	}
 }
