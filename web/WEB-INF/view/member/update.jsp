@@ -120,8 +120,8 @@
 	                    </div>
 	                </div>
 	                <div class="form-actions">
-	                    <button type="submit" class="btn btn-large btn-primary">저장</button>
-	                    <a href="<c:url value="/mypage/index"/>" class="btn btn-large"/>취소</a>
+	                    <button type="submit" class="btn btn-primary">저장</button>
+	                    <button type="reset" class="btn">취소</button>
 	                </div>
 	            </form:form>
 	        </div>
@@ -131,6 +131,10 @@
         <script type="text/javascript">
         	$(document).ready(function() {
         		$(".control-group").has("span").addClass("warning");
+        		$("button[type=reset]").click(function(e) {
+        			e.preventDefault();
+        			window.location = "<c:url value="/mypage/index"/>";
+        		});
         	});
         </script>
 	</body>
