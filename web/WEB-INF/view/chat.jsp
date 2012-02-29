@@ -38,7 +38,7 @@
             <form class="form-horizontal" id="msgForm">
                 <fieldset>
                     <div class="control-group">
-                        <label class="control-label" for="chatMessage">백기선@봄싹 /chat <i class="icon-chevron-right icon-white"></i> </label>
+                        <label class="control-label" for="chatMessage">${user.name}@봄싹 /chat <i class="icon-chevron-right icon-white"></i> </label>
                         <div class="controls">
                             <input class="input-xlarge focused" id="chatMessage" type="text" value="">
                         </div>
