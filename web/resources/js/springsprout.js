@@ -19,6 +19,10 @@ var SpringSprout = function(){
       }
     }).popover({delay: { show: 300, hide: 100 }});
   };
+
+  this.require = function(){
+
+  };
 };
 window.ss = new SpringSprout();
 ss.modules = ss.prototype = ss.prototype;

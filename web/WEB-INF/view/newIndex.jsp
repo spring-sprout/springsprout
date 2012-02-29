@@ -4,8 +4,11 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
-<jsp:useBean id="clientScript" scope="request" class="springsprout.common.usebean.ClientScript"/>
-<bootstrap:container>
+<%@ taglib prefix="springsprout" uri="/META-INF/springsprout.tld" %>
+<springsprout:endScriptLoad>
+    console.log('aaa');
+</springsprout:endScriptLoad>
+<bootstrap:container isSlimFooter="false">
 <header class="slogan">
     <h1>
         <span class="kd">var</span> springSprout =
