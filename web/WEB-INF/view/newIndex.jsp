@@ -133,7 +133,7 @@
         <sec:authorize ifAnyGranted="ROLE_MEMBER">
         <div class="graffiti-writer">
             <div class="writer-thumb-wrap">
-                <img class="writer-thumb" src="${currentUser.avatar}" alt="${currentUser.name}" />
+                <img class="writer-thumb" src="${currentUser.avatar}" alt="${currentUser.name}" data-m-id="${currentUser.id}" data-m-name="${currentUser.name}"/>
             </div>
             <div class="writer-text holder">
                 <input type="text" class="span3" placeholder="나누고 즐겨보아요!!">
