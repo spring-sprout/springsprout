@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    
+    <comment>애플리케이션 개발 설정</comment>
+    
+	<entry key="url">http://localhost:8080/</entry>
+	<entry key="mail.username">s2ctester@gmail.com</entry>
+	<entry key="mail.password">s2cxptmxj</entry>
+	<entry key="gmail.username">s2ctester@gmail.com</entry>
+	<entry key="gmail.password">s2cxptmxj</entry>
+	<entry key="twitter.username">s2ctest</entry>
+	<entry key="twitter.password">s2cxptmxj</entry>
+	<entry key="jabber.runOnStart">false</entry>
+	<entry key="devterm.twitter.username">s2ctest</entry>
+	<entry key="devterm.twitter.password">s2cxptmxj</entry>    
+    
+    <!-- dataSource config -->
+    <entry key="db.driver">org.postgresql.Driver</entry>
+    <entry key="db.url">jdbc:postgresql://localhost/springsprout</entry>
+    <entry key="db.username">springsprout</entry>
+    <entry key="db.password">springsprout</entry>
+    
+    <!-- hibernate config -->
+	<entry key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</entry>
+	<entry key="hibernate.show_sql">true</entry>
+	<entry key="hibernate.format_sql">true</entry>
+	<entry key="hibernate.hbm2ddl.auto">update</entry>
+	<entry key="hibernate.generate_statistics">true</entry>
+	<entry key="hibernate.cache.use_second_level_cache">true</entry>
+	<entry key="hibernate.cache.use_query_cache">true</entry>
+	<entry key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</entry>
+	
+	<!-- google calendar config  -->
+	<entry key="calendar.title">SpringSprout Calendar</entry>
+	<entry key="calendar.username">springsprout.cal.test@gmail.com</entry>
+	<entry key="calendar.password">googlecal</entry>
+	
+	<!-- daum map config  -->
+	<entry key="daum.map.key">27a3f692f446be591ac627f5c6e499eddf255ad4</entry>
+    
+</properties>

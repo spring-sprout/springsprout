@@ -15,72 +15,27 @@
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/ss.css" rel="stylesheet">
     <link href="/static/css/ss-chat.css" rel="stylesheet">
-    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/socket.io.js"></script>
 </head>
 <body>
-<bootstrap:main>
+<bootstrap:topNavi/>
+<div class="page-wrap">
+    <div class="container">
     <div id="chatWindow" class="row">
-        <div id="chats" class="span10">
-            <ul>
-                <li>백기선> Hi?</li>
-                <li>백기선> Hi?</li>
-                <li>백기선> Hi?</li>
-                <li>김성윤> How RU?</li>
-                <li>김성윤> How RU?</li>
-                <li>김성윤> 잘 살고 있는가???</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
-                <li>백기선> 그렇다네...</li>
+        <div class="span10">
+            <ul id="chats">
             </ul>
         </div>
         <div class="span2">
-            <ul>
-                <li>백기선</li>
-                <li>김성윤</li>
+            <ul id="users">
             </ul>
         </div>
     </div>
     <div id="chatConsole" class="row">
         <div class="span10">
-            <form class="form-horizontal">
+            <form class="form-horizontal" id="msgForm">
                 <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="chatMessage">백기선@봄싹 /chat <i class="icon-chevron-right icon-white"></i> </label>
@@ -95,9 +50,42 @@
             <i class="icon-question-sign icon-white"></i>
         </div>
     </div>
-</bootstrap:main>
-<script type="text/javascript">
 
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#chatMessage").focus();
+
+        var chat = io.connect('http://springsprout.org:8888/chat');
+        console.log(chat);
+
+        chat.on('connect', function () {
+            chat.emit('getIn', {who: '${user.name}', email: '${user.email}', msg: '들어왔어요.'});
+        });
+
+        chat.on('message', function (data) {
+            $("#chats").append("<li>" + data.who + "> " + data.msg + "</li>");
+            console.log(data);
+        });
+
+        chat.on('refresh', function() {
+            $("#users").empty();
+
+            $.get("/chat/sessions", function(data){
+                $.each(data, function(idx, item){
+                    $("#users").append("<li>" + item.member.name + "</li>")
+                });
+            });
+        });
+
+        $("#msgForm").submit(function(e){
+            var msg = $("#chatMessage").val();
+            chat.emit('chat', {who: '${user.name}' , msg: msg});
+            $("#chatMessage").val("");
+            e.preventDefault();
+        });
+    });
 </script>
 </body>
 </html>
