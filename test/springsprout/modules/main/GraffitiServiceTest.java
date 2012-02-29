@@ -11,6 +11,7 @@ import org.mockito.stubbing.Answer;
 import springsprout.domain.Graffiti;
 import springsprout.domain.Member;
 import springsprout.modules.main.support.GraffitiDTO;
+import springsprout.modules.member.MemberService;
 import springsprout.service.security.SecurityService;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class GraffitiServiceTest {
 	GraffitiService graffitiService;
 	@Mock SecurityService securityService;
 	@Mock GraffitiRepository graffitiRepository;
+	@Mock MemberService memberService;
 	
 	Calendar cal;
     List<GraffitiDTO> gdtoList;
@@ -36,6 +38,7 @@ public class GraffitiServiceTest {
 		graffitiService = new GraffitiService();
 		graffitiService.securityService = securityService;
 		graffitiService.graffitiRepository = graffitiRepository;
+		graffitiService.memberService = memberService;
 		
 		cal = Calendar.getInstance();
         gdtoList = new ArrayList<GraffitiDTO>();
