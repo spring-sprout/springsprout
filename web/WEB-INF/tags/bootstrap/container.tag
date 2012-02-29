@@ -3,6 +3,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
 <%@ taglib prefix="springsprout" uri="/META-INF/springsprout.tld" %>
+<%@ attribute name="isSlimFooter" required="false" rtexprvalue="true" %>
+<%@ attribute name="existFooter" required="false" rtexprvalue="true" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -24,7 +26,14 @@
     <div class="container">
         <jsp:doBody/>
     </div>
-    <bootstrap:footer/>
+    <c:if test="${existFooter}">
+        <c:if test="${isSlimFooter}">
+            <bootstrap:slimFooter/>
+        </c:if>
+        <c:if test="${!isSlimFooter}">
+            <bootstrap:footer/>
+        </c:if>
+    </c:if>
 </div>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>

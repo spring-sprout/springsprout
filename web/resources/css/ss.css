@@ -276,6 +276,9 @@ footer.main-footer{
   width:940px;
   margin:15px auto;
 }
+footer.slim-footer{
+  margin:0 auto;
+}
 footer.main-footer .linkBox{
   margin-bottom: 20px;
 }

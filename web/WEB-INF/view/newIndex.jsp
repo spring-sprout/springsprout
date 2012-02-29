@@ -8,7 +8,7 @@
 <springsprout:endScriptLoad>
     console.log('aaa');
 </springsprout:endScriptLoad>
-<bootstrap:container>
+<bootstrap:container isSlimFooter="false">
 <header class="slogan">
     <h1>
         <span class="kd">var</span> springSprout =
