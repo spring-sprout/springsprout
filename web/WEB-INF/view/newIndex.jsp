@@ -8,7 +8,6 @@
 <springsprout:endScriptLoad>
     console.log('aaa');
 </springsprout:endScriptLoad>
-<springsprout:headScriptFileLoad src="/js/main.js"/>
 <bootstrap:container>
 <header class="slogan">
     <h1>

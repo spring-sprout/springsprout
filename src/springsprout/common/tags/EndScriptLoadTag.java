@@ -14,7 +14,7 @@ import java.io.IOException;
  * Date: 2/28/12
  * Time: 11:03 PM
  */
-public class EndScriptLoadTag extends JavaScriptLoadTag implements BodyTag{
+public class EndScriptLoadTag extends JavaScriptLoadTag {
 
 	private boolean isOutTag = false;
 

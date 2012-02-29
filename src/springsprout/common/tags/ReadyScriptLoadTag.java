@@ -9,7 +9,7 @@ import javax.servlet.jsp.tagext.BodyTag;
  * Date: 2/29/12
  * Time: 2:19 AM
  */
-public class ReadyScriptLoadTag extends JavaScriptLoadTag implements BodyTag {
+public class ReadyScriptLoadTag extends JavaScriptLoadTag {
 	private boolean isOutTag = false;
 
 	public void setIsOutTag(boolean isOutTag){
