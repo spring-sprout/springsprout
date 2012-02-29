@@ -206,7 +206,7 @@
 		<footer class="footer-outer">
 			<p class="copyright">&copy; SpringSprout rocks! 2012</p>
 		</footer>
-		<script src="/static/jquery/jquery.min.js"></script>
+		<script src="/static/js/jquery.min.js"></script>
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
