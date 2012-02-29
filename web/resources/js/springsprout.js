@@ -1,10 +1,3 @@
-/**
- * Created by IntelliJ IDEA.
- * User: ImYoon
- * Date: 2/27/12
- * Time: 11:41 PM
- * To change this template use File | Settings | File Templates.
- */
 var SpringSprout = function(){
   var that = this;
   this.init  = function(){
@@ -20,12 +13,34 @@ var SpringSprout = function(){
     }).popover({delay: { show: 300, hide: 100 }});
   };
 
-  this.require = function(){
+  this.require = function(modules,args){
+    if($.isArray(modules)){
+      $.each(modules,function(idx,module){
+        if(ss.modules && ss.modules[module] && ss.modules[module].hasOwnProperty('init')){
+          ss.modules[module]['init'](args);
+        }else{
+          that.loadJavascript('/static/js/modules/'+module+'.js',function(){
+            if(ss.modules[module] && ss.modules[module].hasOwnProperty('init')){
+              ss.modules[module]['init'](args);
+            }
+          });
+        }
+      });
+    }
+  };
 
+  this.loadJavascript = function(src,callback) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = src;
+    if(callback){
+      script.onload = callback;
+    }
+    document.body.appendChild(script);
   };
 };
 window.ss = new SpringSprout();
-ss.modules = ss.prototype = ss.prototype;
+ss.modules = ss.prototype = SpringSprout.prototype;
 jQuery(function($){
   ss.init();
 });

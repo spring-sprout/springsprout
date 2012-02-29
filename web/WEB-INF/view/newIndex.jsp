@@ -6,7 +6,7 @@
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
 <%@ taglib prefix="springsprout" uri="/META-INF/springsprout.tld" %>
 <springsprout:endScriptLoad>
-    console.log('aaa');
+  ss.require(['graffiti'],'hi','dddd');
 </springsprout:endScriptLoad>
 <bootstrap:container isSlimFooter="false">
 <header class="slogan">
@@ -133,13 +133,13 @@
         <sec:authorize ifAnyGranted="ROLE_MEMBER">
         <div class="graffiti-writer">
             <div class="writer-thumb-wrap">
-                <img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X&s=28" />
+                <img class="writer-thumb" src="${currentUser.avatar}" alt="${currentUser.name}" />
             </div>
             <div class="writer-text holder">
                 <input type="text" class="span3" placeholder="나누고 즐겨보아요!!">
             </div>
             <div class="writer-text wrap hide">
-                <textarea rows="3" id="textarea" class="input-xlarge"></textarea>
+                <textarea rows="3" id="g-writer-box" class="input-xlarge"></textarea>
                 <a href="/main/graffitiWrite" class="btn btn-primary">수다</a>
             </div>
         </div>
