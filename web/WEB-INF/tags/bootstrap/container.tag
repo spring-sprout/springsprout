@@ -4,7 +4,7 @@
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
 <%@ taglib prefix="springsprout" uri="/META-INF/springsprout.tld" %>
 <%@ attribute name="isSlimFooter" required="false"%>
-<%@ attribute name="noneFooter" required="false"%>
+<%@ attribute name="noneFooter" required="false" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -26,8 +26,7 @@
     <div class="container">
         <jsp:doBody/>
     </div>
-    ${isSlimFooter}
-    <c:if test="${noneFooter}">
+    <c:if test="${!noneFooter}">
         <c:if test="${isSlimFooter}">
             <bootstrap:slimFooter/>
         </c:if>
