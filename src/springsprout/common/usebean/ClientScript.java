@@ -127,6 +127,8 @@ public class ClientScript {
 			for(String _scriptSrc : scriptSrcs){
 				scriptSrcBuilder.append(String.format(scriptFileTagFormat,_scriptSrc)+"\n");
 			}
+			scriptSrcs.clear();
+			scriptStore.remove(pos);
 		}
 		return scriptSrcBuilder.toString();
 	}
