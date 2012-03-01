@@ -83,7 +83,7 @@ public class StudyServiceImpl implements StudyService {
         Collections.sort(studies, new Comparator<Study>() {
             @Override
             public int compare(Study study, Study otherStudy) {
-                return study.getRecentMeeting().getOpenDate().compareTo(otherStudy.getRecentMeeting().getCloseDate());
+                return otherStudy.getRecentMeeting().getOpenDate().compareTo(study.getRecentMeeting().getCloseDate());
             }
         });
 
