@@ -34,7 +34,7 @@ public class MainController {
 
 	private FastDateFormat graffitiLoadDateTimeFormat = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+09:00"), Locale.KOREA);
 
-    @RequestMapping("/index/new")
+    @RequestMapping("/index")
     public String newIndex(Model model) {
         model.addAttribute("studyList", studyService.findActiveStudies(4));
         model.addAttribute("currentUser", securityService.getCurrentMember());
@@ -42,7 +42,7 @@ public class MainController {
         return "newIndex";
     }
     
-    @RequestMapping("/index")
+    @RequestMapping("/index/old")
     public String index(SitePreference sitePreference, Device device, Model model){
         if(device.isMobile() && (sitePreference == SitePreference.MOBILE)) {
             return "redirect:/m";
