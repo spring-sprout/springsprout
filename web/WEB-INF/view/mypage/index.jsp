@@ -115,7 +115,7 @@
 							<dt class="span2"><i class="icon-pencil"></i> 블로그</dt>
 								<dd class="span8">
 									<c:choose>
-										<c:when test="member.blog == null">등록해 주세요!</c:when>
+										<c:when test="${member.blog eq null or member.blog eq ''}">등록해 주세요!</c:when>
 										<c:otherwise>
 											<a href="${member.blog}" title="등록된 블로그" target="blog">${member.blog}</a>
 										</c:otherwise>
