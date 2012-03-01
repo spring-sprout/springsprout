@@ -88,18 +88,19 @@ public class StringUtils {
 		if(nowYear != calendar.get(calendar.YEAR)){
 			return fullDateFormat.format(date);
 		}
-		int second = Math.round((now - calendar.getTimeInMillis())/1000);
-		
-		if(second <= 5){
-			return "now";
-		}else if(second <= 60){
-			return String.format("%d초전", second);
-		}else if(second < (60*60)){
-			return String.format("%s분전", (int)Math.floor(second / 60));
-		}else if(second < (24*60*60)){
-			return String.format("%s시간전", (int)Math.floor(second / (60 * 60)));
-		}else{
-			return dateFormat.format(date);
-		}
+//		int second = Math.round((now - calendar.getTimeInMillis())/1000);
+//
+//		if(second <= 5){
+//			return "now";
+//		}else if(second <= 60){
+//			return String.format("%d초전", second);
+//		}else if(second < (60*60)){
+//			return String.format("%s분전", (int)Math.floor(second / 60));
+//		}else if(second < (24*60*60)){
+//			return String.format("%s시간전", (int)Math.floor(second / (60 * 60)));
+//		}else{
+//			return dateFormat.format(date);
+//		}
+		return dateFormat.format(date);
 	}
 }
