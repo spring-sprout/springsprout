@@ -37,21 +37,21 @@ ss.modules.graffiti = (function(ss){
       var gBox = $('#g-writer-box'),
           gWriterImg = $('.writer-thumb');
       if($.trim(gBox.val())){
-        suda.emit('message',{name:gWriterImg.data('mName'),avatar:gWriterImg.attr('src'),id:gWriterImg.data('mId'),msg:gBox.val()})
+        suda.emit('message',{name:gWriterImg.data('mName'),avatar:gWriterImg.attr('src'),id:gWriterImg.data('mId'),msg:gBox.val()});
         gBox.val('').focus();
       }
     },
 
     connectSocketIO : function(){
       suda = io.connect('http://'+document.location.hostname+':8888/suda');
-      printSudaData();
+      that.printSudaData();
     },
 
     printSudaData : function(){
       var sItems = $('.stream-items');
       suda.on('message', function (data) {
         if(data){
-          //sItems.prepend()
+          //console.log(data);
         }
       });
     }

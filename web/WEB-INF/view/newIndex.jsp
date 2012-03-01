@@ -35,7 +35,7 @@
     <ul class="studies">
         <c:choose>
             <c:when test="${studyList != null}">
-                <c:forEach items="${studyList}" var="study">
+                <c:forEach items="${studyList}" var="study" end="2">
                     <li class="study">
                         <div class="thumb">
                             <a href="<c:url value="/study/${study.id}"/>">
