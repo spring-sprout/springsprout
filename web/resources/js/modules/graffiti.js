@@ -51,7 +51,21 @@ ss.modules.graffiti = (function(ss){
       var sItems = $('.stream-items');
       suda.on('message', function (data) {
         if(data){
-          //console.log(data);
+          var li =
+            '<li class="stream-item">' +
+              '<div class="writer-thumb-wrap">' +
+              '<a href="/member/' + data.id + '">' +
+              '<img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X" alt="백기선">' +
+              '</a>' +
+              '</div>' +
+              '<div class="writer-text">' +
+              '<div class="item-header"><strong>백기선</strong> <small class="item-time" title="2012.03.01 09:21:01">on 03.01 09:21:01</small></div>' +
+              '<div class="item-content">' +
+                data.msg +
+              '</div>' +
+              '</div>' +
+              '</li>';
+          sItems.prepend(li);
         }
       });
     }
