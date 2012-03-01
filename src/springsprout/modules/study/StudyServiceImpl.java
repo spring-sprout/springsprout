@@ -18,9 +18,7 @@ import springsprout.service.notification.message.StudyMailMessage;
 import springsprout.service.security.SecurityService;
 
 import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service("studyService")
 @Transactional
@@ -80,6 +78,16 @@ public class StudyServiceImpl implements StudyService {
 		for(Study study : studies){
 			study.setRecentMeeting(meetingService.findRecentMeeting(study.getId()));
 		}
+
+        // order by recent meeting
+        Collections.sort(studies, new Comparator<Study>() {
+            @Override
+            public int compare(Study study, Study otherStudy) {
+                return study.getRecentMeeting().getOpenDate().compareTo(otherStudy.getRecentMeeting().getCloseDate());
+            }
+        });
+
+
 		return studies;
     }
 
