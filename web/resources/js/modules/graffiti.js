@@ -51,8 +51,7 @@ ss.modules.graffiti = (function(ss){
       var sItems = $('.stream-items');
       suda.on('message', function (data) {
         if(data){
-          //sItems.prepend();
-          console.log(data);
+          //console.log(data);
         }
       });
     }
