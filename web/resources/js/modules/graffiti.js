@@ -55,11 +55,11 @@ ss.modules.graffiti = (function(ss){
             '<li class="stream-item">' +
               '<div class="writer-thumb-wrap">' +
               '<a href="/member/' + data.id + '">' +
-              '<img class="writer-thumb" src="http://www.gravatar.com/avatar/d3a3e1e76decd8760aaf9af6ab334264?r=X" alt="백기선">' +
+              '<img class="writer-thumb" src="' + data.avatar + '" alt="' + data.name + '">' +
               '</a>' +
               '</div>' +
               '<div class="writer-text">' +
-              '<div class="item-header"><strong>백기선</strong> <small class="item-time" title="2012.03.01 09:21:01">on 03.01 09:21:01</small></div>' +
+              '<div class="item-header"><strong>' + data.name + '</strong> <small class="item-time" title="2012.03.01 09:21:01">on 03.01 09:21:01</small></div>' +
               '<div class="item-content">' +
                 data.msg +
               '</div>' +
