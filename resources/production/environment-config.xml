@@ -37,6 +37,6 @@
 	<entry key="calendar.password">googlecal</entry>
 	
 	<!-- daum map config  -->
-	<entry key="daum.map.key">27a3f692f446be591ac627f5c6e499eddf255ad4</entry>
+	<entry key="daum.map.key">382440ff1cb33df7df4b32d7c2bd352f48873e44</entry>
     
 </properties>
