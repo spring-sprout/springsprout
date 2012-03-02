@@ -107,7 +107,7 @@
     $(document).ready(function () {
         $("#chatMessage").focus();
 
-        var chat = io.connect('http://springsprout.org:8888/chat');
+        var chat = io.connect('http://'+document.location.hostname+':8888/chat');
 
         chat.on('connect', function () {
             chat.emit('getIn', {who:'${user.name}', email:'${user.email}', msg:'들어왔어요.'});

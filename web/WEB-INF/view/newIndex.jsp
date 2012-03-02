@@ -6,7 +6,7 @@
 <%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap"%>
 <%@ taglib prefix="springsprout" uri="/META-INF/springsprout.tld" %>
 <springsprout:endScriptLoad>
-  ss.require(['graffiti'],'hi','dddd');
+  ss.require(['graffiti']);
 </springsprout:endScriptLoad>
 <bootstrap:container isSlimFooter="false">
 <header class="slogan">
@@ -54,7 +54,7 @@
                                 <c:otherwise>
                                     <c:set var="meeting" value="${study.recentMeeting}"></c:set>
                                     <p><i class="icon-calendar"></i>
-                                        <fmt:formatDate value="${meeting.openDate}" pattern="MM월 dd일 (E)"/>&nbsp;
+                                        <fmt:formatDate value="${meeting.openDate}" pattern="yyyy.MM.dd (E)"/>&nbsp;
                                         <fmt:formatDate value="${meeting.openTime}" pattern="H:mm"/>
                                     </p>
                                     <p><i class="icon-map-marker"></i> <a href="<c:url value="/study/${study.id}/meeting/${meeting.id}/meetingLocation"/>">${meeting.location}</a></p>

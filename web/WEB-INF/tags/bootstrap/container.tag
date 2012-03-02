@@ -14,6 +14,9 @@
     <title>봄싹 @2012</title>
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/ss.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
     <!--[if lte IE 6]><script src="/static/js/ie6-warning.js"></script><script>window.onload=function(){e("/static/images/ie6/");}</script><![endif]-->
     <springsprout:headScriptFileLoad isOutTag="true"/>
     <springsprout:headScriptLoad isOutTag="true"/>
