@@ -40,7 +40,7 @@ ss.modules.graffiti = (function(ss){
           gVal = $.trim(gBox.val());
       if(gVal){
         gVal = gVal.replace(/\n/ig,' ');
-        suda.emit('message',{name:gWriterImg.data('mName'),avatar:gWriterImg.attr('src'),id:gWriterImg.data('mId'),msg:gVal});
+        suda.emit('suda',{name:gWriterImg.data('mName'),avatar:gWriterImg.attr('src'),id:gWriterImg.data('mId'),msg:gVal});
         gBox.val('').focus();
       }
     },
@@ -79,7 +79,9 @@ ss.modules.graffiti = (function(ss){
     printSudaData : function(){
       var sItems = $('.stream-items');
       suda.on('message', function (data) {
-        if(data){
+        if(data.isError){
+
+        }else{
           sItems.prepend(that.makeItem(data));
         }
       });

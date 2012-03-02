@@ -114,9 +114,12 @@
         });
 
         chat.on('message', function (data) {
-            $("#chats").append("<li>" + data.who + "> " + data.msg + "</li>");
-            $("#chats").scrollTop($("#chats").height());
-//            console.log(data);
+            if(data.isError){
+                //it needs a error process.
+            }else{
+                $("#chats").append("<li>" + data.who + "> " + data.msg + "</li>");
+                $("#chats").scrollTop($("#chats").height());
+            }
         });
 
         chat.on('refresh', function () {
@@ -130,9 +133,11 @@
         });
 
         $("#msgForm").submit(function (e) {
-            var msg = $("#chatMessage").val();
-            chat.emit('chat', {who:'${user.name}', msg:msg});
-            $("#chatMessage").val("");
+            var msg = $.trim($("#chatMessage").val());
+            if(msg){
+                chat.emit('chat', {who:'${user.name}', msg:msg});
+                $("#chatMessage").val("");
+            }
             e.preventDefault();
         });
     });
