@@ -1,0 +1,3 @@
+[submodule "ss-nodejs"]
+	path = ss-nodejs
+	url = git@github.com:spring-sprout/ss-nodejs.git
