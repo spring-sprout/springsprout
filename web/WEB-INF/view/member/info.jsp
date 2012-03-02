@@ -25,12 +25,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand logo" href="/index/new">
+                    <a class="brand logo" href="/index">
                         <img src="/resources/images/logo-2012.png" alt="springsprout" width="155" height="25">
                     </a>
                     <section class="nav-collapse">
                         <ul class="nav">
-                            <li><a href="/index/new"><i class="icon-home icon-white"></i> 홈</a></li>
+                            <li><a href="/index"><i class="icon-home icon-white"></i> 홈</a></li>
                             <li><a href="/study"><i class="icon-star icon-white"></i> 스터디</a></li>
                             <li><a href="/chat"><i class="icon-comment icon-white"></i> 채팅</a></li>
                             <li><a href="/statistics/index"><i class="icon-signal icon-white"></i> 통계</a></li>
