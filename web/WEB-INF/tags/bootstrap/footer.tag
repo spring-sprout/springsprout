@@ -7,9 +7,9 @@
             <div class="span3">
                 <h4>FAQ</h4>
                 <ul class="unstyled">
-                    <li><a target="_blank" href="http://wiki.springsprout.org/Home">봄싹은?</a></li>
-                    <li><a target="_blank" href="http://wiki.springsprout.org/Home">봄싹의 목적은?</a></li>
-                    <li><a target="_blank" href="http://wiki.springsprout.org/Home">봄싹 스터디에 참여하려면?</a></li>
+                    <li><a target="_blank" href="http://wiki.springsprout.org/display/META/Home">봄싹은?</a></li>
+                    <li><a target="_blank" href="http://wiki.springsprout.org/display/META/Home">봄싹의 목적은?</a></li>
+                    <li><a target="_blank" href="http://wiki.springsprout.org/display/META/Home">봄싹 스터디에 참여하려면?</a></li>
                 </ul>
             </div>
             <div class="span3">
