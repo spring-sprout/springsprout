@@ -136,9 +136,9 @@
                                         <c:set var="studyTrustRate" value="${member.studyTrustRates[studyObject] eq null ? 0 : member.studyTrustRates[studyObject]}%"/>
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <img src="${study.logo}" />
+                                                <a href="<c:url value='/study/${study.id}'/>"><img src="${study.logo}" /></a>
                                                 <div class="caption">
-                                                    <h5>${study.studyName}</h5>
+                                                    <a href="<c:url value='/study/${study.id}'/>"><h4>${study.studyName}</h4></a>
                                                     <table class="table table-bordered table-striped">
                                                         <tr>
                                                             <th><i class="icon-calendar"></i>  시작일</th>
@@ -185,7 +185,7 @@
 		<footer class="footer-outer">
 			<p class="copyright">&copy; SpringSprout rocks! 2012</p>
 		</footer>
-		<script src="/static/jquery/jquery.min.js"></script>
+		<script src="/static/js/jquery.min.js"></script>
         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
