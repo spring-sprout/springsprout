@@ -11,11 +11,7 @@
 <bootstrap:container isSlimFooter="false">
 <header class="slogan">
     <h1>
-        <span class="kd">var</span> springSprout =
-        <a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에" data-placement="bottom"
-           data-original-title="spring(...);"><span class="string">'spring'</span></a> +
-        <a href="#" rel="popover" data-content="피어나는 새싹같은 커뮤니티." data-placement="bottom"
-           data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
+        <span class="kd">var</span>&nbsp;springSprout&nbsp;=&nbsp;<a href="#" rel="popover" data-content="추운 겨울 지나 꽃피는 봄에" data-placement="bottom" data-original-title="spring(...);"><span class="string">'spring'</span></a>&nbsp;+&nbsp;<a href="#" rel="popover" data-content="피어나는 새싹같은 커뮤니티." data-placement="bottom" data-original-title="sprout(...);"><span class="string">'sprout'</span></a>;
     </h1>
     <p class="sub-slogan">
         <a href="#" rel="popover" data-content="관심있는 주제의 스터디에 참여도 하시고 멋진 개발자도 많이 만나세요." data-placement="bottom"
