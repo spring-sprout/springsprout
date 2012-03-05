@@ -20,7 +20,7 @@
                     <li><a target="_blank" href="http://wiki.springsprout.org">봄싹 위키</a></li>
                     <li><a target="_blank" href="http://springstudyclub.tistory.com/">봄싹 블로그</a></li>
                     <li><a target="_blank" href="http://jira.springsprout.org">봄싹 이슈트래커</a></li>
-                    <li><a target="_blank" href="https://github.com/whiteship/springsprout">봄싹 Git(+코드 뷰어)</a></li>
+                    <li><a target="_blank" href="https://github.com/spring-sprout/springsprout">봄싹 Git(+코드 뷰어)</a></li>
                 </ul>
             </div>
             <div class="span3">
