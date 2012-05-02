@@ -1,4 +1,4 @@
-봄싹(SpringSprout)
+봄싹(SpringSprout) [![Build Status](https://secure.travis-ci.org/spring-sprout/springsprout.png?branch=master)](http://travis-ci.org/spring-sprout/springsprout)
 ===========================
 
 ## 개요
