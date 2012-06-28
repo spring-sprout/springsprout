@@ -88,6 +88,7 @@ public class StudyServiceImpl implements StudyService {
 				}else if(otherStudy.getRecentMeeting() == null){
 					return -1;
 				} 
+				if (study.getRecentMeeting() == null) return 1;
 				if (study.getRecentMeeting().getCloseDate() == null) return 1;
 				if (otherStudy.getRecentMeeting().getOpenDate() == null) return -1;
                 return otherStudy.getRecentMeeting().getOpenDate().compareTo(study.getRecentMeeting().getCloseDate());
